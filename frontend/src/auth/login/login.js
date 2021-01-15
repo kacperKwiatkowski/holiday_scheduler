@@ -1,9 +1,9 @@
-import React from "react";
+import React, {Component} from "react";
 import Axios from "axios";
 
 import "./login.css"
 
-export class Login extends React.Component {
+export default class Login extends Component {
 
     constructor(props) {
         super(props);
@@ -12,7 +12,7 @@ export class Login extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
       }
 
-      initialState = {email: '', password: ''}
+      initialState = {email: 'loginDefault', password: '1234'}
     
       handleChange = event => {
         this.setState({
@@ -23,6 +23,8 @@ export class Login extends React.Component {
       handleSubmit = (event) => {
 
         event.preventDefault()
+
+        this.LoggedStatus++;
 
         const credentials = {
             email: this.state.email,
@@ -39,10 +41,13 @@ export class Login extends React.Component {
               }
           )
               .then(response => {
-                  if (response.data != null) {
+                  if (response.status === 200) {
                       this.setState(this.initialState);
-                      alert("User logged in successfully")
+                      this.props.handleSuccessfulAuth(response.data)
+                      console.log("Response from spring: " + response);
                   }
+              }).catch(error => {
+                console.error(error)
               })
       }
 
@@ -54,12 +59,9 @@ export class Login extends React.Component {
                 <form className="loginFormWrapper" onSubmit={this.handleSubmit}>
                     <input className="loginFormInput" type="text" name="email" placeholder="email" value={email} onChange={this.handleChange}/>
                     <input className="loginFormInput" type="password" name="password" placeholder="password" value={password} onChange={this.handleChange}/>
-                    <button className="loginFormButton" type="submit" value="Submit"/>
+                    <button className="loginFormButton" type="submit" value="Submit">Sign in</button>
                 </form>
             </div>
         )
     }
-
 }
-
-export default Login;

@@ -2,5 +2,7 @@ holiday_scheduler.iml
 .gitignore
 .idea
 
+frontend/node_modules
+
 backend/backend.iml
 backend/target

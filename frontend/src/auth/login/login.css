@@ -31,10 +31,6 @@
     text-align: center;
 }
 
-
-.loginFormInput::placeholder{
-}
-
 .loginFormButton{
     width: 100px;
     height: 40px;
