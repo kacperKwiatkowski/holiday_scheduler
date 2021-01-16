@@ -16,28 +16,26 @@ export const calendar = () => {
         return date.getFullYear()
     }
 
+    const row
+
     return(
         <table className="">
             <thead>
             <tr>
-                <th scope="col" className=""/>
+                
                 <th>
-                    <button type="button" className="" >test</button>
+                    
                 </th>
                 <th>
-                    <button type="button" className="">test</button>
+   
                 </th>
             </tr>
             </thead>
             <tbody>
             <tr>
                 <td>
-                    <button type="button" className="">test</button>
                 </td>
                 <td>
-                    <td>
-                        <button type="button" className="">test</button>
-                    </td>
                 </td>
             </tr>
             </tbody>

@@ -1,19 +1,19 @@
-import React from "react";
-
+import React, {Component} from "react";
+import Sidebar from "../../componenets/sidebar/sidebar"
+import Headerbar from "../../componenets/headerbar/headerbar"
 import Calendar from "../../componenets/calendar/calendar"
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import {Login} from "../login/login";
 
-export class Home extends React.Component {
+export class Home extends Component{
 
     render() {
-        return (
-            <div className="">
-
-            </div>
-        )
+    return (
+        <div>
+            <Sidebar />
+            <Headerbar />
+            <Calendar />
+        </div>
+    );
     }
-
 }
 
 export default Home;

@@ -1,6 +1,8 @@
 holiday_scheduler.iml
 .idea
 
+frontend/node_modules
+
 backend/backend.iml
 backend/target
 
