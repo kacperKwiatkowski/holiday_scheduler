@@ -1,6 +1,44 @@
 .sidebarWrapper {
-    width: 20vh;
+    width: 200px;
     height: 100vh;
     background-color: silver;
     float: left;
+}
+
+.sidebarLogoWrapper {
+    width: 200px;
+    height: 100px;
+}
+
+.sidebarNav{
+    list-style: none;
+    padding-inline-start: 0;
+}
+
+.sidebarNavLinks{
+    text-align: center;
+    vertical-align: middle; 
+    padding: 10px;
+    font-size: 20px;
+}
+
+a:link{
+    color:black;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a:visited{
+    color:black;
+}
+
+a:hover{
+
+    text-decoration: underline;
+}
+  
+a:focus{
+}
+
+a:active{
 }

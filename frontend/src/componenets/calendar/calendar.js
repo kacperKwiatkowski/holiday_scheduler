@@ -16,32 +16,8 @@ export const calendar = () => {
         return date.getFullYear()
     }
 
-    const row
-
     return(
-        <table className="">
-            <thead>
-            <tr>
-                
-                <th>
-                    
-                </th>
-                <th>
-   
-                </th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>
-                </td>
-                <td>
-                </td>
-            </tr>
-            </tbody>
-            <tfoot>
-            </tfoot>
-        </table>
+        <h1>calendar</h1>
     )
 }
 
