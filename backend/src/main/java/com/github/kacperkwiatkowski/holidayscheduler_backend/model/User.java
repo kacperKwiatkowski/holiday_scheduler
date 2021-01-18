@@ -49,6 +49,15 @@ public class User implements Serializable{
     public User() {
     }
 
+    public User(String email, String password, String firstName, String lastName, int levelOfAccess, int daysOffLeft) {
+        this.email = email;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.levelOfAccess = levelOfAccess;
+        this.daysOffLeft = daysOffLeft;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -125,8 +134,8 @@ public class User implements Serializable{
         this.team = team;
     }
 
-    public Set<Leave> getDaysOff() {
-        return daysOff;
+    public Set<Leave> getDaysOff(int daysOff) {
+        return this.daysOff;
     }
 
 
