@@ -1,5 +1,7 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.model;
 
+import com.github.kacperkwiatkowski.holidayscheduler_backend.utils.enums.LeaveType;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -25,13 +27,12 @@ public class Leave implements Serializable {
     @Column(name = "leaves_isAccepted",nullable = false, columnDefinition = "tinyint(1) default 0")
     private boolean isAccepted;
 
+    @Enumerated(EnumType.ORDINAL)
+    private LeaveType leaveType;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
-
-    @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "listDaysOff_table", joinColumns = @JoinColumn(name = "leaves_id"))
-    private List<LocalDate> listOfDays;
 
     public Leave() {
     }
@@ -68,20 +69,20 @@ public class Leave implements Serializable {
         isAccepted = accepted;
     }
 
+    public LeaveType getLeaveType() {
+        return leaveType;
+    }
+
+    public void setLeaveType(LeaveType leaveType) {
+        this.leaveType = leaveType;
+    }
+
     public User getUser() {
         return user;
     }
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public List<LocalDate> getListOfDays() {
-        return listOfDays;
-    }
-
-    public void setListOfDays(List<LocalDate> listOfDays) {
-        this.listOfDays = listOfDays;
     }
 
     @Override
@@ -105,7 +106,6 @@ public class Leave implements Serializable {
                 ", lastDay=" + lastDay +
                 ", isAccepted=" + isAccepted +
                 ", user=" + user +
-                ", listOfDays=" + listOfDays +
                 '}';
     }
 }
