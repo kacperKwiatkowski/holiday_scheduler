@@ -134,11 +134,9 @@ public class User implements Serializable{
         this.team = team;
     }
 
-    public Set<Leave> getDaysOff(int daysOff) {
-        return this.daysOff;
+    public Set<Leave> getDaysOff() {
+        return daysOff;
     }
-
-
 
     @Override
     public boolean equals(Object o) {

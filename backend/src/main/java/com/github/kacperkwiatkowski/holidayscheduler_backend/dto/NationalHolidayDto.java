@@ -1,5 +1,8 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.dto;
 
+import com.github.kacperkwiatkowski.holidayscheduler_backend.model.NationalHoliday;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.model.Team;
+
 import java.time.LocalDate;
 
 public class NationalHolidayDto {
@@ -56,5 +59,14 @@ public class NationalHolidayDto {
                 ", description='" + description + '\'' +
                 ", holidayDate=" + holidayDate +
                 '}';
+    }
+
+    public static NationalHolidayDto parseNationalHolidayToDto(NationalHoliday nationalHoliday){
+        return new NationalHolidayDto(
+                nationalHoliday.getId(),
+                nationalHoliday.getName(),
+                nationalHoliday.getDescription(),
+                nationalHoliday.getHolidayDate()
+        );
     }
 }

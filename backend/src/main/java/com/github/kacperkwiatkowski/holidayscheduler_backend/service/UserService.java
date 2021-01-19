@@ -18,18 +18,6 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public List<User> listAll(Integer pageNo, Integer pageSize, String sortBy) {
-        Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
-
-        Page<User> pagedResult = userRepository.findAll(paging);
-
-        if(pagedResult.hasContent()) {
-            return pagedResult.getContent();
-        } else {
-            return new ArrayList<User>();
-        }
-    }
-
     public List<User> listAll(Integer pageNo, Integer pageSize, String sortBy, String sortOrder) {
 
         Pageable paging;

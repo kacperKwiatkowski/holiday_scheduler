@@ -2,6 +2,7 @@ package com.github.kacperkwiatkowski.holidayscheduler_backend.dto;
 
 import com.github.kacperkwiatkowski.holidayscheduler_backend.model.Leave;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.model.Team;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.model.User;
 
 import java.util.Set;
 
@@ -11,23 +12,22 @@ public class UserDto {
     private String firstName;
     private String lastName;
     private String email;
-    private String password;
     private int daysOffLeft;
     private int levelOfAccess;
     private boolean isTeamLeader;
-    private Team team;
+    private int team;
     private Set<Leave> dayOffSet;
 
-    public UserDto(int id, String firstName, String lastName, String email, String password, int daysOffLeft, int levelOfAccess, boolean isTeamLeader, Team team) {
+    public UserDto(int id, String firstName, String lastName, String email, int daysOffLeft, int levelOfAccess, boolean isTeamLeader, int team, Set<Leave> dayOffSet) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.password = password;
         this.daysOffLeft = daysOffLeft;
         this.levelOfAccess = levelOfAccess;
         this.isTeamLeader = isTeamLeader;
         this.team = team;
+        this.dayOffSet = dayOffSet;
     }
 
     public int getId() {
@@ -62,14 +62,6 @@ public class UserDto {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public int getDaysOffLeft() {
         return daysOffLeft;
     }
@@ -94,26 +86,33 @@ public class UserDto {
         isTeamLeader = teamLeader;
     }
 
-    public Team getTeam() {
+    public int getTeamId() {
         return team;
     }
 
-    public void setTeam(Team team) {
-        this.team = team;
+    public void setTeamId(Team team) {
+        this.team = team.getId();
     }
 
-    @Override
-    public String toString() {
-        return "UserDto{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", daysOffLeft=" + daysOffLeft +
-                ", levelOfAccess=" + levelOfAccess +
-                ", isTeamLeader=" + isTeamLeader +
-                ", team=" + team +
-                '}';
+    public Set<Leave> getDayOffSet() {
+        return dayOffSet;
+    }
+
+    public void setDayOffSet(Set<Leave> dayOffSet) {
+        this.dayOffSet = dayOffSet;
+    }
+
+    public static UserDto parseUserToDto(User user){
+        return new UserDto(
+                user.getId(),
+                user.getFirstName(),
+                user.getFirstName(),
+                user.getEmail(),
+                user.getDaysOffLeft(),
+                user.getLevelOfAccess(),
+                user.isTeamLeader(),
+                user.getTeam().getTeamLeader().getTeam().getId(),
+                user.getDaysOff()
+        );
     }
 }

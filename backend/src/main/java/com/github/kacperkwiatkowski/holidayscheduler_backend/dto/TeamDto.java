@@ -1,5 +1,6 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.dto;
 
+import com.github.kacperkwiatkowski.holidayscheduler_backend.model.Team;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.model.User;
 
 import java.util.List;
@@ -58,5 +59,14 @@ public class TeamDto {
                 ", userEmail=" + userEmail +
                 ", teamLeader=" + teamLeader +
                 '}';
+    }
+
+    public static TeamDto parseTeamToDto(Team team){
+        return new TeamDto(
+                team.getId(),
+                team.getName(),
+                team.getUserEmail(),
+                team.getTeamLeader()
+        );
     }
 }
