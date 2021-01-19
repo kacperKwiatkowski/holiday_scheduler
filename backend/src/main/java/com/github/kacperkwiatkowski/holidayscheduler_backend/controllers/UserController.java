@@ -1,5 +1,6 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.controllers;
 
+import com.github.kacperkwiatkowski.holidayscheduler_backend.exceptions.UserNotFoundException;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.model.User;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.UserRepository;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.service.UserService;
@@ -41,10 +42,14 @@ public class UserController {
     }
 
     @DeleteMapping(path = "/delete/{id}")
-    void deleteUser(@PathVariable("id") int id){
+    ResponseEntity deleteUser(@PathVariable("id") int id){
+
+        if(userRepository.findById(id)==null) throw new UserNotFoundException("Error1233");
+
         userRepository.deleteById(id);
 
-        logger.info("User: " + id + "deleted successfully");
+        logger.info("User: " + id + " deleted successfully");
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     @PatchMapping(path = "/update/{id}/{firstname}/{lastname}/{email}/{daysOff}")

@@ -25,6 +25,12 @@ public class Team {
     public Team() {
     }
 
+    public Team(String name, List<String> userEmail, User teamLeader) {
+        this.name = name;
+        this.userEmail = userEmail;
+        this.teamLeader = teamLeader;
+    }
+
     public int getId() {
         return id;
     }
