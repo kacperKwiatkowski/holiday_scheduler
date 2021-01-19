@@ -4,6 +4,8 @@ import com.github.kacperkwiatkowski.holidayscheduler_backend.model.User;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.UserRepository;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.service.UserService;
 import com.google.gson.Gson;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +18,8 @@ import java.util.Optional;
 @RequestMapping("/user")
 public class UserController {
 
+    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+
     private final UserRepository userRepository;
     private final UserService userService;
 
@@ -26,15 +30,21 @@ public class UserController {
 
     @PostMapping(path = "/create")
     ResponseEntity createUser(@RequestBody String userDetails){
+
         Gson g = new Gson();
         User user = g.fromJson(userDetails, User.class);
         userRepository.save(user);
+
+        logger.info("User: " + user.getId() + "added successfully");
+
         return ResponseEntity.ok().build();
     }
 
     @DeleteMapping(path = "/delete/{id}")
     void deleteUser(@PathVariable("id") int id){
         userRepository.deleteById(id);
+
+        logger.info("User: " + id + "deleted successfully");
     }
 
     @PatchMapping(path = "/update/{id}/{firstname}/{lastname}/{email}/{daysOff}")
@@ -47,8 +57,13 @@ public class UserController {
             user.setEmail(email);
             user.setDaysOffLeft(daysOff);
             userRepository.save(user);
+
+            logger.info("User: " + id + "updated successfully");
+
             return ResponseEntity.noContent().build();
         } else {
+            logger.info("User: " + id + "updated unsuccessfully");
+
             return ResponseEntity.notFound().build();
         }
     }
@@ -56,8 +71,10 @@ public class UserController {
     @PatchMapping(path = "/update/password")
     ResponseEntity updatePassword(@RequestBody String password, String passwordMatch){
         if(password.equals(passwordMatch)){
+            logger.info("Password changed successfully");
             return ResponseEntity.status(HttpStatus.OK).build();
         } else {
+            logger.info("Password changed unsuccessfully");
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
     }
@@ -70,6 +87,8 @@ public class UserController {
             @RequestParam(defaultValue = "ASC") String sortOrder)
     {
         List<User> list = userService.listAll(pageNo, pageSize, sortBy, sortOrder);
+
+        logger.info("Pagination successful");
 
         return new ResponseEntity<List<User>>(list, new HttpHeaders(), HttpStatus.OK);
     }
