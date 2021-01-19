@@ -45,7 +45,7 @@ public class UserController {
             user.setFirstName(firstname);
             user.setLastName(lastname);
             user.setEmail(email);
-            user.getDaysOff(daysOff);
+            user.setDaysOffLeft(daysOff);
             userRepository.save(user);
             return ResponseEntity.noContent().build();
         } else {
@@ -60,11 +60,6 @@ public class UserController {
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
-    }
-
-    @GetMapping(path = "/")
-    public List<User> getALl () {
-        return userRepository.findAll();
     }
 
     @GetMapping(path = "/page")
