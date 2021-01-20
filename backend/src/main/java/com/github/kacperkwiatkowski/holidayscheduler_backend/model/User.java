@@ -1,5 +1,7 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.model;
 
+import com.github.kacperkwiatkowski.holidayscheduler_backend.utils.enums.Role;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
@@ -27,9 +29,10 @@ public class User implements Serializable{
 
     @Column(name = "user_lastName", nullable = false)
     private String lastName;
-
+    
+    @Enumerated(EnumType.ORDINAL)
     @Column(name = "user_levelOfAccess", nullable = false)
-    private int levelOfAccess;
+    private Role role;
 
     @Column(name = "user_daysOffLeft", nullable = false)
     private int daysOffLeft;
@@ -49,45 +52,21 @@ public class User implements Serializable{
     public User() {
     }
 
-    public User(String email, String password, String firstName, String lastName, int levelOfAccess, int daysOffLeft) {
+    public User(String email, String firstName, String lastName, Role role, int daysOffLeft) {
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.role = role;
+        this.daysOffLeft = daysOffLeft;
+    }
+
+    public User(String email, String password, String firstName, String lastName, Role role, int daysOffLeft) {
         this.email = email;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.levelOfAccess = levelOfAccess;
+        this.role = role;
         this.daysOffLeft = daysOffLeft;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public void setLevelOfAccess(int levelOfAccess) {
-        this.levelOfAccess = levelOfAccess;
-    }
-
-    public void setDaysOffLeft(int daysOffLeft) {
-        this.daysOffLeft = daysOffLeft;
-    }
-
-    public void setDaysOff(Set<Leave> daysOff) {
-        this.daysOff = daysOff;
     }
 
     public int getId() {
@@ -98,24 +77,56 @@ public class User implements Serializable{
         return email;
     }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getPassword() {
         return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getFirstName() {
         return firstName;
     }
 
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
     public String getLastName() {
         return lastName;
     }
 
-    public int getLevelOfAccess() {
-        return levelOfAccess;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     public int getDaysOffLeft() {
         return daysOffLeft;
+    }
+
+    public void setDaysOffLeft(int daysOffLeft) {
+        this.daysOffLeft = daysOffLeft;
+    }
+
+    public Set<Leave> getDaysOff() {
+        return daysOff;
+    }
+
+    public void setDaysOff(Set<Leave> daysOff) {
+        this.daysOff = daysOff;
     }
 
     public boolean isTeamLeader() {
@@ -132,36 +143,5 @@ public class User implements Serializable{
 
     public void setTeam(Team team) {
         this.team = team;
-    }
-
-    public Set<Leave> getDaysOff() {
-        return daysOff;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return id == user.id &&
-                Objects.equals(email, user.email);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, email);
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", levelOfAccess=" + levelOfAccess +
-                ", daysOffLeft=" + daysOffLeft +
-                '}';
     }
 }

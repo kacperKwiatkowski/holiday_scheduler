@@ -7,6 +7,7 @@ import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.LeaveRep
 import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.TeamRepository;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.UserRepository;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.utils.enums.LeaveType;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.utils.enums.Role;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -31,21 +32,21 @@ public class HolidaySchedulerBackendApplication {
     ){
         return args -> {
             //CREATE ADMINS
-            userRepository.save(new User("ola@gmail.com", "1234", "Ola", "Olska", 3, 26));
-            userRepository.save(new User("ida@gmail.com", "1234", "Ida", "Idowska", 3, 26));
+            userRepository.save(new User("ola@gmail.com", "1234", "Ola", "Olska", Role.ADMIN, 26));
+            userRepository.save(new User("ida@gmail.com", "1234", "Ida", "Idowska", Role.ADMIN, 26));
 
             //CREATE TEAM LEADERS
-            userRepository.save(new User("maria@gmail.com", "1234", "Maria", "Marecka", 2, 26));
-            userRepository.save(new User("wojciech@gmail.com", "1234", "Wojciech", "Wojski", 2, 26));
-            userRepository.save(new User("natalia@gmail.com", "1234", "Natalia", "Natalska", 2, 26));
+            userRepository.save(new User("maria@gmail.com", "1234", "Maria", "Marecka", Role.TEAM_LEADER, 26));
+            userRepository.save(new User("wojciech@gmail.com", "1234", "Wojciech", "Wojski", Role.TEAM_LEADER, 26));
+            userRepository.save(new User("natalia@gmail.com", "1234", "Natalia", "Natalska", Role.TEAM_LEADER, 26));
 
             //CREATE USERS
-            userRepository.save(new User("adam@gmail.com", "1234", "Adam", "Adamski", 1, 26));
-            userRepository.save(new User("magda@gmail.com", "1234", "Magda", "Magdanska", 1, 26));
-            userRepository.save(new User("maciej@gmail.com", "1234", "Maciej", "Mackowski", 1, 26));
-            userRepository.save(new User("edyta@gmail.com", "1234", "Edyta", "Edycka", 1, 26));
-            userRepository.save(new User("ewa@gmail.com", "1234", "Ewa", "Ewska", 1, 26));
-            userRepository.save(new User("mariusz@gmail.com", "1234", "Mariusz", "Marski", 1, 26));
+            userRepository.save(new User("adam@gmail.com", "1234", "Adam", "Adamski", Role.EMPLOYEE, 26));
+            userRepository.save(new User("magda@gmail.com", "1234", "Magda", "Magdanska", Role.EMPLOYEE, 26));
+            userRepository.save(new User("maciej@gmail.com", "1234", "Maciej", "Mackowski", Role.EMPLOYEE, 26));
+            userRepository.save(new User("edyta@gmail.com", "1234", "Edyta", "Edycka", Role.EMPLOYEE, 26));
+            userRepository.save(new User("ewa@gmail.com", "1234", "Ewa", "Ewska", Role.EMPLOYEE, 26));
+            userRepository.save(new User("mariusz@gmail.com", "1234", "Mariusz", "Marski", Role.EMPLOYEE, 26));
 
 /*            //FILL TEAMS
             List<String> avocado = new ArrayList<>();

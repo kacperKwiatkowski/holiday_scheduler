@@ -1,12 +1,10 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.controllers;
 
 import com.github.kacperkwiatkowski.holidayscheduler_backend.dto.UserDto;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.exceptions.IncorrectBodyException;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.exceptions.ObjectNotFoundException;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.model.User;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.UserRepository;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.service.UserService;
-import com.google.gson.Gson;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,12 +34,14 @@ public class UserController {
 
     @PostMapping(path = "/create")
     @ResponseBody
-    ResponseEntity<User> createUser(@Valid @RequestBody User userDto) {
+    ResponseEntity<User> createUser(@RequestBody UserDto userDto) {
 
         ModelMapper modelMapper = new ModelMapper();
         User user = modelMapper.map(userDto, User.class);
 
-        logger.info(user.toString());
+        user = userRepository.save(user);
+
+        logger.info("User: " + user.getId() + " created");
 
         return ResponseEntity.ok().build();
     }
@@ -106,6 +106,16 @@ public class UserController {
         Optional<User> user = Optional.ofNullable(userRepository.findById(id));
         if(user.isPresent()){
             return new ResponseEntity<User>(user.get(), HttpStatus.OK);
+        } else {
+            throw ObjectNotFoundException.createWith("Error/training");
+        }
+    }
+
+    @GetMapping(path = "/read/all")
+    public ResponseEntity<List<User>> getAllUser() throws ObjectNotFoundException {
+        Optional<List<User>> users = Optional.ofNullable(userRepository.findAll());
+        if(users.isPresent()){
+            return new ResponseEntity<List<User>>(users.get(), HttpStatus.OK);
         } else {
             throw ObjectNotFoundException.createWith("Error/training");
         }
