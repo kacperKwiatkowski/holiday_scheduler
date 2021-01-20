@@ -14,9 +14,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/user")
@@ -39,6 +41,8 @@ public class UserController {
         ModelMapper modelMapper = new ModelMapper();
         User user = modelMapper.map(userDto, User.class);
 
+        user.setPassword(UUID.randomUUID().toString());
+
         user = userRepository.save(user);
 
         logger.info("User: " + user.getId() + " created");
@@ -55,24 +59,18 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
-    @PatchMapping(path = "/update/{id}/{firstname}/{lastname}/{email}/{daysOff}")
-    ResponseEntity updateUser(@PathVariable int id, @PathVariable String firstname, @PathVariable String lastname, @PathVariable String email, @PathVariable int daysOff){
-        Optional<User> foundUser = Optional.ofNullable(userRepository.findById(id));
+    @PatchMapping(path = "/update")
+    @ResponseBody
+    ResponseEntity<UserDto> updateUser(@RequestBody UserDto userToPatch) throws ObjectNotFoundException {
+        Optional<User> foundUser = Optional.ofNullable(userRepository.findById(userToPatch.getId()));
         if(foundUser.isPresent()){
-            User user = foundUser.get();
-            user.setFirstName(firstname);
-            user.setLastName(lastname);
-            user.setEmail(email);
-            user.setDaysOffLeft(daysOff);
+            User user = UserDto.parseUserFromDto(userToPatch, foundUser.get());
             userRepository.save(user);
-
-            logger.info("User: " + id + "updated successfully");
-
-            return ResponseEntity.noContent().build();
+            logger.info("User: " + userToPatch.getId() + "updated successfully");
+            return ResponseEntity.status(HttpStatus.OK).build();
         } else {
-            logger.info("User: " + id + "updated unsuccessfully");
-
-            return ResponseEntity.notFound().build();
+            logger.info("User: " + userToPatch.getId()  + "updated unsuccessfully");
+            throw ObjectNotFoundException.createWith("PATCH impossible, user with such id doesnt exists.");
         }
     }
 

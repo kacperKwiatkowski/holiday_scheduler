@@ -52,14 +52,6 @@ public class User implements Serializable{
     public User() {
     }
 
-    public User(String email, String firstName, String lastName, Role role, int daysOffLeft) {
-        this.email = email;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.role = role;
-        this.daysOffLeft = daysOffLeft;
-    }
-
     public User(String email, String password, String firstName, String lastName, Role role, int daysOffLeft) {
         this.email = email;
         this.password = password;
