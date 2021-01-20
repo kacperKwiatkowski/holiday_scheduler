@@ -7,6 +7,7 @@ import com.github.kacperkwiatkowski.holidayscheduler_backend.model.User;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.UserRepository;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.service.UserService;
 import com.google.gson.Gson;
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
@@ -15,11 +16,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-@Validated
 @RequestMapping("/user")
 public class UserController {
 
@@ -34,9 +35,13 @@ public class UserController {
     }
 
     @PostMapping(path = "/create")
-    ResponseEntity<UserDto> createUser(@Validated @RequestBody UserDto user) throws IncorrectBodyException {
+    @ResponseBody
+    ResponseEntity<User> createUser(@Valid @RequestBody User userDto) {
 
-        logger.info("User: " + user.getId() + "added successfully");
+        ModelMapper modelMapper = new ModelMapper();
+        User user = modelMapper.map(userDto, User.class);
+
+        logger.info(user.toString());
 
         return ResponseEntity.ok().build();
     }
