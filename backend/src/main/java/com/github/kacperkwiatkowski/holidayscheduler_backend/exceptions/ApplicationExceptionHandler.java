@@ -1,6 +1,5 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.exceptions;
 
-import com.github.kacperkwiatkowski.holidayscheduler_backend.model.User;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,13 +14,13 @@ import java.util.List;
 @ControllerAdvice
 public class ApplicationExceptionHandler {
 
-    @ExceptionHandler({EntityNotFoundException.class})
+    @ExceptionHandler({ObjectNotFoundException.class, IncorrectBodyException.class})
     public final ResponseEntity<ApiError> handleException(Exception ex, WebRequest request) {
         HttpHeaders headers = new HttpHeaders();
 
-        if (ex instanceof EntityNotFoundException) {
+        if (ex instanceof ObjectNotFoundException) {
             HttpStatus status = HttpStatus.NOT_FOUND;
-            EntityNotFoundException enfe = (EntityNotFoundException) ex;
+            ObjectNotFoundException enfe = (ObjectNotFoundException) ex;
 
             return handleEntityNotFoundException(enfe, headers, status, request);
         } else {
@@ -30,7 +29,7 @@ public class ApplicationExceptionHandler {
         }
     }
 
-    protected ResponseEntity<ApiError> handleEntityNotFoundException(EntityNotFoundException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+    protected ResponseEntity<ApiError> handleEntityNotFoundException(ObjectNotFoundException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         List<String> errors = Collections.singletonList(ex.getMessage());
         return handleExceptionInternal(ex, new ApiError(errors), headers, status, request);
     }

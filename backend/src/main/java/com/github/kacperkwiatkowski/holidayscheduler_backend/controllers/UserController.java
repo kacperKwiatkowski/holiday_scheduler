@@ -1,6 +1,8 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.controllers;
 
-import com.github.kacperkwiatkowski.holidayscheduler_backend.exceptions.EntityNotFoundException;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.dto.UserDto;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.exceptions.IncorrectBodyException;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.exceptions.ObjectNotFoundException;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.model.User;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.UserRepository;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.service.UserService;
@@ -10,13 +12,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
+@Validated
 @RequestMapping("/user")
 public class UserController {
 
@@ -31,29 +34,21 @@ public class UserController {
     }
 
     @PostMapping(path = "/create")
-    ResponseEntity createUser(@RequestBody String userDetails){
-
-        Gson g = new Gson();
-        User user = g.fromJson(userDetails, User.class);
-        userRepository.save(user);
+    ResponseEntity<UserDto> createUser(@Validated @RequestBody UserDto user) throws IncorrectBodyException {
 
         logger.info("User: " + user.getId() + "added successfully");
 
         return ResponseEntity.ok().build();
     }
 
-/*
     @DeleteMapping(path = "/delete/{id}")
     ResponseEntity deleteUser(@PathVariable("id") int id){
-
-        if(userRepository.findById(id)==null) throw new EntityNotFoundException("Error1233");
 
         userRepository.deleteById(id);
 
         logger.info("User: " + id + " deleted successfully");
         return ResponseEntity.status(HttpStatus.OK).build();
     }
-*/
 
     @PatchMapping(path = "/update/{id}/{firstname}/{lastname}/{email}/{daysOff}")
     ResponseEntity updateUser(@PathVariable int id, @PathVariable String firstname, @PathVariable String lastname, @PathVariable String email, @PathVariable int daysOff){
@@ -102,12 +97,12 @@ public class UserController {
     }
 
     @GetMapping(path = "/read/{id}")
-    public ResponseEntity<User> getUser(@PathVariable int id) throws EntityNotFoundException{
+    public ResponseEntity<User> getUser(@PathVariable int id) throws ObjectNotFoundException {
         Optional<User> user = Optional.ofNullable(userRepository.findById(id));
         if(user.isPresent()){
             return new ResponseEntity<User>(user.get(), HttpStatus.OK);
         } else {
-            throw EntityNotFoundException.createWith("Error/training");
+            throw ObjectNotFoundException.createWith("Error/training");
         }
     }
 

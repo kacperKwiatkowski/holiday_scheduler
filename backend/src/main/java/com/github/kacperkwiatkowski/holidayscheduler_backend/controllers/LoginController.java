@@ -31,15 +31,4 @@ public class LoginController {
             return ResponseEntity.notFound().build();
         }
     }
-
-    // TODO Read more about it! https://spring.io/blog/2013/11/01/exception-handling-in-spring-mvc
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    @ExceptionHandler(NotFoundException.class)
-    public ModelAndView handleNotFound(){
-        logger.error("Handling not found exception");
-
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("404error");
-        return modelAndView;
-    }
 }

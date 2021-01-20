@@ -1,5 +1,6 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.controllers;
 
+import com.github.kacperkwiatkowski.holidayscheduler_backend.exceptions.ObjectNotFoundException;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.model.Team;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.TeamRepository;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.UserRepository;
@@ -44,19 +45,26 @@ public class TeamController {
     ResponseEntity<Team> updateTeam (
             @PathVariable int teamId,
             @PathVariable String teamName,
-            @PathVariable int teamLeaderId){
+            @PathVariable int teamLeaderId) throws ObjectNotFoundException {
         Optional<Team> foundTeam = Optional.ofNullable(teamRepository.findById(teamId));
+
         if(foundTeam.isPresent()){
-            Team team = foundTeam.get();
-            team.setName(teamName);
-            team.setTeamLeader(userRepository.findById(teamLeaderId)); //TODO Check if id exists
-            teamRepository.save(team);
-            logger.info("Team: " + teamId + "updated successfully");
-            return ResponseEntity.status(HttpStatus.OK).build();
+            if(foundTeam.isPresent()){
+                Team team = foundTeam.get();
+                team.setName(teamName);
+                team.setTeamLeader(userRepository.findById(teamLeaderId)); //TODO Check if id exists
+                teamRepository.save(team);
+                logger.info("Team: " + teamId + "updated successfully");
+                return ResponseEntity.status(HttpStatus.OK).build();
+            } else {
+                logger.info("Team: " + teamId + "updated unsuccessfully");
+                return ResponseEntity.unprocessableEntity().build();
+            }
         } else {
-            logger.info("Team: " + teamId + "updated unsuccessfully");
-            return ResponseEntity.unprocessableEntity().build();
+            throw ObjectNotFoundException.createWith("Team with such ID does not exist.");
         }
+
+
     }
 
     @GetMapping(path = "/page")
