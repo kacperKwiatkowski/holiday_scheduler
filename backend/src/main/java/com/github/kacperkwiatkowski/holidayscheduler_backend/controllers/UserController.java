@@ -42,23 +42,20 @@ public class UserController {
         return ResponseEntity.ok().build();
     }
 
-/*
     @DeleteMapping(path = "/delete/{id}")
     ResponseEntity deleteUser(@PathVariable("id") int id){
-
-        if(userRepository.findById(id)==null) throw new EntityNotFoundException("Error1233");
 
         userRepository.deleteById(id);
 
         logger.info("User: " + id + " deleted successfully");
         return ResponseEntity.status(HttpStatus.OK).build();
     }
-*/
 
     @PatchMapping(path = "/update/{id}/{firstname}/{lastname}/{email}/{daysOff}")
     ResponseEntity updateUser(@PathVariable int id, @PathVariable String firstname, @PathVariable String lastname, @PathVariable String email, @PathVariable int daysOff){
         Optional<User> foundUser = Optional.ofNullable(userRepository.findById(id));
         if(foundUser.isPresent()){
+            //TODO Improve method, code not clear.
             User user = foundUser.get();
             user.setFirstName(firstname);
             user.setLastName(lastname);
