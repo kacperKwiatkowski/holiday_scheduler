@@ -1,7 +1,7 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.controllers;
 
-import com.github.kacperkwiatkowski.holidayscheduler_backend.model.Leave;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.LeaveRepository;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.model.Vacation;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.VacationRepository;
 import com.google.gson.Gson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,33 +11,33 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/leave")
-public class LeaveController {
+public class VacationController {
 
     private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
-    private final LeaveRepository leaveRepository;
+    private final VacationRepository vacationRepository;
 
-    public LeaveController(LeaveRepository leaveRepository) {
-        this.leaveRepository = leaveRepository;
+    public VacationController(VacationRepository vacationRepository) {
+        this.vacationRepository = vacationRepository;
     }
 
     @PostMapping(path = "/create")
-    ResponseEntity<Leave> createLeave(@RequestBody String leaveDetails){
+    ResponseEntity<Vacation> createLeave(@RequestBody String leaveDetails){
 
         //TODO check if leave qualifies.
 
         Gson g = new Gson();
-        Leave leave = g.fromJson(leaveDetails, Leave.class);
-        leaveRepository.save(leave);
+        Vacation vacation = g.fromJson(leaveDetails, Vacation.class);
+        vacationRepository.save(vacation);
 
-        logger.info("User: " + leave.getId() + "added successfully");
+        logger.info("User: " + vacation.getId() + "added successfully");
 
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     @DeleteMapping(path = "/delete")
-    ResponseEntity<Leave> createLeave(@RequestParam int id){
-        leaveRepository.deleteById(id);
+    ResponseEntity<Vacation> createLeave(@RequestParam int id){
+        vacationRepository.deleteById(id);
 
         logger.info("User: " + id + "deleted successfully");
 

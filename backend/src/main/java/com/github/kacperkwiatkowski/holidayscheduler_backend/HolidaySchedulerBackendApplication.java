@@ -1,14 +1,21 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend;
 
+import com.github.kacperkwiatkowski.holidayscheduler_backend.model.Team;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.model.User;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.LeaveRepository;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.model.Vacation;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.VacationRepository;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.TeamRepository;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.UserRepository;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.utils.enums.LeaveType;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.utils.enums.RoleType;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootApplication
 public class HolidaySchedulerBackendApplication {
@@ -20,7 +27,7 @@ public class HolidaySchedulerBackendApplication {
     @Bean
     public CommandLineRunner init(
             UserRepository userRepository,
-            LeaveRepository leaveRepository,
+            VacationRepository vacationRepository,
             TeamRepository teamRepository
     ){
         return args -> {
@@ -41,44 +48,41 @@ public class HolidaySchedulerBackendApplication {
             userRepository.save(new User("ewa@gmail.com", "1234", "Ewa", "Ewska", RoleType.EMPLOYEE, 26));
             userRepository.save(new User("mariusz@gmail.com", "1234", "Mariusz", "Marski", RoleType.EMPLOYEE, 26));
 
-/*            //FILL TEAMS
-            List<String> avocado = new ArrayList<>();
-            List<String> guacamole = new ArrayList<>();
-            List<String> chorizo = new ArrayList<>();
+            //FILL TEAMS
+            List<Integer> avocado = new ArrayList<>();
+            List<Integer> guacamole = new ArrayList<>();
+            List<Integer> chorizo = new ArrayList<>();
 
-            avocado.add("adam@gmail.com");
-            avocado.add("magda@gmail.com");
-            avocado.add("maciej@gmail.com");
+            avocado.add(10);
+            avocado.add(9);
+            avocado.add(8);
+            guacamole.add(7);
+            chorizo.add(6);
 
-            guacamole.add("edyta@gmail.com");
-
-            chorizo.add("ewa@gmail.com");
-
-            Leave leave = new Leave();
-            leave.setLeaveType(LeaveType.PAYED);
-            leave.setFirstDay(LocalDate.now());
-            leave.setLastDay(LocalDate.now());
-            leave.setUser(userRepository.findById(3));
-            leave.setAccepted(false);
+/*            Vacation vacation = new Vacation();
+            vacation.setFirstDay(LocalDate.now());
+            vacation.setLastDay(LocalDate.now());
+            vacation.setAccepted(false);
+            vacation.setLeaveType(LeaveType.PAYED);
+            vacation.setUser(userRepository.findById(3));
+            vacation.setAccepted(false);
 
             //CREATE LEAVES
-            leaveRepository.save(new Leave());
+            vacationRepository.save(new Vacation());*/
 
-            //CREATE TEAMS
+/*            //CREATE TEAMS
             Team team = new Team();
             team.setName("Panchieta");
-            team.setUserEmail(new ArrayList<>());
+            team.setTeamSquad(new ArrayList<>());
             team.setTeamLeader(userRepository.findById(3));
 
             teamRepository.save(team);
 
-            teamRepository.save(new Team());
-            teamRepository.save(new Team());
-            teamRepository.save(new Team());
 
             teamRepository.save(new Team("Avocado", avocado, userRepository.findById(3)));
             teamRepository.save(new Team("Guacamole", guacamole, userRepository.findById(4)));
             teamRepository.save(new Team("Chorizo", chorizo, userRepository.findById(5)));
-        */};
+            */
+        };
     }
 }

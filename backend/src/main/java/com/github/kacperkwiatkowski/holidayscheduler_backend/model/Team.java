@@ -1,90 +1,37 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.List;
-import java.util.Objects;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Table(name = "teams")
 public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "team_id", unique = true, nullable = false)
+    @Column(unique = true, nullable = false)
     private int id;
 
-    @Column(name = "team_name")
+    @Column(nullable = false)
     private String name;
 
     @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "listUsersInTeam", joinColumns = @JoinColumn(name = "team_id"))
-    private List<String> userEmail;
+    @CollectionTable(name = "teamSquad", joinColumns = @JoinColumn(name = "teamId"))
+    private List<Integer> teamSquad;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private User teamLeader;
 
-    public Team() {
-    }
-
-    public Team(String name, List<String> userEmail, User teamLeader) {
+    public Team(String name, List<Integer> teamSquad, User teamLeader) {
         this.name = name;
-        this.userEmail = userEmail;
+        this.teamSquad = teamSquad;
         this.teamLeader = teamLeader;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public List<String> getUserEmail() {
-        return userEmail;
-    }
-
-    public void setUserEmail(List<String> userEmail) {
-        this.userEmail = userEmail;
-    }
-
-    public User getTeamLeader() {
-        return teamLeader;
-    }
-
-    public void setTeamLeader(User teamLeader) {
-        this.teamLeader = teamLeader;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Team)) return false;
-        Team team = (Team) o;
-        return Objects.equals(userEmail, team.userEmail) &&
-                Objects.equals(teamLeader, team.teamLeader);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(userEmail, teamLeader);
-    }
-
-    @Override
-    public String toString() {
-        return "Team{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", userEmail=" + userEmail +
-                ", teamLeader=" + teamLeader +
-                '}';
     }
 }

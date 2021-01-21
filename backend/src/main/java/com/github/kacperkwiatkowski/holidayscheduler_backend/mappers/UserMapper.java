@@ -26,7 +26,7 @@ public class UserMapper implements ObjectMapper<UserDto, User> {
         user.setFirstName(userDto.getFirstName());
         user.setLastName(userDto.getLastName());
         user.setDaysOffLeft(userDto.getDaysOffLeft());
-        user.setRole(userDto.getRole());
+        user.setRoleType(userDto.getRole());
         return user;
     }
 
@@ -37,7 +37,7 @@ public class UserMapper implements ObjectMapper<UserDto, User> {
         userDto.setFirstName(user.getFirstName());
         userDto.setLastName(user.getLastName());
         userDto.setDaysOffLeft(user.getDaysOffLeft());
-        userDto.setRole(user.getRole());
+        userDto.setRole(user.getRoleType());
         return userDto;
     }
 }

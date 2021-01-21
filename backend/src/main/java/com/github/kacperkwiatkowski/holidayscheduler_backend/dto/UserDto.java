@@ -87,7 +87,7 @@ public class UserDto {
                 user.getLastName(),
                 user.getEmail(),
                 user.getDaysOffLeft(),
-                user.getRole()
+                user.getRoleType()
         );
     }
 
@@ -97,7 +97,7 @@ public class UserDto {
         user.setLastName(userDto.getLastName());
         user.setEmail(userDto.getEmail());
         user.setDaysOffLeft(userDto.getDaysOffLeft());
-        user.setRole(userDto.getRole());
+        user.setRoleType(userDto.getRole());
 
         return user;
     }
