@@ -2,6 +2,7 @@ package com.github.kacperkwiatkowski.holidayscheduler_backend.mappers;
 
 import com.github.kacperkwiatkowski.holidayscheduler_backend.dto.TeamDto;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.model.Team;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.model.User;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.TeamRepository;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.UserRepository;
 import org.mapstruct.Mapper;
@@ -22,9 +23,17 @@ public class TeamMapper implements ObjectMapper<TeamDto, Team> {
     @Override
     public Team mapToDto(TeamDto teamDto) {
 
+/*
         Team team = new Team();
         team.setId(teamDto.getId());
 
+        teamDto.getName();
+        teamDto.getUserIds();
+        team.setUserEmail(teamDto.getUserIds().stream().map(s -> userRepository.findById(s)));
+        String string = userRepository.findById(1).getEmail();
+        userRepository.findById(teamDto.getTeamLeaderId());
+
+*/
 
         return null;
     }
