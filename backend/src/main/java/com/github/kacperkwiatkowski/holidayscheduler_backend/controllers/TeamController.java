@@ -1,11 +1,13 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.controllers;
 
+import com.github.kacperkwiatkowski.holidayscheduler_backend.dto.TeamDto;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.exceptions.ObjectNotFoundException;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.model.Team;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.TeamRepository;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.UserRepository;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.service.TeamService;
 import com.google.gson.Gson;
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
@@ -34,9 +36,10 @@ public class TeamController {
     }
 
     @PostMapping (path = "/create")
-    ResponseEntity<Team> createTeam (@RequestBody String teamDetails){
-        Gson gson = new Gson();
-        Team team = teamRepository.save(gson.fromJson(teamDetails, Team.class));
+    ResponseEntity<Team> createTeam (@RequestBody TeamDto teamToCreate){
+        ModelMapper modelMapper = new ModelMapper();
+        Team team = modelMapper.map(teamToCreate, Team.class);
+        teamRepository.save(team);
         logger.info("User: " + team.getId() + "added successfully");
         return ResponseEntity.status(HttpStatus.OK).build();
     }

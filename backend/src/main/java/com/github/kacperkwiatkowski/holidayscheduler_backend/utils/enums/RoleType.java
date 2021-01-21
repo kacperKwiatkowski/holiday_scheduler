@@ -1,6 +1,6 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.utils.enums;
 
-public enum Role {
+public enum RoleType {
     EMPLOYEE,
     TEAM_LEADER,
     HR,

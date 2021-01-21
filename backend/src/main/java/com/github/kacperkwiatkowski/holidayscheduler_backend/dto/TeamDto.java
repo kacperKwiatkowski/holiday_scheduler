@@ -9,14 +9,23 @@ public class TeamDto {
 
     private int id;
     private String name;
-    private List<String> userEmail;
-    private User teamLeader;
+    private List<Integer> userIds;
+    private int teamLeaderId;
 
-    public TeamDto(int id, String name, List<String> userEmail, User teamLeader) {
+    public TeamDto() {
+    }
+
+    public TeamDto(String name, List<Integer> userIds, int teamLeaderId) {
+        this.name = name;
+        this.userIds = userIds;
+        this.teamLeaderId = teamLeaderId;
+    }
+
+    public TeamDto(int id, String name, List<Integer> userIds, int teamLeaderId) {
         this.id = id;
         this.name = name;
-        this.userEmail = userEmail;
-        this.teamLeader = teamLeader;
+        this.userIds = userIds;
+        this.teamLeaderId = teamLeaderId;
     }
 
     public int getId() {
@@ -35,38 +44,19 @@ public class TeamDto {
         this.name = name;
     }
 
-    public List<String> getUserEmail() {
-        return userEmail;
+    public List<Integer> getUserIds() {
+        return userIds;
     }
 
-    public void setUserEmail(List<String> userEmail) {
-        this.userEmail = userEmail;
+    public void setUserIds(List<Integer> userIds) {
+        this.userIds = userIds;
     }
 
-    public User getTeamLeader() {
-        return teamLeader;
+    public int getTeamLeaderId() {
+        return teamLeaderId;
     }
 
-    public void setTeamLeader(User teamLeader) {
-        this.teamLeader = teamLeader;
-    }
-
-    @Override
-    public String toString() {
-        return "TeamDto{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", userEmail=" + userEmail +
-                ", teamLeader=" + teamLeader +
-                '}';
-    }
-
-    public static TeamDto parseTeamToDto(Team team){
-        return new TeamDto(
-                team.getId(),
-                team.getName(),
-                team.getUserEmail(),
-                team.getTeamLeader()
-        );
+    public void setTeamLeaderId(int teamLeaderId) {
+        this.teamLeaderId = teamLeaderId;
     }
 }

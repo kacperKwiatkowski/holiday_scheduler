@@ -37,26 +37,24 @@ public class UserController {
     @PostMapping(path = "/create")
     @ResponseBody
     ResponseEntity<User> createUser(@RequestBody UserDto userDto) {
-
         ModelMapper modelMapper = new ModelMapper();
         User user = modelMapper.map(userDto, User.class);
-
         user.setPassword(UUID.randomUUID().toString());
-
         user = userRepository.save(user);
-
         logger.info("User: " + user.getId() + " created");
-
         return ResponseEntity.ok().build();
     }
 
     @DeleteMapping(path = "/delete/{id}")
-    ResponseEntity deleteUser(@PathVariable("id") int id){
-
-        userRepository.deleteById(id);
-
-        logger.info("User: " + id + " deleted successfully");
-        return ResponseEntity.status(HttpStatus.OK).build();
+    ResponseEntity deleteUser(@PathVariable("id") int id) throws ObjectNotFoundException {
+        Optional<User> userToDelete = Optional.ofNullable(userRepository.findById(id));
+        if(userToDelete.isPresent()){
+            userRepository.deleteById(id);
+            logger.info("User: " + id + " deleted successfully");
+            return ResponseEntity.status(HttpStatus.OK).build();
+        } else {
+            throw ObjectNotFoundException.createWith("Deletion unsuccessful. Id does not exist.");
+        }
     }
 
     @PatchMapping(path = "/update")
@@ -93,9 +91,7 @@ public class UserController {
             @RequestParam(defaultValue = "ASC") String sortOrder)
     {
         List<User> list = userService.listAll(pageNo, pageSize, sortBy, sortOrder);
-
         logger.info("Pagination successful");
-
         return new ResponseEntity<List<User>>(list, new HttpHeaders(), HttpStatus.OK);
     }
 
@@ -105,7 +101,7 @@ public class UserController {
         if(user.isPresent()){
             return new ResponseEntity<User>(user.get(), HttpStatus.OK);
         } else {
-            throw ObjectNotFoundException.createWith("Error/training");
+            throw ObjectNotFoundException.createWith("Id does not exist.");
         }
     }
 
@@ -115,7 +111,7 @@ public class UserController {
         if(users.isPresent()){
             return new ResponseEntity<List<User>>(users.get(), HttpStatus.OK);
         } else {
-            throw ObjectNotFoundException.createWith("Error/training");
+            throw ObjectNotFoundException.createWith("The list is empty.");
         }
     }
 

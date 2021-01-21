@@ -1,10 +1,9 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.model;
 
-import com.github.kacperkwiatkowski.holidayscheduler_backend.utils.enums.Role;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.utils.enums.RoleType;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -32,7 +31,7 @@ public class User implements Serializable{
     
     @Enumerated(EnumType.ORDINAL)
     @Column(name = "user_levelOfAccess", nullable = false)
-    private Role role;
+    private RoleType roleType;
 
     @Column(name = "user_daysOffLeft", nullable = false)
     private int daysOffLeft;
@@ -52,17 +51,21 @@ public class User implements Serializable{
     public User() {
     }
 
-    public User(String email, String password, String firstName, String lastName, Role role, int daysOffLeft) {
+    public User(String email, String password, String firstName, String lastName, RoleType roleType, int daysOffLeft) {
         this.email = email;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.role = role;
+        this.roleType = roleType;
         this.daysOffLeft = daysOffLeft;
     }
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getEmail() {
@@ -97,12 +100,12 @@ public class User implements Serializable{
         this.lastName = lastName;
     }
 
-    public Role getRole() {
-        return role;
+    public RoleType getRole() {
+        return roleType;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setRole(RoleType roleType) {
+        this.roleType = roleType;
     }
 
     public int getDaysOffLeft() {
