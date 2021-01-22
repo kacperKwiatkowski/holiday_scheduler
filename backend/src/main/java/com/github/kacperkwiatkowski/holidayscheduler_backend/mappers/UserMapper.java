@@ -21,7 +21,22 @@ public class UserMapper implements ObjectMapper<UserDto, User> {
     UserRepository userRepository;
 
     @Override
-    public User mapToDto(UserDto userDto) {
+    public UserDto mapToDto(User user) {
+        UserDto userDto = UserDto
+                .builder()
+                .id(user.getId())
+                .email(user.getEmail())
+                .firstName(user.getFirstName())
+                .lastName(user.getLastName())
+                .daysOffLeft(user.getDaysOffLeft())
+                .roleType(user.getRoleType())
+                .build();
+
+        return userDto;
+    }
+
+    @Override
+    public User mapToEntity(UserDto userDto) {
 
         User user;
         Optional<User> optionalUser = Optional.ofNullable(userRepository.findById(userDto.getId()));
@@ -53,20 +68,5 @@ public class UserMapper implements ObjectMapper<UserDto, User> {
         }
 
         return user;
-    }
-
-    @Override
-    public UserDto mapToEntity(User user) {
-        UserDto userDto = UserDto
-                .builder()
-                .id(user.getId())
-                .email(user.getEmail())
-                .firstName(user.getFirstName())
-                .lastName(user.getLastName())
-                .daysOffLeft(user.getDaysOffLeft())
-                .roleType(user.getRoleType())
-                .build();
-
-        return userDto;
     }
 }

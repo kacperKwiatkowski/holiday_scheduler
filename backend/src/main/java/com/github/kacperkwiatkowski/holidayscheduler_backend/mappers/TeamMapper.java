@@ -21,27 +21,7 @@ public class TeamMapper implements ObjectMapper<TeamDto, Team> {
     UserRepository userRepository;
 
     @Override
-    public Team mapToDto(TeamDto teamDto) {
-
-        Team team = teamRepository.findById(teamDto.getId());
-
-                if(!teamDto.getName().equals(teamDto.getName())){
-                    team.setName(teamDto.getName());
-                }
-
-                if(teamDto.getUserIds().equals(team.getTeamSquad())){
-                    team.setTeamSquad(teamDto.getUserIds());
-                }
-
-                if(teamDto.getId()!=team.getId()){
-                    team.setTeamLeader(userRepository.findById(teamDto.getId()));
-                }
-
-        return team;
-    }
-
-    @Override
-    public TeamDto mapToEntity(Team team) {
+    public TeamDto mapToDto(Team team) {
         TeamDto teamDto = TeamDto
                 .builder()
                 .id(team.getId())
@@ -51,5 +31,25 @@ public class TeamMapper implements ObjectMapper<TeamDto, Team> {
                 .build();
 
         return teamDto;
+    }
+
+    @Override
+    public Team mapToEntity(TeamDto teamDto) {
+
+        Team team = teamRepository.findById(teamDto.getId());
+
+        if(!teamDto.getName().equals(teamDto.getName())){
+            team.setName(teamDto.getName());
+        }
+
+        if(teamDto.getUserIds().equals(team.getTeamSquad())){
+            team.setTeamSquad(teamDto.getUserIds());
+        }
+
+        if(teamDto.getId()!=team.getId()){
+            team.setTeamLeader(userRepository.findById(teamDto.getId()));
+        }
+
+        return team;
     }
 }

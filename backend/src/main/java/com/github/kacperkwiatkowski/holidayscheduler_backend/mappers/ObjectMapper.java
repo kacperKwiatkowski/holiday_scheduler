@@ -4,6 +4,6 @@ import org.mapstruct.Mapper;
 
 @Mapper
 public interface ObjectMapper<Dto, Entity> {
-    Entity mapToDto(Dto dto);
-    Dto mapToEntity(Entity entity);
+    Entity mapToEntity(Dto dto);
+    Dto mapToDto(Entity entity);
 }

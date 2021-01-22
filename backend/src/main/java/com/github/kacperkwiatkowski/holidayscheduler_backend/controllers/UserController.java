@@ -2,6 +2,7 @@ package com.github.kacperkwiatkowski.holidayscheduler_backend.controllers;
 
 import com.github.kacperkwiatkowski.holidayscheduler_backend.dto.UserDto;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.exceptions.ObjectNotFoundException;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.mappers.UserMapper;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.model.User;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.UserRepository;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.service.UserService;
@@ -61,8 +62,9 @@ public class UserController {
     @ResponseBody
     ResponseEntity<UserDto> updateUser(@RequestBody UserDto userToPatch) throws ObjectNotFoundException {
         Optional<User> foundUser = Optional.ofNullable(userRepository.findById(userToPatch.getId()));
+        UserMapper userMapper = new UserMapper();
         if(foundUser.isPresent()){
-            User user = UserDto.parseUserFromDto(userToPatch, foundUser.get());
+            User user = userMapper.mapToEntity(userToPatch);
             userRepository.save(user);
             logger.info("User: " + userToPatch.getId() + "updated successfully");
             return ResponseEntity.status(HttpStatus.OK).build();

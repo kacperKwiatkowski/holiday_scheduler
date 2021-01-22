@@ -25,7 +25,7 @@ public class VacationMapper implements ObjectMapper<VacationDto, Vacation> {
     UserRepository userRepository;
 
     @Override
-    public Vacation mapToDto(VacationDto vacationDto) {
+    public Vacation mapToEntity(VacationDto vacationDto) {
         Vacation vacation;
         Optional<Vacation> optionalVacation = Optional.ofNullable(vacationRepository.findById(vacationDto.getId()));
 
@@ -59,7 +59,7 @@ public class VacationMapper implements ObjectMapper<VacationDto, Vacation> {
     }
 
     @Override
-    public VacationDto mapToEntity(Vacation vacation) {
+    public VacationDto mapToDto(Vacation vacation) {
         VacationDto vacationDto = VacationDto
                 .builder()
                 .id(vacation.getId())
