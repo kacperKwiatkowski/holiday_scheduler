@@ -1,13 +1,11 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
+@Builder
 @Getter
 @Setter
 @NoArgsConstructor

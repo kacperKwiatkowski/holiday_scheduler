@@ -1,6 +1,8 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.model;
 
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -9,8 +11,10 @@ import java.time.LocalDate;
 import java.util.Objects;
 import java.util.UUID;
 
+@Builder
 @Getter
 @Setter
+@NoArgsConstructor
 @Entity
 public class NationalHoliday implements Serializable {
     @Id

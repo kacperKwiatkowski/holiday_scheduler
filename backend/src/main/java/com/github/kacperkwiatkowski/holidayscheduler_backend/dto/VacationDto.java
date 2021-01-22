@@ -1,10 +1,18 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.dto;
 
 import com.github.kacperkwiatkowski.holidayscheduler_backend.utils.enums.LeaveType;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
 import java.util.List;
 
+@Builder
+@Getter
+@Setter
+@NoArgsConstructor
 public class VacationDto {
 
     private int id;

@@ -23,19 +23,14 @@ public class TeamMapper implements ObjectMapper<TeamDto, Team> {
     @Override
     public Team mapToDto(TeamDto teamDto) {
 
-/*
-        Team team = new Team();
-        team.setId(teamDto.getId());
+        Team team = Team.builder()
+                .id(teamDto.getId())
+                .name(teamDto.getName())
+                .teamSquad(teamDto.getUserIds())
+                .teamLeader(userRepository.findById(teamDto.getTeamLeaderId()))
+                .build();
 
-        teamDto.getName();
-        teamDto.getUserIds();
-        team.setUserEmail(teamDto.getUserIds().stream().map(s -> userRepository.findById(s)));
-        String string = userRepository.findById(1).getEmail();
-        userRepository.findById(teamDto.getTeamLeaderId());
-
-*/
-
-        return null;
+        return team;
     }
 
     @Override
