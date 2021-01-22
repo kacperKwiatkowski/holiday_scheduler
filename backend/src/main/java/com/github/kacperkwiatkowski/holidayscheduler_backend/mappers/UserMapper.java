@@ -9,6 +9,8 @@ import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.UserRepo
 import org.mapstruct.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Optional;
+
 @Mapper
 public class UserMapper implements ObjectMapper<UserDto, User> {
 
@@ -20,24 +22,51 @@ public class UserMapper implements ObjectMapper<UserDto, User> {
 
     @Override
     public User mapToDto(UserDto userDto) {
-        //TODO creating new user may cause problems
-        User user = userRepository.findById(userDto.getId());
-        user.setEmail(userDto.getEmail());
-        user.setFirstName(userDto.getFirstName());
-        user.setLastName(userDto.getLastName());
-        user.setDaysOffLeft(userDto.getDaysOffLeft());
-        user.setRoleType(userDto.getRole());
+
+        User user;
+        Optional<User> optionalUser = Optional.ofNullable(userRepository.findById(userDto.getId()));
+
+        if(optionalUser.isEmpty()){
+            user = new User();
+        } else {
+            user = optionalUser.get();
+        }
+
+        if(!user.getEmail().equals(userDto.getEmail())){
+            user.setEmail(userDto.getEmail());
+        }
+
+        if(!user.getFirstName().equals(userDto.getFirstName())){
+            user.setFirstName(userDto.getFirstName());
+        }
+
+        if(!user.getLastName().equals(userDto.getLastName())){
+            user.setLastName(userDto.getLastName());
+        }
+
+        if(user.getDaysOffLeft()!=userDto.getDaysOffLeft()){
+            user.setDaysOffLeft(userDto.getDaysOffLeft());
+        }
+
+        if(!user.getRoleType().equals(userDto.getRoleType())){
+            user.setRoleType(userDto.getRoleType());
+        }
+
         return user;
     }
 
     @Override
     public UserDto mapToEntity(User user) {
-        UserDto userDto = new UserDto();
-        userDto.setEmail(user.getEmail());
-        userDto.setFirstName(user.getFirstName());
-        userDto.setLastName(user.getLastName());
-        userDto.setDaysOffLeft(user.getDaysOffLeft());
-        userDto.setRole(user.getRoleType());
+        UserDto userDto = UserDto
+                .builder()
+                .id(user.getId())
+                .email(user.getEmail())
+                .firstName(user.getFirstName())
+                .lastName(user.getLastName())
+                .daysOffLeft(user.getDaysOffLeft())
+                .roleType(user.getRoleType())
+                .build();
+
         return userDto;
     }
 }
