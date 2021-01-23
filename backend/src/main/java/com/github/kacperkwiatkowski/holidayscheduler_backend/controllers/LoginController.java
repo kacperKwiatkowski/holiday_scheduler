@@ -18,6 +18,7 @@ public class LoginController {
     private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
     @PostMapping(path = "/credentials")
+    @ResponseStatus(HttpStatus.OK)
     ResponseEntity<User> signInRequestVerifier(
             @RequestParam("details") String loginDetails) {
         Gson g = new Gson();

@@ -32,6 +32,7 @@ public class VacationController {
     }
 
     @DeleteMapping(path = "/delete")
+    @ResponseStatus(HttpStatus.OK)
     ResponseEntity<VacationDto> deleteVacation(@RequestParam int id){
         logger.info("Controller 'deleteVacation' initiated.");
         return ResponseEntity.ok(vacationService.deleteVacation(id));

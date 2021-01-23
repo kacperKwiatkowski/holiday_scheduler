@@ -73,7 +73,7 @@ public class HolidaysJsonData {
             return gson.fromJson(content.toString(), HolidaysJsonData.class).getServerResponse().getHolidays();
         } else {
             List<Holidays> emptyList;
-            return  emptyList = new ArrayList<>();
+            return emptyList = new ArrayList<>();
         }
     }
 
