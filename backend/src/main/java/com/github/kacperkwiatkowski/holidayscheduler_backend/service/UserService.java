@@ -83,7 +83,7 @@ public class UserService {
         //Adapt user password verification
     }
 
-    public List<User> listAll(Integer pageNo, Integer pageSize, String sortBy, String sortOrder) {
+    public List<UserDto> listAll(Integer pageNo, Integer pageSize, String sortBy, String sortOrder) {
 
         Pageable paging;
 
@@ -96,9 +96,10 @@ public class UserService {
         Page<User> pagedResult = userRepository.findAll(paging);
 
         if(pagedResult.hasContent()) {
-            return pagedResult.getContent();
+            return pagedResult.stream().map(userMapper::mapToDto).collect(Collectors.toList());
+            //return pagedResult.getContent();
         } else {
-            return new ArrayList<User>();
+           throw new ObjectNotFoundException("Pagination impossible");
         }
     }
 

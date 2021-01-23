@@ -31,19 +31,20 @@ public class UserController {
     @PostMapping(path = "/create")
     @ResponseBody
     ResponseEntity<User> createUser(@RequestBody UserDto userDto) {
-        log.info("User created");
-        userService.createUser(userDto);
-        return ResponseEntity.ok().build();
+        log.info("Controller 'createUser' initiated.");
+        return ResponseEntity.ok(userService.createUser(userDto));
     }
 
 
     @GetMapping(path = "/read/{id}")
     public ResponseEntity<UserDto> getUser(@PathVariable int id) throws ObjectNotFoundException {
+        log.info("Controller 'getUser' initiated.");
         return new ResponseEntity<UserDto>(userService.readUser(id), HttpStatus.OK);
     }
 
     @GetMapping(path = "/read/all")
     public ResponseEntity<List<UserDto>> getAllUser() throws ObjectNotFoundException {
+        log.info("Controller 'getAllUser' initiated.");
         return new ResponseEntity<List<UserDto>>(userService.getAllUsers(), HttpStatus.OK);
     }
 
@@ -51,6 +52,7 @@ public class UserController {
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     ResponseEntity<UserDto> updateUser(@RequestBody UserDto userToUpdate) throws ObjectNotFoundException {
+            log.info("Controller 'updateUser' initiated.");
             userService.updateUser(userToUpdate);
             return ResponseEntity.status(HttpStatus.OK).build();
 
@@ -71,20 +73,19 @@ public class UserController {
     @ResponseStatus(HttpStatus.OK)
     ResponseEntity deleteUser(@PathVariable("id") int id) throws ObjectNotFoundException {
         userService.deleteUser(id);
-        log.info("User: " + id + " deleted successfully");
+        log.info("Controller 'deleteUser' initiated.");
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
 
     @GetMapping(path = "/page")
-    public ResponseEntity<List<User>> getAllUsers(
+    public ResponseEntity<List<UserDto>> getAllUsers(
             @RequestParam(defaultValue = "0") Integer pageNo,
             @RequestParam(defaultValue = "10") Integer pageSize,
             @RequestParam(defaultValue = "id") String sortBy,
             @RequestParam(defaultValue = "ASC") String sortOrder)
     {
-        List<User> list = userService.listAll(pageNo, pageSize, sortBy, sortOrder);
-        log.info("Pagination successful");
-        return new ResponseEntity<List<User>>(list, new HttpHeaders(), HttpStatus.OK);
+        log.info("Controller 'getAllUsers' initiated.");
+        return new ResponseEntity<List<UserDto>>(userService.listAll(pageNo, pageSize, sortBy, sortOrder), new HttpHeaders(), HttpStatus.OK);
     }
 }
