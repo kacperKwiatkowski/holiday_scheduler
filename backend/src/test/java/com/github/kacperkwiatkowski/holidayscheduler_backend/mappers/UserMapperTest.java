@@ -2,25 +2,18 @@ package com.github.kacperkwiatkowski.holidayscheduler_backend.mappers;
 
 import com.github.kacperkwiatkowski.holidayscheduler_backend.dto.UserDto;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.model.User;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.UserRepository;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.utils.enums.RoleType;
-import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.web.servlet.MockMvc;
 
-import static org.hamcrest.Matchers.any;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.Mockito.when;
 
 @SpringBootTest
 class UserMapperTest {
 
-    UserMapper userMapper = new UserMapper();
+/*
+    UserMapper userMapper = new UserMapper(teamRepository, userRepository);
 
     @Test
     @DisplayName("User map to DTO with each field")
@@ -113,5 +106,6 @@ class UserMapperTest {
         //then
         assertEquals(0, userDto.getId());
     }
+*/
 
 }

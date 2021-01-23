@@ -6,20 +6,16 @@ import com.github.kacperkwiatkowski.holidayscheduler_backend.mappers.UserMapper;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.model.User;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.UserRepository;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.service.UserService;
-import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.EntityNotFoundException;
-import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/user")
@@ -27,22 +23,20 @@ public class UserController {
 
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
-    private final UserRepository userRepository;
-    private final UserService userService;
+    private UserRepository userRepository;
 
-    public UserController(UserRepository userRepository, UserService userService) {
+    public UserController(UserRepository userRepository) {
         this.userRepository = userRepository;
-        this.userService = userService;
     }
+
+    @Autowired
+    UserService userService;
 
     @PostMapping(path = "/create")
     @ResponseBody
     ResponseEntity<User> createUser(@RequestBody UserDto userDto) {
-        ModelMapper modelMapper = new ModelMapper();
-        User user = modelMapper.map(userDto, User.class);
-        user.setPassword(UUID.randomUUID().toString());
-        user = userRepository.save(user);
-        logger.info("User: " + user.getId() + " created");
+        logger.info("User created");
+        userService.createUser(userDto);
         return ResponseEntity.ok().build();
     }
 
@@ -62,7 +56,7 @@ public class UserController {
     @ResponseBody
     ResponseEntity<UserDto> updateUser(@RequestBody UserDto userToPatch) throws ObjectNotFoundException {
         Optional<User> foundUser = Optional.ofNullable(userRepository.findById(userToPatch.getId()));
-        UserMapper userMapper = new UserMapper();
+        UserMapper userMapper = new UserMapper(userRepository);
         if(foundUser.isPresent()){
             User user = userMapper.mapToEntity(userToPatch);
             userRepository.save(user);

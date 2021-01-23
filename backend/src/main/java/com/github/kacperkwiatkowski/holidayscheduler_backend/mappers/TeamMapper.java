@@ -7,11 +7,12 @@ import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.TeamRepo
 import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.UserRepository;
 import org.mapstruct.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
 
-@Mapper
+@Component
 public class TeamMapper implements ObjectMapper<TeamDto, Team> {
 
     @Autowired

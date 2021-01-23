@@ -1,5 +1,6 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.mappers;
 
+import com.github.kacperkwiatkowski.holidayscheduler_backend.convertors.VacationTypeConvertor;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.dto.UserDto;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.dto.VacationDto;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.model.User;
@@ -10,12 +11,13 @@ import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.Vacation
 import com.github.kacperkwiatkowski.holidayscheduler_backend.utils.enums.LeaveType;
 import org.mapstruct.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-@Mapper
+@Component
 public class VacationMapper implements ObjectMapper<VacationDto, Vacation> {
 
     @Autowired
@@ -36,11 +38,11 @@ public class VacationMapper implements ObjectMapper<VacationDto, Vacation> {
         }
 
         if(!vacationDto.getFirstDay().equals(vacation.getFirstDay())){
-            vacation.setFirstDay(vacationDto.getFirstDay());
+            vacation.setFirstDay(LocalDate.parse(vacationDto.getFirstDay()));
         }
 
         if(!vacationDto.getLastDay().equals(vacation.getLastDay())){
-            vacation.setLastDay(vacationDto.getFirstDay());
+            vacation.setLastDay(LocalDate.parse(vacationDto.getFirstDay()));
         }
 
         if(vacationDto.getUserID()!=(vacation.getUser().getId())){
@@ -52,7 +54,7 @@ public class VacationMapper implements ObjectMapper<VacationDto, Vacation> {
         }
 
         if(!vacationDto.getLeaveType().equals(vacation.getLeaveType())){
-            vacation.setLeaveType(vacationDto.getLeaveType());
+            vacation.setLeaveType(VacationTypeConvertor.convertToEnum(vacationDto.getLeaveType()));
         }
 
         return vacation;
@@ -63,11 +65,11 @@ public class VacationMapper implements ObjectMapper<VacationDto, Vacation> {
         VacationDto vacationDto = VacationDto
                 .builder()
                 .id(vacation.getId())
-                .firstDay(vacation.getFirstDay())
-                .lastDay(vacation.getLastDay())
+                .firstDay(vacation.getFirstDay().toString())
+                .lastDay(vacation.getLastDay().toString())
                 .userID(vacation.getUser().getId())
                 .isAccepted(vacation.isAccepted())
-                .leaveType(vacation.getLeaveType())
+                .leaveType(VacationTypeConvertor.convertToString(vacation.getLeaveType()))
                 .build();
         return vacationDto;
     }

@@ -1,5 +1,7 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.service;
 
+import com.github.kacperkwiatkowski.holidayscheduler_backend.dto.UserDto;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.mappers.UserMapper;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.model.User;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,12 +13,22 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class UserService {
 
     @Autowired
-    private UserRepository userRepository;
+    UserRepository userRepository;
+
+    @Autowired
+    UserMapper userMapper;
+
+    public User createUser(UserDto userToCreate){
+        User user = userMapper.mapToEntity(userToCreate);
+        user.setPassword(UUID.randomUUID().toString());
+        return userRepository.save(user);
+    }
 
     public List<User> listAll(Integer pageNo, Integer pageSize, String sortBy, String sortOrder) {
 
@@ -36,4 +48,6 @@ public class UserService {
             return new ArrayList<User>();
         }
     }
+
+
 }
