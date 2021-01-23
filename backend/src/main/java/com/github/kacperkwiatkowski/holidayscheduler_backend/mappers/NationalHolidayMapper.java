@@ -8,12 +8,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class NationalHolidayMapper implements ObjectMapper<NationalHolidayDto, NationalHoliday> {
 
-    private final NationalHolidayRepository nationalHolidayRepository;
-
-    public NationalHolidayMapper(NationalHolidayRepository nationalHolidayRepository) {
-        this.nationalHolidayRepository = nationalHolidayRepository;
-    }
-
     @Override
     public NationalHoliday mapToEntity(NationalHolidayDto nationalHolidayDto) {
         return NationalHoliday.builder()
