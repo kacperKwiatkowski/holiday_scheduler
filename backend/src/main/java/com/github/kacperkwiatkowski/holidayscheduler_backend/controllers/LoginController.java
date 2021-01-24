@@ -24,7 +24,7 @@ public class LoginController {
         Gson g = new Gson();
         User user = g.fromJson(loginDetails, User.class);
 
-        if(user.getEmail().equals("loginDefault") & user.getPassword().equals("1234")){
+        if(user.getEmail().equals("") & user.getPassword().equals("")){
             logger.info("User signed in.");
             return ResponseEntity.status(200).build();
         } else {

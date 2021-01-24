@@ -1,5 +1,13 @@
 * {
-  font-family: 'Helvetica', sans-serif;
-  font-size: 30px;
+  font-family: Josefin, Arial, serif;
 }
 
+@font-face {
+  font-family: 'Momcake';
+  src: local('Momcake'), url(./fonts/MomcakeThin-9Y6aZ.otf) format('opentype');
+}
+
+@font-face {
+  font-family: 'Josefin';
+  src: local('Josefin'), url(./fonts/JosefinSansRegular-x3LYV.ttf) format('opentype');
+}

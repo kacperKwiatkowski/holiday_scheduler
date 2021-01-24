@@ -1,42 +1,124 @@
-.loginSiteWrapper {
-    background: #0264d6; /* Old browsers */
-    /*background: -moz-radial-gradient(center, ellipse cover,  #0264d6 1%, #1c2b5a 100%); !* FF3.6+ *!*/
-    /*background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(1%,#0264d6), color-stop(100%,#1c2b5a)); !* Chrome,Safari4+ *!*/
-    /*background: -webkit-radial-gradient(center, ellipse cover,  #0264d6 1%,#1c2b5a 100%); !* Chrome10+,Safari5.1+ *!*/
-    /*background: -o-radial-gradient(center, ellipse cover,  #0264d6 1%,#1c2b5a 100%); !* Opera 12+ *!*/
-    /*background: -ms-radial-gradient(center, ellipse cover,  #0264d6 1%,#1c2b5a 100%); !* IE10+ *!*/
-    background: radial-gradient(ellipse at center, #0264d6 1%, #1c2b5a 100%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0264d6', endColorstr='#1c2b5a', GradientType=1); /* IE6-9 fallback on horizontal gradient */
-    height: calc(100vh);
-    width: 100%;
+/* .loginSiteWrapper {
+
+  width: 100%;
+  height:100em;
+    background: linear-gradient(-45deg, #cccccc, #d3d3d3, #ffffff, #d3d3d3);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
 }
 
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+} */
+
 .loginFormWrapper{
+
+    background-color: #fafafa;
+    padding: 100px;
     position: fixed;
-    left: 70%;
+    left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: 300px;
+    width: 600px;
+    height: 400px;
+    border-radius: 15px;
+
+    -webkit-box-shadow: 0px 20px 20px -17px rgba(0, 111, 255, 0.53);
+    -moz-box-shadow: 0px 20px 20px -17px rgba(0, 111, 255, 0.53);
+    box-shadow: 0px 20px 20px -17px rgba(0, 111, 255, 0.53);
+}
+
+.loginFormWrapper:hover{
+    -moz-box-shadow: 0 10px 25px rgba(0, 111, 255, 0.65);
+    -webkit-box-shadow: 0 10px 25px rgba(0, 111, 255, 0.65);
+    box-shadow: 0 10px 25px rgba(0, 111, 255, 0.65);
+
+    transition: all 0.4s ease-in-out;
 }
 
 .loginFormInput{
-    width: 300px;
-    height: 40px;
-    border: none;
+    width: 600px;
+    height: 60px;
     outline: none;
-    margin-bottom: 10px;
-    border-radius: 4px;
+    margin-bottom: 80px;
+    padding: none;
+    padding-left: 15px;
 
-    float: right;
-    text-align: center;
+    line-height:40px;
+    color: rgba(0, 111, 255);
+    font-size: 20px;
+    vertical-align: baseline;
+
+    background-color:#fafafa;
+    border: none;
+    border-bottom: 2px solid rgba(0, 111, 255);
 }
 
-.loginFormButton{
-    width: 100px;
-    height: 40px;
+
+.loginFormLabels{
+
+    padding-left: 15px;
+    color: rgba(0, 111, 255);
+    font-size: 30px;
+}
+
+.loginFormInput:hover{
+    -webkit-box-shadow: 0px 20px 35px -16px rgba(0, 111, 255, 0.65);
+    -moz-box-shadow: 0px 20px 35px -16px rgba(0, 111, 255, 0.65);
+    box-shadow: 0px 20px 35px -16px rgba(0, 111, 255, 0.65);   
+    transition: all 0.2s ease-in-out;
+}
+
+.loginButtonsWrapper{
+    width: 600px;
+    display: flex;
+    justify-content:flex-end;
+}
+
+.forgottenPasswordFormButton{
+    width: 250px;
+    height: 60px;
     margin: 0;
     border: none;
     outline: none;
-    float: right;
     border-radius: 4px;
+    background-color: #fafafa;
+    color: rgba(0, 111, 255);
+    font-weight:1000;
+    font-size:medium;
+}
+
+.forgottenPasswordFormButton:hover{
+    text-shadow: 0 0 15px rgba(0, 111, 255);
+    transition: all 0.2s ease-in-out;
+}
+
+
+.signInFormButton{
+    width: 100px;
+    height: 60px;
+    margin: 0;
+    border: none;
+    outline: none;
+    border-radius: 4px;
+    background-color: rgba(0, 111, 255);
+    color:#fafafa;
+    font-weight:1000;
+    font-size:medium;
+}
+
+.signInFormButton:hover{
+
+    -webkit-box-shadow: 0px 20px 35px -6px rgba(0, 111, 255, 0.65);
+    -moz-box-shadow: 0px 20px 35px -6px rgba(0, 111, 255, 0.65);
+    box-shadow: 0px 20px 35px -6px rgba(0, 111, 255, 0.65);   
+    transition: all 0.2s ease-in-out;
 }

@@ -14,7 +14,6 @@ export class Home extends Component{
     return (
         <div>
             <BrowserRouter>
-                <Sidebar />
                 <Headerbar />
                 
                 <Switch>
