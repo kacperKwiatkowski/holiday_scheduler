@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import Axios from "axios";
 
 import "./login.css"
+import "../../App.css"
 
 export default class Login extends Component {
 
@@ -12,7 +13,7 @@ export default class Login extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
       }
 
-      initialState = {email: 'loginDefault', password: '1234'}
+      initialState = {email: '', password: ''}
     
       handleChange = event => {
         this.setState({
@@ -23,8 +24,6 @@ export default class Login extends Component {
       handleSubmit = (event) => {
 
         event.preventDefault()
-
-        this.LoggedStatus++;
 
         const credentials = {
             email: this.state.email,
@@ -57,9 +56,15 @@ export default class Login extends Component {
         return(
             <div className="loginSiteWrapper">
                 <form className="loginFormWrapper" onSubmit={this.handleSubmit}>
-                    <input className="loginFormInput" type="text" name="email" placeholder="email" value={email} onChange={this.handleChange}/>
-                    <input className="loginFormInput" type="password" name="password" placeholder="password" value={password} onChange={this.handleChange}/>
-                    <button className="loginFormButton" type="submit" value="Submit">Sign in</button>
+                    <label className="loginFormLabels">EMAIL</label>
+                    <input className="loginFormInput" type="text" name="email" placeholder="" value={email} onChange={this.handleChange}/>
+                    <label className="loginFormLabels"> PASSWORD</label>
+                    <input className="loginFormInput" type="password" name="password" placeholder="" value={password} onChange={this.handleChange}/>
+                    
+                    <div className="loginButtonsWrapper">
+                    <button className="forgottenPasswordFormButton" type="submit" value="Submit">FORGOTTEN PASSWORD?</button>
+                    <button className="signInFormButton" type="submit" value="Submit">SIGN IN</button>
+                   </div>
                 </form>
             </div>
         )

@@ -18,12 +18,13 @@ public class LoginController {
     private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
     @PostMapping(path = "/credentials")
+    @ResponseStatus(HttpStatus.OK)
     ResponseEntity<User> signInRequestVerifier(
             @RequestParam("details") String loginDetails) {
         Gson g = new Gson();
         User user = g.fromJson(loginDetails, User.class);
 
-        if(user.getEmail().equals("loginDefault") & user.getPassword().equals("1234")){
+        if(user.getEmail().equals("") & user.getPassword().equals("")){
             logger.info("User signed in.");
             return ResponseEntity.status(200).build();
         } else {
@@ -31,5 +32,4 @@ public class LoginController {
             return ResponseEntity.notFound().build();
         }
     }
-
 }

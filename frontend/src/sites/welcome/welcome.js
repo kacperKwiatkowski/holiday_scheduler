@@ -17,7 +17,6 @@ export class Welcome extends Component{
     render() {
     return (
         <div className="">
-            <h1>Login site</h1>
             <Login handleSuccessfulAuth={this.handleSuccessfulAuth}/>
         </div>
     );

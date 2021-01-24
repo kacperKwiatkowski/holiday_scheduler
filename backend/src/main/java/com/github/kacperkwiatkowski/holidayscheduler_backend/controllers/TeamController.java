@@ -1,10 +1,14 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.controllers;
 
+import com.github.kacperkwiatkowski.holidayscheduler_backend.dto.TeamDto;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.exceptions.ObjectNotFoundException;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.model.Team;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.TeamRepository;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.UserRepository;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.service.TeamService;
 import com.google.gson.Gson;
+import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
@@ -16,66 +20,47 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Controller
 @RequestMapping("/team")
 public class TeamController {
 
     private static final Logger logger = LoggerFactory.getLogger(TeamController.class);
 
-    private final TeamRepository teamRepository;
-    private final UserRepository userRepository;
     private final TeamService teamService;
 
-    public TeamController(TeamRepository teamRepository, UserRepository userRepository, TeamService teamService) {
-        this.teamRepository = teamRepository;
-        this.userRepository = userRepository;
+    public TeamController(TeamService teamService) {
         this.teamService = teamService;
     }
 
     @PostMapping (path = "/create")
-    ResponseEntity<Team> createTeam (@RequestBody String teamDetails){
-        Gson gson = new Gson();
-        Team team = teamRepository.save(gson.fromJson(teamDetails, Team.class));
-        logger.info("User: " + team.getId() + "added successfully");
-        return ResponseEntity.status(HttpStatus.OK).build();
+    @ResponseStatus(HttpStatus.OK)
+    ResponseEntity<TeamDto> createTeam (@RequestBody TeamDto teamToCreate){
+        log.info("Controller 'createTeam' initiated.");
+        return ResponseEntity.ok(teamService.creatTeam(teamToCreate));
     }
 
-    @PatchMapping(path = "/update/{teamId}/{teamName}/{teamLeaderId}")
-    ResponseEntity<Team> updateTeam (
-            @PathVariable int teamId,
-            @PathVariable String teamName,
-            @PathVariable int teamLeaderId){
-        Optional<Team> foundTeam = Optional.ofNullable(teamRepository.findById(teamId));
-        if(foundTeam.isPresent()){
-            Team team = foundTeam.get();
-            team.setName(teamName);
-            team.setTeamLeader(userRepository.findById(teamLeaderId)); //TODO Check if id exists
-            teamRepository.save(team);
-            logger.info("Team: " + teamId + "updated successfully");
-            return ResponseEntity.status(HttpStatus.OK).build();
-        } else {
-            logger.info("Team: " + teamId + "updated unsuccessfully");
-            return ResponseEntity.unprocessableEntity().build();
-        }
+    @PatchMapping(path = "/update")
+    @ResponseBody
+    ResponseEntity<TeamDto> updateTeam (@RequestBody TeamDto teamToUpdate) {
+        log.info("Controller 'updateTeam' initiated.");
+        return ResponseEntity.ok(teamService.updateTeam(teamToUpdate));
+    }
+
+    @DeleteMapping(path = "/delete/{id}")
+    ResponseEntity<TeamDto> deleteUser(@PathVariable("id") int id){
+        logger.info("Controller 'deleteUser' initiated.");
+        return ResponseEntity.ok(teamService.deleteTeam(id));
     }
 
     @GetMapping(path = "/page")
-    public ResponseEntity<List<Team>> getAllTeams(
+    public ResponseEntity<List<TeamDto>> getAllTeams(
             @RequestParam(defaultValue = "0") Integer pageNo,
             @RequestParam(defaultValue = "10") Integer pageSize,
             @RequestParam(defaultValue = "id") String sortBy,
             @RequestParam(defaultValue = "ASC") String sortOrder)
     {
-        List<Team> list = teamService.listAll(pageNo, pageSize, sortBy, sortOrder);
-
         logger.info("Pagination successful");
-
-        return new ResponseEntity<List<Team>>(list, new HttpHeaders(), HttpStatus.OK);
-    }
-
-    @DeleteMapping(path = "/delete/{id}")
-    void deleteUser(@PathVariable("id") int id){
-        teamRepository.deleteById(id);
-        logger.info("Team: " + id + "deleted successfully");
+        return new ResponseEntity<List<TeamDto>>(teamService.listAll(pageNo, pageSize, sortBy, sortOrder), new HttpHeaders(), HttpStatus.OK);
     }
 }

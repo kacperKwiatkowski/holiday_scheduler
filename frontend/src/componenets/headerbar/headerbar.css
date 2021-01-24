@@ -1,6 +1,30 @@
 .headerbarWrapper{
     width: auto;
     height: 10vh;
-    background-color: black;
+    background-color: #fafafa;
 
+    border-bottom: 3px solid rgba(0, 111, 255, 0.53);
+
+}
+
+.headerbarLogOutButton{
+    width: 150px;
+    height: 60px;
+    margin: 0;
+    border: none;
+    outline: none;
+    border-radius: 4px;
+    background-color: #dddddd;
+    color:rgba(0, 111, 255);
+    font-weight:1000;
+    font-size:larger;
+
+    
+    margin: auto;
+}
+
+.headerbarLogOutButton:hover{
+
+    background-color: rgba(0, 111, 255);
+    color:#fafafa;
 }
