@@ -19,6 +19,7 @@ import java.util.Optional;
 
 @Slf4j
 @RestController
+@CrossOrigin
 @RequestMapping("/user")
 public class UserController {
 

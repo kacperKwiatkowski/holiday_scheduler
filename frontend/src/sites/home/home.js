@@ -1,7 +1,7 @@
 import React, {Component} from "react";
-import Sidebar from "../../componenets/sidebar/sidebar"
 import Headerbar from "../../componenets/headerbar/headerbar"
 import Calendar from "../../componenets/calendar/calendar"
+import Employees from "../../componenets/employees/employees"
 import Team from "../../componenets/team/team"
 import Teams from "../../componenets/teams/teams"
 import Settings from "../../componenets/settings/settings"
@@ -14,10 +14,13 @@ export class Home extends Component{
     return (
         <div>
             <BrowserRouter>
-                <Headerbar />
+            
+            <Headerbar />
                 
                 <Switch>
                     <Calendar exact path={'/home'}/>
+
+                    <Employees exact path={'/employees'}/>
 
                     <Team exact path={'/team'}/>
 

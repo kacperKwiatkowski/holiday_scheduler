@@ -28,7 +28,7 @@ public class HolidaySchedulerBackendApplication {
         SpringApplication.run(HolidaySchedulerBackendApplication.class, args);
     }
 
-/*    @Bean
+    @Bean
     public CommandLineRunner init(
             UserRepository userRepository,
             VacationRepository vacationRepository,
@@ -63,7 +63,7 @@ public class HolidaySchedulerBackendApplication {
             guacamole.add(7);
             chorizo.add(6);
 
-*//*            Vacation vacation = new Vacation();
+/*            Vacation vacation = new Vacation();
             vacation.setFirstDay(LocalDate.now());
             vacation.setLastDay(LocalDate.now());
             vacation.setAccepted(false);
@@ -74,7 +74,7 @@ public class HolidaySchedulerBackendApplication {
             //CREATE LEAVES
             vacationRepository.save(new Vacation());*//*
 
-     *//*            //CREATE TEAMS
+             *//*            //CREATE TEAMS
             Team team = new Team();
             team.setName("Panchieta");
             team.setTeamSquad(new ArrayList<>());
@@ -89,4 +89,6 @@ public class HolidaySchedulerBackendApplication {
             *//*
         };*/
 
+        };
+    }
 }

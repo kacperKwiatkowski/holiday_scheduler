@@ -44,6 +44,12 @@
     transition: all 0.4s ease-in-out;
 }
 
+.loginFormLabels{
+    padding-left: 15px;
+    color: rgba(0, 111, 255);
+    font-size: 30px;
+}
+
 .loginFormInput{
     width: 600px;
     height: 60px;
@@ -62,20 +68,33 @@
     border-bottom: 2px solid rgba(0, 111, 255);
 }
 
-
-.loginFormLabels{
-
-    padding-left: 15px;
-    color: rgba(0, 111, 255);
-    font-size: 30px;
-}
-
 .loginFormInput:hover{
     -webkit-box-shadow: 0px 20px 35px -16px rgba(0, 111, 255, 0.65);
     -moz-box-shadow: 0px 20px 35px -16px rgba(0, 111, 255, 0.65);
     box-shadow: 0px 20px 35px -16px rgba(0, 111, 255, 0.65);   
     transition: all 0.2s ease-in-out;
 }
+
+.loginFormInput:focus{
+    -webkit-box-shadow: 0px 20px 35px -16px rgba(0, 111, 255, 0.65);
+    -moz-box-shadow: 0px 20px 35px -16px rgba(0, 111, 255, 0.65);
+    box-shadow: 0px 20px 35px -16px rgba(0, 111, 255, 0.65);   
+    transition: all 0.2s ease-in-out;
+}
+
+
+
+.loginFormInput:-webkit-autofill,
+.loginFormInput:-webkit-autofill:hover, 
+.loginFormInput:-webkit-autofill:focus
+.loginFormInput:-webkit-autofill:active {
+
+    font-size: 20px;
+  -webkit-text-fill-color:  rgba(0, 111, 255, 0.65);  
+  -webkit-box-shadow: 0 0 0px 1000px #fafafa inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
 
 .loginButtonsWrapper{
     width: 600px;
