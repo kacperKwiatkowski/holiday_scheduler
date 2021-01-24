@@ -19,16 +19,16 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-@SpringBootApplication
+@SpringBootApplication/*
 @EnableJpaRepositories("com.github.kacperkwiatkowski.holidayscheduler_backend.repository")
-@EntityScan("com.github.kacperkwiatkowski.holidayscheduler_backend.model")
+@EntityScan("com.github.kacperkwiatkowski.holidayscheduler_backend.model")*/
 public class HolidaySchedulerBackendApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(HolidaySchedulerBackendApplication.class, args);
     }
 
-    @Bean
+/*    @Bean
     public CommandLineRunner init(
             UserRepository userRepository,
             VacationRepository vacationRepository,
@@ -63,7 +63,7 @@ public class HolidaySchedulerBackendApplication {
             guacamole.add(7);
             chorizo.add(6);
 
-/*            Vacation vacation = new Vacation();
+*//*            Vacation vacation = new Vacation();
             vacation.setFirstDay(LocalDate.now());
             vacation.setLastDay(LocalDate.now());
             vacation.setAccepted(false);
@@ -72,9 +72,9 @@ public class HolidaySchedulerBackendApplication {
             vacation.setAccepted(false);
 
             //CREATE LEAVES
-            vacationRepository.save(new Vacation());*/
+            vacationRepository.save(new Vacation());*//*
 
-/*            //CREATE TEAMS
+     *//*            //CREATE TEAMS
             Team team = new Team();
             team.setName("Panchieta");
             team.setTeamSquad(new ArrayList<>());
@@ -86,7 +86,7 @@ public class HolidaySchedulerBackendApplication {
             teamRepository.save(new Team("Avocado", avocado, userRepository.findById(3)));
             teamRepository.save(new Team("Guacamole", guacamole, userRepository.findById(4)));
             teamRepository.save(new Team("Chorizo", chorizo, userRepository.findById(5)));
-            */
-        };
-    }
+            *//*
+        };*/
+
 }
