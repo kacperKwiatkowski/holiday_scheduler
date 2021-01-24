@@ -5,8 +5,7 @@ import { Link } from "react-router-dom"
 
 export const Headerbar = () => {
     return(
-        <div>
-
+        <div className="headerWrapper">
             <div className="headerbarWrapper">
                 <div className="logo">jAvalanche</div>
                 <button className="headerbarLogOutButton linksShadow">LOG OUT</button>

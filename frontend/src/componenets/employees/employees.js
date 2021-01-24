@@ -1,29 +1,16 @@
+import React, {Component, Components} from 'react'
 import Users from "./employeesTable"
 
-export const employees = () => {
+ export default class employees extends Component {
 
-    var getDaysInMonth = function(month,year) {
-        return new Date(year, month, 0).getDate();
+    render () {
+        return(
+            <div>
+
+                <h1>employees</h1>
+                <Users />
+                <h1>employees</h1>
+            </div>
+        )
     }
-
-    var getCurrentMonth = function () {
-        var date = new Date();
-        return date.getMonth()
-    }
-
-    var getCurrentYear = function () {
-        var date = new Date();
-        return date.getFullYear()
-    }
-
-    return(
-        <div>
-
-            <h1>employees</h1>
-            <Users />
-            <h1>employees</h1>
-        </div>
-    )
 }
-
-export default employees
