@@ -8,9 +8,7 @@ export const Headerbar = () => {
         <div className="headerWrapper">
             <div className="headerbarWrapper">
                 <div className="logo">jAvalanche</div>
-                <button className="headerbarLogOutButton linksShadow">LOG OUT</button>
-            </div>
-            <ul className="linksmenuNav">
+                <ul className="linksmenuNav">
                 {linksmenu.map((item, index) => { return (
                     <li className="linksmenuLinks linksShadow" key={index}>
                              
@@ -18,6 +16,12 @@ export const Headerbar = () => {
                     </li>
                 )})}
             </ul>
+                <div className="profileLinks">
+                    <button className="headerbarLogOutButton linksShadow">PROFILE</button>
+                    <button className="headerbarLogOutButton linksShadow">LOG OUT</button>
+                </div>
+            </div>
+
         </div>
     )
 }

@@ -1,61 +1,74 @@
-.linksShadow {
-    text-shadow: 1px 1px rgb(0, 60, 139);
-}
 
 .headerWrapper{
-    width: 90%;
-    border-bottom-left-radius: 15px;
-
-    border-bottom-right-radius: 15px;
     margin: auto;
     align-items:center;
 
-    background-color: #fafafa;
+    background-color: #00273f;
 }
 
 .headerWrapper:hover{
 
 
-    -webkit-box-shadow: 0px 20px 20px -7px rgba(0, 111, 255, 0.53);
-    -moz-box-shadow: 0px 20px 20px -7px rgba(0, 111, 255, 0.53);
-    box-shadow: 0px 20px 20px -7px rgba(0, 111, 255, 0.53);
+    -webkit-box-shadow: 0px 20px 20px -7px #00273f;
+    -moz-box-shadow: 0px 20px 20px -7px #00273f;
+    box-shadow: 0px 20px 20px -7px #00273f;
+
+
+    transition: all 0.4s ease-in-out;
 }
 
 .headerbarWrapper{
-    height: 200px;
-
-    padding-left: 150px;
-    padding-right: 150px;
+    height: 60px;
 
     display: flex;
     justify-content: space-between;
 
 }
 
-.headerbarLogOutButton{
-    width: 150px;
+.profileLinks{
     height: 60px;
-    margin: 30px;
-    border: none;
-    outline: none;
-    border-radius: 4px;
-    font-size:larger;
-    float: right;
-    color:rgba(0, 111, 255);
-
+    margin: auto;
+    display: block;
+    flex: 0 1 auto;
+    list-style-type: none;
+    display: flex;
+    align-items:center;
+    justify-content:right;
 }
 
-.logo{
-    font-size: 60px;
+.headerbarLogOutButton{
+    width: 150px;
+    height: 40px;
+    border: none;
+    outline: none;
+    font-size:larger;
+    margin: auto;
+
+    background-color: #00273f;
+    color:#fafafa;
     
-    color:rgba(0, 111, 255);
-    padding: 30px;
 }
 
 .headerbarLogOutButton:hover{
+
     background-color: white;
-    color:rgba(0, 111, 255);
+    color: #00273f;
+
+
+    border: none;
 }
+
+.logo{
+    
+    display: flex;
+    height: 60px;
+    font-size: xx-large;
+    align-items:center;
+    color: #fafafa;
+    padding: 5px;
+    margin: auto;
+}
+
 
 .linksmenuNav{
     height: 60px;
@@ -68,7 +81,7 @@
     padding-top: 0;
     padding-bottom: 0;
     margin: 0;
-    color:rgba(0, 111, 255);
+    color: #fafafa;
 }
 
 .linksmenuLinks{
@@ -76,18 +89,18 @@
     flex: 0 1 auto;
     list-style-type: none;
 
-    font-size: x-large;
+    font-size: medium;
 }
 
 a:link{
-    color:rgba(0, 111, 255);
+    color: #fafafa;
     font-weight: bold;
     text-decoration: none;
     padding-left: 30px;
 }
 
 a:visited{
-    color:rgba(0, 111, 255);
+    color: #fafafa;
 }
 
 a:hover{
