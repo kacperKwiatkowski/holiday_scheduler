@@ -1,6 +1,7 @@
 package jwt;
 
 import com.google.common.net.HttpHeaders;
+import io.jsonwebtoken.security.Keys;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @ConfigurationProperties(prefix = "application.jwt")
@@ -41,3 +42,4 @@ public class JwtConfig {
         return HttpHeaders.AUTHORIZATION;
     }
 }
+
