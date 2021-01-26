@@ -57,7 +57,7 @@ export default class Login extends Component {
             <div className="loginSiteWrapper">
                 <form className="loginFormWrapper" onSubmit={this.handleSubmit}>
                     <label className="loginFormLabels">EMAIL</label>
-                    <input className="loginFormInput" type="email" name="email" placeholder="" value={email} onChange={this.handleChange}/>
+                    <input className="loginFormInput" type="text" name="email" placeholder="" value={email} onChange={this.handleChange}/>
                     <label className="loginFormLabels"> PASSWORD</label>
                     <input className="loginFormInput" type="password" name="password" placeholder="" value={password} onChange={this.handleChange}/>
                     
