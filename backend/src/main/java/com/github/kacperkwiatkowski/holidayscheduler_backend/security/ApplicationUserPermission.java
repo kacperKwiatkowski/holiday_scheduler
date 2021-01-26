@@ -1,8 +1,10 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.security;
 
 public enum ApplicationUserPermission {
-    EMPLOYEE_READ("employee:read"),
-    TEAM_LEADER_READ("teamLeader:read");
+    STUDENT_READ("student:read"),
+    STUDENT_WRITE("student:write"),
+    COURSE_READ("course:read"),
+    COURSE_WRITE("course:write");
 
     private final String permission;
 
@@ -10,7 +12,7 @@ public enum ApplicationUserPermission {
         this.permission = permission;
     }
 
-    public String getPermission(){
+    public String getPermission() {
         return permission;
     }
 }

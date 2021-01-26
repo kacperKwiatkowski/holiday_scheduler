@@ -1,9 +1,9 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.security;
 
 import com.github.kacperkwiatkowski.holidayscheduler_backend.auth.ApplicationUserService;
-import jwt.JwtConfig;
-import jwt.JwtTokenVerifier;
-import jwt.JwtUsernameAndPasswordAuthenticationFilter;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.jwt.JwtConfig;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.jwt.JwtTokenVerifier;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.jwt.JwtUsernameAndPasswordAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,7 +18,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.crypto.SecretKey;
 
-import static com.github.kacperkwiatkowski.holidayscheduler_backend.utils.enums.ApplicationUserRole.EMPLOYEE;
+import static com.github.kacperkwiatkowski.holidayscheduler_backend.security.ApplicationUserRole.STUDENT;
+import static com.github.kacperkwiatkowski.holidayscheduler_backend.utils.enums.RoleType.EMPLOYEE;
 
 @Configuration
 @EnableWebSecurity
@@ -41,7 +42,6 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
         this.jwtConfig = jwtConfig;
     }
 
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -50,10 +50,10 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                     .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .addFilter(new JwtUsernameAndPasswordAuthenticationFilter(authenticationManager(), jwtConfig, secretKey))
-                .addFilterAfter(new JwtTokenVerifier(secretKey, jwtConfig), JwtUsernameAndPasswordAuthenticationFilter.class)
+                .addFilterAfter(new JwtTokenVerifier(secretKey, jwtConfig),JwtUsernameAndPasswordAuthenticationFilter.class)
                 .authorizeRequests()
-                .antMatchers().permitAll()
-                .antMatchers("/user/read/**").hasRole(EMPLOYEE.name())
+                .antMatchers("/", "index", "/css/*", "/js/*").permitAll()
+                .antMatchers("/api/**").hasRole(EMPLOYEE.name())
                 .anyRequest()
                 .authenticated();
     }
@@ -64,10 +64,11 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public DaoAuthenticationProvider daoAuthenticationProvider(){
-        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
-        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder);
-        daoAuthenticationProvider.setUserDetailsService(applicationUserService);
-        return daoAuthenticationProvider;
+    public DaoAuthenticationProvider daoAuthenticationProvider() {
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+        provider.setPasswordEncoder(passwordEncoder);
+        provider.setUserDetailsService(applicationUserService);
+        return provider;
     }
+
 }

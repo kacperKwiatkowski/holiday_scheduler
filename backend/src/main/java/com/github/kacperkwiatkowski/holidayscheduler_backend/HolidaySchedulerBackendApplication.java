@@ -19,9 +19,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-@SpringBootApplication/*
-@EnableJpaRepositories("com.github.kacperkwiatkowski.holidayscheduler_backend.repository")
-@EntityScan("com.github.kacperkwiatkowski.holidayscheduler_backend.model")*/
+@SpringBootApplication
 public class HolidaySchedulerBackendApplication {
 
     public static void main(String[] args) {

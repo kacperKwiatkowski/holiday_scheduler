@@ -1,4 +1,4 @@
-package jwt;
+package com.github.kacperkwiatkowski.holidayscheduler_backend.jwt;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Jwts;
@@ -33,10 +33,8 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
     }
 
     @Override
-    public Authentication attemptAuthentication(
-            HttpServletRequest request,
-            HttpServletResponse response
-    ) throws AuthenticationException {
+    public Authentication attemptAuthentication(HttpServletRequest request,
+                                                HttpServletResponse response) throws AuthenticationException {
 
         try {
             UsernameAndPasswordAuthenticationRequest authenticationRequest = new ObjectMapper()

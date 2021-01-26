@@ -1,4 +1,4 @@
-package jwt;
+package com.github.kacperkwiatkowski.holidayscheduler_backend.jwt;
 
 import com.google.common.base.Strings;
 import io.jsonwebtoken.Claims;
@@ -28,33 +28,33 @@ public class JwtTokenVerifier extends OncePerRequestFilter {
     private final SecretKey secretKey;
     private final JwtConfig jwtConfig;
 
-    public JwtTokenVerifier(SecretKey secretKey, JwtConfig jwtConfig) {
+    public JwtTokenVerifier(SecretKey secretKey,
+                            JwtConfig jwtConfig) {
         this.secretKey = secretKey;
         this.jwtConfig = jwtConfig;
     }
 
     @Override
-    protected void doFilterInternal(
-            HttpServletRequest httpServletRequest,
-            HttpServletResponse httpServletResponse,
-            FilterChain filterChain
-    ) throws ServletException, IOException {
+    protected void doFilterInternal(HttpServletRequest request,
+                                    HttpServletResponse response,
+                                    FilterChain filterChain) throws ServletException, IOException {
 
-        String authorisationHeader = httpServletRequest.getHeader("Authorisation");
+        String authorizationHeader = request.getHeader(jwtConfig.getAuthorizationHeader());
 
-        if(Strings.isNullOrEmpty(authorisationHeader) || authorisationHeader.startsWith("Bearer ")){
-            filterChain.doFilter(httpServletRequest, httpServletResponse);
+        if (Strings.isNullOrEmpty(authorizationHeader) || !authorizationHeader.startsWith(jwtConfig.getTokenPrefix())) {
+            filterChain.doFilter(request, response);
             return;
         }
 
-        String token = authorisationHeader.replace(jwtConfig.getTokenPrefix(), "");
+        String token = authorizationHeader.replace(jwtConfig.getTokenPrefix(), "");
 
         try {
-            Jws<Claims> claimKeys = Jwts.parser()
+
+            Jws<Claims> claimsJws = Jwts.parser()
                     .setSigningKey(secretKey)
                     .parseClaimsJws(token);
 
-            Claims body = claimKeys.getBody();
+            Claims body = claimsJws.getBody();
 
             String username = body.getSubject();
 
@@ -71,11 +71,11 @@ public class JwtTokenVerifier extends OncePerRequestFilter {
             );
 
             SecurityContextHolder.getContext().setAuthentication(authentication);
+
         } catch (JwtException e) {
             throw new IllegalStateException(String.format("Token %s cannot be trusted", token));
         }
 
-        filterChain.doFilter(httpServletRequest, httpServletResponse);
+        filterChain.doFilter(request, response);
     }
-
 }

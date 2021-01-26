@@ -1,4 +1,4 @@
-package jwt;
+package com.github.kacperkwiatkowski.holidayscheduler_backend.jwt;
 
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,4 +22,3 @@ public class JwtSecretKey {
         return Keys.hmacShaKeyFor(jwtConfig.getSecretKey().getBytes());
     }
 }
-
