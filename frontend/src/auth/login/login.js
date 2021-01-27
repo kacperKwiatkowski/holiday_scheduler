@@ -13,7 +13,7 @@ export default class Login extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
       }
 
-      initialState = {email: '', password: ''}
+      initialState = {username: '', username: ''}
     
       handleChange = event => {
         this.setState({
@@ -26,16 +26,18 @@ export default class Login extends Component {
         event.preventDefault()
 
         const credentials = {
-            email: this.state.email,
+            username: this.state.username,
             password: this.state.password
         };
 
           const formData = new FormData();
           formData.append('details', JSON.stringify(credentials));
 
-          Axios.post("http://localhost:8080/login/credentials", formData, {
+          Axios.post("http://localhost:8080/login", formData, {
                   headers: {
-                      "Content-Type": "multipart/form-data"
+                      "Content-Type": "multipart/form-data",
+                      "Access-Control-Allow-Headers": "Accept",
+                      "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token"
                   }
               }
           )
@@ -52,14 +54,14 @@ export default class Login extends Component {
 
     render() {
 
-        const {email, password} = this.state
+        const {username, password} = this.state
         return(
             <div className="loginSiteWrapper">
                 <form className="loginFormWrapper" onSubmit={this.handleSubmit}>
                     <label className="loginFormLabels">EMAIL</label>
-                    <input className="loginFormInput" type="text" name="email" placeholder="" value={email} onChange={this.handleChange}/>
+                    <input id="username" className="loginFormInput" type="text" name="username" placeholder="" value={username} onChange={this.handleChange}/>
                     <label className="loginFormLabels"> PASSWORD</label>
-                    <input className="loginFormInput" type="password" name="password" placeholder="" value={password} onChange={this.handleChange}/>
+                    <input id="password" className="loginFormInput" type="password" name="password" placeholder="" value={password} onChange={this.handleChange}/>
                     
                     <div className="loginButtonsWrapper">
                     <button className="forgottenPasswordFormButton" type="submit" value="Submit">FORGOTTEN PASSWORD?</button>

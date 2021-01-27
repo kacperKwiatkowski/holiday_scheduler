@@ -23,13 +23,12 @@ public class LoginController {
             @RequestParam("details") String loginDetails) {
         Gson g = new Gson();
         User user = g.fromJson(loginDetails, User.class);
-        return ResponseEntity.status(200).build();
-/*        if(user.getEmail().equals("") & user.getPassword().equals("")){
+        if(user.getEmail().equals("") & user.getPassword().equals("")){
             logger.info("User signed in.");
             return ResponseEntity.status(200).build();
         } else {
             logger.info("User not signed in.");
             return ResponseEntity.notFound().build();
-        }*/
+        }
     }
 }

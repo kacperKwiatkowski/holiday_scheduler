@@ -1,4 +1,3 @@
-/*
 package com.github.kacperkwiatkowski.holidayscheduler_backend.jwt;
 
 import com.google.common.net.HttpHeaders;
@@ -48,4 +47,3 @@ public class JwtConfig {
         return HttpHeaders.AUTHORIZATION;
     }
 }
-*/
