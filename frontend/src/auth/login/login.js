@@ -37,7 +37,8 @@ export default class Login extends Component {
                   headers: {
                       "Content-Type": "multipart/form-data",
                       "Access-Control-Allow-Headers": "Accept",
-                      "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token"
+                      "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token",
+                      "Access-Control-Allow-Origin": "http://localhost:8080"
                   }
               }
           )
