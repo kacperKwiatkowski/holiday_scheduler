@@ -6,10 +6,7 @@ import Users from "./employeesTable"
     render () {
         return(
             <div>
-
-                <h1>employees</h1>
                 <Users />
-                <h1>employees</h1>
             </div>
         )
     }
