@@ -18,8 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.crypto.SecretKey;
 
-import static com.github.kacperkwiatkowski.holidayscheduler_backend.security.ApplicationUserRole.STUDENT;
-import static com.github.kacperkwiatkowski.holidayscheduler_backend.utils.enums.RoleType.EMPLOYEE;
+import static com.github.kacperkwiatkowski.holidayscheduler_backend.utils.roleConfig.RoleType.EMPLOYEE;
 
 @Configuration
 @EnableWebSecurity

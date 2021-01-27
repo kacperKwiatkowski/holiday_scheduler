@@ -1,6 +1,5 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.dto;
 
-import com.github.kacperkwiatkowski.holidayscheduler_backend.utils.enums.RoleType;
 import lombok.*;
 
 @Builder

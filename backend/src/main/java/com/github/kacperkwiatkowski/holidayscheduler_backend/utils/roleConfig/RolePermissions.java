@@ -1,25 +1,24 @@
-package com.github.kacperkwiatkowski.holidayscheduler_backend.security;
+package com.github.kacperkwiatkowski.holidayscheduler_backend.utils.roleConfig;
 
 import com.google.common.collect.Sets;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static com.github.kacperkwiatkowski.holidayscheduler_backend.security.ApplicationUserPermission.*;
+import static com.github.kacperkwiatkowski.holidayscheduler_backend.utils.roleConfig.RolePermissionType.*;
 
-public enum ApplicationUserRole {
+public enum RolePermissions {
     STUDENT(Sets.newHashSet()),
     ADMIN(Sets.newHashSet(COURSE_READ, COURSE_WRITE, STUDENT_READ, STUDENT_WRITE));
 
-    private final Set<ApplicationUserPermission> permissions;
+    private final Set<RolePermissionType> permissions;
 
-    ApplicationUserRole(Set<ApplicationUserPermission> permissions) {
+    RolePermissions(Set<RolePermissionType> permissions) {
         this.permissions = permissions;
     }
 
-    public Set<ApplicationUserPermission> getPermissions() {
+    public Set<RolePermissionType> getPermissions() {
         return permissions;
     }
 

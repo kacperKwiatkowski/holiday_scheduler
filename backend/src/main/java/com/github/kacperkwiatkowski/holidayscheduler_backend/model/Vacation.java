@@ -1,12 +1,11 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.model;
 
-import com.github.kacperkwiatkowski.holidayscheduler_backend.utils.enums.LeaveType;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.utils.leaveConfig.LeaveType;
 import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Objects;
 
 @Builder
 @Getter

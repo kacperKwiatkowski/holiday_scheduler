@@ -1,4 +1,4 @@
-package com.github.kacperkwiatkowski.holidayscheduler_backend.utils.enums;
+package com.github.kacperkwiatkowski.holidayscheduler_backend.utils.roleConfig;
 
 import com.github.kacperkwiatkowski.holidayscheduler_backend.utils.ApplicationUserPermission;
 import com.google.common.collect.Sets;
@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 import static com.github.kacperkwiatkowski.holidayscheduler_backend.utils.ApplicationUserPermission.*;
 
-public enum ApplicationUserRole {
+public enum RoleAuthorities {
     EMPLOYEE(Sets.newHashSet(EMPLOYEE_READ)),
     TEAM_LEADER(Sets.newHashSet(EMPLOYEE_READ)),
     HR(Sets.newHashSet()),
@@ -18,7 +18,7 @@ public enum ApplicationUserRole {
 
     private final Set<ApplicationUserPermission> permissions;
 
-    ApplicationUserRole(Set<ApplicationUserPermission> permissions) {
+    RoleAuthorities(Set<ApplicationUserPermission> permissions) {
         this.permissions = permissions;
     }
 

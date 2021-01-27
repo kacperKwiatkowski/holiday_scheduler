@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
-import static com.github.kacperkwiatkowski.holidayscheduler_backend.utils.enums.ApplicationUserRole.*;
+import static com.github.kacperkwiatkowski.holidayscheduler_backend.utils.roleConfig.RoleAuthorities.*;
 
 @Repository("fake")
 public class FakeApplicationUserDaoService implements ApplicationUserDao{

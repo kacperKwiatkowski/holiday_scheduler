@@ -1,21 +1,15 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend;
 
-import com.github.kacperkwiatkowski.holidayscheduler_backend.model.Team;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.model.User;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.model.Vacation;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.VacationRepository;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.TeamRepository;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.UserRepository;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.utils.enums.LeaveType;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.utils.enums.RoleType;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.utils.roleConfig.RoleType;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 

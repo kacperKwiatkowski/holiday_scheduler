@@ -1,4 +1,4 @@
-package com.github.kacperkwiatkowski.holidayscheduler_backend.utils.enums;
+package com.github.kacperkwiatkowski.holidayscheduler_backend.utils.leaveConfig;
 
 public enum LeaveType {
     PAYED,

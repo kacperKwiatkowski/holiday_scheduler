@@ -1,7 +1,6 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.convertors;
 
-import com.github.kacperkwiatkowski.holidayscheduler_backend.utils.enums.LeaveType;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.utils.enums.RoleType;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.utils.leaveConfig.LeaveType;
 
 public class VacationTypeConvertor {
 
