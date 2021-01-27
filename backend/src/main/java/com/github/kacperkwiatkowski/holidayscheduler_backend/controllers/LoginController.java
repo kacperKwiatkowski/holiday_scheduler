@@ -31,4 +31,11 @@ public class LoginController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @GetMapping(path = "/credentials")
+    @ResponseStatus(HttpStatus.OK)
+    ResponseEntity<User> signInRequestVerifier() {
+            logger.info("User not signed in.");
+            return ResponseEntity.status(HttpStatus.OK).build();
+    }
 }

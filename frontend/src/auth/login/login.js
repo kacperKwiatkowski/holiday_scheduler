@@ -33,12 +33,13 @@ export default class Login extends Component {
           const formData = new FormData();
           formData.append('details', JSON.stringify(credentials));
 
-          Axios.post("http://localhost:8080/login", formData, {
+          Axios.post("http://localhost:8080/login/credentials", formData, {
                   headers: {
                       "Content-Type": "multipart/form-data",
-                      "Access-Control-Allow-Headers": "Accept",
-                      "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token",
-                      "Access-Control-Allow-Origin": "http://localhost:8080"
+                      //"X-Requested-With": "XMLHttpRequest",
+                      //"Access-Control-Allow-Headers": "Accept, Origin, Content-Type, Authorization, X-Auth-Token",
+                      "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
+                      "Access-Control-Allow-Origin": "*"
                   }
               }
           )
@@ -60,9 +61,9 @@ export default class Login extends Component {
             <div className="loginSiteWrapper">
                 <form className="loginFormWrapper" onSubmit={this.handleSubmit}>
                     <label className="loginFormLabels">EMAIL</label>
-                    <input id="username" className="loginFormInput" type="text" name="username" placeholder="" value={username} onChange={this.handleChange}/>
+                    <input className="loginFormInput" type="text" name="username" placeholder="" value={username} onChange={this.handleChange}/>
                     <label className="loginFormLabels"> PASSWORD</label>
-                    <input id="password" className="loginFormInput" type="password" name="password" placeholder="" value={password} onChange={this.handleChange}/>
+                    <input className="loginFormInput" type="password" name="password" placeholder="" value={password} onChange={this.handleChange}/>
                     
                     <div className="loginButtonsWrapper">
                     <button className="forgottenPasswordFormButton" type="submit" value="Submit">FORGOTTEN PASSWORD?</button>
