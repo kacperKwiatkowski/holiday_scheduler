@@ -1,24 +1,73 @@
+import Axios from "axios";
+import React, {Component} from "react";
+import "./calendar.css"
 
+class Calendar extends Component {
+    
+    constructor(props) {
+        super(props);
 
-export const calendar = () => {
-
-    var getDaysInMonth = function(month,year) {
-        return new Date(year, month, 0).getDate();
+        this.state = {
+    
+          dates: this.initialValues
+        }
     }
 
-    var getCurrentMonth = function () {
-        var date = new Date();
-        return date.getMonth()
+    initialState = {
+        dates : new Date().toLocaleString()
     }
 
-    var getCurrentYear = function () {
-        var date = new Date();
-        return date.getFullYear()
+    render () {
+
+        return (
+            <div className="calendarWrapper">
+                <table className="calendarTable">
+                    <thead>
+                        <tr>
+                            <td>
+                                EMPLOYEE
+                            </td>
+                            {this.renderTableHead()}
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        )
     }
 
-    return(
-        <h1>calendar</h1>
-    )
+    renderTableHead () {
+
+        const currentDate = new Date();
+
+        const currentDayOfMonth = currentDate.getDate();
+        const currentMonth = currentDate.getMonth() + 1; // Be careful! January is 0, not 1
+        const currentYear = currentDate.getFullYear();
+        
+        const dateString = currentDayOfMonth + "-" + (currentMonth + 1) + "-" + currentYear;
+        var i = 0;
+        var dates = []
+        var monthLength = daysInMonth(currentMonth, currentYear)
+
+        for(i = 0; i < monthLength; i++){
+            dates[i] = (i + 1) + "-" + (currentMonth + 1) + "-" + currentYear;;
+        }
+
+        return dates.map((date) => {
+            return (
+                            <td>
+                                {date}
+                            </td>
+                )
+            }
+        )
+    }
+      
 }
 
-export default calendar
+export default Calendar
+
+function daysInMonth (month, year) { 
+    return new Date(year, month, 0).getDate(); 
+} 
