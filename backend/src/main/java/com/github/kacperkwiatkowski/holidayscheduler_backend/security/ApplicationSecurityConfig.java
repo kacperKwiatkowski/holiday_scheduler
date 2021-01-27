@@ -1,10 +1,7 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.security;
 
-import com.github.kacperkwiatkowski.holidayscheduler_backend.auth.ApplicationUserService;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.jwt.JwtConfig;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.jwt.JwtTokenVerifier;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.jwt.JwtUsernameAndPasswordAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -13,48 +10,35 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
-import javax.crypto.SecretKey;
-
-import static com.github.kacperkwiatkowski.holidayscheduler_backend.utils.roleConfig.RoleType.EMPLOYEE;
 
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    private final UserDetailsService userDetailsService;
     private final PasswordEncoder passwordEncoder;
-    private final ApplicationUserService applicationUserService;
-    private final SecretKey secretKey;
-    private final JwtConfig jwtConfig;
 
     @Autowired
-    public ApplicationSecurityConfig(PasswordEncoder passwordEncoder,
-                                     ApplicationUserService applicationUserService,
-                                     SecretKey secretKey,
-                                     JwtConfig jwtConfig) {
+    public ApplicationSecurityConfig(@Qualifier("userAuthService") UserDetailsService userDetailsService, PasswordEncoder passwordEncoder) {
+        this.userDetailsService = userDetailsService;
         this.passwordEncoder = passwordEncoder;
-        this.applicationUserService = applicationUserService;
-        this.secretKey = secretKey;
-        this.jwtConfig = jwtConfig;
     }
+
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
-                .sessionManagement()
-                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                .addFilter(new JwtUsernameAndPasswordAuthenticationFilter(authenticationManager(), jwtConfig, secretKey))
-                .addFilterAfter(new JwtTokenVerifier(secretKey, jwtConfig),JwtUsernameAndPasswordAuthenticationFilter.class)
+                .cors().disable()
                 .authorizeRequests()
                 .antMatchers("/", "index", "/css/*", "/js/*").permitAll()
-                .antMatchers("/api/**").hasRole(EMPLOYEE.name())
                 .anyRequest()
-                .authenticated();
+                .authenticated()
+                .and()
+                .httpBasic();
     }
 
     @Override
@@ -63,11 +47,10 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public DaoAuthenticationProvider daoAuthenticationProvider() {
-        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setPasswordEncoder(passwordEncoder);
-        provider.setUserDetailsService(applicationUserService);
-        return provider;
+    public DaoAuthenticationProvider daoAuthenticationProvider(){
+        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
+        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder);
+        daoAuthenticationProvider.setUserDetailsService(userDetailsService);
+        return daoAuthenticationProvider;
     }
-
 }

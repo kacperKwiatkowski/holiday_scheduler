@@ -9,6 +9,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,25 +26,26 @@ public class HolidaySchedulerBackendApplication {
     public CommandLineRunner init(
             UserRepository userRepository,
             VacationRepository vacationRepository,
-            TeamRepository teamRepository
+            TeamRepository teamRepository,
+            PasswordEncoder passwordEncoder
     ){
         return args -> {
             //CREATE ADMINS
-            userRepository.save(new User("ola@gmail.com", "1234", "Ola", "Olska", RoleType.ADMIN, 26));
-            userRepository.save(new User("ida@gmail.com", "1234", "Ida", "Idowska", RoleType.ADMIN, 26));
+            userRepository.save(new User("ola@gmail.com", passwordEncoder.encode("1234"), "Ola", "Olska", RoleType.ADMIN, 26));
+            userRepository.save(new User("ida@gmail.com", passwordEncoder.encode("1234"), "Ida", "Idowska", RoleType.ADMIN, 26));
 
             //CREATE TEAM LEADERS
-            userRepository.save(new User("maria@gmail.com", "1234", "Maria", "Marecka", RoleType.TEAM_LEADER, 26));
-            userRepository.save(new User("wojciech@gmail.com", "1234", "Wojciech", "Wojski", RoleType.TEAM_LEADER, 26));
-            userRepository.save(new User("natalia@gmail.com", "1234", "Natalia", "Natalska", RoleType.TEAM_LEADER, 26));
+            userRepository.save(new User("maria@gmail.com",  passwordEncoder.encode("1234"), "Maria", "Marecka", RoleType.TEAM_LEADER, 26));
+            userRepository.save(new User("wojciech@gmail.com",  passwordEncoder.encode("1234"), "Wojciech", "Wojski", RoleType.TEAM_LEADER, 26));
+            userRepository.save(new User("natalia@gmail.com", passwordEncoder.encode("1234"), "Natalia", "Natalska", RoleType.TEAM_LEADER, 26));
 
             //CREATE USERS
-            userRepository.save(new User("adam@gmail.com", "1234", "Adam", "Adamski", RoleType.EMPLOYEE, 26));
-            userRepository.save(new User("magda@gmail.com", "1234", "Magda", "Magdanska", RoleType.EMPLOYEE, 26));
-            userRepository.save(new User("maciej@gmail.com", "1234", "Maciej", "Mackowski", RoleType.EMPLOYEE, 26));
-            userRepository.save(new User("edyta@gmail.com", "1234", "Edyta", "Edycka", RoleType.EMPLOYEE, 26));
-            userRepository.save(new User("ewa@gmail.com", "1234", "Ewa", "Ewska", RoleType.EMPLOYEE, 26));
-            userRepository.save(new User("mariusz@gmail.com", "1234", "Mariusz", "Marski", RoleType.EMPLOYEE, 26));
+            userRepository.save(new User("adam@gmail.com",  passwordEncoder.encode("1234"), "Adam", "Adamski", RoleType.EMPLOYEE, 26));
+            userRepository.save(new User("magda@gmail.com",  passwordEncoder.encode("1234"), "Magda", "Magdanska", RoleType.EMPLOYEE, 26));
+            userRepository.save(new User("maciej@gmail.com",  passwordEncoder.encode("1234"), "Maciej", "Mackowski", RoleType.EMPLOYEE, 26));
+            userRepository.save(new User("edyta@gmail.com",  passwordEncoder.encode("1234"), "Edyta", "Edycka", RoleType.EMPLOYEE, 26));
+            userRepository.save(new User("ewa@gmail.com",  passwordEncoder.encode("1234"), "Ewa", "Ewska", RoleType.EMPLOYEE, 26));
+            userRepository.save(new User("mariusz@gmail.com",  passwordEncoder.encode("1234"), "Mariusz", "Marski", RoleType.EMPLOYEE, 26));
 
             //FILL TEAMS
             List<Integer> avocado = new ArrayList<>();

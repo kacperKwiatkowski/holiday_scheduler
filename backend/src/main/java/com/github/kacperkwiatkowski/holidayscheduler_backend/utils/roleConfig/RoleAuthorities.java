@@ -1,36 +1,30 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.utils.roleConfig;
 
-import com.github.kacperkwiatkowski.holidayscheduler_backend.utils.ApplicationUserPermission;
-import com.google.common.collect.Sets;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-
-import java.util.Set;
-import java.util.stream.Collectors;
-
-import static com.github.kacperkwiatkowski.holidayscheduler_backend.utils.ApplicationUserPermission.*;
-
 public enum RoleAuthorities {
-    EMPLOYEE(Sets.newHashSet(EMPLOYEE_READ)),
-    TEAM_LEADER(Sets.newHashSet(EMPLOYEE_READ)),
-    HR(Sets.newHashSet()),
-    ADMIN(Sets.newHashSet());
+    EMPLOYEE_CREATE("student:create"),
+    EMPLOYEE_READ("student:read"),
+    EMPLOYEE_UPDATE("student:update"),
+    EMPLOYEE_DELETE("student:delete"),
+    TEAM_LEADER_CREATE("teamLeader:create"),
+    TEAM_LEADER_READ("teamLeader:read"),
+    TEAM_LEADER_UPDATE("teamLeader:update"),
+    TEAM_LEADER_DELETE("teamLeader:delete"),
+    HR_CREATE("hr:create"),
+    HR_READ("hr:read"),
+    HR_UPDATE("hr:update"),
+    HR_DELETE("hr:delete"),
+    ADMIN_CREATE("admin:create"),
+    ADMIN_READ("admin:read"),
+    ADMIN_UPDATE("admin:update"),
+    ADMIN_DELETE("admin:delete");
 
+    private final String permission;
 
-    private final Set<ApplicationUserPermission> permissions;
-
-    RoleAuthorities(Set<ApplicationUserPermission> permissions) {
-        this.permissions = permissions;
+    RoleAuthorities(String permission) {
+        this.permission = permission;
     }
 
-    public Set<ApplicationUserPermission> getPermissions() {
-        return permissions;
-    }
-
-    public Set<SimpleGrantedAuthority> getGrantedAuthorities(){
-        Set<SimpleGrantedAuthority> permissions = getPermissions().stream()
-                .map(permission -> new SimpleGrantedAuthority(permission.getPermission()))
-                .collect(Collectors.toSet());
-        permissions.add(new SimpleGrantedAuthority("ROLE_" + this.name()));
-        return permissions;
+    public String getPermission() {
+        return permission;
     }
 }

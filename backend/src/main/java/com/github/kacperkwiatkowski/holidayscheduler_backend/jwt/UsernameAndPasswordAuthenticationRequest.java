@@ -1,3 +1,4 @@
+/*
 package com.github.kacperkwiatkowski.holidayscheduler_backend.jwt;
 
 public class UsernameAndPasswordAuthenticationRequest {
@@ -24,3 +25,4 @@ public class UsernameAndPasswordAuthenticationRequest {
         this.password = password;
     }
 }
+*/

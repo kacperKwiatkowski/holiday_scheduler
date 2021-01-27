@@ -1,3 +1,4 @@
+/*
 package com.github.kacperkwiatkowski.holidayscheduler_backend.jwt;
 
 import io.jsonwebtoken.security.Keys;
@@ -22,3 +23,4 @@ public class JwtSecretKey {
         return Keys.hmacShaKeyFor(jwtConfig.getSecretKey().getBytes());
     }
 }
+*/

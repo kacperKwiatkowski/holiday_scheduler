@@ -1,3 +1,4 @@
+/*
 package com.github.kacperkwiatkowski.holidayscheduler_backend.jwt;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -70,3 +71,4 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
         response.addHeader(jwtConfig.getAuthorizationHeader(), jwtConfig.getTokenPrefix() + token);
     }
 }
+*/

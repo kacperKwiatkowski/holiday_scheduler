@@ -1,3 +1,4 @@
+/*
 package com.github.kacperkwiatkowski.holidayscheduler_backend.jwt;
 
 import com.google.common.base.Strings;
@@ -79,3 +80,4 @@ public class JwtTokenVerifier extends OncePerRequestFilter {
         filterChain.doFilter(request, response);
     }
 }
+*/
