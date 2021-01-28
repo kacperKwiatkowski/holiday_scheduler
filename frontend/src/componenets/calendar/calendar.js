@@ -9,18 +9,35 @@ class Calendar extends Component {
 
         this.state = {
     
-          dates: this.initialValues
+            users: [],
+            pagination: this.initialPagination,
+            dates: this.initialDates
         }
     }
 
-    initialState = {
+    initialDates = {
         dates : new Date().toLocaleString()
     }
+
+    initialPagination = {
+        pageNo: 0,
+        pageSize: 10,
+        sortBy: 'id',
+        sortOrder: 'ASC'
+    }
+
+    componentDidMount() {
+        Axios.get(`http://localhost:8080/user/page?pageNo=0&pageSize=10&sortBy=id&sortOrder=ASC`)
+          .then(res => {
+            console.log(res)
+            this.setState({users: res.data})
+          });
+    }
+
 
     render () {
 
         return (
-            <div className="calendarWrapper">
                 <table className="calendarTable">
                     <thead>
                         <tr>
@@ -31,9 +48,9 @@ class Calendar extends Component {
                         </tr>
                     </thead>
                     <tbody>
+                        {this.renderTableBody()}
                     </tbody>
                 </table>
-            </div>
         )
     }
 
@@ -56,14 +73,28 @@ class Calendar extends Component {
 
         return dates.map((date) => {
             return (
-                            <td>
-                                {date}
-                            </td>
+                        <td>
+
+                        <div className="calendarCell">
+                            {date}
+
+                        </div>
+                        </td>
                 )
             }
         )
     }
-      
+
+    renderTableBody() {
+        return( this.state.users.map(user => {
+            return(
+            <tr>
+                <td>{user.firstName} {user.lastName}</td>
+            </tr>
+            )
+        }))
+    }
+    
 }
 
 export default Calendar

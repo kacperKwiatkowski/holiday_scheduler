@@ -19,8 +19,6 @@ class User extends Component {
         sortOrder: 'ASC'
     }
 
-    //{ id: 1, firstName: "sdc", lastName: "wsx", email: "efac", daysOffLeft: 22, roleType: "za"}
-
     componentDidMount() {
         Axios.get(`http://localhost:8080/user/page?pageNo=0&pageSize=10&sortBy=id&sortOrder=ASC`)
           .then(res => {
@@ -56,9 +54,9 @@ class User extends Component {
     }
 
     renderTableBody () {
-        return this.state.users.map((user, index) => {
+        return this.state.users.map((user) => {
             return (
-                        <tr key={index}>
+                        <tr>
                             <td>
                                 {user.firstName}
                             </td>

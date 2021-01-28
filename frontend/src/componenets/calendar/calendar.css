@@ -1,14 +1,16 @@
-.calendarWrapper{
-    align-items:center;
-    margin: auto;
-    padding: 20px;
-    overflow-x: auto;
-}
 
 .calendarTable {
-    display: block;
-    border-collapse: collapse;
-  min-width: 100%;
+
+    align-items:center;
+    margin: auto;
+    margin: 20px;
+    width: 90%px;
+    height: 90vh;
+
+    overflow-y:scroll;
+    display:block;
+
+    border-spacing: 0;
 }
 
 .calendarTable table.fixed { 
@@ -24,23 +26,28 @@
 
 .calendarTable th{
     height: 60px;
-    padding: 100px;
     color: #00273f;
-
     font-size: x-large;
 }
 
 .calendarTable td{
-    width: 200px;
-    height: 200px;
+    height: 100px;
     text-align: center;
     align-items:center;
+    table-layout:fixed;
+    width: 150px;
     
     color: rgb(100, 100, 100);
 }
 
-.calendarTable  tbody tr:nth-child(odd){
+.calendarCell{
+    width: 150px;
+}
+
+.calendarTable tbody td:nth-child(odd){
     background-color: rgb(200, 200, 200);
+    width: 200px;
+    height: 100px;
     
 }
 
