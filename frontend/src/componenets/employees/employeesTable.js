@@ -31,23 +31,27 @@ class User extends Component {
         return(
             <tr>
                 <th>
-                    FIRST NAME
+                    First Name
                 </th>
 
                 <th>
-                    LAST NAME
+                    Last Name
                 </th>
 
                 <th>
-                    E-MAIL
+                    E-Mail
                 </th>
 
                 <th>
-                    STATUS
+                    Status
                 </th>
 
                 <th>
-                    DAYS OFF LEFT
+                    Days off left
+                </th>
+
+                <th>
+                    Action
                 </th>
             </tr>
         )
@@ -72,6 +76,7 @@ class User extends Component {
                             <td>
                                 {user.daysOffLeft}
                             </td>
+                            <td><button/></td>
                         </tr>
                 )
             }

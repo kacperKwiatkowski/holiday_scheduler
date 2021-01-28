@@ -1,0 +1,31 @@
+.teamsTable{
+    align-items:center;
+    margin: auto;
+    padding: 50px;
+}
+
+.teamsTable table {
+    border-spacing: 0;
+}
+
+.teamsTable th{
+    height: 60px;
+
+    color: #00273f;
+
+    font-size: x-large;
+}
+
+.teamsTable td{
+    width: 15em;
+    height: 60px;
+    text-align: center;
+    align-items:center;
+    
+    color: rgb(100, 100, 100);
+}
+
+.teamsTable tbody tr:nth-child(odd){
+    background-color: rgb(200, 200, 200);
+    
+}

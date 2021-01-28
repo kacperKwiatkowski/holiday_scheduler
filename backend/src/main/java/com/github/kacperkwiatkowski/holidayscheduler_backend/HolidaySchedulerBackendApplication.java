@@ -17,6 +17,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @SpringBootApplication/*
@@ -52,42 +53,103 @@ public class HolidaySchedulerBackendApplication {
             userRepository.save(new User("ewa@gmail.com", "1234", "Ewa", "Ewska", RoleType.EMPLOYEE, 26));
             userRepository.save(new User("mariusz@gmail.com", "1234", "Mariusz", "Marski", RoleType.EMPLOYEE, 26));
 
-            //FILL TEAMS
+            //CREATE TEAMS
             List<Integer> avocado = new ArrayList<>();
             List<Integer> guacamole = new ArrayList<>();
             List<Integer> chorizo = new ArrayList<>();
 
+            Team avocadoTeam = new Team();
+            avocadoTeam.setName("avocado");
+            avocadoTeam.setTeamSquad(new ArrayList<>());
+
+            Team guacamoleTeam = new Team();
+            guacamoleTeam.setName("guacamole");
+            guacamoleTeam.setTeamSquad(new ArrayList<>());
+
+            Team chorizoTeam = new Team();
+            chorizoTeam.setName("chorizo");
+            chorizoTeam.setTeamSquad(new ArrayList<>());
+
+            int at = teamRepository.save(avocadoTeam).getId();
+            int gt = teamRepository.save(guacamoleTeam).getId();
+            int ct = teamRepository.save(chorizoTeam).getId();
+
+            //FILL TEAMS
+            avocado.add(3);
             avocado.add(10);
             avocado.add(9);
             avocado.add(8);
+            guacamole.add(4);
             guacamole.add(7);
+            chorizo.add(5);
             chorizo.add(6);
 
-/*            Vacation vacation = new Vacation();
+            for(Integer a : avocado){
+                User user = userRepository.findById(a).get();
+                Team team = teamRepository.findById(at);
+                user.setTeam(team);
+                List<Integer> teamMembers = team.getTeamSquad();
+                teamMembers.add(a);
+                team.setTeamSquad(teamMembers);
+                userRepository.save(user);
+            }
+
+            User userA = userRepository.findById(3);
+            Team teamA = teamRepository.findById(1);
+            teamA.setTeamLeader(userA);
+            userA.setTeam(teamA);
+            userRepository.save(userA);
+
+            for(Integer g : guacamole){
+                User user = userRepository.findById(g).get();
+                Team team = teamRepository.findById(gt);
+                user.setTeam(team);
+                List<Integer> teamMembers = team.getTeamSquad();
+                teamMembers.add(g);
+                team.setTeamSquad(teamMembers);
+                userRepository.save(user);
+            }
+
+            User userG = userRepository.findById(4);
+            Team teamG = teamRepository.findById(2);
+            teamG.setTeamLeader(userG);
+            userG.setTeam(teamG);
+            userRepository.save(userG);
+
+            for(Integer c : chorizo){
+                User user = userRepository.findById(c).get();
+                Team team = teamRepository.findById(ct);
+                user.setTeam(team);
+                List<Integer> teamMembers = team.getTeamSquad();
+                teamMembers.add(c);
+                team.setTeamSquad(teamMembers);
+                userRepository.save(user);
+            }
+
+            User userC = userRepository.findById(5);
+            Team teamC = teamRepository.findById(3);
+            teamC.setTeamLeader(userC);
+            userC.setTeam(teamC);
+            userRepository.save(userC);
+
+/*
+            Team team = teamRepository.findById(at);
+            team.setTeamLeader(userRepository.findById(3));
+            teamRepository.save(team);
+*/
+
+            Vacation vacation = new Vacation();
             vacation.setFirstDay(LocalDate.now());
             vacation.setLastDay(LocalDate.now());
             vacation.setAccepted(false);
             vacation.setLeaveType(LeaveType.PAYED);
-            vacation.setUser(userRepository.findById(3));
-            vacation.setAccepted(false);
+
+            User user = userRepository.findById(3);
+            user.setVacations(Arrays.asList(vacation));
 
             //CREATE LEAVES
-            vacationRepository.save(new Vacation());*//*
+            userRepository.save(user);
 
-             *//*            //CREATE TEAMS
-            Team team = new Team();
-            team.setName("Panchieta");
-            team.setTeamSquad(new ArrayList<>());
-            team.setTeamLeader(userRepository.findById(3));
-
-            teamRepository.save(team);
-
-
-            teamRepository.save(new Team("Avocado", avocado, userRepository.findById(3)));
-            teamRepository.save(new Team("Guacamole", guacamole, userRepository.findById(4)));
-            teamRepository.save(new Team("Chorizo", chorizo, userRepository.findById(5)));
-            *//*
-        };*/
 
         };
     }

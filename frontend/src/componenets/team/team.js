@@ -1,8 +1,13 @@
-export const team = () => {
+import React, {Component, Components} from 'react'
+import Team from "./teamTable"
 
-    return(
-        <h1>team</h1>
-    )
+ export default class team extends Component {
+
+    render () {
+        return(
+            <div>
+                <Team />
+            </div>
+        )
+    }
 }
-
-export default team

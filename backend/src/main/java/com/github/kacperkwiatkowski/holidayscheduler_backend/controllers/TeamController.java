@@ -22,6 +22,7 @@ import java.util.Optional;
 
 @Slf4j
 @Controller
+@CrossOrigin
 @RequestMapping("/team")
 public class TeamController {
 
@@ -38,6 +39,13 @@ public class TeamController {
     ResponseEntity<TeamDto> createTeam (@RequestBody TeamDto teamToCreate){
         log.info("Controller 'createTeam' initiated.");
         return ResponseEntity.ok(teamService.creatTeam(teamToCreate));
+    }
+
+    @GetMapping (path = "/read/{id}")
+    @ResponseStatus (HttpStatus.OK)
+    ResponseEntity<TeamDto> readTeam (@PathVariable int id) {
+        log.info("Controller 'createTeam' initiated.");
+        return ResponseEntity.ok(teamService.readTeam(id));
     }
 
     @PatchMapping(path = "/update")
