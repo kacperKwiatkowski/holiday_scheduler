@@ -33,6 +33,8 @@ export default class Login extends Component {
           const formData = new FormData();
           formData.append('details', JSON.stringify(credentials));
 
+          console.log(formData.getAll.toString)
+
           Axios.post("http://localhost:8080/login/credentials", formData, {
                   headers: {
                       "Content-Type": "multipart/form-data"

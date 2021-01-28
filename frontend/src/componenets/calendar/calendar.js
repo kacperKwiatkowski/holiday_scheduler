@@ -8,10 +8,9 @@ class Calendar extends Component {
         super(props);
 
         this.state = {
-    
-            users: [],
+            users: this.initialUsers,
             pagination: this.initialPagination,
-            dates: this.initialDates
+            dates: this.initialDates,
         }
     }
 
@@ -26,12 +25,44 @@ class Calendar extends Component {
         sortOrder: 'ASC'
     }
 
+     initialUsers = [{    
+        email: '',
+        password: '',
+        firstName: '',
+        lastName: '',
+        levelOfAccess: '',
+        daysOffLeft: ''
+    }]
+
     componentDidMount() {
         Axios.get(`http://localhost:8080/user/page?pageNo=0&pageSize=10&sortBy=id&sortOrder=ASC`)
           .then(res => {
             console.log(res)
             this.setState({users: res.data})
           });
+    }
+
+    
+    componentDidUpdate() {
+        
+        var month = 1;
+        var year = 2021;
+        var URL = "http://localhost:8080/vacation/read/required?month=" + month + "&year=" + year
+
+        const formData = new FormData();
+        formData.append('details', JSON.stringify(this.state.users));
+
+        Axios.post(URL , formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data"
+                }
+            }
+        )
+        .then(res => {
+          console.log(res)
+        }).catch(error => {
+            console.error(error)
+          })
     }
 
 
@@ -62,13 +93,12 @@ class Calendar extends Component {
         const currentMonth = currentDate.getMonth() + 1; // Be careful! January is 0, not 1
         const currentYear = currentDate.getFullYear();
         
-        const dateString = currentDayOfMonth + "-" + (currentMonth + 1) + "-" + currentYear;
         var i = 0;
         var dates = []
         var monthLength = daysInMonth(currentMonth, currentYear)
 
         for(i = 0; i < monthLength; i++){
-            dates[i] = (i + 1) + "-" + (currentMonth + 1) + "-" + currentYear;;
+            dates[i] = (i + 1) + "/" + (currentMonth + 1) + "/" + currentYear;;
         }
 
         return dates.map((date) => {
