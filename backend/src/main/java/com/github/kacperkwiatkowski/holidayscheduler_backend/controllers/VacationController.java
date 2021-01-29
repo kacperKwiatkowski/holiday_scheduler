@@ -43,15 +43,14 @@ public class VacationController {
 
     @PostMapping(path = "/read/required")
     @ResponseStatus(HttpStatus.OK)
-    String readRequiredVacations(
+    ResponseEntity<List<VacationDto>> readRequiredVacations(
             @RequestParam String month,
             @RequestParam  String year,
             @RequestParam("details") String users
-    ) //throws JsonProcessingException
+    ) throws JsonProcessingException
     {
-        //vacationService.readRequiredVacations(users, Integer.valueOf(month), Integer.valueOf(year));
         log.info("Controller 'readRequiredVacations' initiated.");
-        return "SUCCESS";
+        return ResponseEntity.ok(vacationService.readRequiredVacations(users, Integer.valueOf(month), Integer.valueOf(year)));
     }
 
     @DeleteMapping(path = "/delete")

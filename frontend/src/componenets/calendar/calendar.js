@@ -45,12 +45,14 @@ class Calendar extends Component {
     
     componentDidUpdate() {
         
-        var month = 1;
+        var month = 2;
         var year = 2021;
         var URL = "http://localhost:8080/vacation/read/required?month=" + month + "&year=" + year
 
+        // this.state.users
+
         const formData = new FormData();
-        formData.append('details', JSON.stringify(this.state.users));
+        formData.append('details', JSON.stringify(this.state.users.map((user) => {return (user.id)})));
 
         Axios.post(URL , formData, {
                 headers: {

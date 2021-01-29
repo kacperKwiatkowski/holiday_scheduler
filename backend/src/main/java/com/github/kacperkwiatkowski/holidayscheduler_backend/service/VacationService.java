@@ -8,18 +8,18 @@ import com.github.kacperkwiatkowski.holidayscheduler_backend.dto.VacationDto;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.exceptions.ObjectNotFoundException;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.mappers.UserMapper;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.mappers.VacationMapper;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.model.User;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.model.Vacation;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.VacationRepository;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.VacationSqlRepository;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.YearMonth;
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -27,13 +27,15 @@ import java.util.stream.Collectors;
 public class VacationService {
 
     private final VacationRepository vacationRepository;
+    private final VacationSqlRepository vacationSqlRepository;
     private final VacationMapper vacationMapper;
-    //private final UserMapper userMapper;
+    private final UserMapper userMapper;
 
-    public VacationService(VacationRepository vacationRepository, VacationMapper vacationMapper/*, UserMapper userMapper*/) {
+    public VacationService(VacationRepository vacationRepository, VacationSqlRepository vacationSqlRepository, VacationMapper vacationMapper, UserMapper userMapper) {
         this.vacationRepository = vacationRepository;
+        this.vacationSqlRepository = vacationSqlRepository;
         this.vacationMapper = vacationMapper;
-        //this.userMapper = userMapper;
+        this.userMapper = userMapper;
     }
 
     public VacationDto createVacation(VacationDto vacationToCreate){
@@ -43,27 +45,27 @@ public class VacationService {
         return vacationToCreate;
     }
 
-/*    public List<VacationDto> readRequiredVacations(String usersJson, int month, int year) throws JsonProcessingException {
+    public List<VacationDto> readRequiredVacations(String usersJson, int month, int year) throws JsonProcessingException {
+        //TODO Perhaps it will be better to send vacations with first controller in a form of a map???
 
+        List<Integer> usersIdsToFetchVacations =
+                new ObjectMapper().readValue(usersJson, new TypeReference<List<Integer>>() {});
 
-        List<User> usersForWhichToFetchVacations =
-                new ObjectMapper().readValue(usersJson, new TypeReference<List<UserDto>>() {})
-                .stream().map(userMapper::mapToEntity)
+        List<List<Vacation>> foundVacations = usersIdsToFetchVacations
+                .stream()
+                .map(id ->
+                        vacationSqlRepository.justFind(
+                            id,
+                            LocalDate.of(year, month, 1),
+                            LocalDate.of(year, month, YearMonth.of(year, month).lengthOfMonth()))
+                        )
                 .collect(Collectors.toList());
 
-        List<Vacation> foundVacations =new ArrayList<>();
+        List<Vacation> foundVacationsFlatMap = foundVacations.stream().flatMap(Collection::stream).collect(Collectors.toList());
 
-        usersForWhichToFetchVacations
-                        .stream()
-                        .map(user -> vacationRepository.findHolidaysInGivenMonthAndYear(
-                                user.getId(),
-                                LocalDate.of(year, month, 1),
-                                LocalDate.of(year, month, YearMonth.of(year, month).lengthOfMonth())))
-                        .forEach(vacation -> foundVacations.add((Vacation) vacation));
 
-        //TODO Apply solution
-        return null;
-    }*/
+        return foundVacationsFlatMap.stream().map(v -> vacationMapper.mapToDto(v)).collect(Collectors.toList());
+    }
 
     public VacationDto deleteVacation(int id){
         Optional<Vacation> foundVacation = Optional.ofNullable(vacationRepository.findById(id));

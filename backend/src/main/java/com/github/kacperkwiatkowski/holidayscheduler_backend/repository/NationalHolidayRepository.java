@@ -12,13 +12,4 @@ public interface NationalHolidayRepository extends JpaRepository<NationalHoliday
     NationalHoliday findById(int id);
 
     void save(Holidays holidays);
-
-/*    public List<DayOff> getOverlappingHolidays(DayOff dayOff){
-        return (List<DayOff>) entityManager.createQuery("FROM DayOff  where user.email like :email and (firstDay between :firstDay and :lastDay or lastDay between :firstDay and :lastDay)")
-                .setParameter("email", dayOff.getUser().getEmail())
-                .setParameter("firstDay", dayOff.getFirstDay())
-                .setParameter("lastDay", dayOff.getLastDay())
-                .getResultList();
-    }*/
-
 }
