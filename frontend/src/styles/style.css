@@ -27,6 +27,7 @@ table.calendarTable th {
 }
 
 table.calendarTable td {
+  position: relative;
   height: 100px;
   width: 300px;
   text-align: center;
@@ -71,6 +72,14 @@ table.calendarTable td {
           transform: translateY(-5px);
 }
 
+.dateTag {
+  position: absolute;
+  top: 35px;
+  left: 78px;
+  font-size: xx-small;
+  text-align: center;
+}
+
 .vacationButton {
   height: 20px;
   width: 200px;
@@ -78,7 +87,9 @@ table.calendarTable td {
   margin: 0;
   border: none;
   outline: none;
-  background-color: red;
+  color: red;
+  background-color: #ffb5b5;
+  opacity: 0.2;
 }
 
 .controlsWrapper {

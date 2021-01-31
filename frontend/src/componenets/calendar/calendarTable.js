@@ -31,12 +31,8 @@ class Calendar extends Component {
 
     initialVacations = [
         {
-            accepted: "",
-            firstDay: "",
             id: "",
-            lastDay: "",
-            leaveType: "",
-            userID: "",
+            dates: []
         }
     ]
 
@@ -58,7 +54,7 @@ class Calendar extends Component {
     }
 
     
-    fetchVacations() {
+    a() {
         
         var month = "02" //this.state.initialDate.month
         var year = this.state.initialDate.year
@@ -78,7 +74,7 @@ class Calendar extends Component {
         )
         .then(res => {
           console.log(res)
-          return res
+          this.setState({vacations: res.data})
         }).catch(error => {
             console.error(error)
           })
@@ -92,7 +88,7 @@ class Calendar extends Component {
                     <thead>
                         <tr>
                             <th className="calendarHeadCell">
-                                EMPLOYEE
+                                Employees
                             </th>
                             {this.renderTableHead()}
                         </tr>
@@ -140,6 +136,12 @@ class Calendar extends Component {
 
     renderTableBody() {
 
+        var vacations = new Map();
+        vacations = this.a();
+        console.log(vacations);
+
+        console.log(vacations);
+
         return( this.state.users.map(user => {
             return(
             <tr>
@@ -158,8 +160,9 @@ class Calendar extends Component {
             this.state.dates.map((date, index) => {
             return(
                 <td>
-                    {date}
-                    <button className="vacationButton"></button>
+                    
+                    <div className="dateTag">{date}</div>
+                    <button className="vacationButton">Day off</button>
                 </td>
             )
         }))

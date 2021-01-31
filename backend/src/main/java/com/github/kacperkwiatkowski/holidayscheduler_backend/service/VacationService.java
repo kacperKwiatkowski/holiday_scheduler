@@ -11,6 +11,7 @@ import com.github.kacperkwiatkowski.holidayscheduler_backend.mappers.VacationMap
 import com.github.kacperkwiatkowski.holidayscheduler_backend.model.Vacation;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.VacationRepository;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.VacationSqlRepository;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.utils.calendar.Calendar;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,7 @@ import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
@@ -45,26 +47,26 @@ public class VacationService {
         return vacationToCreate;
     }
 
-    public List<VacationDto> readRequiredVacations(String usersJson, int month, int year) throws JsonProcessingException {
+    public Map<Integer, List<String>>readRequiredVacations(String usersJson, int month, int year) throws JsonProcessingException {
         //TODO Perhaps it will be better to send vacations with first controller in a form of a map???
 
         List<Integer> usersIdsToFetchVacations =
                 new ObjectMapper().readValue(usersJson, new TypeReference<List<Integer>>() {});
 
-        List<List<Vacation>> foundVacations = usersIdsToFetchVacations
+        List<List<VacationDto>> foundVacations = usersIdsToFetchVacations
                 .stream()
                 .map(id ->
                         vacationSqlRepository.justFind(
                             id,
                             LocalDate.of(year, month, 1),
                             LocalDate.of(year, month, YearMonth.of(year, month).lengthOfMonth()))
+                                .stream().map(vacationMapper::mapToDto).collect(Collectors.toList())
                         )
                 .collect(Collectors.toList());
 
-        List<Vacation> foundVacationsFlatMap = foundVacations.stream().flatMap(Collection::stream).collect(Collectors.toList());
+        List<VacationDto> foundVacationsFlatMap = foundVacations.stream().flatMap(Collection::stream).collect(Collectors.toList());
 
-
-        return foundVacationsFlatMap.stream().map(v -> vacationMapper.mapToDto(v)).collect(Collectors.toList());
+        return Calendar.createCalendar(usersIdsToFetchVacations, foundVacationsFlatMap, month, year);
     }
 
     public VacationDto deleteVacation(int id){

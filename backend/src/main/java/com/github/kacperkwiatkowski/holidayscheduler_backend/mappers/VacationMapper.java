@@ -36,7 +36,7 @@ public class VacationMapper implements ObjectMapper<VacationDto, Vacation> {
             vacation.setLastDay(LocalDate.parse(vacationDto.getFirstDay()));
             vacation.setUser(userRepository.findById(vacationDto.getUserID()));
             vacation.setAccepted(vacationDto.isAccepted());
-            vacation.setLeaveType(VacationTypeConvertor.convertToEnum(vacationDto.getLeaveType()));
+            vacation.setVacationType(VacationTypeConvertor.convertToEnum(vacationDto.getLeaveType()));
 
         return vacation;
     }
@@ -50,7 +50,7 @@ public class VacationMapper implements ObjectMapper<VacationDto, Vacation> {
                 .lastDay(vacation.getLastDay().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")).toString())
                 .userID(vacation.getUser().getId())
                 .isAccepted(vacation.isAccepted())
-                .leaveType(VacationTypeConvertor.convertToString(vacation.getLeaveType()))
+                .leaveType(VacationTypeConvertor.convertToString(vacation.getVacationType()))
                 .build();
         return vacationDto;
     }

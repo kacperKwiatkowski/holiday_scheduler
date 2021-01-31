@@ -1,15 +1,14 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.convertors;
 
-import com.github.kacperkwiatkowski.holidayscheduler_backend.utils.enums.LeaveType;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.utils.enums.RoleType;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.utils.enums.VacationType;
 
 public class VacationTypeConvertor {
 
-    public static LeaveType convertToEnum(String string) {
-        return LeaveType.valueOf(string.toUpperCase());
+    public static VacationType convertToEnum(String string) {
+        return VacationType.valueOf(string.toUpperCase());
     }
 
-    public static String convertToString(LeaveType leaveType) {
-        return leaveType.toString();
+    public static String convertToString(VacationType vacationType) {
+        return vacationType.toString();
     }
 }

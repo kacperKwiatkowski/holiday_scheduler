@@ -18,6 +18,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import java.lang.reflect.Type;
 import java.util.List;
+import java.util.Map;
 
 
 @Slf4j
@@ -43,7 +44,7 @@ public class VacationController {
 
     @PostMapping(path = "/read/required")
     @ResponseStatus(HttpStatus.OK)
-    ResponseEntity<List<VacationDto>> readRequiredVacations(
+    ResponseEntity<Map<Integer, List<String>>> readRequiredVacations(
             @RequestParam String month,
             @RequestParam  String year,
             @RequestParam("details") String users

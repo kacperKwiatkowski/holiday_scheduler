@@ -6,19 +6,16 @@ import com.github.kacperkwiatkowski.holidayscheduler_backend.model.Vacation;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.VacationRepository;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.TeamRepository;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.UserRepository;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.utils.enums.LeaveType;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.utils.enums.VacationType;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.utils.enums.RoleType;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @SpringBootApplication
@@ -137,7 +134,7 @@ public class HolidaySchedulerBackendApplication {
             vacation1.setFirstDay(LocalDate.now().plusDays(1));
             vacation1.setLastDay(LocalDate.now().plusDays(3));
             vacation1.setAccepted(false);
-            vacation1.setLeaveType(LeaveType.PAYED);
+            vacation1.setVacationType(VacationType.PAYED);
             User user1 = userRepository.findById(3);
             vacation1.setUser(user1);
 
@@ -145,7 +142,7 @@ public class HolidaySchedulerBackendApplication {
             vacation2.setFirstDay(LocalDate.now().plusDays(7));
             vacation2.setLastDay(LocalDate.now().plusDays(9));
             vacation2.setAccepted(false);
-            vacation2.setLeaveType(LeaveType.PAYED);
+            vacation2.setVacationType(VacationType.PAYED);
             User user2 = userRepository.findById(5);
             vacation2.setUser(user2);
 
@@ -153,7 +150,7 @@ public class HolidaySchedulerBackendApplication {
             vacation3.setFirstDay(LocalDate.now().plusDays(11));
             vacation3.setLastDay(LocalDate.now().plusDays(21));
             vacation3.setAccepted(false);
-            vacation3.setLeaveType(LeaveType.PAYED);
+            vacation3.setVacationType(VacationType.PAYED);
             User user3 = userRepository.findById(8);
             vacation3.setUser(user3);
 
@@ -162,7 +159,7 @@ public class HolidaySchedulerBackendApplication {
             vacation4.setFirstDay(LocalDate.now().plusDays(15));
             vacation4.setLastDay(LocalDate.now().plusDays(21));
             vacation4.setAccepted(false);
-            vacation4.setLeaveType(LeaveType.SICK);
+            vacation4.setVacationType(VacationType.SICK);
             User user4 = userRepository.findById(1);
             vacation4.setUser(user4);
 
@@ -171,7 +168,7 @@ public class HolidaySchedulerBackendApplication {
             vacation5.setFirstDay(LocalDate.now().plusDays(4));
             vacation5.setLastDay(LocalDate.now().plusDays(8));
             vacation5.setAccepted(false);
-            vacation5.setLeaveType(LeaveType.PAYED);
+            vacation5.setVacationType(VacationType.PAYED);
             User user5 = userRepository.findById(4);
             vacation5.setUser(user5);
 

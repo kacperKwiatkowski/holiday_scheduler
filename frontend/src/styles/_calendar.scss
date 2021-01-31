@@ -29,6 +29,8 @@ table.calendarTable {
 
 
     td{
+        position: relative;
+
         height: 100px;
         width: 300px;
         text-align: center;
@@ -86,6 +88,16 @@ table.calendarTable {
 
 }
 
+.dateTag{
+
+    position: absolute;
+    top: 35px;
+    left: 78px;
+
+    font-size: xx-small;
+    
+    text-align: center;
+}
 
 .vacationButton{
     height: 20px;
@@ -98,5 +110,8 @@ table.calendarTable {
     border: none;
     outline: none;
 
-    background-color: red;
+    color: red;
+    background-color: rgb(255, 181, 181);
+
+    opacity: 0.2;
 }

@@ -1,6 +1,6 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.utils.enums;
 
-public enum LeaveType {
+public enum VacationType {
     PAYED,
     UNPAID,
     SICK,
