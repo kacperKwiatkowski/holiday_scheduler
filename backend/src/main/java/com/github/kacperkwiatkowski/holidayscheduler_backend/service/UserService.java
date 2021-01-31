@@ -86,7 +86,7 @@ public class UserService {
 
         Pageable paging;
 
-        if(sortOrder.equals("ACS")){
+        if(sortOrder.equals("ASC")){
             paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy).ascending());
         } else {
             paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy).descending());

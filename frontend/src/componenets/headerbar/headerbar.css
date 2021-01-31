@@ -3,26 +3,23 @@
     margin: auto;
     align-items:center;
 
-    background-color: #00273f;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    background-color: white;
 }
 
 .headerWrapper:hover{
-
-
-    -webkit-box-shadow: 0px 20px 20px -7px #00273f;
-    -moz-box-shadow: 0px 20px 20px -7px #00273f;
-    box-shadow: 0px 20px 20px -7px #00273f;
-
+    -webkit-box-shadow: 0px 20px 20px -17px rgba(0, 111, 255, 0.53);
+    -moz-box-shadow: 0px 20px 20px -17px rgba(0, 111, 255, 0.53);
+    box-shadow: 0px 20px 20px -17px rgba(0, 111, 255, 0.53);
 
     transition: all 0.4s ease-in-out;
-}
-
-.headerbarWrapper{
-    height: 60px;
-
-    display: flex;
-    justify-content: space-between;
-
 }
 
 .profileLinks{
@@ -37,24 +34,25 @@
 }
 
 .headerbarLogOutButton{
-    width: 150px;
-    height: 40px;
+    width: 120px;
+    height: 30px;
     border: none;
     outline: none;
-    font-size:larger;
-    margin: auto;
+    font-size:medium;
+    margin: 5px;
+    text-align: center;
+    justify-content: center;
 
-    background-color: #00273f;
+    font-size: small;
+    
+
+    background-color: rgba(0, 111, 255, 0.53);
     color:#fafafa;
     
 }
 
 .headerbarLogOutButton:hover{
-
-    background-color: white;
-    color: #00273f;
-
-
+    text-decoration: underline;
     border: none;
 }
 
@@ -64,7 +62,7 @@
     height: 60px;
     font-size: xx-large;
     align-items:center;
-    color: #fafafa;
+    color: #808182;
     padding: 5px;
     margin: auto;
 }
@@ -93,14 +91,14 @@
 }
 
 a:link{
-    color: #fafafa;
+    color: #808182;
     font-weight: bold;
     text-decoration: none;
     padding-left: 30px;
 }
 
 a:visited{
-    color: #fafafa;
+    color: #808182;
 }
 
 a:hover{

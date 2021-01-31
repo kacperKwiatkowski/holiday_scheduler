@@ -1,122 +1,117 @@
-.loginFormWrapper{
-
-    background-color: #fafafa;
-    padding: 100px;
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 600px;
-    height: 400px;
-    border-radius: 15px;
-
-    -webkit-box-shadow: 0px 20px 20px -17px#00273f;
-    -moz-box-shadow: 0px 20px 20px -17px#00273f;
-    box-shadow: 0px 20px 20px -17px #00273f;
+.loginFormWrapper {
+  background-color: #fafafa;
+  padding: 100px;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 600px;
+  height: 400px;
+  -webkit-box-shadow: 0px 20px 20px -17px #006FFF;
+  box-shadow: 0px 20px 20px -17px #006FFF;
 }
 
-.loginFormWrapper:hover{
-    -moz-box-shadow: 0 10px 25px #00273f;
-    -webkit-box-shadow: 0 10px 25px #00273f;
-    box-shadow: 0 10px 25px#00273f;
-
-    transition: all 0.4s ease-in-out;
+.loginFormWrapper:hover {
+  -webkit-box-shadow: 0 10px 25px #006FFF;
+  box-shadow: 0 10px 25px #006FFF;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
 }
 
-.loginFormLabels{
-    padding-left: 15px;
-    color: #00273f;
-    font-size: 30px;
+.loginFormLabels {
+  padding-left: 15px;
+  color: #006FFF;
+  font-size: 30px;
 }
 
-.loginFormInput{
-    width: 600px;
-    height: 60px;
-    outline: none;
-    margin-bottom: 80px;
-    padding: none;
-    padding-left: 15px;
-
-    line-height:40px;
-    color: #00273f;
-    font-size: 20px;
-    vertical-align: baseline;
-
-    background-color:#fafafa;
-    border: none;
-    border-bottom: 2px solid #00273f;
+.loginFormInput {
+  width: 600px;
+  height: 60px;
+  outline: none;
+  margin-bottom: 80px;
+  padding: none;
+  padding-left: 15px;
+  line-height: 40px;
+  color: #006FFF;
+  font-size: 20px;
+  vertical-align: baseline;
+  background-color: #fafafa;
+  border: none;
+  border-bottom: 2px solid #006FFF;
 }
 
-.loginFormInput:hover{
-    -webkit-box-shadow: 0px 20px 35px -16px#00273f;
-    -moz-box-shadow: 0px 20px 35px -16px #00273f;
-    box-shadow: 0px 20px 35px -16px #00273f;  
-    transition: all 0.2s ease-in-out;
+.loginFormInput:hover {
+  -webkit-box-shadow: 0px 20px 35px -16px #006FFF;
+  box-shadow: 0px 20px 35px -16px #006FFF;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
-.loginFormInput:focus{
-    -webkit-box-shadow: 0px 20px 35px -16px#00273f;
-    -moz-box-shadow: 0px 20px 35px -16px #00273f;
-    box-shadow: 0px 20px 35px -16px #00273f;  
-    transition: all 0.2s ease-in-out;
+.loginFormInput:focus {
+  -webkit-box-shadow: 0px 20px 35px -16px #006FFF;
+  box-shadow: 0px 20px 35px -16px #006FFF;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
-
-
 
 .loginFormInput:-webkit-autofill,
-.loginFormInput:-webkit-autofill:hover, 
+.loginFormInput:-webkit-autofill:hover,
 .loginFormInput:-webkit-autofill:focus
 .loginFormInput:-webkit-autofill:active {
-
-    font-size: 20px;
-  -webkit-text-fill-color:  #23527c; 
+  font-size: 20px;
+  -webkit-text-fill-color: #006FFF;
   -webkit-box-shadow: 0 0 0px 1000px #fafafa inset;
+  -webkit-transition: background-color 5000s ease-in-out 0s;
   transition: background-color 5000s ease-in-out 0s;
 }
 
-
-.loginButtonsWrapper{
-    width: 600px;
-    display: flex;
-    justify-content:flex-end;
+.loginButtonsWrapper {
+  width: 600px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
 }
 
-.forgottenPasswordFormButton{
-    width: 250px;
-    height: 60px;
-    margin: 0;
-    border: none;
-    outline: none;
-    border-radius: 4px;
-    background-color: #fafafa;
-    color: #23527c;
-    font-weight:1000;
-    font-size:medium;
+.forgottenPasswordFormButton {
+  width: 250px;
+  height: 60px;
+  margin: 0;
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  background-color: #fafafa;
+  color: #006FFF;
+  font-weight: 1000;
+  font-size: medium;
 }
 
-.forgottenPasswordFormButton:hover{
-    text-shadow: 0 0 15px #00273f;
-    transition: all 0.2s ease-in-out;
+.forgottenPasswordFormButton:hover {
+  text-shadow: 0 0 15px #006FFF;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
-
-.signInFormButton{
-    width: 100px;
-    height: 60px;
-    margin: 0;
-    border: none;
-    outline: none;
-    border-radius: 4px;
-    background-color: #00273f;
-    color:#fafafa;
-    font-weight:1000;
-    font-size:medium;
+.signInFormButton {
+  width: 100px;
+  height: 60px;
+  margin: 0;
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  background-color: #006FFF;
+  color: #fafafa;
+  font-weight: 1000;
+  font-size: medium;
 }
 
-.signInFormButton:hover{
-
-    -webkit-box-shadow: 0px 20px 35px -6px #00273f;
-    -moz-box-shadow: 0px 20px 35px -6px #00273f;
-    box-shadow: 0px 20px 35px -6px #00273f;  
-    transition: all 0.2s ease-in-out;
+.signInFormButton:hover {
+  -webkit-box-shadow: 0px 20px 35px -6px #006FFF;
+  box-shadow: 0px 20px 35px -6px #006FFF;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
+/*# sourceMappingURL=login.css.map */

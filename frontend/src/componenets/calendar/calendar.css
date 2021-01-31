@@ -1,57 +1,71 @@
 
-.calendarTable {
-
+table.calendarTable {
+    border-collapse:collapse;
     align-items:center;
-    margin: auto;
-    margin: 20px;
-    width: 90%px;
+    margin-left: 20px;
     height: 90vh;
 
-    overflow-y:scroll;
-    display:block;
+    table-layout: fixed;
+    width: 100%;
 
-    border-spacing: 0;
 }
 
-.calendarTable table.fixed { 
-    table-layout: fixed; 
-} 
-.calendarTable table.fixed td { 
-    overflow: hidden; 
-} 
-
-.calendarTable tr {
-    height: 80px;
+table.calendarTable thead{
+    height: 30px;
 }
 
-.calendarTable th{
-    height: 60px;
-    color: #00273f;
-    font-size: x-large;
+.calendarHeadCell{
+    height: 30px !important;
+    width: 200px;
+    color: #3b3b3b;
+    font-size: small;
+    margin: 15px;
 }
 
-.calendarTable td{
+table.calendarTable th{
+    height: 150px;
+    width: 200px;
+    color: #3b3b3b;
+    font-size: small;
+    margin: 15px;
+}
+
+
+table.calendarTable td{
     height: 100px;
+    width: 300px;
     text-align: center;
     align-items:center;
-    table-layout:fixed;
-    width: 150px;
+
+    font-size: smaller;
     
     color: rgb(100, 100, 100);
+    opacity: 0.5;
 }
 
-.calendarCell{
-    width: 150px;
+.calendarNameButton{
+    background-color: white;
+    color: rgb(100, 100, 100);
+    outline: none;
+    font-size:x-small;
+    margin: auto;
+
+    height: 120px;
+    width: 160px;
+
+    border-top: none;
+    border-left: none;
+    border-right: 1px solid #808182;
+    border-bottom: 1px solid #808182;
 }
 
-.calendarTable tbody td:nth-child(odd){
-    background-color: rgb(200, 200, 200);
-    width: 200px;
-    height: 100px;
-    
+.calendarNameButton:hover{
+
+
+    -webkit-box-shadow: 20px 20px 15px -20px rgba(0, 111, 255, 0.53);
+    -moz-box-shadow: 20px 20px 15px -20px rgba(0, 111, 255, 0.53);
+    box-shadow: 20px 20px 15px -20px rgba(0, 111, 255, 0.53);
+
+    transition: all 0.4s ease-in-out;
 }
 
-.calendarTable  thead td:nth-child(odd){
-    background-color: rgb(200, 200, 200);
-    
-}

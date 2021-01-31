@@ -76,7 +76,10 @@ class User extends Component {
                             <td>
                                 {user.daysOffLeft}
                             </td>
-                            <td><button/></td>
+                            <td className="actionButtonsWrapper">
+                                <button className="editButton"/>
+                                <button className="deleteButton"/>
+                            </td>
                         </tr>
                 )
             }

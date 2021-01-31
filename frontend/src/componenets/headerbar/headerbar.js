@@ -6,7 +6,6 @@ import { Link } from "react-router-dom"
 export const Headerbar = () => {
     return(
         <div className="headerWrapper">
-            <div className="headerbarWrapper">
                 <div className="logo">jAvalanche</div>
                 <ul className="linksmenuNav">
                 {linksmenu.map((item, index) => { return (
@@ -20,7 +19,6 @@ export const Headerbar = () => {
                     <button className="headerbarLogOutButton linksShadow">PROFILE</button>
                     <button className="headerbarLogOutButton linksShadow">LOG OUT</button>
                 </div>
-            </div>
 
         </div>
     )
