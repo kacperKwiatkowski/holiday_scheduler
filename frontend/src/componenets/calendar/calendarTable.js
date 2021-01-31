@@ -1,3 +1,4 @@
+import axios from "axios";
 import Axios from "axios";
 import React, {Component} from "react";
 import "../../styles/style.css"
@@ -45,39 +46,47 @@ class Calendar extends Component {
 
     initialDates = []
 
-    componentDidMount() {
-        Axios.get(`http://localhost:8080/user/page?pageNo=0&pageSize=10&sortBy=lastName&sortOrder=ASC`)
-          .then(res => {
-            console.log(res)
-            this.setState({users: res.data})
-          });
-    }
-
-    
-    a() {
+    // componentDidMount() {
+    //     var users = this.loadUsers();
+    //     console.log(users);
         
-        var month = "02" //this.state.initialDate.month
-        var year = this.state.initialDate.year
+    //     // this.setState({ users: this.loadUsers()})
 
-        console.log(month + " " + year)
+    //     // console.log(loadUsers() + " aaa ");
+    //     // this.setState({
+    //     //     users: loadUsers()
+    //     //     //vacations: this.loadVacations()
+    //     // })
+    // }
 
-        var URL = "http://localhost:8080/vacation/read/required?month=" + month + "&year=" + year
+    loadUsers = () => Axios.get(`http://localhost:8080/user/page?pageNo=0&pageSize=10&sortBy=lastName&sortOrder=ASC` )
+    
+    // loadVacations = (users) => {
+    //         const formData = new FormData();
+    //         formData.append('details', JSON.stringify(users.map((user) => {return (user.id)})));
 
-        const formData = new FormData();
-        formData.append('details', JSON.stringify(this.state.users.map((user) => {return (user.id)})));
+    //     Axios.post("http://localhost:8080/vacation/read/required?month=" + "02" + "&year=" + this.state.initialDate.year, formData, {
+    //         headers: {
+    //             "Content-Type": "multipart/form-data"
+    //         }
+    //     })
+    // }
+        
+     componentDidMount() {
+        try{
+            //const users = this.loadUsers();
+            //const vacations = this.loadVacations((await users).data);
 
-        Axios.post(URL , formData, {
-                headers: {
-                    "Content-Type": "multipart/form-data"
-                }
-            }
-        )
-        .then(res => {
-          console.log(res)
-          this.setState({vacations: res.data})
-        }).catch(error => {
-            console.error(error)
-          })
+            //console.log("THIS ARE THE USERS :" +  users.data);
+            //console.log("THIS ARE THE VACATIONS :" + vacations.data);
+
+            this.setState({
+                users: this.loadUsers().then(res => {return res.data})
+                //vacations: vacations.data
+            })
+        } catch(err) {
+            console.log(err);
+        }
     }
 
 
@@ -124,7 +133,7 @@ class Calendar extends Component {
         
 
 
-        return daysOfWeek.map((date) => {
+        return daysOfWeek.map((date, index) => {
             return (
                         <th className="calendarHeadCell">
                             {date}
@@ -136,13 +145,7 @@ class Calendar extends Component {
 
     renderTableBody() {
 
-        var vacations = new Map();
-        vacations = this.a();
-        console.log(vacations);
-
-        console.log(vacations);
-
-        return( this.state.users.map(user => {
+        return( this.state.users.map((user, index) => {
             return(
             <tr>
                 <th><button className="calendarNameButton">{user.firstName} {user.lastName}</button></th>
@@ -154,7 +157,6 @@ class Calendar extends Component {
     }
 
     renderTableRowsDate(id) {
-
 
         return( 
             this.state.dates.map((date, index) => {
@@ -180,3 +182,11 @@ function returnDayFormat(day) {
     return ("0" + day).slice(-2);
     
 }
+
+// function loadUsers() {
+//     Axios.get(`http://localhost:8080/user/page?pageNo=0&pageSize=10&sortBy=lastName&sortOrder=ASC`)
+//       .then(res => {
+//         console.log(res)
+//         return {users: res.data}
+//       });
+// }
