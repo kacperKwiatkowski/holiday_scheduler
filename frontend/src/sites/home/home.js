@@ -5,7 +5,7 @@ import Employees from "../../componenets/employees/employees"
 import Team from "../../componenets/team/team"
 import Teams from "../../componenets/teams/teams"
 import Settings from "../../componenets/settings/settings"
-import "./home.css";
+import "../../styles/style.css"
 
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 

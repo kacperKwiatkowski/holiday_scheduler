@@ -1,4 +1,5 @@
-import "./headerbar.css"
+
+import "../../styles/style.css"
 
 import { linksmenu } from "./linksmenu"
 import { Link } from "react-router-dom"

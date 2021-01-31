@@ -1,7 +1,6 @@
 import Axios from "axios";
 import React, {Component} from "react";
-import "./employeesTable.css"
-
+import "../../styles/style.css"
 class User extends Component {
 
     constructor(props) {
@@ -89,7 +88,7 @@ class User extends Component {
     render () {
         return (
             <div>
-                <table className="employeesTable">
+                <table className="tables">
                     <thead>
                         {this.renderTableHead()}
                     </thead>

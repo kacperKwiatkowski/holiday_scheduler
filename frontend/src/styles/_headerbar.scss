@@ -1,3 +1,4 @@
+@import "./variables";
 
 .headerWrapper{
     margin: auto;
@@ -10,14 +11,18 @@
     position: fixed;
     top: 0;
     left: 0;
+    z-index: 1;
 
-    background-color: white;
+    background-color: $backgroundWhite;
+
+    box-shadow: 0px 15px 10px -20px $decorationsBlue;
+
 }
 
 .headerWrapper:hover{
-    -webkit-box-shadow: 0px 20px 20px -17px rgba(0, 111, 255, 0.53);
-    -moz-box-shadow: 0px 20px 20px -17px rgba(0, 111, 255, 0.53);
-    box-shadow: 0px 20px 20px -17px rgba(0, 111, 255, 0.53);
+    -webkit-box-shadow: 0px 20px 20px -17px $decorationsBlue;
+    -moz-box-shadow: 0px 20px 20px -17px $decorationsBlue;
+    box-shadow: 0px 20px 20px -17px $decorationsBlue;
 
     transition: all 0.4s ease-in-out;
 }
@@ -42,13 +47,11 @@
     margin: 5px;
     text-align: center;
     justify-content: center;
-
     font-size: small;
     
+    background-color: $decorationsBlue;
+    color: $backgroundWhite;
 
-    background-color: rgba(0, 111, 255, 0.53);
-    color:#fafafa;
-    
 }
 
 .headerbarLogOutButton:hover{
@@ -62,9 +65,10 @@
     height: 60px;
     font-size: xx-large;
     align-items:center;
-    color: #808182;
-    padding: 5px;
     margin: auto;
+
+
+    color: $textGrey;
 }
 
 

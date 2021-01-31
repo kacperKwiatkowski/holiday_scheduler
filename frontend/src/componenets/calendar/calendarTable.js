@@ -1,6 +1,6 @@
 import Axios from "axios";
 import React, {Component} from "react";
-import "./calendar.css"
+import "../../styles/style.css"
 
 class Calendar extends Component {
     

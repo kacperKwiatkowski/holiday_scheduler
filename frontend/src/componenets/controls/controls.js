@@ -1,11 +1,12 @@
 import React, {Component} from "react";
-import "./controls.css";
+import "../../styles/style.css"
 
 class Controls extends Component{
 
     constructor(props){
         super(props)
         this.state = {
+            header: "",
             numOfPages: 10,
             pageSize: 10
         }
@@ -19,13 +20,15 @@ class Controls extends Component{
 
         return (
         <div className="controlsWrapper">
-            
-            <ul className="controlsElements">
-                Page: {this.renderPageNumControls()}
-            </ul>
-            <ul className="controlsElements">
-                Size: {this.renderPageSizeControls()}
-            </ul>
+            <div className="pageHeader">{this.props.header}</div>
+            <div className="controlsElementsWrapper">
+                <ul className="controlsElements">
+                    Page: {this.renderPageNumControls()}
+                </ul>
+                <ul className="controlsElements">
+                    Size: {this.renderPageSizeControls()}
+                </ul>
+            </div>
         </div>
         )
     }

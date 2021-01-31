@@ -1,6 +1,6 @@
 import Axios from "axios";
 import React, {Component} from "react";
-import "./teamTable.css"
+import "../../styles/style.css"
 
 class Team extends Component {
 
@@ -31,7 +31,7 @@ class Team extends Component {
     render () {
         return (
             <div>
-                <table className="teamTable">
+                <table className="tables">
                     <thead>
                         {this.renderTableHead()}
                     </thead>
