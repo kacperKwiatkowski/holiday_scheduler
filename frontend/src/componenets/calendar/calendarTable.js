@@ -9,12 +9,36 @@ class Calendar extends Component {
 
         this.state = {
             users: this.initialUsers,
+            vacations: this.initialVacations,
             pagination: this.initialPagination,
             dates: this.initialDates,
+            initialDate: {
+                month: ("0" + (new Date().getMonth() + 1)).slice(-2),
+                year: new Date().getFullYear()
+            }
         }
     }
 
-    initialDates = []
+    initialUsers = [{ 
+        id: '',   
+        email: '',
+        password: '',
+        firstName: '',
+        lastName: '',
+        levelOfAccess: '',
+        daysOffLeft: ''
+    }]
+
+    initialVacations = [
+        {
+            accepted: "",
+            firstDay: "",
+            id: "",
+            lastDay: "",
+            leaveType: "",
+            userID: "",
+        }
+    ]
 
     initialPagination = {
         pageNo: 0,
@@ -23,14 +47,7 @@ class Calendar extends Component {
         sortOrder: 'ASC'
     }
 
-     initialUsers = [{    
-        email: '',
-        password: '',
-        firstName: '',
-        lastName: '',
-        levelOfAccess: '',
-        daysOffLeft: ''
-    }]
+    initialDates = []
 
     componentDidMount() {
         Axios.get(`http://localhost:8080/user/page?pageNo=0&pageSize=10&sortBy=lastName&sortOrder=ASC`)
@@ -41,10 +58,13 @@ class Calendar extends Component {
     }
 
     
-    componentDidUpdate() {
+    fetchVacations() {
         
-        var month = 2;
-        var year = 2021;
+        var month = "02" //this.state.initialDate.month
+        var year = this.state.initialDate.year
+
+        console.log(month + " " + year)
+
         var URL = "http://localhost:8080/vacation/read/required?month=" + month + "&year=" + year
 
         const formData = new FormData();
@@ -58,6 +78,7 @@ class Calendar extends Component {
         )
         .then(res => {
           console.log(res)
+          return res
         }).catch(error => {
             console.error(error)
           })
@@ -85,23 +106,29 @@ class Calendar extends Component {
 
     renderTableHead () {
 
-        const currentDate = new Date();
+        const initDate = new Date(this.state.initialDate.year, this.state.initialDate.month, 1);
 
-        const currentMonth = currentDate.getMonth() + 1; // Be careful! January is 0, not 1
-        const currentYear = currentDate.getFullYear();
+        const currentMonth = this.state.initialDate.month;
+        const currentYear = this.state.initialDate.year;
+
+        var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 
         const dates = []
+        const daysOfWeek = []
         var i = 0;
         var monthLength = daysInMonth(currentMonth, currentYear)
 
-        for(i = 0; i < monthLength; i++){
-            dates.push((i + 1) + "/" + (currentMonth + 1) + "/" + currentYear);
+        for(i = 1; i <= monthLength; i++){
+            var currentDay = returnDayFormat(i);
+            dates.push(currentDay + "/" + currentMonth + "/" + currentYear);
+            daysOfWeek.push(days[new Date(currentYear, currentMonth-1, i).getDay()])
         }
 
         this.state.dates = dates;
+        
 
 
-        return this.state.dates.map((date) => {
+        return daysOfWeek.map((date) => {
             return (
                         <th className="calendarHeadCell">
                             {date}
@@ -117,19 +144,23 @@ class Calendar extends Component {
             return(
             <tr>
                 <th><button className="calendarNameButton">{user.firstName} {user.lastName}</button></th>
-                {this.renderTableRowsDate()}
+                {this.renderTableRowsDate(user.id)}
 
             </tr>
             )
         }))
     }
 
-    renderTableRowsDate() {
+    renderTableRowsDate(id) {
+
 
         return( 
-            this.state.dates.map(date => {
+            this.state.dates.map((date, index) => {
             return(
-                <td>{date}</td>
+                <td>
+                    {date}
+                    <button className="vacationButton"></button>
+                </td>
             )
         }))
     }
@@ -141,3 +172,8 @@ export default Calendar
 function daysInMonth (month, year) { 
     return new Date(year, month, 0).getDate(); 
 } 
+
+function returnDayFormat(day) {
+    return ("0" + day).slice(-2);
+    
+}

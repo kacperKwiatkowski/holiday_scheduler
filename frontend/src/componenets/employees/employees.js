@@ -7,7 +7,7 @@ import Users from "./employeesTable"
     render () {
         return(
             <div>
-                <Controls />
+                <Controls header = {"Employees"}/>
                 <Users />
             </div>
         )

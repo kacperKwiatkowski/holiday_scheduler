@@ -1,12 +1,17 @@
 @import "./variables";
 
+table{
+
+    border-spacing: 0 !important;
+    border-collapse: 0;
+}
+
 table.calendarTable {
     border-collapse:collapse;
     align-items:center;
     margin-left: 20px;
     height: 90vh;
 
-    table-layout: fixed;
     width: 100%;
 
     thead{
@@ -19,6 +24,7 @@ table.calendarTable {
         color: $textGrey;
         font-size: small;
         margin: 15px;
+        padding: 20px;
     }
 
 
@@ -31,6 +37,8 @@ table.calendarTable {
         font-size: smaller;
         color: $textGrey;
         opacity: 0.5;
+        padding: 0;
+        margin: 0;
     }
 }
 
@@ -52,10 +60,15 @@ table.calendarTable {
     height: 120px;
     width: 160px;
 
-    border-top: none;
-    border-left: none;
-    border-right: 1px solid $textGrey;
-    border-bottom: 1px solid $textGrey;
+    border: none;
+
+    // border-top: none;
+    // border-left: none;
+
+
+    box-shadow: 2px 2px 1px -1px $decorationsBlue;
+    // border-right: 1px solid $textGrey;
+    // border-bottom: 1px solid $textGrey;
 
 
     cursor: pointer;
@@ -65,10 +78,25 @@ table.calendarTable {
 
         -webkit-box-shadow: 20px 20px 15px -20px $decorationsBlue;
         -moz-box-shadow: 20px 20px 15px -20px $decorationsBlue;
-        box-shadow: 20px 20px 15px -20px $decorationsBlue;
+        box-shadow: 4px 4px 5px 0px $decorationsBlue;
     
-        transition: all 0.4s ease-in-out;
+        transition: all 0.1s ease-in-out;
         transform: translateY(-5px);
-
     }
+
+}
+
+
+.vacationButton{
+    height: 20px;
+    width: 200px;
+
+
+    padding: 0;
+    margin: 0;
+
+    border: none;
+    outline: none;
+
+    background-color: red;
 }

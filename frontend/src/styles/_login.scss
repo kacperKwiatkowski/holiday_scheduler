@@ -11,9 +11,8 @@
     width: 600px;
     height: 400px;
 
-    -webkit-box-shadow: 0px 20px 20px -17px $decorationsBlue;
-    -moz-box-shadow: 0px 20px 20px -17px$decorationsBlue;
-    box-shadow: 0px 20px 20px -17px $decorationsBlue;
+
+    box-shadow: 0px 15px 10px -20px $decorationsBlue;
 
     &:hover{
 
@@ -77,7 +76,6 @@
     margin: 0;
     border: none;
     outline: none;
-    border-radius: 4px;
     background-color: $backgroundWhite;
     color:$decorationsBlue;
     font-weight:1000;
@@ -95,7 +93,6 @@
     margin: 0;
     border: none;
     outline: none;
-    border-radius: 4px;
     background-color: $decorationsBlue;
     color:$backgroundWhite;
     font-weight:1000;

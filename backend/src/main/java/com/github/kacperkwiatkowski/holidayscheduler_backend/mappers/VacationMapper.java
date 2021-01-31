@@ -8,6 +8,7 @@ import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.Vacation
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
 @Component
@@ -45,8 +46,8 @@ public class VacationMapper implements ObjectMapper<VacationDto, Vacation> {
         VacationDto vacationDto = VacationDto
                 .builder()
                 .id(vacation.getId())
-                .firstDay(vacation.getFirstDay().toString())
-                .lastDay(vacation.getLastDay().toString())
+                .firstDay(vacation.getFirstDay().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")).toString())
+                .lastDay(vacation.getLastDay().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")).toString())
                 .userID(vacation.getUser().getId())
                 .isAccepted(vacation.isAccepted())
                 .leaveType(VacationTypeConvertor.convertToString(vacation.getLeaveType()))
