@@ -3,19 +3,13 @@ import "../../styles/style.css"
 
 class Controls extends Component{
 
-    constructor(props){
-        super(props)
-        this.state = {
+        state = {
             header: "",
             numOfPages: 10,
             pageSize: 10
         }
 
-    }
-
     render() {
-
-        var pageN = [1,2,3,4,5];
 
 
         return (

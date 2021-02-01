@@ -11,6 +11,12 @@ class Calendar extends Component {
         initialDate: {
             month: ("0" + (new Date().getMonth() + 1)).slice(-2),
             year: new Date().getFullYear()
+        },
+        initialPagination: {
+            pageNo: 0,
+            pageSize: 10,
+            sortBy: "lastName",
+            sortOrder: "ASC"
         }
     }
         
@@ -18,8 +24,12 @@ class Calendar extends Component {
 
           var month = this.state.initialDate.month
           var year = this.state.initialDate.year
+          var pageNo = this.state.initialPagination.pageNo
+          var pageSize = this.state.initialPagination.pageSize
+          var sortBy = this.state.initialPagination.sortBy
+          var sortOrder = this.state.initialPagination.sortOrder
   
-          var URL = "http://localhost:8080/calendar/page?pageNo=0&pageSize=10&sortBy=lastName&sortOrder=ASC&month=" + month + "&year=" + year
+          var URL = "http://localhost:8080/calendar/page?pageNo=" + pageNo + "&pageSize=" + pageSize + "&sortBy=" + sortBy + "&sortOrder=" + sortOrder + "&month=" + month + "&year=" + year
 
         await Axios.get(URL, {
             headers: {
@@ -34,34 +44,20 @@ class Calendar extends Component {
 
     render () {
         return (
-                <div>
-
-                    {this.testRender()}
-                    <table className="calendarTable">
-                        <thead>
-                            <tr>
-                                <th className="calendarHeadCell">
-                                    Employees
-                                </th>
-                                {this.renderTableHead()}
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {this.renderTableBody()}
-                        </tbody>
-                    </table>
-                </div>
+            <table className="calendarTable">
+                <thead>
+                    <tr>
+                        <th className="calendarHeadCell">
+                            Employees
+                        </th>
+                        {this.renderTableHead()}
+                    </tr>
+                </thead>
+                <tbody>
+                    {this.renderTableBody()}
+                </tbody>
+            </table>
         )
-    }
-
-    testRender () {
-        this.state.vacations.forEach(element => console.log(element));
-
-        return(this.state.vacations.map((vacation, index) => {
-            return(
-                <div>{vacation}</div>
-            )
-        }))
     }
 
     renderTableHead () {
@@ -100,7 +96,7 @@ class Calendar extends Component {
 
     renderTableBody() {
 
-        return( this.state.users.map((user) => {
+        return( this.state.users.map((user, index) => {
             return(
             <tr>
                 <th><button className="calendarNameButton">{user.userDto.firstName} {user.userDto.lastName}</button></th>
@@ -141,8 +137,6 @@ function returnDayFormat(day) {
 }
 
 function returnVacationTypeTag(dayStatus){
-
-    console.log("STATUS: " + dayStatus)
     switch (dayStatus) {
         case 'PAYED':
             return 'payedVacationButton'
