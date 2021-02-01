@@ -87,9 +87,40 @@ table.calendarTable td {
   margin: 0;
   border: none;
   outline: none;
+}
+
+.payedVacationButton {
   color: red;
   background-color: #ffb5b5;
-  opacity: 0.2;
+}
+
+.payedUnpaidButton {
+  color: red;
+  background-color: #ffb5b5;
+}
+
+.payedSickButton {
+  color: #0e4400;
+  background-color: #77ff55;
+}
+
+.payedMaternityButton {
+  color: #340057;
+  background-color: #a010ff;
+}
+
+.payedBereavementButton {
+  color: #523500;
+  background-color: #ffab10;
+}
+
+.payedSabbaticalButton {
+  color: #0f0031;
+  background-color: #4c00ff;
+}
+
+.noVacation {
+  opacity: 0;
 }
 
 .controlsWrapper {

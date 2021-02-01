@@ -5,108 +5,63 @@ import "../../styles/style.css"
 
 class Calendar extends Component {
     
-    constructor(props) {
-        super(props);
+    state = {
+        users: [],
+        vacations: [],
+        initialDate: {
+            month: ("0" + (new Date().getMonth() + 1)).slice(-2),
+            year: new Date().getFullYear()
+        }
+    }
+        
+    async componentDidMount() {
 
-        this.state = {
-            users: this.initialUsers,
-            vacations: this.initialVacations,
-            pagination: this.initialPagination,
-            dates: this.initialDates,
-            initialDate: {
-                month: ("0" + (new Date().getMonth() + 1)).slice(-2),
-                year: new Date().getFullYear()
+          var month = this.state.initialDate.month
+          var year = this.state.initialDate.year
+  
+          var URL = "http://localhost:8080/calendar/page?pageNo=0&pageSize=10&sortBy=lastName&sortOrder=ASC&month=" + month + "&year=" + year
+
+        await Axios.get(URL, {
+            headers: {
+                "Content-Type": "multipart/form-data"
             }
-        }
-    }
-
-    initialUsers = [{ 
-        id: '',   
-        email: '',
-        password: '',
-        firstName: '',
-        lastName: '',
-        levelOfAccess: '',
-        daysOffLeft: ''
-    }]
-
-    initialVacations = [
-        {
-            id: "",
-            dates: []
-        }
-    ]
-
-    initialPagination = {
-        pageNo: 0,
-        pageSize: 10,
-        sortBy: 'id',
-        sortOrder: 'ASC'
-    }
-
-    initialDates = []
-
-    // componentDidMount() {
-    //     var users = this.loadUsers();
-    //     console.log(users);
-        
-    //     // this.setState({ users: this.loadUsers()})
-
-    //     // console.log(loadUsers() + " aaa ");
-    //     // this.setState({
-    //     //     users: loadUsers()
-    //     //     //vacations: this.loadVacations()
-    //     // })
-    // }
-
-    loadUsers = () => Axios.get(`http://localhost:8080/user/page?pageNo=0&pageSize=10&sortBy=lastName&sortOrder=ASC` )
-    
-    // loadVacations = (users) => {
-    //         const formData = new FormData();
-    //         formData.append('details', JSON.stringify(users.map((user) => {return (user.id)})));
-
-    //     Axios.post("http://localhost:8080/vacation/read/required?month=" + "02" + "&year=" + this.state.initialDate.year, formData, {
-    //         headers: {
-    //             "Content-Type": "multipart/form-data"
-    //         }
-    //     })
-    // }
-        
-     componentDidMount() {
-        try{
-            //const users = this.loadUsers();
-            //const vacations = this.loadVacations((await users).data);
-
-            //console.log("THIS ARE THE USERS :" +  users.data);
-            //console.log("THIS ARE THE VACATIONS :" + vacations.data);
-
-            this.setState({
-                users: this.loadUsers().then(res => {return res.data})
-                //vacations: vacations.data
-            })
-        } catch(err) {
-            console.log(err);
-        }
+        }).then(res => {
+            console.log(res.data)
+            this.setState({users: res.data})
+        })
     }
 
 
     render () {
-
         return (
-                <table className="calendarTable">
-                    <thead>
-                        <tr>
-                            <th className="calendarHeadCell">
-                                Employees
-                            </th>
-                            {this.renderTableHead()}
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {this.renderTableBody()}
-                    </tbody>
-                </table>
+                <div>
+
+                    {this.testRender()}
+                    <table className="calendarTable">
+                        <thead>
+                            <tr>
+                                <th className="calendarHeadCell">
+                                    Employees
+                                </th>
+                                {this.renderTableHead()}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {this.renderTableBody()}
+                        </tbody>
+                    </table>
+                </div>
         )
+    }
+
+    testRender () {
+        this.state.vacations.forEach(element => console.log(element));
+
+        return(this.state.vacations.map((vacation, index) => {
+            return(
+                <div>{vacation}</div>
+            )
+        }))
     }
 
     renderTableHead () {
@@ -145,26 +100,29 @@ class Calendar extends Component {
 
     renderTableBody() {
 
-        return( this.state.users.map((user, index) => {
+        return( this.state.users.map((user) => {
             return(
             <tr>
-                <th><button className="calendarNameButton">{user.firstName} {user.lastName}</button></th>
-                {this.renderTableRowsDate(user.id)}
+                <th><button className="calendarNameButton">{user.userDto.firstName} {user.userDto.lastName}</button></th>
+                {this.renderTableRowsDate(user.holidayStatus)}
 
             </tr>
             )
         }))
     }
 
-    renderTableRowsDate(id) {
+    renderTableRowsDate(holidayStatus) {
 
         return( 
-            this.state.dates.map((date, index) => {
+            holidayStatus.map((date, index) => {
+
+                var buttonClassName = returnVacationTypeTag(date)
+
             return(
                 <td>
                     
-                    <div className="dateTag">{date}</div>
-                    <button className="vacationButton">Day off</button>
+                    <div className="dateTag">{this.state.dates[index]}</div>
+                    <button className={"vacationButton " + buttonClassName}>{date}</button>
                 </td>
             )
         }))
@@ -180,13 +138,25 @@ function daysInMonth (month, year) {
 
 function returnDayFormat(day) {
     return ("0" + day).slice(-2);
-    
 }
 
-// function loadUsers() {
-//     Axios.get(`http://localhost:8080/user/page?pageNo=0&pageSize=10&sortBy=lastName&sortOrder=ASC`)
-//       .then(res => {
-//         console.log(res)
-//         return {users: res.data}
-//       });
-// }
+function returnVacationTypeTag(dayStatus){
+
+    console.log("STATUS: " + dayStatus)
+    switch (dayStatus) {
+        case 'PAYED':
+            return 'payedVacationButton'
+        case 'UNPAID':
+            return 'payedUnpaidButton'
+        case 'SICK':
+            return 'payedSickButton'
+        case 'MATERNITY':
+            return 'payedMaternityButton'
+        case 'BEREAVEMENT':
+            return 'payedBereavementButton'
+        case 'SABBATICAL':
+            return 'payedSabbaticalButton'
+        default:
+            return "noVacation"
+      }
+}

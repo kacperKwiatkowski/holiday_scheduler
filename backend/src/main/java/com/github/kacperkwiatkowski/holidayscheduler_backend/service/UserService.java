@@ -97,7 +97,6 @@ public class UserService {
 
         if(pagedResult.hasContent()) {
             return pagedResult.stream().map(userMapper::mapToDto).collect(Collectors.toList());
-            //return pagedResult.getContent();
         } else {
            throw new ObjectNotFoundException("Pagination impossible");
         }

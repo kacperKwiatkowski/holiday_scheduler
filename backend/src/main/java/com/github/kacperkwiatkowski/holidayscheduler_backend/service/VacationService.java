@@ -11,7 +11,7 @@ import com.github.kacperkwiatkowski.holidayscheduler_backend.mappers.VacationMap
 import com.github.kacperkwiatkowski.holidayscheduler_backend.model.Vacation;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.VacationRepository;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.VacationSqlRepository;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.utils.calendar.Calendar;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.dto.CalendarDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +21,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -47,11 +46,9 @@ public class VacationService {
         return vacationToCreate;
     }
 
-    public Map<Integer, List<String>>readRequiredVacations(String usersJson, int month, int year) throws JsonProcessingException {
-        //TODO Perhaps it will be better to send vacations with first controller in a form of a map???
+    public List<VacationDto> readRequiredVacations(List<UserDto> users, int month, int year) {
 
-        List<Integer> usersIdsToFetchVacations =
-                new ObjectMapper().readValue(usersJson, new TypeReference<List<Integer>>() {});
+        List<Integer> usersIdsToFetchVacations = users.stream().map(UserDto::getId).collect(Collectors.toList());
 
         List<List<VacationDto>> foundVacations = usersIdsToFetchVacations
                 .stream()
@@ -64,9 +61,7 @@ public class VacationService {
                         )
                 .collect(Collectors.toList());
 
-        List<VacationDto> foundVacationsFlatMap = foundVacations.stream().flatMap(Collection::stream).collect(Collectors.toList());
-
-        return Calendar.createCalendar(usersIdsToFetchVacations, foundVacationsFlatMap, month, year);
+        return foundVacations.stream().flatMap(Collection::stream).collect(Collectors.toList());
     }
 
     public VacationDto deleteVacation(int id){

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import java.lang.reflect.Type;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -42,17 +43,18 @@ public class VacationController {
         return ResponseEntity.ok(vacationService.createVacation(vacationToCreate));
     }
 
-    @PostMapping(path = "/read/required")
-    @ResponseStatus(HttpStatus.OK)
-    ResponseEntity<Map<Integer, List<String>>> readRequiredVacations(
-            @RequestParam String month,
-            @RequestParam  String year,
-            @RequestParam("details") String users
-    ) throws JsonProcessingException
-    {
-        log.info("Controller 'readRequiredVacations' initiated.");
-        return ResponseEntity.ok(vacationService.readRequiredVacations(users, Integer.valueOf(month), Integer.valueOf(year)));
-    }
+//    @PostMapping(path = "/read/required")
+//    @ResponseStatus(HttpStatus.OK)
+//    ResponseEntity<Collection<List<String>>> readRequiredVacations(
+//            @RequestParam String month,
+//            @RequestParam  String year,
+//            @RequestParam("details") String users
+//    ) throws JsonProcessingException
+//    {
+//        log.info("Controller 'readRequiredVacations' initiated.");
+//
+//        return ResponseEntity.ok(vacationService.readRequiredVacations(users, Integer.valueOf(month), Integer.valueOf(year)).values());
+//    }
 
     @DeleteMapping(path = "/delete")
     @ResponseStatus(HttpStatus.OK)

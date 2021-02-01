@@ -173,12 +173,21 @@ public class HolidaySchedulerBackendApplication {
             vacation5.setUser(user5);
 
 
+            Vacation vacation6 = new Vacation();
+            vacation6.setFirstDay(LocalDate.now().plusDays(0));
+            vacation6.setLastDay(LocalDate.now().plusDays(270));
+            vacation6.setAccepted(false);
+            vacation6.setVacationType(VacationType.MATERNITY);
+            User user6 = userRepository.findById(2);
+            vacation6.setUser(user6);
+
             //CREATE LEAVES
             vacationRepository.save(vacation1);
             vacationRepository.save(vacation2);
             vacationRepository.save(vacation3);
             vacationRepository.save(vacation4);
             vacationRepository.save(vacation5);
+            vacationRepository.save(vacation6);
 
         };
     }
