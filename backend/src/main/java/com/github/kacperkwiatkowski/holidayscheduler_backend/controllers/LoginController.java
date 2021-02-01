@@ -2,13 +2,11 @@ package com.github.kacperkwiatkowski.holidayscheduler_backend.controllers;
 
 import com.github.kacperkwiatkowski.holidayscheduler_backend.model.User;
 import com.google.gson.Gson;
-import javassist.NotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 @RestController
 @CrossOrigin
