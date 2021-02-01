@@ -12,6 +12,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import java.time.LocalDate;
@@ -19,13 +20,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootApplication
-@EnableJpaRepositories("com.github.kacperkwiatkowski.holidayscheduler_backend.repository")
 public class HolidaySchedulerBackendApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(HolidaySchedulerBackendApplication.class, args);
     }
 
+    @Profile("!test")
     @Bean
     public CommandLineRunner init(
             UserRepository userRepository,

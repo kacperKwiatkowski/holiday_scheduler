@@ -14,6 +14,7 @@ import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.Vacation
 import com.github.kacperkwiatkowski.holidayscheduler_backend.dto.CalendarDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.YearMonth;
@@ -30,13 +31,11 @@ public class VacationService {
     private final VacationRepository vacationRepository;
     private final VacationSqlRepository vacationSqlRepository;
     private final VacationMapper vacationMapper;
-    private final UserMapper userMapper;
 
-    public VacationService(VacationRepository vacationRepository, VacationSqlRepository vacationSqlRepository, VacationMapper vacationMapper, UserMapper userMapper) {
+    public VacationService(VacationRepository vacationRepository, VacationSqlRepository vacationSqlRepository, VacationMapper vacationMapper) {
         this.vacationRepository = vacationRepository;
         this.vacationSqlRepository = vacationSqlRepository;
         this.vacationMapper = vacationMapper;
-        this.userMapper = userMapper;
     }
 
     public VacationDto createVacation(VacationDto vacationToCreate){
@@ -64,11 +63,15 @@ public class VacationService {
         return foundVacations.stream().flatMap(Collection::stream).collect(Collectors.toList());
     }
 
+    @Transactional
     public VacationDto deleteVacation(int id){
         Optional<Vacation> foundVacation = Optional.ofNullable(vacationRepository.findById(id));
         if(foundVacation.isPresent()){
+            vacationRepository.delete(foundVacation.get());
+            log.info("DELETION successful.");
             return vacationMapper.mapToDto(foundVacation.get());
         } else {
+            log.info("DELETION unsuccessful.");
             throw new ObjectNotFoundException("DELETION unsuccessful, object not found");
         }
     }

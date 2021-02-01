@@ -32,8 +32,8 @@ public class VacationMapper implements ObjectMapper<VacationDto, Vacation> {
         } else {
             vacation = optionalVacation.get();
         }
-            vacation.setFirstDay(LocalDate.parse(vacationDto.getFirstDay()));
-            vacation.setLastDay(LocalDate.parse(vacationDto.getFirstDay()));
+            vacation.setFirstDay(LocalDate.parse(vacationDto.getFirstDay(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+            vacation.setLastDay(LocalDate.parse(vacationDto.getFirstDay(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
             vacation.setUser(userRepository.findById(vacationDto.getUserID()));
             vacation.setAccepted(vacationDto.isAccepted());
             vacation.setVacationType(VacationTypeConvertor.convertToEnum(vacationDto.getLeaveType()));

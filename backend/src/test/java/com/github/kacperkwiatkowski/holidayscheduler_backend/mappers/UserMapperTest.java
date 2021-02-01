@@ -28,8 +28,6 @@ import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-/*@ExtendWith(MockitoExtension.class)
-@ExtendWith(SpringExtension.class)*/
 class UserMapperTest {
 
     private UserRepository userRepository = mock(UserRepository.class);

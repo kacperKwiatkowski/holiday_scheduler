@@ -18,11 +18,4 @@ public interface VacationRepository extends JpaRepository<Vacation, Integer> {
 
     List<Vacation> findByIdAndFirstDayAfterAndLastDayBefore(int id, LocalDate firstDay, LocalDate LastDate);
 
-//
-//    @Query(
-//            value = "SELECT FROM vacation WHERE firstDay IS AFTER :firstDay /*where id like :id and (firstDay between :firstDay and :lastDay or lastDay between :firstDay and :lastDay*/",
-//            nativeQuery = true
-//    )
-//    List<Vacation> justFind(@Param("id") int id, @Param("firstDay") LocalDate firstDay, @Param("lastDay") LocalDate LastDate);
-
 }
