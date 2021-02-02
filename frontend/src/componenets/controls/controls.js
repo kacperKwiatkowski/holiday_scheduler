@@ -31,7 +31,7 @@ class Controls extends Component{
 
         var pageS = [1,2,3,4,5];
 
-        return( pageS.map((num) => {
+        return( pageS.map((num, index) => {
             return (
                 <li className="controlElement">  
                     <a className="controlLink">{num}</a>
@@ -44,7 +44,7 @@ class Controls extends Component{
 
         var pageS = [10, 15, 25];
 
-        return( pageS.map((num) => {
+        return( pageS.map((num, index) => {
             return (
                 <li className="controlElement">  
                     <a className="controlLink">{num}</a>

@@ -58,7 +58,7 @@ class Teams extends Component {
     }
 
     renderTableBody () {
-        return this.state.teams.map((team) => {
+        return this.state.teams.map((team, index) => {
             return (
                         <tr>
                             <td>
