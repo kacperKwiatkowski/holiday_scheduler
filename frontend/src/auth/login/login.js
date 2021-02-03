@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import Axios from "axios";
 
-import "./login.css"
+import "../../styles/style.css"
 import "../../App.css"
 
 export default class Login extends Component {
@@ -13,7 +13,7 @@ export default class Login extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
       }
 
-      initialState = {username: '', username: ''}
+      initialState = {username: '', password: ''}
     
       handleChange = event => {
         this.setState({
@@ -30,28 +30,47 @@ export default class Login extends Component {
             password: this.state.password
         };
 
-          const formData = new FormData();
-          formData.append('details', JSON.stringify(credentials));
-
-          Axios.post("http://localhost:8080/login/credentials", formData, {
-                  headers: {
-                      "Content-Type": "multipart/form-data",
-                      //"X-Requested-With": "XMLHttpRequest",
-                      //"Access-Control-Allow-Headers": "Accept, Origin, Content-Type, Authorization, X-Auth-Token",
-                      "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
-                      "Access-Control-Allow-Origin": "*"
-                  }
+        Axios.post("http://localhost:8080/login", 
+              {
+                username: this.state.username,
+                password: this.state.password
               }
           )
-              .then(response => {
-                  if (response.status === 200) {
-                      this.setState(this.initialState);
-                      this.props.handleSuccessfulAuth(response.data)
-                      console.log("Response from spring: " + response);
-                  }
-              }).catch(error => {
-                console.error(error)
-              })
+          .then(response => {
+              if (response.status === 200) {
+                  this.setState(this.initialState);
+                  this.props.handleSuccessfulAuth(response.data)
+                  console.log("Response from spring: " + response);
+                  console.log(response.data.jwt)
+              }
+          }).catch(error => {
+            console.error(error)
+          })
+
+          // const formData = new FormData();
+          // formData.append('details', JSON.stringify(credentials));
+
+          // console.log(formData.getAll.toString)
+
+          // Axios.post("http://localhost:8080/login", formData, {
+          //         headers: {
+          //             "Content-Type": "multipart/form-data",
+          //           //   "X-Requested-With": "XMLHttpRequest",
+          //           //   "Access-Control-Allow-Headers": "Accept, Origin, Content-Type, Authorization, X-Requested-With, X-Auth-Token",
+          //           //   "Access-Control-Allow-Origin": "*"
+          //         }
+          //     }
+          // )
+          //     .then(response => {
+          //         if (response.status === 200) {
+          //             this.setState(this.initialState);
+          //             this.props.handleSuccessfulAuth(response.data)
+          //             console.log("Response from spring: " + response);
+          //             console.log(response.data.token)
+          //         }
+          //     }).catch(error => {
+          //       console.error(error)
+          //     })
       }
 
     render() {

@@ -83,10 +83,11 @@ public class UserService {
     }
 
     public List<UserDto> listAll(Integer pageNo, Integer pageSize, String sortBy, String sortOrder) {
+        ///TODO Perhaps return calendar with users.
 
         Pageable paging;
 
-        if(sortOrder.equals("ACS")){
+        if(sortOrder.equals("ASC")){
             paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy).ascending());
         } else {
             paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy).descending());
@@ -96,7 +97,6 @@ public class UserService {
 
         if(pagedResult.hasContent()) {
             return pagedResult.stream().map(userMapper::mapToDto).collect(Collectors.toList());
-            //return pagedResult.getContent();
         } else {
            throw new ObjectNotFoundException("Pagination impossible");
         }

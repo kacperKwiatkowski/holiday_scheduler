@@ -1,7 +1,6 @@
 import Axios from "axios";
 import React, {Component} from "react";
-import "./employeesTable.css"
-
+import "../../styles/style.css"
 class User extends Component {
 
     constructor(props) {
@@ -19,8 +18,6 @@ class User extends Component {
         sortOrder: 'ASC'
     }
 
-    //{ id: 1, firstName: "sdc", lastName: "wsx", email: "efac", daysOffLeft: 22, roleType: "za"}
-
     componentDidMount() {
         Axios.get(`http://localhost:8080/user/page?pageNo=0&pageSize=10&sortBy=id&sortOrder=ASC`)
           .then(res => {
@@ -33,32 +30,36 @@ class User extends Component {
         return(
             <tr>
                 <th>
-                    FIRST NAME
+                    First Name
                 </th>
 
                 <th>
-                    LAST NAME
+                    Last Name
                 </th>
 
                 <th>
-                    E-MAIL
+                    E-Mail
                 </th>
 
                 <th>
-                    STATUS
+                    Status
                 </th>
 
                 <th>
-                    DAYS OFF LEFT
+                    Days off left
+                </th>
+
+                <th>
+                    Action
                 </th>
             </tr>
         )
     }
 
     renderTableBody () {
-        return this.state.users.map((user, index) => {
+        return this.state.users.map((user) => {
             return (
-                        <tr key={index}>
+                        <tr>
                             <td>
                                 {user.firstName}
                             </td>
@@ -74,6 +75,10 @@ class User extends Component {
                             <td>
                                 {user.daysOffLeft}
                             </td>
+                            <td className="actionButtonsWrapper">
+                                <button className="editButton"/>
+                                <button className="deleteButton"/>
+                            </td>
                         </tr>
                 )
             }
@@ -83,7 +88,7 @@ class User extends Component {
     render () {
         return (
             <div>
-                <table className="employeesTable">
+                <table className="tables">
                     <thead>
                         {this.renderTableHead()}
                     </thead>

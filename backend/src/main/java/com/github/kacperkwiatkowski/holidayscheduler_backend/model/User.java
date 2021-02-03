@@ -46,8 +46,6 @@ public class User implements Serializable{
             )
     private List<Vacation> vacations;
 
-    private boolean hasTeam;
-
     @ManyToOne(cascade = CascadeType.MERGE,
             fetch = FetchType.EAGER)
     private Team team;

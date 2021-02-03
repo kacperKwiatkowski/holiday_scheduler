@@ -1,6 +1,5 @@
 import {sidebarNav} from "./sidebarNav.js"
-import logo from "./javalanche2.jpg"; 
-import "./sidebar.css"
+import "../../styles/style.css"
 import { Link } from "react-router-dom"
 
 export const Sidebar = () => {

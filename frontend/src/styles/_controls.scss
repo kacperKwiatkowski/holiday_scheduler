@@ -1,0 +1,44 @@
+@import "./variables";
+
+.controlsWrapper{   
+    height: 60px;
+    background-color: $backgroundWhite;
+    color: $textGrey;
+
+    align-items: center;
+
+    display: flex;
+    justify-content:space-between;
+
+    margin-right: 20px;
+}
+
+.pageHeader{
+    margin-left: 30px;
+    float: left;
+    font-size: x-large;
+}
+
+.controlsElementsWrapper{
+
+    display: flex;
+}
+
+.controlLink{
+    margin: 5px;
+    border: none;
+    outline: none;
+    border-radius: 0; 
+
+    color: $textGrey;
+    font-size:large;
+
+    cursor: pointer;
+
+    text-decoration: underline;
+
+}
+
+li.controlElement{
+    display: inline;
+}

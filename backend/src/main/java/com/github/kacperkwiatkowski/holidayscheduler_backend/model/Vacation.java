@@ -1,6 +1,6 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.model;
 
-import com.github.kacperkwiatkowski.holidayscheduler_backend.utils.leaveConfig.LeaveType;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.utils.enums.VacationType;
 import lombok.*;
 
 import javax.persistence.*;
@@ -29,17 +29,17 @@ public class Vacation implements Serializable {
     private boolean isAccepted;
 
     @Enumerated(EnumType.ORDINAL)
-    private LeaveType leaveType;
+    private VacationType vacationType;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "users_Id")
     private User user;
 
-    public Vacation(LocalDate firstDay, LocalDate lastDay, boolean isAccepted, LeaveType leaveType, User user) {
+    public Vacation(LocalDate firstDay, LocalDate lastDay, boolean isAccepted, VacationType vacationType, User user) {
         this.firstDay = firstDay;
         this.lastDay = lastDay;
         this.isAccepted = isAccepted;
-        this.leaveType = leaveType;
+        this.vacationType = vacationType;
         this.user = user;
     }
 }

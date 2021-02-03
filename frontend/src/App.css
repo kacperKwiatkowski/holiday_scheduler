@@ -1,5 +1,6 @@
 * {
   font-family: Josefin, Arial, serif;
+  
 }
 
 @font-face {
@@ -10,4 +11,9 @@
 @font-face {
   font-family: 'Josefin';
   src: local('Josefin'), url(./fonts/JosefinSansRegular-x3LYV.ttf) format('opentype');
+}
+
+@font-face {
+  font-family: 'Royal Crescent';
+  src: local('Royal Crescent'), url(./fonts/RoyalCrescent-G8BP.ttf) format('opentype');
 }

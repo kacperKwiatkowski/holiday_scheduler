@@ -5,6 +5,7 @@ import Employees from "../../componenets/employees/employees"
 import Team from "../../componenets/team/team"
 import Teams from "../../componenets/teams/teams"
 import Settings from "../../componenets/settings/settings"
+import "../../styles/style.css"
 
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 
@@ -12,7 +13,7 @@ export class Home extends Component{
 
     render() {
     return (
-        <div>
+        <div className="homeSiteWrapper">
             <BrowserRouter>
             
             <Headerbar />

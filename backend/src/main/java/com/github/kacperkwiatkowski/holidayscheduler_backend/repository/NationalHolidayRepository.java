@@ -4,7 +4,9 @@ import com.github.kacperkwiatkowski.holidayscheduler_backend.model.NationalHolid
 import com.github.kacperkwiatkowski.holidayscheduler_backend.model.User;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.utils.nationalHolidayApi.Holidays;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface NationalHolidayRepository extends JpaRepository<NationalHoliday, Integer> {
 
     NationalHoliday findById(int id);

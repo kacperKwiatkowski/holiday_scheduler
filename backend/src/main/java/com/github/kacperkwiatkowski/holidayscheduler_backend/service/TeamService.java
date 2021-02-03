@@ -38,6 +38,15 @@ public class TeamService {
         return teamToCreate;
     }
 
+    public TeamDto readTeam(int teamId){
+        Optional<Team> foundTeam = Optional.ofNullable(teamRepository.findById(teamId));
+        if(foundTeam.isPresent()){
+            return teamMapper.mapToDto(foundTeam.get());
+        } else {
+            throw ObjectNotFoundException.createWith("Team with such ID does not exist.");
+        }
+    }
+
     public TeamDto updateTeam(TeamDto teamToUpdate) throws ObjectNotFoundException {
 
         Optional<Team> foundTeam = Optional.ofNullable(teamRepository.findById(teamToUpdate.getId()));

@@ -5,10 +5,7 @@ import lombok.*;
 
 @Builder
 @Getter
-@Setter/*
-@NoArgsConstructor
-@RequiredArgsConstructor
-@AllArgsConstructor*/
+@Setter
 public class VacationDto {
 
     private int id;
