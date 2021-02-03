@@ -69,7 +69,7 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
                 .signWith(secretKey)
                 .compact();
 
-        String body = "{\"jwt\": \"" + jwtConfig.getTokenPrefix() + " " + token + "\"}";
+        String body = "{\"jwt\": \"" + jwtConfig.getTokenPrefix() + token + "\"}";
 
         //TODO Check for safer options
         response

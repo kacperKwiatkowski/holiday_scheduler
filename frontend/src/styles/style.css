@@ -58,8 +58,8 @@ table.calendarTable td {
   height: 120px;
   width: 160px;
   border: none;
-  -webkit-box-shadow: 2px 2px 1px -1px #006FFF;
-          box-shadow: 2px 2px 1px -1px #006FFF;
+  -webkit-box-shadow: 10px 10px 30px -20px #006FFF;
+          box-shadow: 10px 10px 30px -20px #006FFF;
   cursor: pointer;
 }
 

@@ -11,7 +11,7 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping("/nationalholiday")
+@RequestMapping("/api/nationalholiday")
 public class NationalHolidaysController {
 
     private final NationalHolidayService nationalHolidayService;

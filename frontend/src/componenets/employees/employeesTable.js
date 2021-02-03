@@ -19,7 +19,7 @@ class User extends Component {
     }
 
     componentDidMount() {
-        Axios.get(`http://localhost:8080/user/page?pageNo=0&pageSize=10&sortBy=id&sortOrder=ASC`)
+        Axios.get(`http://localhost:8080/api/user/page?pageNo=0&pageSize=10&sortBy=id&sortOrder=ASC`)
           .then(res => {
             console.log(res)
             this.setState({users: res.data})

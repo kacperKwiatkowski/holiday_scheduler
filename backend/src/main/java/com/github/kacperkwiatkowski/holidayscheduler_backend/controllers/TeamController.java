@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +24,7 @@ import java.util.Optional;
 @Slf4j
 @Controller
 @CrossOrigin
-@RequestMapping("/team")
+@RequestMapping("/api/team")
 public class TeamController {
 
     private static final Logger logger = LoggerFactory.getLogger(TeamController.class);
@@ -35,6 +36,7 @@ public class TeamController {
     }
 
     @PostMapping (path = "/create")
+    @PreAuthorize("hasAuthority('team:create')")
     @ResponseStatus(HttpStatus.OK)
     ResponseEntity<TeamDto> createTeam (@RequestBody TeamDto teamToCreate){
         log.info("Controller 'createTeam' initiated.");
@@ -49,13 +51,14 @@ public class TeamController {
     }
 
     @PatchMapping(path = "/update")
+    @PreAuthorize("hasAuthority('team:update')")
     @ResponseBody
     ResponseEntity<TeamDto> updateTeam (@RequestBody TeamDto teamToUpdate) {
         log.info("Controller 'updateTeam' initiated.");
         return ResponseEntity.ok(teamService.updateTeam(teamToUpdate));
     }
 
-    @DeleteMapping(path = "/delete/{id}")
+    @PreAuthorize("hasAuthority('team:delete')")
     ResponseEntity<TeamDto> deleteUser(@PathVariable("id") int id){
         logger.info("Controller 'deleteUser' initiated.");
         return ResponseEntity.ok(teamService.deleteTeam(id));

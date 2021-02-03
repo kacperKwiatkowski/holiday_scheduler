@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,7 +21,7 @@ import java.util.Optional;
 @Slf4j
 @RestController
 @CrossOrigin
-@RequestMapping("/user")
+@RequestMapping("/api/user")
 public class UserController {
 
     public UserController(UserService userService) {
@@ -30,6 +31,7 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping(path = "/create")
+    @PreAuthorize("hasAuthority('employee:create')")
     @ResponseBody
     ResponseEntity<User> createUser(@RequestBody UserDto userDto) {
         log.info("Controller 'createUser' initiated.");
@@ -50,6 +52,7 @@ public class UserController {
     }
 
     @PatchMapping(path = "/update")
+    @PreAuthorize("hasAuthority('employee:update')")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     ResponseEntity<UserDto> updateUser(@RequestBody UserDto userToUpdate) throws ObjectNotFoundException {
@@ -59,18 +62,8 @@ public class UserController {
 
     }
 
-    @PatchMapping(path = "/update/password")
-    ResponseEntity updatePassword(@RequestBody String password, String passwordMatch){
-        if(password.equals(passwordMatch)){
-            log.info("Password changed successfully");
-            return ResponseEntity.status(HttpStatus.OK).build();
-        } else {
-            log.info("Password changed unsuccessfully");
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-        }
-    }
-
     @DeleteMapping(path = "/delete/{id}")
+    @PreAuthorize("hasAuthority('employee:delete')")
     @ResponseStatus(HttpStatus.OK)
     ResponseEntity deleteUser(@PathVariable("id") int id) throws ObjectNotFoundException {
         userService.deleteUser(id);

@@ -20,7 +20,7 @@ class Teams extends Component {
     }
 
     componentDidMount() {
-        Axios.get(`http://localhost:8080/team/page?pageNo=0&pageSize=10&sortBy=id&sortOrder=ASC`)
+        Axios.get(`http://localhost:8080/api/team/page?pageNo=0&pageSize=10&sortBy=id&sortOrder=ASC`)
           .then(res => {
             console.log(res)
             this.setState({teams: res.data})

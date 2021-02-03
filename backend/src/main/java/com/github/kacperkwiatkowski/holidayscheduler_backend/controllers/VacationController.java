@@ -7,15 +7,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
 @CrossOrigin
-@RequestMapping("/vacation")
+@RequestMapping("/api/vacation")
 public class VacationController {
 
-    private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
+    private static final Logger logger = LoggerFactory.getLogger(VacationController.class);
 
     private final VacationService vacationService;
 
@@ -24,6 +25,7 @@ public class VacationController {
     }
 
     @PostMapping(path = "/create")
+    @PreAuthorize("hasAuthority('vacation:create')")
     @ResponseStatus(HttpStatus.OK)
     ResponseEntity<VacationDto> createVacation(@RequestBody VacationDto vacationToCreate){
         log.info("Controller 'createUser' initiated.");
@@ -31,6 +33,7 @@ public class VacationController {
     }
 
     @DeleteMapping(path = "/delete")
+    @PreAuthorize("hasAuthority('vacation:delete')")
     @ResponseStatus(HttpStatus.OK)
     ResponseEntity<VacationDto> deleteVacation(@RequestParam String id){
         logger.info("Controller 'deleteVacation' initiated.");

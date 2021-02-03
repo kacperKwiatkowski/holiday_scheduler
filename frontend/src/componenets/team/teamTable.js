@@ -20,7 +20,7 @@ class Team extends Component {
     }
 
     componentDidMount() {
-        Axios.get(`http://localhost:8080/team/read/1`)
+        Axios.get(`http://localhost:8080/api/team/read/1`)
           .then(res => {
             console.log(res)
             this.setState({team: res.data})
