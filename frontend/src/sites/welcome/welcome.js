@@ -14,6 +14,7 @@ export class Welcome extends Component{
         this.props.history.push("/home")
     }
 
+
     render() {
     return (
         <div className="">

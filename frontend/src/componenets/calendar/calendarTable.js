@@ -1,7 +1,7 @@
-import axios from "axios";
 import Axios from "axios";
 import React, {Component} from "react";
 import "../../styles/style.css"
+import interceptors from "../../interceptor/interceptor";
 
 class Calendar extends Component {
     
@@ -21,17 +21,18 @@ class Calendar extends Component {
     }
         
     async componentDidMount() {
-
-          var month = this.state.initialDate.month
-          var year = this.state.initialDate.year
-          var pageNo = this.state.initialPagination.pageNo
-          var pageSize = this.state.initialPagination.pageSize
-          var sortBy = this.state.initialPagination.sortBy
-          var sortOrder = this.state.initialPagination.sortOrder
-  
-          var URL = "http://localhost:8080/calendar/page?pageNo=" + pageNo + "&pageSize=" + pageSize + "&sortBy=" + sortBy + "&sortOrder=" + sortOrder + "&month=" + month + "&year=" + year
+        
+          var URL = "http://localhost:8080/calendar/page"
 
         await Axios.get(URL, {
+            params:{
+                pageNo: this.state.initialPagination.pageNo,
+                pageSize: this.state.initialPagination.pageSize,
+                sortBy: this.state.initialPagination.sortBy,
+                sortOrder: this.state.initialPagination.sortOrder,
+                month: this.state.initialDate.month,
+                year: this.state.initialDate.year
+            },
             headers: {
                 "Content-Type": "multipart/form-data"
             }

@@ -38,14 +38,15 @@ public class UserController {
         return ResponseEntity.ok(userService.createUser(userDto));
     }
 
-
     @GetMapping(path = "/read/{id}")
+    @PreAuthorize("hasAuthority('employee:read')")
     public ResponseEntity<UserDto> getUser(@PathVariable int id) throws ObjectNotFoundException {
         log.info("Controller 'getUser' initiated.");
         return new ResponseEntity<UserDto>(userService.readUser(id), HttpStatus.OK);
     }
 
     @GetMapping(path = "/read/all")
+    @PreAuthorize("hasAuthority('employee:read')")
     public ResponseEntity<List<UserDto>> getAllUser() throws ObjectNotFoundException {
         log.info("Controller 'getAllUser' initiated.");
         return new ResponseEntity<List<UserDto>>(userService.getAllUsers(), HttpStatus.OK);

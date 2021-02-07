@@ -65,6 +65,7 @@ public class CalendarService {
     private List<String> fillMonth (List<String> month, VacationDto vacationDto){
 
         int index = Integer.parseInt(vacationDto.getFirstDay().substring(0,2))-1;
+        //FIXME The last day var does not take the month into account
         int lastDay = Integer.parseInt(vacationDto.getLastDay().substring(0,2))-1;
         do{
             if(index>=month.size()) break;

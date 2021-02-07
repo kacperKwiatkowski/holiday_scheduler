@@ -20,11 +20,18 @@ class Teams extends Component {
     }
 
     componentDidMount() {
-        Axios.get(`http://localhost:8080/api/team/page?pageNo=0&pageSize=10&sortBy=id&sortOrder=ASC`)
-          .then(res => {
+    
+        Axios.get(`http://localhost:8080/api/team/page?pageNo=0&pageSize=10&sortBy=id&sortOrder=ASC`, {
+        
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            }
+        })
+            .then(res => {
             console.log(res)
             this.setState({teams: res.data})
-          });
+        });
     }
 
 

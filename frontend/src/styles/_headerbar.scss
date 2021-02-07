@@ -29,13 +29,13 @@
 
 .profileLinks{
     height: 60px;
-    margin: auto;
-    display: block;
     flex: 0 1 auto;
     list-style-type: none;
     display: flex;
     align-items:center;
     justify-content:right;
+
+    margin-right: 50px;
 }
 
 .headerbarLogOutButton{
@@ -60,14 +60,11 @@
 }
 
 .logo{
-    
     display: flex;
     height: 60px;
     font-size: xx-large;
     align-items:center;
-    margin: auto;
-
-
+    margin-left: 20px;
     color: $textGrey;
 }
 
@@ -77,20 +74,13 @@
     display: flex;
     align-items:center;
     justify-content:left;
-
-    padding-left: 150px;
-    padding-right: 150px;
-    padding-top: 0;
-    padding-bottom: 0;
-    margin: 0;
+    margin: auto;
     color: #fafafa;
 }
 
 .linksmenuLinks{
     display: block;
     flex: 0 1 auto;
-    list-style-type: none;
-
     font-size: medium;
 }
 
@@ -108,4 +98,24 @@ a:visited{
 a:hover{
 
     text-decoration: underline;
+}
+
+@media only screen and(max-width: 1200px){
+    .logo{
+        display: none;
+    }
+
+    .linksmenuNav{
+        padding: 0;
+        margin-left: 0;
+    }
+
+    .profileLinks{
+        margin-right: 10px;
+    }
+
+    .headerWrapper{
+        justify-content:space-around;
+        align-items: flex-end;
+    }
 }

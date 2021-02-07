@@ -65,6 +65,7 @@ public class TeamController {
     }
 
     @GetMapping(path = "/page")
+    @PreAuthorize("hasAuthority('team:read')")
     public ResponseEntity<List<TeamDto>> getAllTeams(
             @RequestParam(defaultValue = "0") Integer pageNo,
             @RequestParam(defaultValue = "10") Integer pageSize,

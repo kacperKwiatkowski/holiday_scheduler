@@ -52,12 +52,13 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
             http
                 .cors().and()
                 .csrf().disable()
+                .headers().frameOptions().deny().and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .addFilter(new JwtUsernameAndPasswordAuthenticationFilter(authenticationManager(), jwtConfig, secretKey))
                 .addFilterAfter(new JwtTokenVerifier(secretKey, jwtConfig),JwtUsernameAndPasswordAuthenticationFilter.class)
                 .authorizeRequests()
-                .antMatchers("/calendar/**").hasAnyRole()
+                .antMatchers("/", "index", "/css/*", "/js/*").permitAll()
                 .antMatchers("/login").permitAll()
                 .anyRequest()
                 .authenticated();
@@ -83,6 +84,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
         configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000/"));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "OPTIONS"));
         configuration.addAllowedHeader("*");
+        configuration.addAllowedHeader("Content-Type");
         configuration.addAllowedOriginPattern("*");
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);

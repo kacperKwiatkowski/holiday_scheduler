@@ -1,5 +1,4 @@
 
-
 .loginFormWrapper{
 
     background-color: $backgroundWhite;
@@ -24,9 +23,41 @@
     }
 }
 
+.loginFormErrorWrapper{
+
+
+    transition: all 0.4s ease-in-out;
+    background-color: $backgroundGrey;
+    padding: 100px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 400px;
+
+
+    box-shadow: 0px 15px 10px -20px $errorRed;
+
+    &:hover{
+
+        -moz-box-shadow: 0 10px 25px $errorRed;
+        -webkit-box-shadow: 0 10px 25px $errorRed;
+        box-shadow: 0 10px 25px$errorRed;
+    }
+}
+
 .loginFormLabels{
     padding-left: 15px;
     color: $decorationsBlue;
+    font-size: 30px;
+}
+
+.loginFormErrorLabels{
+
+    transition: all 0.4s ease-in-out;
+    padding-left: 15px;
+    color: $errorRed;
     font-size: 30px;
 }
 
@@ -64,6 +95,43 @@
     }
 }
 
+.loginFormErrorInput{
+
+
+    transition: all 0.4s ease-in-out;
+    width: 600px;
+    height: 60px;
+    outline: none;
+    margin-bottom: 80px;
+    padding: none;
+    padding-left: 15px;
+
+    line-height:40px;
+    color: $errorRed;
+    font-size: 20px;
+    vertical-align: baseline;
+
+    background-color:$backgroundDimGrey;
+    border: none;
+    border-bottom: 2px solid $errorRed;
+
+    &:hover{
+
+        -webkit-box-shadow: 0px 20px 35px -16px$errorRed;
+        -moz-box-shadow: 0px 20px 35px -16px $errorRed;
+        box-shadow: 0px 20px 35px -16px $errorRed;  
+        transition: all 0.2s ease-in-out;
+    }
+
+    &:focus{
+
+        -webkit-box-shadow: 0px 20px 35px -16px$errorRed;
+        -moz-box-shadow: 0px 20px 35px -16px $errorRed;
+        box-shadow: 0px 20px 35px -16px $errorRed;  
+        transition: all 0.2s ease-in-out;
+    }
+}
+
 .loginButtonsWrapper{
     width: 600px;
     display: flex;
@@ -87,10 +155,31 @@
     }
 }
 
+
+
+.forgottenPasswordFormErrorButton{
+
+    transition: all 0.4s ease-in-out;
+    width: 250px;
+    height: 60px;
+    margin: 0;
+    border: none;
+    outline: none;
+    background-color: $backgroundDimGrey;
+    color:$errorRed;
+    font-weight:1000;
+    font-size:medium;
+
+    &:hover{
+        text-shadow: 0 0 15px $errorRed;
+        transition: all 0.2s ease-in-out;
+    }
+}
+
 .signInFormButton{
     width: 100px;
     height: 60px;
-    margin: 0;
+    margin-left: 20px;
     border: none;
     outline: none;
     background-color: $decorationsBlue;
@@ -105,3 +194,25 @@
         transition: all 0.2s ease-in-out;
     }
 }
+
+.signInFormErrorButton{
+
+    transition: all 0.4s ease-in-out;
+    width: 100px;
+    height: 60px;
+    margin: 0;
+    border: none;
+    outline: none;
+    background-color: $errorRed;
+    color:$backgroundDimGrey;
+    font-weight:1000;
+    font-size:medium;
+
+    &:hover {
+        -webkit-box-shadow: 0px 20px 35px -6px $errorRed;
+        -moz-box-shadow: 0px 20px 35px -6px $errorRed;
+        box-shadow: 0px 20px 35px -6px $errorRed;  
+        transition: all 0.2s ease-in-out;
+    }
+}
+

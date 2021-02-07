@@ -11,10 +11,10 @@ import static com.github.kacperkwiatkowski.holidayscheduler_backend.utils.roleCo
 public enum RoleType {
     EMPLOYEE(
             Sets.newHashSet(
-                    EMPLOYEE_READ,
-                    TEAM_LEADER_READ,
-                    HR_READ,
-                    ADMIN_READ,
+//                    EMPLOYEE_READ,
+//                    TEAM_LEADER_READ,
+//                    HR_READ,
+//                    ADMIN_READ,
                     VACATION_CREATE,
                     VACATION_READ,
                     VACATION_NOT_ACCEPTED_EDIT,

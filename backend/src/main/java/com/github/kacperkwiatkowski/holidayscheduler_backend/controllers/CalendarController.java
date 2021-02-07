@@ -8,6 +8,7 @@ import com.github.kacperkwiatkowski.holidayscheduler_backend.service.UserService
 import com.github.kacperkwiatkowski.holidayscheduler_backend.service.VacationService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,6 +29,7 @@ public class CalendarController {
         this.vacationService = vacationService;
     }
 
+    //@PreAuthorize("hasAuthority('employee:read')")
     @GetMapping(path = "/page")
     public ResponseEntity<List<CalendarDto>> getAllUsers(
             @RequestParam(defaultValue = "0") Integer pageNo,
