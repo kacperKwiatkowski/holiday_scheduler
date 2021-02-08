@@ -1,32 +1,30 @@
 import Axios from "axios";
-import React, {Component} from "react";
+import React, {useState, useEffect} from "react";
 import "../../styles/style.css"
-class User extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            users: [],
-            pagination: this.initialPagination
-        }
-    }
+const User = () => {
 
-    initialPagination = {
-        pageNo: 0,
-        pageSize: 10,
-        sortBy: 'id',
-        sortOrder: 'ASC'
-    }
+    const[users, setUsers] = useState([]);
 
-    componentDidMount() {
-        Axios.get(`http://localhost:8080/api/user/page?pageNo=0&pageSize=10&sortBy=id&sortOrder=ASC`)
+    useEffect(() => {
+        fetchUsers();
+    }, [])
+
+    const fetchUsers = async () => {
+        Axios.get(`http://localhost:8080/api/user/page`,{
+            params: {
+                pageNo: 0,
+                pageSize: 10,
+                sortBy: 'id',
+                sortOrder: 'ASC'
+            }})
           .then(res => {
             console.log(res)
-            this.setState({users: res.data})
+            setUsers(res.data)
           });
     }
 
-    renderTableHead () {
+    const renderTableHead = () => {
         return(
             <tr>
                 <th>
@@ -56,8 +54,8 @@ class User extends Component {
         )
     }
 
-    renderTableBody () {
-        return this.state.users.map((user) => {
+    const renderTableBody = () => {
+        return users.map((user) => {
             return (
                         <tr>
                             <td>
@@ -85,24 +83,30 @@ class User extends Component {
         )
     }
 
-    render () {
+    const render = () => {
         return (
             <div>
                 <table className="tables">
                     <thead>
-                        {this.renderTableHead()}
+                        {renderTableHead()}
                     </thead>
                     <tbody>
-                        {this.renderTableBody()}
+                        {renderTableBody()}
                     </tbody>
                 </table>
             </div>
         )
     }
 
+    return render();
 }
 
 export default User
+
+
+
+
+
 
 
 
