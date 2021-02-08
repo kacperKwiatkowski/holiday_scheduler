@@ -38,22 +38,57 @@
 
 }
 
-li.controlElement{
-    display: inline;
+.controlsLabels{
+
+    height: 25px;
+
+    vertical-align:bottom;
+    text-align:center;
+    color: $textGrey;
+    background-color: transparent;
+    font-size: medium;
+
+    margin: auto;
+    margin-left: 15px;
+    margin-right: 5px;
+    padding-top: 9px;
+}
+
+.controlsElements{
+    height: 25px;
+    width: 60px;
+    color: $textGrey;
+    background-color: transparent;
+    font-size: medium;
+    justify-self: baseline;
+
+    margin: auto;
+    margin-right: 5px;
+    padding: 2px;
+
+    border: none;
+    border-bottom: 1px solid $decorationsBlue;
+    outline: none;
+
 }
 
 .filterBar{
-    height: 20px;
+    height: 23px;
     width: 150px;
     color: $textGrey;
     font-size: medium;
     justify-self: baseline;
 
     margin: auto;
+    margin-right: 5px;
 
     border: none;
     border-bottom: 1px solid $decorationsBlue;
     outline: none;
+
+    &:disabled{
+        background-color: transparent;
+    }
 
     &:focus{
         width: 300px;

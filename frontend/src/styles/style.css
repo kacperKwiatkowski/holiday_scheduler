@@ -162,20 +162,49 @@ table.calendarTable td {
   text-decoration: underline;
 }
 
-li.controlElement {
-  display: inline;
+.controlsLabels {
+  height: 25px;
+  vertical-align: bottom;
+  text-align: center;
+  color: #646464;
+  background-color: transparent;
+  font-size: medium;
+  margin: auto;
+  margin-left: 15px;
+  margin-right: 5px;
+  padding-top: 9px;
+}
+
+.controlsElements {
+  height: 25px;
+  width: 60px;
+  color: #646464;
+  background-color: transparent;
+  font-size: medium;
+  justify-self: baseline;
+  margin: auto;
+  margin-right: 5px;
+  padding: 2px;
+  border: none;
+  border-bottom: 1px solid #006FFF;
+  outline: none;
 }
 
 .filterBar {
-  height: 20px;
+  height: 23px;
   width: 150px;
   color: #646464;
   font-size: medium;
   justify-self: baseline;
   margin: auto;
+  margin-right: 5px;
   border: none;
   border-bottom: 1px solid #006FFF;
   outline: none;
+}
+
+.filterBar:disabled {
+  background-color: transparent;
 }
 
 .filterBar:focus {
@@ -223,35 +252,63 @@ li.controlElement {
 
 .editButton {
   height: 20px;
-  width: 20px;
+  width: 30px;
   border-radius: 5px;
-  margin-right: 10px;
-  border: none;
+  margin: 5px;
+  border: 2px solid #e9d523;
   outline: none;
-  background-color: #e9d523;
+  background-color: transparent;
 }
 
 .editButton:hover {
-  -webkit-box-shadow: 0px 20px 35px -16px #e9d523;
-  box-shadow: 0px 20px 35px -16px #e9d523;
+  -webkit-box-shadow: 1px 2px 3px 0px #e9d523;
+          box-shadow: 1px 2px 3px 0px #e9d523;
+}
+
+.editButtonIcon {
+  color: #e9d523;
 }
 
 .deleteButton {
   height: 20px;
-  width: 20px;
+  width: 30px;
   border-radius: 5px;
-  margin: 0;
-  border: none;
+  margin: 5px;
+  border: 2px solid #ff2f2f;
   outline: none;
-  background-color: #941c1c;
-  opacity: 0.5\8;
+  background-color: transparent;
 }
 
 .deleteButton:hover {
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
-  -webkit-box-shadow: 3px 3px 3px 0px #ff2f2f;
-  box-shadow: 3px 2px 3px 0px #ff2f2f;
+  -webkit-box-shadow: 1px 2px 3px 0px #ff2f2f;
+          box-shadow: 1px 2px 3px 0px #ff2f2f;
+}
+
+.deleteButtonIcon {
+  color: #ff2f2f;
+}
+
+.tablesFieldInput {
+  height: 20px;
+  width: 150px;
+  color: #646464;
+  font-size: medium;
+  justify-self: baseline;
+  margin: auto;
+  border: none;
+  border-bottom: 1px solid #646464;
+  outline: none;
+}
+
+.tablesFieldInput:focus {
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.tablesFieldInput:disabled {
+  border-bottom: 1px solid #646464;
 }
 
 .headerWrapper {

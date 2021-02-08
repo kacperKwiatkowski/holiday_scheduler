@@ -1,10 +1,22 @@
 import Axios from "axios";
 import React, {useState, useEffect} from "react";
+import { FaPen, FaTimes } from "react-icons/fa";
 import "../../styles/style.css"
 
 const User = () => {
 
     const[users, setUsers] = useState([]);
+    const [disabled, setDisabled] = useState(false);
+
+    function handleUpdate(index) {
+      console.log("CLICKED!" + index)
+    }
+
+
+    function handleDelete(index) {
+        console.log("CLICKED!" + index)
+    }
+  
 
     useEffect(() => {
         fetchUsers();
@@ -55,27 +67,31 @@ const User = () => {
     }
 
     const renderTableBody = () => {
-        return users.map((user) => {
+        return users.map((user, index) => {
             return (
-                        <tr>
+                        <tr key={index}>
                             <td>
                                 {user.firstName}
                             </td>
+
                             <td>
-                                {user.lastName}
+                                {user.lastName} 
                             </td>
+
                             <td>
                                 {user.email}
                             </td>
+
                             <td>
                                 {user.roleType}
                             </td>
+
                             <td>
                                 {user.daysOffLeft}
                             </td>
                             <td className="actionButtonsWrapper">
-                                <button className="editButton"/>
-                                <button className="deleteButton"/>
+                                <button className="editButton" onClick={handleUpdate(index)}><FaPen className="editButtonIcon"/></button>
+                                <button className="deleteButton" onClick={handleDelete(user.id)}><FaTimes className="deleteButtonIcon"/></button>
                             </td>
                         </tr>
                 )
