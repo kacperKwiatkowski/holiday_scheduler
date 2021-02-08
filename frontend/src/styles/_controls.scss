@@ -6,7 +6,6 @@
     color: $textGrey;
 
     align-items: center;
-
     display: flex;
     justify-content:space-between;
 
@@ -41,4 +40,24 @@
 
 li.controlElement{
     display: inline;
+}
+
+.filterBar{
+    height: 20px;
+    width: 150px;
+    color: $textGrey;
+    font-size: medium;
+    justify-self: baseline;
+
+    margin: auto;
+
+    border: none;
+    border-bottom: 1px solid $decorationsBlue;
+    outline: none;
+
+    &:focus{
+        width: 300px;
+        
+        transition: all 0.2s ease-in-out;
+    }
 }

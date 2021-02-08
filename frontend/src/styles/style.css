@@ -166,6 +166,24 @@ li.controlElement {
   display: inline;
 }
 
+.filterBar {
+  height: 20px;
+  width: 150px;
+  color: #646464;
+  font-size: medium;
+  justify-self: baseline;
+  margin: auto;
+  border: none;
+  border-bottom: 1px solid #006FFF;
+  outline: none;
+}
+
+.filterBar:focus {
+  width: 300px;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
 .tables {
   border-spacing: 0;
   width: 100%;

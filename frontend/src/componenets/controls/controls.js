@@ -16,6 +16,7 @@ class Controls extends Component{
         <div className="controlsWrapper">
             <div className="pageHeader">{this.props.header}</div>
             <div className="controlsElementsWrapper">
+                <input className="filterBar" type="text" name="filter" placeholder="Filter results" ></input>
                 <ul className="controlsElements">
                     Page: {this.renderPageNumControls()}
                 </ul>
