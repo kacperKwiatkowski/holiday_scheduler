@@ -19,6 +19,12 @@ export const linksmenu = [
         access: "EMPLOYEE"
     },
     {
+        title: 'VACATIONS',
+        url: "/vacations",
+        cName: 'sidebarNav',
+        access: "HR"
+    },
+    {
         title: 'TEAMS',
         url: "/teams",
         cName: 'sidebarNav',

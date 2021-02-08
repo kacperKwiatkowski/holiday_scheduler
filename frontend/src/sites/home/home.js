@@ -12,28 +12,20 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 export class Home extends Component{
 
     render() {
-    return (
-        <div className="homeSiteWrapper">
-            <BrowserRouter>
-            
-            <Headerbar />
-                
-                <Switch>
-                    <Calendar exact path={'/home'}/>
-
-                    <Employees exact path={'/employees'}/>
-
-                    <Team exact path={'/team'}/>
-
-                    <Teams exact path={'/teams'}/>
-
-                    <Settings exact path={'/settings'}/>
-                </Switch>
-            </BrowserRouter>
-
-
-        </div>
-    );
+        return (
+            <div className="homeSiteWrapper">
+                <BrowserRouter>
+                    <Headerbar />
+                        <Switch>
+                            <Calendar exact path={'/home'}/>
+                            <Employees exact path={'/employees'}/>
+                            <Team exact path={'/team'}/>
+                            <Teams exact path={'/teams'}/>
+                            <Settings exact path={'/settings'}/>
+                        </Switch>
+                </BrowserRouter>
+            </div>
+        );
     }
 }
 
