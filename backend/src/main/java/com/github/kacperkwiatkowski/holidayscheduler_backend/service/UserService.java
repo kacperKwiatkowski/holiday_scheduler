@@ -76,21 +76,14 @@ public class UserService {
         }
     }
 
-
-
-    public void updateUsersPassword(String password, String passwordMatch){
-        //Adapt user password verification
-    }
-
-    public List<UserDto> listAll(Integer pageNo, Integer pageSize, String sortBy, String sortOrder) {
-        ///TODO Perhaps return calendar with users.
+    public List<UserDto> listAll(Integer pageNum, Integer pageSize, String sortBy, String sortOrder) {
 
         Pageable paging;
 
         if(sortOrder.equals("ASC")){
-            paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy).ascending());
+            paging = PageRequest.of(pageNum, pageSize, Sort.by(sortBy).ascending());
         } else {
-            paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy).descending());
+            paging = PageRequest.of(pageNum, pageSize, Sort.by(sortBy).descending());
         }
 
         Page<User> pagedResult = userRepository.findAll(paging);
@@ -102,5 +95,28 @@ public class UserService {
         }
     }
 
+    public List<UserDto> listAll(Integer pageNum, Integer pageSize, String sortBy, String sortOrder, String filter) {
 
+        Pageable paging;
+
+        if(sortOrder.equals("ASC")){
+            paging = PageRequest.of(pageNum, pageSize, Sort.Direction.ASC, sortBy);
+        } else {
+            paging = PageRequest.of(pageNum, pageSize, Sort.Direction.DESC, sortBy);
+        }
+
+        Page<User> pagedResult;
+
+        if(filter.length()<3){
+            pagedResult = userRepository.findAll(paging);
+        } else {
+            pagedResult = userRepository.findByLastName(filter, paging);
+        }
+
+        if(pagedResult.hasContent()) {
+            return pagedResult.stream().map(userMapper::mapToDto).collect(Collectors.toList());
+        } else {
+            throw new ObjectNotFoundException("Pagination impossible");
+        }
+    }
 }

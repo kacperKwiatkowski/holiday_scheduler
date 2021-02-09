@@ -1,6 +1,6 @@
 
-import Welcome from "./sites/welcome/welcome"
-import Home from "./sites/home/home"
+import Welcome from "./sites/welcome"
+import Home from "./sites/home"
 
 import React, {Component} from "react";
 import {BrowserRouter, Route, Switch} from 'react-router-dom';

@@ -75,12 +75,13 @@ public class UserController {
 
     @GetMapping(path = "/page")
     public ResponseEntity<List<UserDto>> getAllUsers(
-            @RequestParam(defaultValue = "0") Integer pageNo,
+            @RequestParam(defaultValue = "0") Integer pageNum,
             @RequestParam(defaultValue = "10") Integer pageSize,
             @RequestParam(defaultValue = "id") String sortBy,
-            @RequestParam(defaultValue = "ASC") String sortOrder)
+            @RequestParam(defaultValue = "ASC") String sortOrder,
+            @RequestParam(defaultValue = "") String filter)
     {
         log.info("Controller 'getAllUsers' initiated.");
-        return new ResponseEntity<List<UserDto>>(userService.listAll(pageNo, pageSize, sortBy, sortOrder), new HttpHeaders(), HttpStatus.OK);
+        return new ResponseEntity<List<UserDto>>(userService.listAll(pageNum, pageSize, sortBy, sortOrder, filter), new HttpHeaders(), HttpStatus.OK);
     }
 }
