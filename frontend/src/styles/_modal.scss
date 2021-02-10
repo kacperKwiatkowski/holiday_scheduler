@@ -1,0 +1,109 @@
+@import "./variables";
+
+.modalBackground{
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(114, 114, 114, 0.3);
+    position: fixed;
+
+    z-index: 3;
+}
+
+.modalWrapper{
+    width: 600px;
+    height: 400px;
+    display: grid;
+    justify-content: center;
+    margin:auto;
+    margin-top: 10%;
+    font-size: xx-large;
+    background-color: $backgroundWhite;
+}
+
+.modalHiddenPosition{
+
+    transition: all 0.5s ease-in;
+    position:absolute;
+    transform: translateY(-2000px);
+}
+
+.modalVisablePosition{
+    transition: all 0.8s ease-in;
+    position:absolute;
+}
+
+.modalHeader{
+
+    font-size: x-large;
+    color: $textGrey;
+    text-align: center;
+    margin: auto;
+}
+
+.modalText{
+    color: $textGrey;
+    font-size: large;
+    text-align: center;
+    height: 30px;
+}
+
+.modalList{
+    list-style: none;
+    display: grid;
+    padding-inline-start: 0 !important;
+    margin-block-start: 0 !important;
+    margin-block-end: 0 !important;
+}
+
+.modalButtonsWrapper{
+    display: flex;
+    justify-content:space-around;
+
+    margin: auto;
+}
+
+.modalButton{
+    width: 150px;
+    height: 50px;
+
+    background-color: transparent;
+    border: none;
+    outline: none;
+
+    font-size: large;
+    font-weight: bold;
+    text-align: center;
+
+    color: $textGrey;
+    border-bottom: 2px solid transparent; 
+
+    &:hover{
+
+        border-bottom: 2px solid $textGrey; 
+    }
+
+}
+
+.modalUpdateButton{
+
+    color: $updateYellow;
+    border-bottom: 2px solid transparent; 
+
+    &:hover{
+
+        border-bottom: 2px solid $updateYellow; 
+    }
+}
+
+.modalDeleteButton{
+
+    color: $errorRed;
+    border-bottom: 2px solid transparent; 
+
+    &:hover{
+
+        border-bottom: 2px solid $errorRed;
+    }
+}
