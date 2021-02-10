@@ -77,7 +77,7 @@ public class UserController {
     public ResponseEntity<List<UserDto>> getAllUsers(
             @RequestParam(defaultValue = "0") Integer pageNum,
             @RequestParam(defaultValue = "10") Integer pageSize,
-            @RequestParam(defaultValue = "id") String sortBy,
+            @RequestParam(defaultValue = "lastName") String sortBy,
             @RequestParam(defaultValue = "ASC") String sortOrder,
             @RequestParam(defaultValue = "") String filter)
     {

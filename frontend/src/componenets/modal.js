@@ -9,6 +9,28 @@ const Modal = ({modalData, setModalData}) => {
     console.log(modalData.data.firstName)
 
     const printObject = () => {
+        if(modalData.action==="UPDATE"){
+            return (updateForm())
+        } else {
+            return (deleteForm())
+        }
+    }
+
+    const updateForm = () => {
+        return(
+            Object.entries(modalData.data).map(([key, value]) => {
+                return (
+                    <li className="modalText">
+                        <label>
+                            <input className="modalTextInput" placeholder={value}/>
+                        </label>
+                    </li>
+                )
+            })
+        )
+    }
+
+    const deleteForm = () => {
         return(
             Object.entries(modalData.data).map(([key, value]) => {
                 return (
@@ -23,7 +45,7 @@ const Modal = ({modalData, setModalData}) => {
     return(
             <div className="modalWrapper">
                 <div className="modalHeader">
-                    EMPLOYEE ACCOUNT {modalData.action}
+                 {modalData.action} EMPLOYEE'S ACCOUNT
                 </div>
                 <ul className="modalList">
                     {printObject()}

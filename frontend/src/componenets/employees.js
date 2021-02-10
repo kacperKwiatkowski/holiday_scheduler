@@ -130,12 +130,15 @@ const User = () => {
                     setPagination={setPagination}
                 />
                 {renderTable()}
-                <div className={modalData.active ? 'modalHiddenPosition modalBackground': 'modalVisablePosition modalBackground'} >
+                <button 
+                    className={modalData.active ? 'modalHiddenPosition modalBackground': 'modalVisablePosition modalBackground'} 
+                    //onClick={() => setModalData({active: true, data: "", task: ""})}
+                >
                     <Modal 
                         modalData={modalData}
                         setModalData={setModalData}  
                     />
-                </div>
+                </button>
 
             </div>
         )
