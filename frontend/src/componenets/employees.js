@@ -3,8 +3,6 @@ import React, {useState, useEffect} from "react";
 import Modal from "./modal";
 import Controls from "./controls"
 import { FaPen, FaTimes } from "react-icons/fa";
-import "../styles/style.css"
-
 const User = () => {
 
     const[users, setUsers] = useState([]);

@@ -2,11 +2,13 @@ import React, {useState, useEffect} from "react";
 import deleteUser from "../controllers/delete"
 import patchUser from "../controllers/patch"
 
-import "../styles/style.css"
-
 const Modal = ({modalData, setModalData}) => {
 
     const [update, setUpdate] = useState(modalData.data)
+    
+    useEffect(() => {setUpdate(modalData.data)}, [modalData.data])
+
+    console.log(update)
 
     const printObject = () => {
         if(modalData.action==="UPDATE"){
@@ -32,19 +34,22 @@ const Modal = ({modalData, setModalData}) => {
 
                 var a = value;
 
-                return (
-                    <li className="modalText">
-                        <label>
-                            <input 
-                                className="modalTextInput" 
-                                name={key}
-                                placeholder={value}
-                                value={`${a}`}
-                                onChange={event => (handleUpdateChange(event))}
-                            />
-                        </label>
-                    </li>
-                )
+                if(key!=="id"){
+                
+                    return (
+                        <li className="modalText">
+                            <label> {key}: 
+                                <input 
+                                    className="modalTextInput" 
+                                    name={key}
+                                    placeholder={value}
+                                    defaultValue={value}
+                                    onChange={event => (handleUpdateChange(event))}
+                                />
+                            </label>
+                        </li>
+                    )
+                }
             })
         )
     }
@@ -52,18 +57,22 @@ const Modal = ({modalData, setModalData}) => {
     const deleteForm = () => {
         return(
             Object.entries(modalData.data).map(([key, value]) => {
-                return (
-                    <li className="modalText">
-                        {value}
-                    </li>
-                )
+
+                if(key!=="id"){
+
+                    return (
+                        <li className="modalText">
+                            {value}
+                        </li>
+                    )
+                }
             })
         )
     }
 
     const executeRequest = () => {
         if(modalData.action === 'UPDATE'){
-            console.log("PATCH")
+            console.log("PATCH " + update.firstName)
             patchUser(
                 {
                     object: "user",
