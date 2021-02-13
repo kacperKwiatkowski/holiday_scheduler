@@ -1,12 +1,12 @@
 import React, {useState, useEffect} from "react";
+import deleteUser from "../controllers/delete"
+import patchUser from "../controllers/patch"
 
 import "../styles/style.css"
 
 const Modal = ({modalData, setModalData}) => {
 
-    console.log(modalData.data)
-
-    console.log(modalData.data.firstName)
+    const [update, setUpdate] = useState(modalData.data)
 
     const printObject = () => {
         if(modalData.action==="UPDATE"){
@@ -16,13 +16,32 @@ const Modal = ({modalData, setModalData}) => {
         }
     }
 
+    const handleUpdateChange = (event) => {
+        const value = event.target.value;
+        setUpdate({
+            ...update,
+            [event.target.name]: value
+        });
+        console.log(update);
+    }
+
     const updateForm = () => {
+
         return(
-            Object.entries(modalData.data).map(([key, value]) => {
+            Object.entries(modalData.data).map(([key, value], index) => {
+
+                var a = value;
+
                 return (
                     <li className="modalText">
                         <label>
-                            <input className="modalTextInput" placeholder={value}/>
+                            <input 
+                                className="modalTextInput" 
+                                name={key}
+                                placeholder={value}
+                                value={`${a}`}
+                                onChange={event => (handleUpdateChange(event))}
+                            />
                         </label>
                     </li>
                 )
@@ -42,8 +61,30 @@ const Modal = ({modalData, setModalData}) => {
         )
     }
 
+    const executeRequest = () => {
+        if(modalData.action === 'UPDATE'){
+            console.log("PATCH")
+            patchUser(
+                {
+                    object: "user",
+                    data: update
+                })
+            setModalData({active: true, data: "", task: ""})
+        } else {
+            deleteUser(
+                {
+                    object: "user",
+                    id: modalData.data.id
+                })
+
+            setModalData({active: true, data: "", task: ""})
+        }
+
+    }
+
     return(
-            <div className="modalWrapper">
+            <form
+                className="modalWrapper">
                 <div className="modalHeader">
                  {modalData.action} EMPLOYEE'S ACCOUNT
                 </div>
@@ -52,19 +93,21 @@ const Modal = ({modalData, setModalData}) => {
                 </ul>
                 <div className="modalButtonsWrapper">
                     <button 
-                        className="modalButton "
+                        type="button"
+                        className="modalButton"
                         onClick={() => setModalData({active: true, data: "", task: ""})}
                     >
                         DISMISS
                     </button>
                     <button 
+                        type="button"
                         className={modalData.action === "UPDATE" ? `modalButton modalUpdateButton` : `modalButton modalDeleteButton`}
-                        onClick={() => setModalData({active: true, data: "", task: ""})}
+                        onClick={() => executeRequest(modalData.data.userId)} 
                     >
                         {modalData.action}
                     </button>
                 </div>
-            </div>
+            </form>
     )
 }
 

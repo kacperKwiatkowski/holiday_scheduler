@@ -5,6 +5,7 @@
     height: 100%;
     top: 0px;
     left: 0px;
+    display: flex;
 
     outline: none;
     border: none;
@@ -18,6 +19,7 @@
 .modalWrapper{
     width: 600px;
     height: 400px;
+    margin-top: 250px;
     display: grid;
     justify-content: center;
     margin:auto;
@@ -71,7 +73,7 @@
     border-radius: 0px;
 
     &:hover{
-        border-bottom: 2px solid $updateYellow;
+        border-bottom: 1px solid $updateYellow;
     }
 }
 

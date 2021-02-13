@@ -130,7 +130,7 @@ const User = () => {
                     setPagination={setPagination}
                 />
                 {renderTable()}
-                <button 
+                <div 
                     className={modalData.active ? 'modalHiddenPosition modalBackground': 'modalVisablePosition modalBackground'} 
                     //onClick={() => setModalData({active: true, data: "", task: ""})}
                 >
@@ -138,7 +138,7 @@ const User = () => {
                         modalData={modalData}
                         setModalData={setModalData}  
                     />
-                </button>
+                </div>
 
             </div>
         )

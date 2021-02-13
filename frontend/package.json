@@ -12,6 +12,7 @@
     "jsonata": "^1.8.4",
     "node-sass": "^4.14.1",
     "react": "^17.0.1",
+    "react-advanced-form": "^1.7.2",
     "react-dom": "^17.0.1",
     "react-icons": "^4.2.0",
     "react-router-dom": "^5.2.0",

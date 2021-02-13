@@ -663,6 +663,9 @@ a:hover {
   height: 100%;
   top: 0px;
   left: 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   outline: none;
   border: none;
   background-color: rgba(114, 114, 114, 0.3);
@@ -673,6 +676,7 @@ a:hover {
 .modalWrapper {
   width: 600px;
   height: 400px;
+  margin-top: 250px;
   display: -ms-grid;
   display: grid;
   -webkit-box-pack: center;
@@ -734,7 +738,7 @@ a:hover {
 }
 
 .modalTextInput:hover {
-  border-bottom: 2px solid #e9d523;
+  border-bottom: 1px solid #e9d523;
 }
 
 .modalButtonsWrapper {
@@ -779,6 +783,25 @@ a:hover {
 
 .modalDeleteButton:hover {
   border-bottom: 2px solid #be0013;
+}
+
+* {
+  font-family: Josefin, Arial, serif;
+}
+
+@font-face {
+  font-family: 'Momcake';
+  src: local("Momcake"), url(../fonts/MomcakeThin-9Y6aZ.otf) format("opentype");
+}
+
+@font-face {
+  font-family: 'Josefin';
+  src: local("Josefin"), url(../fonts/JosefinSansRegular-x3LYV.ttf) format("opentype");
+}
+
+@font-face {
+  font-family: 'Royal Crescent';
+  src: local("Royal Crescent"), url(../fonts/RoyalCrescent-G8BP.ttf) format("opentype");
 }
 
 input {

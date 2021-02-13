@@ -5,9 +5,8 @@ import Employees from "../componenets/employees"
 import Team from "../componenets/team"
 import Teams from "../componenets/teams"
 import Settings from "../componenets/settings"
-import "../styles/style.css"
 
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {BrowserRouter, Route} from 'react-router-dom';
 
 export class Home extends Component{
 
@@ -16,13 +15,11 @@ export class Home extends Component{
             <div className="homeSiteWrapper">
                 <BrowserRouter>
                     <Headerbar />
-                        <Switch>
-                            <Calendar exact path={'/home'}/>
-                            <Employees exact path={'/employees'}/>
-                            <Team exact path={'/team'}/>
-                            <Teams exact path={'/teams'}/>
-                            <Settings exact path={'/settings'}/>
-                        </Switch>
+                    <Route path={'/home'} exact component={Calendar}/>
+                    <Route path={'/employees'} exact component={Employees}/>
+                    <Route path={'/team'} exact component={Team}/>
+                    <Route path={'/teams'} exact component={Teams}/>
+                    <Route path={'/settings'} exact component={Settings}/>
                 </BrowserRouter>
             </div>
         );
