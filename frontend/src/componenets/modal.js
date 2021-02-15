@@ -8,8 +8,6 @@ const Modal = ({modalData, setModalData}) => {
     
     useEffect(() => {setUpdate(modalData.data)}, [modalData.data])
 
-    console.log(update)
-
     const printObject = () => {
         if(modalData.action==="UPDATE"){
             return (updateForm())
@@ -24,7 +22,6 @@ const Modal = ({modalData, setModalData}) => {
             ...update,
             [event.target.name]: value
         });
-        console.log(update);
     }
 
     const updateForm = () => {
@@ -32,13 +29,10 @@ const Modal = ({modalData, setModalData}) => {
         return(
             Object.entries(modalData.data).map(([key, value], index) => {
 
-                var a = value;
-
                 if(key!=="id"){
                 
                     return (
                         <li className="modalText">
-                            <label> {key}: 
                                 <input 
                                     className="modalTextInput" 
                                     name={key}
@@ -46,7 +40,6 @@ const Modal = ({modalData, setModalData}) => {
                                     defaultValue={value}
                                     onChange={event => (handleUpdateChange(event))}
                                 />
-                            </label>
                         </li>
                     )
                 }
@@ -72,7 +65,6 @@ const Modal = ({modalData, setModalData}) => {
 
     const executeRequest = () => {
         if(modalData.action === 'UPDATE'){
-            console.log("PATCH " + update.firstName)
             patchUser(
                 {
                     object: "user",

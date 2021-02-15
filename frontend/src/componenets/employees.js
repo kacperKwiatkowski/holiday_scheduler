@@ -1,9 +1,10 @@
-import Axios from "axios";
 import React, {useState, useEffect} from "react";
-import Modal from "./modal";
+import Axios from "axios";
 import Controls from "./controls"
-import { FaPen, FaTimes } from "react-icons/fa";
-const User = () => {
+import Modal from "./modal";
+import Table from "./table.js";
+
+const Employees = () => {
 
     const[users, setUsers] = useState([]);
     const[pagination, setPagination] = useState({
@@ -17,7 +18,7 @@ const User = () => {
 
     useEffect(() => {
         fetchUsers()
-    }, [pagination])
+    }, [pagination, modalData])
 
     const fetchUsers = async () => {
         await Axios.get(`http://localhost:8080/api/user/page`,{
@@ -44,82 +45,6 @@ const User = () => {
           });
     }
 
-    const renderTable = () => {
-        return (
-            <table className="tables">
-                <thead>
-                    {renderTableHead()}
-                </thead>
-                <tbody>
-                    {renderTableBody()}
-                </tbody>
-            </table>
-        )
-    }
-
-    const renderTableHead = () => {
-        return(
-            <tr>
-                <th>
-                    First Name
-                </th>
-
-                <th>
-                    Last Name
-                </th>
-
-                <th>
-                    E-Mail
-                </th>
-
-                <th>
-                    Status
-                </th>
-
-                <th>
-                    Days off left
-                </th>
-
-                <th>
-                    Action
-                </th>
-            </tr>
-        )
-    }
-
-    const renderTableBody = () => {
-        return users.map((user, index) => {
-            return (
-                        <tr key={index}>
-                            <td>
-                                {user.firstName}
-                            </td>
-
-                            <td>
-                                {user.lastName} 
-                            </td>
-
-                            <td>
-                                {user.email}
-                            </td>
-
-                            <td>
-                                {user.roleType}
-                            </td>
-
-                            <td>
-                                {user.daysOffLeft}
-                            </td>
-                            <td className="actionButtonsWrapper">
-                                <button className="editButton" onClick={() => setModalData({active: false, data: user, action: "UPDATE"})}><FaPen className="editButtonIcon"/></button>
-                                <button className="deleteButton" onClick={() => setModalData({active: false, data: user, action: "DELETE"})}><FaTimes className="deleteButtonIcon"/></button>
-                            </td>
-                        </tr>
-                )
-            }
-        )
-    }
-
     const render = () => {
         return (
             <div>
@@ -127,10 +52,13 @@ const User = () => {
                     header = {"Employees"} 
                     setPagination={setPagination}
                 />
-                {renderTable()}
+                <Table 
+                    data = {users}
+                    headers={["First Name", "Last Name", "E-Mail", "Status", "Days Off Left"]}
+                    setModalData={setModalData}  
+                />
                 <div 
                     className={modalData.active ? 'modalHiddenPosition modalBackground': 'modalVisablePosition modalBackground'} 
-                    //onClick={() => setModalData({active: true, data: "", task: ""})}
                 >
                     <Modal 
                         modalData={modalData}
@@ -145,7 +73,7 @@ const User = () => {
     return render();
 }
 
-export default User
+export default Employees
 
 
 
