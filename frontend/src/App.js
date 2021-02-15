@@ -4,6 +4,8 @@ import Home from "./sites/home"
 
 import React, {Component} from "react";
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import { Provider } from "react-redux";
+import store from "./store/store";
 
 export class App extends Component{
 
@@ -27,18 +29,20 @@ export class App extends Component{
 
     render() {
         return(
-            <BrowserRouter>
-                <Switch>
-                    <Route exact path={'/'}
-                        render={props =>(
-                        <Welcome { ... props} handleLogin={this.handleLogin} loggedInStatus={this.state.loggedInStatus}/>) }
-                    />
-                    <Route exact path={'/home'}
-                        render={props => (
-                            <Home { ... props} loggedInStatus={this.state.loggedInStatus}/>) }  
-                    />
-                </Switch>
-            </BrowserRouter>
+            <Provider store={store}>
+                <BrowserRouter>
+                    <Switch>
+                        <Route exact path={'/'}
+                            render={props =>(
+                            <Welcome { ... props} handleLogin={this.handleLogin} loggedInStatus={this.state.loggedInStatus}/>) }
+                        />
+                        <Route exact path={'/home'}
+                            render={props => (
+                                <Home { ... props} loggedInStatus={this.state.loggedInStatus}/>) }  
+                        />
+                    </Switch>
+                </BrowserRouter>
+            </Provider>
         )
     }
 

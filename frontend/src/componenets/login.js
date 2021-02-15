@@ -33,8 +33,6 @@ class Login extends Component {
             if (response.status === 200) {
                 this.props.handleSuccessfulAuth(response.data)
                 localStorage.setItem("authorization", response.data.jwt);
-                console.log("TEST: " +
-                localStorage.getItem("authorization").toString())
             }
         }).catch(error => {
         console.error(error)
