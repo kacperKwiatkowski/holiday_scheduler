@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from "react";
 import { connect, useDispatch, useSelector} from 'react-redux';
 import { fetchUsers } from '../actions/userActions'
-import Controls from "./controls"
-import Modal from "./modal";
-import Table from "./table.js";
+import Controls from "../componenets/controls"
+import Modal from "../componenets/modal";
+import Table from "../componenets/table";
 
 const Employees = () => {
 
@@ -21,7 +21,7 @@ const Employees = () => {
 
     useEffect(() => {
         dispatch(fetchUsers(pagination))
-    }, [pagination, modalData])
+    }, [pagination])
 
     return (
         <div>
@@ -34,15 +34,11 @@ const Employees = () => {
                 headers={["First Name", "Last Name", "E-Mail", "Status", "Days Off Left"]}
                 setModalData={setModalData}  
             />
-            <div 
-                className={modalData.active ? 'modalHiddenPosition modalBackground': 'modalVisablePosition modalBackground'} 
-            >
-                <Modal 
-                    modalData={modalData}
-                    setModalData={setModalData}  
-                />
-            </div>
-
+            <Modal 
+                modalHeader={`${modalData.action} EMPLOYEE's`}
+                modalData={modalData}
+                setModalData={setModalData}  
+            />
         </div>
     )
 }

@@ -1,6 +1,6 @@
 import Axios from "axios";
 import React, {Component} from "react";
-import Controls from "./controls"
+import Controls from "../componenets/controls"
 import "../styles/style.css"
 
 class Teams extends Component {

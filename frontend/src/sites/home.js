@@ -1,10 +1,10 @@
 import React, {Component} from "react";
 import Headerbar from "../componenets/headerbar"
-import Calendar from "../componenets/calendar"
-import Employees from "../componenets/employees"
-import Team from "../componenets/team"
-import Teams from "../componenets/teams"
-import Settings from "../componenets/settings"
+import Calendar from "./calendar"
+import Employees from "./employees"
+import Team from "./team"
+import Teams from "./teams"
+import Settings from "./settings"
 
 import {BrowserRouter, Route} from 'react-router-dom';
 

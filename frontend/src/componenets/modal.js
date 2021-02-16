@@ -1,82 +1,28 @@
 import React, {useState, useEffect} from "react";
-import deleteUser from "../controllers/delete"
-import patchUser from "../controllers/patch"
+import { useDispatch } from 'react-redux';
+import { updateObject } from '../actions/updateObjectAction'
+import { deleteObject } from '../actions/deleteObjectAction'
+import Form from "./form";
 
 const Modal = ({modalData, setModalData}) => {
 
+    const dispatch = useDispatch();
     const [update, setUpdate] = useState(modalData.data)
     
     useEffect(() => {setUpdate(modalData.data)}, [modalData.data])
 
-    const printObject = () => {
-        if(modalData.action==="UPDATE"){
-            return (updateForm())
-        } else {
-            return (deleteForm())
-        }
-    }
-
-    const handleUpdateChange = (event) => {
-        const value = event.target.value;
-        setUpdate({
-            ...update,
-            [event.target.name]: value
-        });
-    }
-
-    const updateForm = () => {
-
-        return(
-            Object.entries(modalData.data).map(([key, value], index) => {
-
-                if(key!=="id"){
-                
-                    return (
-                        <li className="modalText">
-                                <input 
-                                    className="modalTextInput" 
-                                    name={key}
-                                    placeholder={value}
-                                    defaultValue={value}
-                                    onChange={event => (handleUpdateChange(event))}
-                                />
-                        </li>
-                    )
-                }
-            })
-        )
-    }
-
-    const deleteForm = () => {
-        return(
-            Object.entries(modalData.data).map(([key, value]) => {
-
-                if(key!=="id"){
-
-                    return (
-                        <li className="modalText">
-                            {value}
-                        </li>
-                    )
-                }
-            })
-        )
-    }
-
     const executeRequest = () => {
         if(modalData.action === 'UPDATE'){
-            patchUser(
-                {
-                    object: "user",
-                    data: update
-                })
+            dispatch(updateObject({
+                object: "user",
+                data: update
+            }))
             setModalData({active: true, data: "", task: ""})
         } else {
-            deleteUser(
-                {
-                    object: "user",
-                    id: modalData.data.id
-                })
+            dispatch(deleteObject({
+                object: "user",
+                id: modalData.data.id
+            }))
 
             setModalData({active: true, data: "", task: ""})
         }
@@ -84,13 +30,17 @@ const Modal = ({modalData, setModalData}) => {
     }
 
     return(
+        <div 
+            className={modalData.active ? 'modalHiddenPosition modalBackground': 'modalVisablePosition modalBackground'} 
+        >
             <form
                 className="modalWrapper">
                 <div className="modalHeader">
-                 {modalData.action} EMPLOYEE'S ACCOUNT
+                {modalData.action} EMPLOYEE'S ACCOUNT
                 </div>
+
                 <ul className="modalList">
-                    {printObject()}
+                    <Form action={modalData.action + "_USER"} entity={update} setEntity={setUpdate}/>
                 </ul>
                 <div className="modalButtonsWrapper">
                     <button 
@@ -109,6 +59,7 @@ const Modal = ({modalData, setModalData}) => {
                     </button>
                 </div>
             </form>
+        </div>
     )
 }
 
