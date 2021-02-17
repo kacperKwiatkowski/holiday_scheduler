@@ -5,14 +5,14 @@ import Controls from "../componenets/controls"
 import Modal from "../componenets/modal";
 import Table from "../componenets/table";
 
-const Employees = () => {
+const Vacations = () => {
 
     const dispatch = useDispatch();
-    const users = useSelector((state) => state)
+    const vacations = useSelector((state) => state)
     const[pagination, setPagination] = useState({
         pageNum: 1,
         pageSize: 5,
-        sortBy: 'firstName',
+        sortBy: 'firstDay',
         sortOrder: 'ASC',
         filter: ''
     })
@@ -20,35 +20,30 @@ const Employees = () => {
 
 
     useEffect(() => {
-        dispatch(fetchObjects({object: "user", pagination}))
+        dispatch(fetchObjects({object: 'vacation', pagination}))
     }, [pagination])
 
+    
+    console.log(vacations[0])
     return (
         <div>
             <Controls 
-                header = {"Employees"} 
+                header = {"Vacations"} 
                 setPagination={setPagination}
             />
             <Table 
-                data = {users}
-                headers={["First Name", "Last Name", "E-Mail", "Status", "Days Off Left"]}
+                data = {vacations}
+                headers={["First name", "Last name", "E-mail", "First day", "Last day", "Leave type", "Accepted"]}
                 setModalData={setModalData}  
             />
             <Modal 
-                modalHeader={`${modalData.action} EMPLOYEE's`}
+                modalHeader={`${modalData.action} VACATION REQUEST`}
                 modalData={modalData}
                 setModalData={setModalData}  
             />
         </div>
     )
+
 }
 
-export default Employees;
-
-
-
-
-
-
-
-
+export default Vacations

@@ -46,9 +46,12 @@ public class VacationMapper implements ObjectMapper<VacationDto, Vacation> {
         VacationDto vacationDto = VacationDto
                 .builder()
                 .id(vacation.getId())
-                .firstDay(vacation.getFirstDay().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")).toString())
-                .lastDay(vacation.getLastDay().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")).toString())
+                .firstDay(vacation.getFirstDay().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")))
+                .lastDay(vacation.getLastDay().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")))
                 .userID(vacation.getUser().getId())
+                .email(vacation.getUser().getEmail())
+                .firstName(vacation.getUser().getFirstName())
+                .lastName(vacation.getUser().getLastName())
                 .isAccepted(vacation.isAccepted())
                 .leaveType(VacationTypeConvertor.convertToString(vacation.getVacationType()))
                 .build();

@@ -17,5 +17,8 @@ public class TeamDto {
     private String name;
     private List<Integer> userIds;
     private int teamLeaderId;
+    private String teamLeaderFirstName;
+    private String teamLeaderLastName;
+    private String teamLeaderEmail;
 
 }

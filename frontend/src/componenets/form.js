@@ -14,9 +14,8 @@ const Form = ({action, entity, setEntity}) => {
     }
 
     const updateUser = (entity) => {
-        console.log(entity)
         return(
-            Object.entries(entity).map(([key, value], index) => {
+            Object.entries(entity).map(([key, value]) => {
 
                 if(key!=="id"){
                 
@@ -40,7 +39,7 @@ const Form = ({action, entity, setEntity}) => {
         return(
             Object.entries(entity).map(([key, value]) => {
 
-                if(key!=="id"){
+                if(!key.toLowerCase().includes('id')){
 
                     return (
                         <li className="modalText">

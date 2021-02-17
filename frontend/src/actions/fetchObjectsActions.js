@@ -1,8 +1,8 @@
 import Axios from "axios";
 
-export const fetchUsers = (pagination) => async (dispatch, getState) => {
+export const fetchObjects = ({object, pagination}) => async dispatch => {
     console.log(pagination)
-    const response = await Axios.get(`http://localhost:8080/api/user/page`,{
+    const response = await Axios.get(`http://localhost:8080/api/${object}/page`,{
         params: {
             pageNum: pagination.pageNum - 1,
             pageSize: pagination.pageSize,
@@ -15,5 +15,5 @@ export const fetchUsers = (pagination) => async (dispatch, getState) => {
         type: "FETCH_USERS",
         payload: response.data
     })
-    
 }
+

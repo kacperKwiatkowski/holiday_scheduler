@@ -1,79 +1,48 @@
-import Axios from "axios";
-import React, {Component} from "react";
+import React, {useState, useEffect} from "react";
+import { useDispatch, useSelector} from 'react-redux';
+import { fetchObjects } from '../actions/fetchObjectsActions'
 import Controls from "../componenets/controls"
-import "../styles/style.css"
+import Modal from "../componenets/modal";
+import Table from "../componenets/table";
 
-class Team extends Component {
+const Team = () => {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            team: [],
-            pagination: this.initialPagination
-        }
-    }
-
-    initialPagination = {
-        pageNo: 0,
-        pageSize: 10,
-        sortBy: 'id',
-        sortOrder: 'ASC'
-    }
-
-    componentDidMount() {
-        Axios.get(`http://localhost:8080/api/team/read/1`)
-          .then(res => {
-            console.log(res)
-            this.setState({team: res.data})
-          });
-    }
+    const dispatch = useDispatch();
+    const team = useSelector((state) => state)
+    const[pagination, setPagination] = useState({
+        pageNum: 1,
+        pageSize: 5,
+        sortBy: 'name',
+        sortOrder: 'ASC',
+        filter: ''
+    })
+    const [modalData, setModalData] = useState({active: true, data: "", action: ""});
 
 
-    render () {
-        return (
-            <div>
-                <Controls header = {"Team"}/>
-                <table className="tables">
-                    <thead>
-                        {this.renderTableHead()}
-                    </thead>
-                    <tbody>
-                        {this.renderTableBody()}
-                    </tbody>
-                </table>
-            </div>
-        )
-    }
+    useEffect(() => {
+        dispatch(fetchObjects({object: 'team', pagination}))
+        console.log(team)
+    }, [pagination])
 
-    renderTableHead () {
-        return(
-            <tr>
-                <th>
-                    TEAM NAME
-                </th>
-
-                <th>
-                    TEAM LEADER
-                </th>
-            </tr>
-        )
-    }
-
-    renderTableBody () {
-        return (
-                        <tr>
-                            <td>
-                                {this.state.team.name}
-                            </td>
-
-                            <td>
-                                {this.state.team.teamLeaderId}
-                            </td>
-                        
-                        </tr>
-        )
-    }
-
+    
+    return (
+        <div>
+            <Controls 
+                header = {"Team"} 
+                setPagination={setPagination}
+            />
+            <Table 
+                data = {team}
+                headers={["Team's name", "Team leader's email", "Team leader's first name", "Team leader's last name"]}
+                setModalData={setModalData}  
+            />
+            <Modal 
+                modalHeader={`${modalData.action} TEAM`}
+                modalData={modalData}
+                setModalData={setModalData}  
+            />
+        </div>
+    )
 
 }
 

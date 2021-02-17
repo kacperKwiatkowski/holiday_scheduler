@@ -8,11 +8,16 @@ import com.github.kacperkwiatkowski.holidayscheduler_backend.dto.VacationDto;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.exceptions.ObjectNotFoundException;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.mappers.UserMapper;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.mappers.VacationMapper;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.model.User;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.model.Vacation;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.VacationRepository;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.VacationSqlRepository;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.dto.CalendarDto;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -73,6 +78,31 @@ public class VacationService {
         } else {
             log.info("DELETION unsuccessful.");
             throw new ObjectNotFoundException("DELETION unsuccessful, object not found");
+        }
+    }
+
+    public List<VacationDto> listAll(Integer pageNum, Integer pageSize, String sortBy, String sortOrder, String filter) {
+
+        Pageable paging;
+
+        if(sortOrder.equals("ASC")){
+            paging = PageRequest.of(pageNum, pageSize, Sort.Direction.ASC, sortBy);
+        } else {
+            paging = PageRequest.of(pageNum, pageSize, Sort.Direction.DESC, sortBy);
+        }
+
+        Page<Vacation> pagedResult;
+
+        if(filter.length()<3){
+            pagedResult = vacationRepository.findAll(paging);
+        } else {
+            pagedResult = vacationRepository.findById(filter, paging);
+        }
+
+        if(pagedResult.hasContent()) {
+            return pagedResult.stream().map(vacationMapper::mapToDto).collect(Collectors.toList());
+        } else {
+            throw new ObjectNotFoundException("Pagination impossible");
         }
     }
 }

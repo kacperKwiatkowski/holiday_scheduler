@@ -45,10 +45,11 @@ const Table = (props) => {
         return (
         <tr>
             {Object.entries(object).map(([key, value]) => {
-                if(key !== 'id'){
+                console.log(key)
+                if(!key.toLowerCase().includes('id')){
                     return (
                         <td>
-                        {value}
+                        {value.toString()}
                         </td>
                     )  
                 } 

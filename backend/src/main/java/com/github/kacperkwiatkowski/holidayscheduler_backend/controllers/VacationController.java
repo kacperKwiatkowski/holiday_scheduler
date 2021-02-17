@@ -1,14 +1,18 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.controllers;
 
+import com.github.kacperkwiatkowski.holidayscheduler_backend.dto.UserDto;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.dto.VacationDto;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.service.VacationService;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -38,5 +42,17 @@ public class VacationController {
     ResponseEntity<VacationDto> deleteVacation(@RequestParam String id){
         logger.info("Controller 'deleteVacation' initiated.");
         return ResponseEntity.ok(vacationService.deleteVacation(Integer.valueOf(id)));
+    }
+
+    @GetMapping(path = "/page")
+    public ResponseEntity<List<VacationDto>> getAllVacations(
+            @RequestParam(defaultValue = "0") Integer pageNum,
+            @RequestParam(defaultValue = "10") Integer pageSize,
+            @RequestParam(defaultValue = "lastName") String sortBy,
+            @RequestParam(defaultValue = "ASC") String sortOrder,
+            @RequestParam(defaultValue = "") String filter)
+    {
+        log.info("Controller 'getAllVacations' initiated.");
+        return new ResponseEntity<List<VacationDto>>(vacationService.listAll(pageNum, pageSize, sortBy, sortOrder, filter), new HttpHeaders(), HttpStatus.OK);
     }
 }

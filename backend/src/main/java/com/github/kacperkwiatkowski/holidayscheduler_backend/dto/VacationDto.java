@@ -9,9 +9,12 @@ import lombok.*;
 public class VacationDto {
 
     private int id;
+    private int userID;
+    private String firstName;
+    private String lastName;
+    private String email;
     private String firstDay;
     private String lastDay;
-    private int userID;
     private boolean isAccepted;
     private String leaveType;
 

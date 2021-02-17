@@ -70,7 +70,8 @@ public class TeamController {
             @RequestParam(defaultValue = "0") Integer pageNo,
             @RequestParam(defaultValue = "10") Integer pageSize,
             @RequestParam(defaultValue = "id") String sortBy,
-            @RequestParam(defaultValue = "ASC") String sortOrder)
+            @RequestParam(defaultValue = "ASC") String sortOrder,
+            @RequestParam(defaultValue = "") String filter)
     {
         logger.info("Pagination successful");
         return new ResponseEntity<List<TeamDto>>(teamService.listAll(pageNo, pageSize, sortBy, sortOrder), new HttpHeaders(), HttpStatus.OK);

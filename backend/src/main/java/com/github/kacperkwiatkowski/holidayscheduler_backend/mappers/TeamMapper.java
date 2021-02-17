@@ -43,6 +43,9 @@ public class TeamMapper implements ObjectMapper<TeamDto, Team> {
                 .name(team.getName())
                 .userIds(team.getTeamSquad())
                 .teamLeaderId(team.getTeamLeader().getId())
+                .teamLeaderFirstName(team.getTeamLeader().getFirstName())
+                .teamLeaderLastName(team.getTeamLeader().getLastName())
+                .teamLeaderEmail(team.getTeamLeader().getEmail())
                 .build();
 
         return teamDto;

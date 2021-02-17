@@ -1,8 +1,8 @@
 import Axios from 'axios'
 
-export const updateObject = ({object, data}) => dispatch => {
+export const updateObject = ({object, data}) => async dispatch => {
 
-    const response = Axios({
+    const response = await Axios({
         method: 'PATCH',
         url: `http://localhost:8080/api/${object}/update`,
         data: data

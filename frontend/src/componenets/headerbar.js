@@ -28,17 +28,11 @@ const Headerbar = () => {
             title: 'TEAM',
             url: "/team",
             cName: 'sidebarNav',
-            access: "EMPLOYEE"
+            access: "HR"
         },
         {
             title: 'VACATIONS',
             url: "/vacations",
-            cName: 'sidebarNav',
-            access: "HR"
-        },
-        {
-            title: 'TEAMS',
-            url: "/teams",
             cName: 'sidebarNav',
             access: "HR"
         },
