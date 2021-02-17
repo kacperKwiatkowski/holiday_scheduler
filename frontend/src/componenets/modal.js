@@ -4,7 +4,7 @@ import { updateObject } from '../actions/updateObjectAction'
 import { deleteObject } from '../actions/deleteObjectAction'
 import Form from "./form";
 
-const Modal = ({modalData, setModalData}) => {
+const Modal = ({modalHeader, modalData, setModalData}) => {
 
     const dispatch = useDispatch();
     const [update, setUpdate] = useState(modalData.data)
@@ -36,7 +36,7 @@ const Modal = ({modalData, setModalData}) => {
             <form
                 className="modalWrapper">
                 <div className="modalHeader">
-                {modalData.action} EMPLOYEE'S ACCOUNT
+                    {modalHeader} 
                 </div>
 
                 <ul className="modalList">

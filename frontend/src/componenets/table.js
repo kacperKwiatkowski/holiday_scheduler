@@ -45,7 +45,6 @@ const Table = (props) => {
         return (
         <tr>
             {Object.entries(object).map(([key, value]) => {
-                console.log(key)
                 if(!key.toLowerCase().includes('id')){
                     return (
                         <td>
