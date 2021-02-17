@@ -16,10 +16,12 @@ const Calendar = () => {
         month: ("0" + (new Date().getMonth() + 1)).slice(-2),
         year: new Date().getFullYear()
     })
-    const [dates, setDates] = useState(mapDaysOfWeek())
+     
     useEffect(() => {
         dispatch(fetchCalendar(pagination))
-    }, []);
+    }, [pagination]);
+
+    console.log(users)
 
     function daysInMonth (month, year) { 
         return new Date(year, month, 0).getDate(); 
@@ -70,7 +72,6 @@ const Calendar = () => {
                 }
             )
         }
-
         return dates;
     }
 
@@ -86,16 +87,13 @@ const Calendar = () => {
     }
 
     const renderTableBody = () => {
-
         return( users.map((user, index) => {
-            console.log(user)
             return(
             <tr>
                 <th><button className="calendarNameButton">
                     {user.userDto.firstName} {user.userDto.lastName}
                     </button></th>
                 {renderTableRowsDate(user.holidayStatus)}
-
             </tr>
             )
         }))
@@ -105,10 +103,7 @@ const Calendar = () => {
 
         return( 
             holidayStatus.map((date, index) => {
-
                 var buttonClassName = returnVacationTypeTag(date)
-                console.log(buttonClassName)
-
             return(
                 <td>
                     <div className="dateTag">{daysOfMonth[index].date}</div>
@@ -135,11 +130,7 @@ const Calendar = () => {
             </tbody>
         </table>
         </div>
-
     )
-
-
-
     
 }
 

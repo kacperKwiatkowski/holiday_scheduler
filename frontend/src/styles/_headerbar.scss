@@ -1,6 +1,10 @@
 @import "./variables";
 
-.headerWrapper{
+.headerbarWrapper{
+    padding-bottom: 70px;
+}
+
+.navbarWrapper{
     margin: auto;
     align-items:center;
 
@@ -11,23 +15,22 @@
     position:fixed;
     top: 0;
     left: 0;
-    z-index: 1;
+    z-index: 3;
 
     background-color: $backgroundWhite;
+    transition: all 0.2s ease-in-out;
 
     box-shadow: 0px 15px 10px -20px $decorationsBlue;
 
 }
 
-.headerWrapper:hover{
-    -webkit-box-shadow: 0px 20px 20px -17px $decorationsBlue;
-    -moz-box-shadow: 0px 20px 20px -17px $decorationsBlue;
+.navbarWrapper:hover{
     box-shadow: 0px 20px 20px -17px $decorationsBlue;
 
     transition: all 0.4s ease-in-out;
 }
 
-.profileLinks{
+.navbarWrapperLinks{
     height: 60px;
     flex: 0 1 auto;
     list-style-type: none;
@@ -38,7 +41,7 @@
     margin-right: 50px;
 }
 
-.headerbarLogOutButton{
+.navbarWrapperLogOutButton{
     width: 120px;
     height: 30px;
     border: none;
@@ -52,11 +55,12 @@
     background-color: $decorationsBlue;
     color: $backgroundWhite;
 
-}
+    &:hover{
 
-.headerbarLogOutButton:hover{
-    text-decoration: underline;
-    border: none;
+        text-decoration: underline;
+        border: none;
+    }
+
 }
 
 .logo{
@@ -118,4 +122,32 @@ a:hover{
         justify-content:space-around;
         align-items: flex-end;
     }
+}
+
+.profile-dropDown{
+    height: 400px;
+    width: 100%;
+    background-color:royalblue;
+    box-shadow: 0px 20px 20px -17px $decorationsBlue;
+
+    top: 60px;
+    position:fixed;
+    z-index: 2;
+
+    transition: all 0.6s;
+}
+
+.profile-dropDown-hidden{
+
+    height: 400px;
+    width: 100%;
+    background-color:royalblue;
+
+    box-shadow: 0px 20px 20px -17px $decorationsBlue;
+
+    top: 60px;
+    position:fixed;
+    z-index: 2;
+    transform: translateY(-100vh);
+    transition: all 0.6s;
 }

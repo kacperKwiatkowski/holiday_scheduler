@@ -183,6 +183,15 @@ public class HolidaySchedulerBackendApplication {
             User user6 = userRepository.findById(2);
             vacation6.setUser(user6);
 
+
+            Vacation vacation7 = new Vacation();
+            vacation7.setFirstDay(LocalDate.now().minusDays(10));
+            vacation7.setLastDay(LocalDate.now().plusDays(10));
+            vacation7.setAccepted(false);
+            vacation7.setVacationType(VacationType.SICK);
+            User user7 = userRepository.findById(3);
+            vacation7.setUser(user7);
+
             //CREATE LEAVES
             vacationRepository.save(vacation1);
             vacationRepository.save(vacation2);
@@ -190,6 +199,7 @@ public class HolidaySchedulerBackendApplication {
             vacationRepository.save(vacation4);
             vacationRepository.save(vacation5);
             vacationRepository.save(vacation6);
+            vacationRepository.save(vacation7);
 
         };
     }
