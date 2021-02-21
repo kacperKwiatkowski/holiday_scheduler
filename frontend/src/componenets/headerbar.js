@@ -62,7 +62,7 @@ const Headerbar = () => {
                         )})}
                     </ul>
                     <div className="navbarWrapperLinks">
-                        <button onClick={() => toogleDropDown()} className="navbarWrapperLogOutButton linksShadow">PROFILE</button>
+                        <button  onClick={() => toogleDropDown()} className="navbarWrapperLogOutButton linksShadow">PROFILE</button>
                         <button onClick={logout} className="navbarWrapperLogOutButton linksShadow">LOG OUT</button>
                     </div>
                 </div>

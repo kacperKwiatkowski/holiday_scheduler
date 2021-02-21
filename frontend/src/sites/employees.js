@@ -1,14 +1,14 @@
 import React, {useState, useEffect} from "react";
 import { useDispatch, useSelector} from 'react-redux';
 import { fetchObjects } from '../actions/fetchObjectsActions'
-import Controls from "../componenets/controls"
+import TableControls from "../componenets/tableControls"
 import Modal from "../componenets/modal";
 import Table from "../componenets/table";
 
 const Employees = () => {
 
     const dispatch = useDispatch();
-    const users = useSelector((state) => state)
+    const users = useSelector((state) => state.objectReducer)
     const[pagination, setPagination] = useState({
         pageNum: 1,
         pageSize: 5,
@@ -25,7 +25,7 @@ const Employees = () => {
 
     return (
         <div>
-            <Controls 
+            <TableControls 
                 header = {"Employees"} 
                 setPagination={setPagination}
             />

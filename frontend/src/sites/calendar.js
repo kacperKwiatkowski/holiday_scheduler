@@ -1,14 +1,15 @@
 import React, {useState, useEffect} from "react";
 import { useDispatch, useSelector} from 'react-redux';
 import { fetchCalendar } from '../actions/fetchCalendar'
-import Controls from "../componenets/controls"
+import CalendarControls from "../componenets/calendarControls"
 import interceptor from "../interceptor/interceptor"
+import ObjectReducer from "../reducers/objectsReducer";
 
 const Calendar = () => {
 
     const dispatch = useDispatch();
-    const users = useSelector((state) => state)
-    const [pagination, setPagination] = useState({            
+    const records = useSelector((state) => state.recordReducer)
+    const [calendarPagination, setCalendarPagination] = useState({       
         pageNo: 0,
         pageSize: 10,
         sortBy: "lastName",
@@ -16,12 +17,10 @@ const Calendar = () => {
         month: ("0" + (new Date().getMonth() + 1)).slice(-2),
         year: new Date().getFullYear()
     })
-     
-    useEffect(() => {
-        dispatch(fetchCalendar(pagination))
-    }, [pagination]);
 
-    console.log(users)
+    useEffect(() => {
+        dispatch(fetchCalendar(calendarPagination))
+    }, [calendarPagination]);
 
     function daysInMonth (month, year) { 
         return new Date(year, month, 0).getDate(); 
@@ -53,8 +52,8 @@ const Calendar = () => {
     var daysOfMonth = mapDaysOfWeek()
     
     function mapDaysOfWeek() {
-        const currentMonth = pagination.month;
-        const currentYear = pagination.year;
+        const currentMonth = calendarPagination.month;
+        const currentYear = calendarPagination.year;
     
         var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
     
@@ -76,6 +75,9 @@ const Calendar = () => {
     }
 
     const renderTableHead = () => {
+
+        console.log("THESE ARE RECORD")
+        console.log(records)
         return( daysOfMonth.map((date, index) => {
             return (
                     <th className="calendarHeadCell">
@@ -87,13 +89,14 @@ const Calendar = () => {
     }
 
     const renderTableBody = () => {
-        return( users.map((user, index) => {
+
+        return( records.map((record, index) => {
             return(
-            <tr>
+            <tr key={index}>
                 <th><button className="calendarNameButton">
-                    {user.userDto.firstName} {user.userDto.lastName}
+                    {record.userDto.firstName} {record.userDto.lastName}
                     </button></th>
-                {renderTableRowsDate(user.holidayStatus)}
+                {renderTableRowsDate(record.holidayStatus)}
             </tr>
             )
         }))
@@ -115,7 +118,10 @@ const Calendar = () => {
 
     return (
         <div>
-            <Controls header = {"Calendar"}/>
+            <CalendarControls 
+                header = {"Calendar"}
+                setPagination = {setCalendarPagination}
+            />
             <table className="calendarTable">
             <thead>
                 <tr>

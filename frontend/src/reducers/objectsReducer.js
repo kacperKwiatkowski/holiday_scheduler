@@ -1,11 +1,9 @@
 
 const initialState = [];
 
-const Reducer = (state = initialState, action) => {
+const ObjectReducer = (state = initialState, action) => {
     switch(action.type){
-        case "FETCH_CALENDAR":
-            return action.payload;
-        case "FETCH_USERS":
+        case "FETCH_OBJECTS":
             return action.payload;
         case "UPDATE_OBJECT":
             return action.payload;
@@ -16,4 +14,4 @@ const Reducer = (state = initialState, action) => {
     }
 }
 
-export default Reducer;
+export default ObjectReducer;

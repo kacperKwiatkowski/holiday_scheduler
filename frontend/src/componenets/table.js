@@ -47,7 +47,7 @@ const Table = (props) => {
             {Object.entries(object).map(([key, value]) => {
                 if(!key.toLowerCase().includes('id')){
                     return (
-                        <td>
+                        <td key={key}>
                         {value.toString()}
                         </td>
                     )  

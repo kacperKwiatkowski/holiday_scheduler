@@ -2,11 +2,11 @@ import axios from "axios";
 import React, {Component, useEffect, useState} from "react";
 import "../styles/style.css"
 
-const Controls = ({header, setPagination}) => {
+const TableControls = ({header, setPagination}) => {
 
     const[usersCount, setUsersCount] = useState(0)
     const[state, setState] = useState({
-        filter: "", pageNum: 1, pageSize:5,  sortOrder: "ASC"
+        filter: "", pageNum: 1, pageSize: 5,  sortOrder: "ASC"
     })
 
     useEffect(() => getUsersCount(), [])
@@ -126,4 +126,4 @@ const Controls = ({header, setPagination}) => {
         )
 } 
 
-export default Controls;
+export default TableControls;

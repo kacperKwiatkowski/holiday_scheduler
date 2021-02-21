@@ -1,7 +1,7 @@
 import Axios from "axios";
 
 export const fetchObjects = ({object, pagination}) => async dispatch => {
-    console.log(pagination)
+    console.log("THIS IS FETCH OBJECTS")
     const response = await Axios.get(`http://localhost:8080/api/${object}/page`,{
         params: {
             pageNum: pagination.pageNum - 1,
@@ -12,7 +12,7 @@ export const fetchObjects = ({object, pagination}) => async dispatch => {
         }})
 
     dispatch({
-        type: "FETCH_USERS",
+        type: "FETCH_OBJECTS",
         payload: response.data
     })
 }

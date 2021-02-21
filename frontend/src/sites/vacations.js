@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { useDispatch, useSelector} from 'react-redux';
 import { fetchObjects } from '../actions/fetchObjectsActions'
-import Controls from "../componenets/controls"
+import TableControls from "../componenets/tableControls"
 import Modal from "../componenets/modal";
 import Table from "../componenets/table";
 
@@ -27,7 +27,7 @@ const Vacations = () => {
     console.log(vacations[0])
     return (
         <div>
-            <Controls 
+            <TableControls 
                 header = {"Vacations"} 
                 setPagination={setPagination}
             />
