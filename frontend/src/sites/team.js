@@ -8,7 +8,7 @@ import Table from "../componenets/table";
 const Team = () => {
 
     const dispatch = useDispatch();
-    const team = useSelector((state) => state)
+    const team = useSelector((state) => state.objectReducer)
     const[pagination, setPagination] = useState({
         pageNum: 1,
         pageSize: 5,

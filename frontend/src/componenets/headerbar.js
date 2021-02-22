@@ -1,6 +1,5 @@
 import React, {useState} from "react";
-import { Link } from "react-router-dom"
-import "../styles/style.css"
+import { Link } from 'react-router-dom';
 
 const Headerbar = () => {
 
@@ -57,7 +56,7 @@ const Headerbar = () => {
                     <ul className="linksmenuNav">
                         {linksmenu.map((item, index) => { return (
                             <li className="linksmenuLinks linksShadow" key={index}>          
-                                <Link to={item.url}>{item.title}</Link>                          
+                                <Link exact to={item.url}>{item.title}</Link>                          
                             </li>
                         )})}
                     </ul>
@@ -68,6 +67,7 @@ const Headerbar = () => {
                 </div>
                 <div className={dropDownStatus ? "profile-dropDown" : "profile-dropDown-hidden"}>
                 </div>
+ 
             </header>
 
         )

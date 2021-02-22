@@ -8,7 +8,7 @@ import Table from "../componenets/table";
 const Vacations = () => {
 
     const dispatch = useDispatch();
-    const vacations = useSelector((state) => state)
+    const vacations = useSelector((state) => state.objectReducer)
     const[pagination, setPagination] = useState({
         pageNum: 1,
         pageSize: 5,

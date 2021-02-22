@@ -1,50 +1,22 @@
-
 import Welcome from "./sites/welcome"
 import Home from "./sites/home"
-
 import React, {Component} from "react";
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import { Provider } from "react-redux";
 import store from "./store/store";
 
-export class App extends Component{
+ const App = () => {
 
-    constructor(){
-        super();
-
-        this.state = {
-            loggedInStatus: "NOT_LOGGED_IN",
-            user: {}
-        };
-
-        this.handleLogin = this.handleLogin.bind(this);
-    }
-
-    handleLogin(data) {
-        this.setState({
-            loggedInStatus: "LOGGED_IN",
-            "user": data
-        })
-    }
-
-    render() {
-        return(
-            <Provider store={store}>
-                <BrowserRouter>
-                    <Switch>
-                        <Route exact path={'/'}
-                            render={props =>(
-                            <Welcome { ... props} handleLogin={this.handleLogin} loggedInStatus={this.state.loggedInStatus}/>) }
-                        />
-                        <Route exact path={'/home'}
-                            render={props => (
-                                <Home { ... props} loggedInStatus={this.state.loggedInStatus}/>) }  
-                        />
-                    </Switch>
-                </BrowserRouter>
-            </Provider>
-        )
-    }
+    return(
+        <Provider store={store}>
+            <Router>
+                <Switch>
+                    <Route exact path={'/'} component={Welcome}/>
+                    <Route exact path={'/home'} component={Home}/>
+                </Switch>
+            </Router>
+        </Provider>
+    )
 
 }
 export default App;
