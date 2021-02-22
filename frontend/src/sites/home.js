@@ -15,11 +15,11 @@ const Home = () => {
             <Router>
                 <Headerbar />
                 <Switch>
-                    <Route exact path={`/home`} component={Calendar}/>
-                    <Route exact path={`/employees`} component={Employees} />
-                    <Route exact path={`/team`} component={Team}/>
-                    <Route exact path={`/vacations`} component={Vacations}/>
-                    <Route exact path={`/settings`} component={Settings}/>
+                    <Route path={`/home`} component={Calendar}/>
+                    <Route path={`/employees`} component={Employees} />
+                    <Route path={`/team`} component={Team}/>
+                    <Route path={`/vacations`} component={Vacations}/>
+                    <Route path={`/settings`} component={Settings}/>
                 </Switch>
             </Router>
 
