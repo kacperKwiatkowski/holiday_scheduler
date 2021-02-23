@@ -1,27 +1,7 @@
-import React, {useState, useEffect} from "react";
-import { useDispatch, useSelector} from 'react-redux';
-import { fetchCalendar } from '../actions/fetchCalendar'
-import CalendarControls from "../componenets/calendarControls"
-import interceptor from "../interceptor/interceptor"
-import ObjectReducer from "../reducers/objectsReducer";
+const Calendar = ({records, calendarPagination}) => {
 
-const Calendar = () => {
-
-    const dispatch = useDispatch();
-    const records = useSelector((state) => state.recordReducer)
-    const [calendarPagination, setCalendarPagination] = useState({       
-        pageNo: 0,
-        pageSize: 10,
-        sortBy: "lastName",
-        sortOrder: "ASC",
-        month: ("0" + (new Date().getMonth() + 1)).slice(-2),
-        year: new Date().getFullYear()
-    })
-
-    useEffect(() => {
-        dispatch(fetchCalendar(calendarPagination))
-    }, [calendarPagination]);
-
+    console.log(records)
+    console.log(calendarPagination)
     function daysInMonth (month, year) { 
         return new Date(year, month, 0).getDate(); 
     } 
@@ -76,8 +56,6 @@ const Calendar = () => {
 
     const renderTableHead = () => {
 
-        console.log("THESE ARE RECORD")
-        console.log(records)
         return( daysOfMonth.map((date, index) => {
             return (
                     <th className="calendarHeadCell">
@@ -117,12 +95,7 @@ const Calendar = () => {
     }
 
     return (
-        <div>
-            <CalendarControls 
-                header = {"Calendar"}
-                setPagination = {setCalendarPagination}
-            />
-            <table className="calendarTable">
+        <table className="calendarTable">
             <thead>
                 <tr>
                     <th className="calendarHeadCell">
@@ -135,10 +108,7 @@ const Calendar = () => {
                 {renderTableBody()}
             </tbody>
         </table>
-        </div>
     )
-    
 }
 
 export default Calendar
-

@@ -45,6 +45,14 @@ public class UserController {
         return new ResponseEntity<UserDto>(userService.readUser(id), HttpStatus.OK);
     }
 
+    @GetMapping(path = "/read/logged")
+    @PreAuthorize("hasAuthority('employee:read')")
+    public ResponseEntity<UserDto> getUser(@RequestParam String email) throws ObjectNotFoundException {
+        log.info("Controller 'getUser' initiated.");
+        return new ResponseEntity<UserDto>(userService.readUser(email), HttpStatus.OK);
+    }
+
+
     @GetMapping(path = "/read/all")
     @PreAuthorize("hasAuthority('employee:read')")
     public ResponseEntity<List<UserDto>> getAllUser() throws ObjectNotFoundException {

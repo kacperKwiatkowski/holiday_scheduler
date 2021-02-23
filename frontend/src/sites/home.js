@@ -1,32 +1,45 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
+import { useDispatch, useSelector} from 'react-redux';
+import { fetchCalendar } from '../actions/fetchCalendar'
 import Headerbar from "../componenets/headerbar"
-import Calendar from "./calendar"
-import Employees from "./employees"
-import Team from "./team"
-import Vacations from "./vacations"
-import Settings from "./settings"
-
-import {BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import CalendarControls from "../componenets/calendarControls"
+import Calendar from "../componenets/calendar";
 
 const Home = () => {
 
+    const dispatch = useDispatch();
+    const records = useSelector((state) => state.recordReducer)
+    const [calendarPagination, setCalendarPagination] = useState({       
+        pageNo: 0,
+        pageSize: 10,
+        sortBy: "lastName",
+        sortOrder: "ASC",
+        month: ("0" + (new Date().getMonth() + 1)).slice(-2),
+        year: new Date().getFullYear()
+    })
+
+    useEffect(() => {
+        dispatch(fetchCalendar(calendarPagination))
+    }, [calendarPagination]);
+
+
+    console.log(records);
+    console.log(calendarPagination)
+
     return (
-        <div className="homeSiteWrapper">
-            <Router>
-                <Headerbar />
-                <Switch>
-                    <Route path={`/home`} component={Calendar}/>
-                    <Route path={`/employees`} component={Employees} />
-                    <Route path={`/team`} component={Team}/>
-                    <Route path={`/vacations`} component={Vacations}/>
-                    <Route path={`/settings`} component={Settings}/>
-                </Switch>
-            </Router>
-
-
+        <div>
+            <Headerbar /> 
+            <CalendarControls 
+                header = {"Calendar"}
+                setPagination = {setCalendarPagination}
+            />
+            <Calendar 
+                records = {records}
+                calendarPagination = {calendarPagination}
+            />
         </div>
-    );
-
+    )
 }
 
-export default Home;
+export default Home
+

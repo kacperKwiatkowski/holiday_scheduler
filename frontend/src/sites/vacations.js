@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from "react";
 import { useDispatch, useSelector} from 'react-redux';
 import { fetchObjects } from '../actions/fetchObjectsActions'
+
+import Headerbar from "../componenets/headerbar"
 import TableControls from "../componenets/tableControls"
 import Modal from "../componenets/modal";
 import Table from "../componenets/table";
@@ -23,10 +25,10 @@ const Vacations = () => {
         dispatch(fetchObjects({object: 'vacation', pagination}))
     }, [pagination])
 
-    
-    console.log(vacations[0])
     return (
         <div>
+
+            <Headerbar /> 
             <TableControls 
                 header = {"Vacations"} 
                 setPagination={setPagination}

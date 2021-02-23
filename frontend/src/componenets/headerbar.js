@@ -1,14 +1,24 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
+import { useDispatch, useSelector} from 'react-redux';
 import { Link } from 'react-router-dom';
+
+import { fetchLoggedUser } from '../actions/fetchLoggedUser'
 
 const Headerbar = () => {
 
+
     const[dropDownStatus, setDropDownStatus] = useState(false)
+    const dispatch = useDispatch();
+    const loggedUser = useSelector((state) => state.loggedUserReducer)
+
+    useEffect(() => {
+        dispatch(fetchLoggedUser(localStorage.getItem('loggedUser')))
+    }, [])
+
 
     const logout = () => {
         localStorage.clear();
         window.location.href = "/";
-        console.log("LOGOUT CALL")
       }
     
     const toogleDropDown = () => {
@@ -65,7 +75,22 @@ const Headerbar = () => {
                         <button onClick={logout} className="navbarWrapperLogOutButton linksShadow">LOG OUT</button>
                     </div>
                 </div>
-                <div className={dropDownStatus ? "profile-dropDown" : "profile-dropDown-hidden"}>
+                <div className={dropDownStatus ? "profile-dropDown profile-dropDown-visable" : "profile-dropDown profile-dropDown-hidden"}>
+                    <table className="profile-dropDown-table">
+                    <tr>
+                        <td rowspan="3">&nbsp;</td>
+                            <td>FIRST NAME: {loggedUser.firstName}</td>
+                            <td>LAST NAME: {loggedUser.lastName}</td>
+                        </tr>
+                        <tr>
+                            <td>E:MAIL: {loggedUser.email}</td>
+                            <td>ROLE: {loggedUser.roleType}</td>
+                        </tr>
+                        <tr>
+                            <td>REMAINING DAYS OFF: {loggedUser.daysOffLeft}</td>
+                            <td>EDIT PASSWORD: </td>
+                        </tr>
+                    </table>
                 </div>
  
             </header>

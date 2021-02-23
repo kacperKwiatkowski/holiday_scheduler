@@ -1,13 +1,18 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { useHistory } from "react-router-dom";
 import  { Redirect } from 'react-router-dom'
+import { useDispatch, useSelector} from 'react-redux';
 import Axios from "axios";
+import interceptor from "../interceptor/interceptor"
+
+import { fetchLoggedUser } from '../actions/fetchLoggedUser'
 
 const Login = () => {
 
-    let history = useHistory();
-    const [credentials, setCredentials] = useState({username: '', password: ''})
 
+    const dispatch = useDispatch();
+    const history = useHistory();
+    const [credentials, setCredentials] = useState({username: '', password: ''})
 
     const handleChange = (event) => {
         const value = event.target.value;
@@ -15,13 +20,19 @@ const Login = () => {
             ...credentials,
             [event.target.name]: value
         });
-    }
+        console.log(credentials)
+    };
     
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
 
     event.preventDefault()
+        
+     await authorize();
 
-    Axios.post("http://localhost:8080/login", 
+    }
+
+    const authorize =  () => {
+         Axios.post("http://localhost:8080/login", 
             {
             username: credentials.username,
             password: credentials.password
@@ -29,8 +40,11 @@ const Login = () => {
         )
         .then(response => {
             if (response.status === 200) {
+                //TODO Store it in a cookie
                 localStorage.setItem("authorization", response.data.jwt);
-                history.push("/home")
+                localStorage.setItem('loggedUser', credentials.username);
+
+                history.go("/home")
             }
         }).catch(error => {
         console.error(error)
@@ -38,7 +52,7 @@ const Login = () => {
     }
 
     if(localStorage.getItem("authorization")!=null){
-        return <Redirect to='/home'  />
+        return <Redirect go to='/home'  />
     } else {
         return(
             <div className="loginSiteWrapper">
@@ -50,6 +64,7 @@ const Login = () => {
                     
                     <div className="loginButtonsWrapper">
                     <button className="forgottenPasswordFormButton" type="submit" value="Submit">FORGOTTEN PASSWORD?</button>
+                    
                     <button className="signInFormButton" type="submit" value="Submit">SIGN IN</button>
                     <button className="signInFormButton" type="submit" value="Submit">SIGN UP</button>
                     </div>

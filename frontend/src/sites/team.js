@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from "react";
 import { useDispatch, useSelector} from 'react-redux';
 import { fetchObjects } from '../actions/fetchObjectsActions'
+
+import Headerbar from "../componenets/headerbar"
 import TableControls from "../componenets/tableControls"
 import Modal from "../componenets/modal";
 import Table from "../componenets/table";
@@ -21,12 +23,13 @@ const Team = () => {
 
     useEffect(() => {
         dispatch(fetchObjects({object: 'team', pagination}))
-        console.log(team)
     }, [pagination])
 
     
     return (
         <div>
+
+            <Headerbar /> 
             <TableControls 
                 header = {"Team"} 
                 setPagination={setPagination}

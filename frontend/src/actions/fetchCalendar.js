@@ -1,5 +1,7 @@
 import Axios from "axios";
 
+import interceptor from "../interceptor/interceptor"
+
 export const fetchCalendar = (pagination) => async dispatch => {
     const response = await Axios.get("http://localhost:8080/calendar/page", {
         params:{
@@ -19,9 +21,6 @@ export const fetchCalendar = (pagination) => async dispatch => {
         headers: {
             "Content-Type": "multipart/form-data"
         }})
-
-        console.log("AXIOS")
-        console.log(response)
 
     dispatch({
         type: "FETCH_CALENDAR",

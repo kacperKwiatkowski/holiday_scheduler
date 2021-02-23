@@ -44,6 +44,15 @@ public class UserService {
         }
     }
 
+    public UserDto readUser(String email){
+        Optional<User> user = Optional.ofNullable(userRepository.findByEmail(email));
+        if(user.isPresent()){
+            return userMapper.mapToDto(user.get());
+        } else {
+            throw ObjectNotFoundException.createWith("Id does not exist.");
+        }
+    }
+
     public List<UserDto> getAllUsers(){
         Optional<List<User>> users = Optional.ofNullable(userRepository.findAll());
         if(users.isPresent()){

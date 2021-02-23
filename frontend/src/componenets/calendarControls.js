@@ -14,10 +14,7 @@ const CalendarControls = ({header, setPagination}) => {
         year: new Date().getFullYear()
     })
 
-    useEffect(() => getUsersCount(), [])
-
-    console.log("THIS IS CC")
-    console.log(state)
+    useEffect(() => getUsersCount());
 
     function handleChange(event) {
         const value = event.target.value;
