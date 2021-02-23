@@ -48,7 +48,7 @@ public class VacationController {
     public ResponseEntity<List<VacationDto>> getAllVacations(
             @RequestParam(defaultValue = "0") Integer pageNum,
             @RequestParam(defaultValue = "10") Integer pageSize,
-            @RequestParam(defaultValue = "lastName") String sortBy,
+            @RequestParam(defaultValue = "firstDay") String sortBy,
             @RequestParam(defaultValue = "ASC") String sortOrder,
             @RequestParam(defaultValue = "") String filter)
     {

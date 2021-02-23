@@ -15,7 +15,7 @@ const Calendar = ({records, calendarPagination}) => {
             case 'PAYED':
                 return 'payedVacationButton'
             case 'UNPAID':
-                return 'payedUnpaidButton'
+                return 'unpaidVacationButton'
             case 'SICK':
                 return 'payedSickButton'
             case 'MATERNITY':
@@ -71,9 +71,11 @@ const Calendar = ({records, calendarPagination}) => {
         return( records.map((record, index) => {
             return(
             <tr key={index}>
-                <th><button className="calendarNameButton">
+                <th>
+                    <button className="calendarNameButton">
                     {record.userDto.firstName} {record.userDto.lastName}
-                    </button></th>
+                    </button>
+                </th>
                 {renderTableRowsDate(record.holidayStatus)}
             </tr>
             )

@@ -85,6 +85,8 @@ public class VacationService {
 
         Pageable paging;
 
+        //FIXME Sorting causes problems
+
         if(sortOrder.equals("ASC")){
             paging = PageRequest.of(pageNum, pageSize, Sort.Direction.ASC, sortBy);
         } else {

@@ -39,7 +39,7 @@ public class CalendarService {
 
             int index = calendar.indexOf(foundEntry);
 
-            foundEntry.setHolidayStatus(fillMonth(foundEntry.getHolidayStatus(), v));
+            foundEntry.setHolidayStatus(fillMonth(foundEntry.getHolidayStatus(), v, days));
 
             calendar.set(index, foundEntry);
         }
@@ -62,14 +62,23 @@ public class CalendarService {
         return emptyMonth;
     }
 
-    private List<String> fillMonth (List<String> month, VacationDto vacationDto){
+    private List<String> fillMonth (List<String> month, VacationDto vacationDto, int daysInMonth){
 
         int index = Integer.parseInt(vacationDto.getFirstDay().substring(0,2))-1;
         //FIXME The last day var does not take the month into account
         int lastDay = Integer.parseInt(vacationDto.getLastDay().substring(0,2))-1;
+
+        boolean b = !vacationDto.getLastDay().substring(3,5).equals(vacationDto.getFirstDay().substring(3,5));
+        String s1 = vacationDto.getLastDay().substring(3,5);
+        String s2 = vacationDto.getFirstDay().substring(3,5);
+
+        if(!vacationDto.getLastDay().substring(2,4).equals(vacationDto.getFirstDay().substring(3,5))){
+            lastDay = daysInMonth;
+        }
+
         do{
             if(index>=month.size()) break;
-            month.set(index, vacationDto.getLeaveType().toString());
+            month.set(index, vacationDto.getLeaveType());
             index++;
         } while (lastDay>=index);
 

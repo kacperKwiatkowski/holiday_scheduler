@@ -93,6 +93,7 @@ const CalendarControls = ({header, setPagination}) => {
                 <label 
                     className="controlsLabels">
                         Page:
+                </label>
                         <select 
                             name="pageNum" 
                             className="controlsElements"
@@ -100,11 +101,11 @@ const CalendarControls = ({header, setPagination}) => {
                         >
                             {renderPageNumControls()}
                         </select>
-                </label>
 
                 <label 
                     className="controlsLabels">
                         Size: 
+                </label>
                         <select 
                             name="pageSize" 
                             className="controlsElements"
@@ -112,11 +113,11 @@ const CalendarControls = ({header, setPagination}) => {
                         >
                             {renderPageSizeControls()}
                         </select> 
-                </label>
 
                 <label 
                     className="controlsLabels">
                         Order: 
+                </label>
                         <select 
                             name="sortOrder" 
                             className="controlsElements"
@@ -125,7 +126,7 @@ const CalendarControls = ({header, setPagination}) => {
                             <option>ASC</option>
                             <option>DESC</option>
                         </select>
-                </label>
+                        
                 <label className="controlsLabels">Month</label>
                 <select
                     name="month" 

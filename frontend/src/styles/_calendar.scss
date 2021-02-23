@@ -92,63 +92,53 @@ table.calendarTable {
 }
 
 .vacationButton{
+    display: flex;
+    justify-content: center;
+
     height: 40px;
     width: 200px;
 
+    font-size: medium;
 
-    padding: 0;
-    margin: 0;
 
+    padding-top: 24px;
+    margin-top: 40px;
     border: none;
     outline: none;
+
+
+    background-color: transparent;
 }
 
 .payedVacationButton{
-
-
-    color: red;
-    background-color: rgb(255, 181, 181);
-
+    border-bottom: 3px solid red;
+    color:red; 
 }
 
-.payedUnpaidButton{
-
-
-    color: red;
-    background-color: rgb(255, 181, 181);
-
+.unpaidVacationButton{
+    border-bottom: 3px solid rgb(255, 166, 0);
+    color:rgb(255, 166, 0); 
 }
 
 .payedSickButton{
-    
-
+    border-bottom: 3px solid rgb(14, 68, 0);
     color:rgb(14, 68, 0); 
-    background-color: rgb(119, 255, 85);
-
 }
 
 .payedMaternityButton{
-    
-
+    border-bottom: 3px solid rgb(52, 0, 87);
     color: rgb(52, 0, 87);
-    background-color:rgb(160, 16, 255);
 
 }
 
 .payedBereavementButton{
-    
-
-    color:rgb(82, 53, 0); 
-    background-color: rgb(255, 171, 16);
-
+    border-bottom: 3px solid rgb(82, 53, 0);
+    color: rgb(82, 53, 0);
 }
 
 .payedSabbaticalButton{
-    
-
+    border-bottom: 3px solid rgb(15, 0, 49);
     color: rgb(15, 0, 49);
-    background-color: rgb(76, 0, 255);
-
 }
 
 .noVacation{

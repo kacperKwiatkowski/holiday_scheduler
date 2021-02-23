@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 
 import { fetchLoggedUser } from '../actions/fetchLoggedUser'
 
+import Logo from './Logo.png';
+
 const Headerbar = () => {
 
 
@@ -71,24 +73,50 @@ const Headerbar = () => {
                         )})}
                     </ul>
                     <div className="navbarWrapperLinks">
-                        <button  onClick={() => toogleDropDown()} className="navbarWrapperLogOutButton linksShadow">PROFILE</button>
+                        <button  onClick={() => toogleDropDown()} className="navbarWrapperLogOutButton linksShadow">PANEL</button>
                         <button onClick={logout} className="navbarWrapperLogOutButton linksShadow">LOG OUT</button>
                     </div>
                 </div>
                 <div className={dropDownStatus ? "profile-dropDown profile-dropDown-visable" : "profile-dropDown profile-dropDown-hidden"}>
                     <table className="profile-dropDown-table">
-                    <tr>
-                        <td rowspan="3">&nbsp;</td>
+                        <tr>
+                        <td rowspan="6">&nbsp;
+                        
+                        <img src={Logo} />
+                        </td>
                             <td>FIRST NAME: {loggedUser.firstName}</td>
+                            </tr>
+                        <tr>
                             <td>LAST NAME: {loggedUser.lastName}</td>
                         </tr>
                         <tr>
                             <td>E:MAIL: {loggedUser.email}</td>
+                            </tr>
+                        <tr>
                             <td>ROLE: {loggedUser.roleType}</td>
                         </tr>
                         <tr>
                             <td>REMAINING DAYS OFF: {loggedUser.daysOffLeft}</td>
+                            </tr>
+                        <tr>
                             <td>EDIT PASSWORD: </td>
+                        </tr>
+                    </table>
+                    <table className="profile-dropDown-buttons-wrapper">
+                        <tr>
+                            <td>
+                                <button className="profile-dropDown-button">SEND AN EMAIL</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button className="profile-dropDown-button">CHANGE PASSWORD</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button className="profile-dropDown-button">REQUEST VACATION</button>
+                            </td>
                         </tr>
                     </table>
                 </div>
