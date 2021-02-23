@@ -84,13 +84,13 @@ const Headerbar = () => {
                         
                         <img src={Logo} />
                         </td>
-                            <td>FIRST NAME: {loggedUser.firstName}</td>
+                            <td>FIRST NAME: {loggedUser.firstName.toUpperCase()}</td>
                             </tr>
                         <tr>
-                            <td>LAST NAME: {loggedUser.lastName}</td>
+                            <td>LAST NAME: {loggedUser.lastName.toUpperCase()}</td>
                         </tr>
                         <tr>
-                            <td>E:MAIL: {loggedUser.email}</td>
+                            <td>E:MAIL: {loggedUser.email.toUpperCase()}</td>
                             </tr>
                         <tr>
                             <td>ROLE: {loggedUser.roleType}</td>
@@ -99,7 +99,7 @@ const Headerbar = () => {
                             <td>REMAINING DAYS OFF: {loggedUser.daysOffLeft}</td>
                             </tr>
                         <tr>
-                            <td>EDIT PASSWORD: </td>
+                            <td>TEAM: </td>
                         </tr>
                     </table>
                     <table className="profile-dropDown-buttons-wrapper">
