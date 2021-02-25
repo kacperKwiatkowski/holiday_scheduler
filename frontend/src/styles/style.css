@@ -752,6 +752,7 @@ a:hover {
   margin-top: 250px;
   display: -ms-grid;
   display: grid;
+  position: relative;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -808,10 +809,15 @@ a:hover {
   outline: none;
   border-bottom: 1px solid #646464;
   border-radius: 0px;
+  background-color: transparent;
 }
 
-.modalTextInput:hover {
+.modalTextUpdateInput:hover {
   border-bottom: 1px solid #e9d523;
+}
+
+.modalTextDeleteInput:hover {
+  border-bottom: 1px solid #be0013;
 }
 
 .modalButtonsWrapper {
@@ -820,7 +826,7 @@ a:hover {
   display: flex;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  margin: auto;
+  margin-top: 40px;
 }
 
 .modalButton {
@@ -856,6 +862,25 @@ a:hover {
 
 .modalDeleteButton:hover {
   border-bottom: 2px solid #be0013;
+}
+
+.modalDismissButton {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-size: large;
+  font-weight: bold;
+  text-align: center;
+  color: #646464;
+}
+
+.modalDismissButton:hover {
+  text-shadow: 2px 2px 2px #646464;
 }
 
 * {

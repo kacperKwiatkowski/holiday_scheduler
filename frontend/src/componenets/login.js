@@ -1,14 +1,13 @@
 import React, {useState, useEffect} from "react";
 import { useHistory } from "react-router-dom";
 import  { Redirect } from 'react-router-dom'
-import { useDispatch, useSelector} from 'react-redux';
+import { useDispatch} from 'react-redux';
 import Axios from "axios";
 import interceptor from "../interceptor/interceptor"
 
 import { fetchLoggedUser } from '../actions/fetchLoggedUser'
 
 const Login = () => {
-
 
     const dispatch = useDispatch();
     const history = useHistory();

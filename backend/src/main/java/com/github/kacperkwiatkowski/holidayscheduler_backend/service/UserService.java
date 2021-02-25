@@ -62,12 +62,13 @@ public class UserService {
         }
     }
 
-    public void updateUser(UserDto userToUpdate){
+    public UserDto updateUser(UserDto userToUpdate){
         Optional<User> foundUser = Optional.ofNullable(userRepository.findById(userToUpdate.getId()));
         if(foundUser.isPresent()){
             User user = userMapper.mapToEntity(userToUpdate);
             userRepository.save(user);
             log.info("User: " + userToUpdate.getId() + "updated successfully");
+            return userToUpdate;
         } else {
             log.info("User: " + userToUpdate.getId()  + "updated unsuccessfully");
             throw ObjectNotFoundException.createWith("PATCH impossible, user with such id doesnt exists.");

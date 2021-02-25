@@ -4,6 +4,8 @@ import { fetchObjects } from '../actions/fetchObjectsActions'
 import Headerbar from "../componenets/headerbar"
 import TableControls from "../componenets/tableControls"
 import Modal from "../componenets/modal";
+import UpdateUser from "../forms/updateUser"
+import DeleteUser from "../forms/deleteUser";
 import Table from "../componenets/table";
 
 const Employees = () => {
@@ -23,6 +25,17 @@ const Employees = () => {
         dispatch(fetchObjects({object: "user", pagination}))
     }, [pagination])
 
+    const distinguishAction = () => {
+        console.log("DIS")
+        if(modalData.action==='UPDATE'){
+            return <UpdateUser entity={modalData.data}/>
+        } else {
+            return <DeleteUser entity={modalData.data}/>
+        }
+    }
+
+    console.log()
+
     return (
         <div>
             <Headerbar /> 
@@ -32,11 +45,12 @@ const Employees = () => {
             />
             <Table 
                 data = {users}
-                headers={["First Name", "Last Name", "E-Mail", "Status", "Days Off Left"]}
+                headers={["First Name", "Last Name", "E-Mail", "Days Off Left", "Status"]}
                 setModalData={setModalData}  
             />
             <Modal 
-                modalHeader={`${modalData.action} EMPLOYEE's`}
+                modalHeader={`${modalData.action} EMPLOYEE`}
+                modalContent={modalData.action === 'UPDATE' ? <UpdateUser entity={modalData.data}/> : <DeleteUser entity={modalData.data}/>}
                 modalData={modalData}
                 setModalData={setModalData}  
             />

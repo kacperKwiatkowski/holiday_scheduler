@@ -21,6 +21,7 @@
     height: 400px;
     margin-top: 250px;
     display: grid;
+    position: relative;
     justify-content: center;
     margin:auto;
     font-size: xx-large;
@@ -71,9 +72,22 @@
     outline: none;
     border-bottom: 1px solid $textGrey; 
     border-radius: 0px;
+    background-color: transparent;
+
+}
+
+.modalTextUpdateInput{
 
     &:hover{
         border-bottom: 1px solid $updateYellow;
+    }
+}
+
+
+.modalTextDeleteInput{
+
+    &:hover{
+        border-bottom: 1px solid $errorRed;
     }
 }
 
@@ -81,7 +95,7 @@
     display: flex;
     justify-content:space-around;
 
-    margin: auto;
+    margin-top: 40px;
 }
 
 .modalButton{
@@ -125,5 +139,29 @@
     &:hover{
 
         border-bottom: 2px solid $errorRed;
+    }
+}
+
+.modalDismissButton{
+    width: 20px;
+    height: 20px;
+
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    background-color: transparent;
+    border: none;
+    outline: none;
+
+    font-size: large;
+    font-weight: bold;
+    text-align: center;
+
+    color: $textGrey;
+
+    &:hover{
+
+        text-shadow: 2px 2px 2px $textGrey;
     }
 }

@@ -67,8 +67,7 @@ public class UserController {
     ResponseEntity<UserDto> updateUser(@RequestBody UserDto userToUpdate) throws ObjectNotFoundException {
             log.info("Controller 'updateUser' initiated.");
             //TODO Return entity
-            userService.updateUser(userToUpdate);
-            return ResponseEntity.status(HttpStatus.OK).build();
+            return ResponseEntity.ok(userService.updateUser(userToUpdate));
 
     }
 

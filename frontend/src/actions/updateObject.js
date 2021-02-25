@@ -7,13 +7,11 @@ export const updateObject = ({object, data}) => async dispatch => {
         url: `http://localhost:8080/api/${object}/update`,
         data: data
     })
-    .then(res => {
-        console.log(res)
-    })
-    .catch(err => console.log(err))
+
+    console.log(response)
 
     dispatch({
         type: "UPDATE_OBJECT",
-        payload: response
+        payload: response.data
     })
 }
