@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, {Component, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import "../styles/style.css"
 
 const TableControls = ({header, setPagination}) => {
@@ -13,6 +13,13 @@ const TableControls = ({header, setPagination}) => {
 
     function handleChange(event) {
         const value = event.target.value;
+
+        if(event.target.name==='filter'){
+            console.log("filter")
+            setTimeout(setPagination({... state, 'filter': value}), 2000)
+
+            setTimeout(setState({... state, 'filter': value}), 2000)
+        }
         setPagination({
             ...state,
             [event.target.name]: value
@@ -44,7 +51,10 @@ const TableControls = ({header, setPagination}) => {
 
         return( pageS.map((num, index) => {
             return (
-                <option className="controlElement">  
+                <option 
+                    className="controlElement"
+                    key={index}    
+                >  
                     {num}
                 </option>
             )})
@@ -54,19 +64,22 @@ const TableControls = ({header, setPagination}) => {
     const renderPageSizeControls = () => {
 
         var pageS = [];
-        var i = 5;
+        var i = 0;
 
         if(usersCount!=0){
             for(i; i <= 25; i=i+5){
-                if(usersCount>i*(state.pageNum-1)){
-                    pageS.push(i)
+                if(usersCount>i*(state.pageNum)){
+                    pageS.push(i+5)
                 }
             }
         }
 
         return( pageS.map((num, index) => {
             return (
-                <option className="controlElement">  
+                <option 
+                    className="controlElement"
+                    key={index}
+                >  
                     {num}
                 </option>
             )})

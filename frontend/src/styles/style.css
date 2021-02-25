@@ -9,7 +9,6 @@ table.calendarTable {
       -ms-flex-align: center;
           align-items: center;
   margin-left: 20px;
-  height: 90vh;
   width: 100%;
 }
 

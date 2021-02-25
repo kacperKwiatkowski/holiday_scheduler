@@ -10,8 +10,8 @@ const Home = () => {
     const dispatch = useDispatch();
     const records = useSelector((state) => state.recordReducer)
     const [calendarPagination, setCalendarPagination] = useState({       
-        pageNo: 0,
-        pageSize: 10,
+        pageNum: 1,
+        pageSize: 5,
         sortBy: "lastName",
         sortOrder: "ASC",
         month: ("0" + (new Date().getMonth() + 1)).slice(-2),
@@ -21,10 +21,6 @@ const Home = () => {
     useEffect(() => {
         dispatch(fetchCalendar(calendarPagination))
     }, [calendarPagination]);
-
-
-    console.log(records);
-    console.log(calendarPagination)
 
     return (
         <div>

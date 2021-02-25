@@ -32,7 +32,7 @@ public class CalendarController {
     //@PreAuthorize("hasAuthority('employee:read')")
     @GetMapping(path = "/page")
     public ResponseEntity<List<CalendarDto>> getCalendar(
-            @RequestParam(defaultValue = "0") Integer pageNo,
+            @RequestParam(defaultValue = "0") Integer pageNum,
             @RequestParam(defaultValue = "10") Integer pageSize,
             @RequestParam(defaultValue = "id") String sortBy,
             @RequestParam(defaultValue = "ASC") String sortOrder,
@@ -40,7 +40,7 @@ public class CalendarController {
             @RequestParam String year)
     {
         log.info("Controller 'getCalendar' initiated.");
-        List<UserDto> foundUsers = userService.listAll(pageNo, pageSize, sortBy, sortOrder);
+        List<UserDto> foundUsers = userService.listAll(pageNum, pageSize, sortBy, sortOrder);
         List<VacationDto> foundVacations = vacationService.readRequiredVacations(foundUsers, Integer.valueOf(month), Integer.valueOf(year));
         List<CalendarDto> generatedCalendar = calendarService.createCalendar(foundUsers, foundVacations, Integer.valueOf(month), Integer.valueOf(year));
         return ResponseEntity.ok(generatedCalendar);

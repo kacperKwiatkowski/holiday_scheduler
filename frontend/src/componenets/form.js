@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import DeleteUser from "../forms/deleteUser";
 
 const Form = ({action, entity, setEntity}) => {
 
@@ -35,27 +36,27 @@ const Form = ({action, entity, setEntity}) => {
         )
     }
 
-    const deleteUser = (entity) => {
-        return(
-            Object.entries(entity).map(([key, value]) => {
+    // const deleteUser = (entity) => {
+    //     return(
+    //         Object.entries(entity).map(([key, value]) => {
 
-                if(!key.toLowerCase().includes('id')){
+    //             if(!key.toLowerCase().includes('id')){
 
-                    return (
-                        <li className="modalText">
-                            {value}
-                        </li>
-                    )
-                }
-            })
-        )
-    }
+    //                 return (
+    //                     <li className="modalText">
+    //                         {value}
+    //                     </li>
+    //                 )
+    //             }
+    //         })
+    //     )
+    // }
 
     switch(action) {
         case "UPDATE_USER":
             return updateUser(entity);
         case "DELETE_USER": 
-            return deleteUser(entity);
+            return <DeleteUser entity={entity} />;
         default:
             return <p></p>
     }

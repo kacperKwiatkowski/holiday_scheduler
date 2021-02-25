@@ -6,15 +6,15 @@ const CalendarControls = ({header, setPagination}) => {
 
     const[usersCount, setUsersCount] = useState(0)
     const[state, setState] = useState({
-        pageNo: 0,
-        pageSize: 10,
+        pageNum: 1,
+        pageSize: 5,
         sortBy: "lastName",
         sortOrder: "ASC",
         month: ("0" + (new Date().getMonth() + 1)).slice(-2),
         year: new Date().getFullYear()
     })
 
-    useEffect(() => getUsersCount());
+    useEffect(() => getUsersCount(), []);
 
     function handleChange(event) {
         const value = event.target.value;
@@ -40,6 +40,8 @@ const CalendarControls = ({header, setPagination}) => {
         var pageS = [];
         var i = 0;
         var max = usersCount / state.pageSize ;
+        
+        console.log(usersCount)
 
         if(usersCount!=0){
             for(i = 0; i <= max; i++){
@@ -49,7 +51,10 @@ const CalendarControls = ({header, setPagination}) => {
 
         return( pageS.map((num, index) => {
             return (
-                <option className="controlElement">  
+                <option 
+                    className="controlElement"
+                    key={index}
+                >  
                     {num}
                 </option>
             )})
@@ -57,14 +62,13 @@ const CalendarControls = ({header, setPagination}) => {
     }
 
     const renderPageSizeControls = () => {
-
         var pageS = [];
-        var i = 5;
+        var i = 0;
 
         if(usersCount!=0){
             for(i; i <= 25; i=i+5){
-                if(usersCount>i*(state.pageNum-1)){
-                    pageS.push(i)
+                if(usersCount>i*(state.pageNum)){
+                    pageS.push(i+5)
                 }
             }
         }

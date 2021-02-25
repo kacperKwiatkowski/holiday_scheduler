@@ -1,7 +1,5 @@
 const Calendar = ({records, calendarPagination}) => {
 
-    console.log(records)
-    console.log(calendarPagination)
     function daysInMonth (month, year) { 
         return new Date(year, month, 0).getDate(); 
     } 
@@ -29,20 +27,20 @@ const Calendar = ({records, calendarPagination}) => {
           }
     }
 
-    var daysOfMonth = mapDaysOfWeek()
+    let daysOfMonth = mapDaysOfWeek()
     
     function mapDaysOfWeek() {
         const currentMonth = calendarPagination.month;
         const currentYear = calendarPagination.year;
     
-        var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+        let days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
     
         const dates = []
-        var i;
-        var monthLength = daysInMonth(currentMonth, currentYear)
+        let i;
+        let monthLength = daysInMonth(currentMonth, currentYear)
     
         for(i = 1; i <= monthLength; i++){
-            var currentDay = returnDayFormat(i);
+            let currentDay = returnDayFormat(i);
 
             dates.push(
                 {
@@ -58,7 +56,10 @@ const Calendar = ({records, calendarPagination}) => {
 
         return( daysOfMonth.map((date, index) => {
             return (
-                    <th className="calendarHeadCell">
+                    <th 
+                        className="calendarHeadCell"
+                        key={index}
+                    >
                         {date.day}
                     </th>
                 )
@@ -70,7 +71,9 @@ const Calendar = ({records, calendarPagination}) => {
 
         return( records.map((record, index) => {
             return(
-            <tr key={index}>
+            <tr 
+                key={index}
+            >
                 <th>
                     <button className="calendarNameButton">
                     {record.userDto.firstName} {record.userDto.lastName}
@@ -86,9 +89,9 @@ const Calendar = ({records, calendarPagination}) => {
 
         return( 
             holidayStatus.map((date, index) => {
-                var buttonClassName = returnVacationTypeTag(date)
+                let buttonClassName = returnVacationTypeTag(date)
             return(
-                <td>
+                <td key={index}>
                     <div className="dateTag">{daysOfMonth[index].date}</div>
                     <button className={"vacationButton " + buttonClassName}>{date}</button>
                 </td>
