@@ -16,43 +16,47 @@ const DeleteUser = ({entity}) => {
 
     }
 
+    const labels = ["First name:", "Last name:", "Email:", "Days Off Left:", "Role Type:"]
+
     return(
         <Form 
             onSubmit={onSubmit}
             render={({ handleSubmit, form, values }) => (
                 <form onSubmit={handleSubmit}>
-                    <div>
-                        <Field
-                            name="id"
-                            component="input"
-                            type="hidden"
-                            defaultValue={entity.id}
-                        />
+                    <div className="formFieldsWrapper">
+                        <div>
+                            <Field
+                                name="id"
+                                component="input"
+                                type="hidden"
+                                defaultValue={entity.id}
+                            />
+                        </div>
+
+                        {
+                            Object.entries(entity).map(([key, value], index) => {
+
+                                if(!key.toLowerCase().includes('id')){
+                                    return (
+                                        <div className="formFieldWrapper">
+                                            <label className="formLabel">{labels[index-1]}</label>
+                                            <Field
+                                                className="formTextInput formTextDeleteInput" 
+                                                name={key}
+                                                component="input"
+                                                type="text"
+                                                defaultValue={value}
+                                                disabled
+                                            />
+                                        </div>
+                                    )
+                                }
+                            })
+                        }
                     </div>
-
-                    {
-                        Object.entries(entity).map(([key, value]) => {
-
-                            if(!key.toLowerCase().includes('id')){
-                                return (
-                                    <div>
-                                        <Field
-                                            className="modalTextInput modalTextDeleteInput" 
-                                            name={key}
-                                            component="input"
-                                            type="text"
-                                            defaultValue={value}
-                                            disabled
-                                        />
-                                    </div>
-                                )
-                            }
-                        })
-                    }
-
-                    <div className="modalButtonsWrapper">
+                    <div className="formButtonsWrapper">
                         <button
-                            className="modalButton"
+                            className="formButton"
                             type="button"
                             onClick={form.reset}
                         >
@@ -60,7 +64,7 @@ const DeleteUser = ({entity}) => {
                         </button>
                         <button 
                             type="submit"
-                            className={`modalButton modalDeleteButton`}
+                            className={`formButton formDeleteButton`}
 
                         >
                             DELETE

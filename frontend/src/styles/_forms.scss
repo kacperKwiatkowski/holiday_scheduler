@@ -1,0 +1,99 @@
+.formFieldsWrapper{
+    padding:15px;
+}
+
+.formLabel{
+    font-size: medium;
+    margin: auto;
+    margin-left: 0;
+    float: left;
+    padding-right: 10px;
+
+    color: $textGrey;    
+}
+
+.formTextInput{
+    height: 40px;
+    width: 300px;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid $textGrey; 
+    border-radius: 0px;
+    color: $textGrey;
+    background-color: transparent;
+    justify-content: end;
+    font-size: medium;;
+
+}
+
+.formTextUpdateInput{
+
+    &:hover{
+        border-bottom: 1px solid $updateYellow;
+    }
+}
+
+
+.formTextDeleteInput{
+
+    &:hover{
+        border-bottom: 1px solid $errorRed;
+    }
+}
+
+.formFieldWrapper{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+.formButtonsWrapper{
+    
+    display: flex;
+    justify-content: center;
+    padding-bottom: 25px;
+}
+
+.formButton{
+    width: 150px;
+    height: 50px;
+
+    background-color: transparent;
+    border: none;
+    outline: none;
+
+    font-size: large;
+    font-weight: bold;
+    text-align: center;
+
+    color: $textGrey;
+    border-bottom: 2px solid transparent; 
+
+    &:hover{
+
+        border-bottom: 2px solid $textGrey; 
+    }
+
+}
+
+.formUpdateButton{
+
+    color: $updateYellow;
+    border-bottom: 2px solid transparent; 
+
+    &:hover{
+
+        border-bottom: 2px solid $updateYellow; 
+    }
+}
+
+.formDeleteButton{
+
+    color: $errorRed;
+    border-bottom: 2px solid transparent; 
+
+    &:hover{
+
+        border-bottom: 2px solid $errorRed;
+    }
+}

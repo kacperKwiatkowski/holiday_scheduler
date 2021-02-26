@@ -222,6 +222,97 @@ table.calendarTable td {
   transition: all 0.2s ease-in-out;
 }
 
+.formFieldsWrapper {
+  padding: 15px;
+}
+
+.formLabel {
+  font-size: medium;
+  margin: auto;
+  margin-left: 0;
+  float: left;
+  padding-right: 10px;
+  color: #646464;
+}
+
+.formTextInput {
+  height: 40px;
+  width: 300px;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #646464;
+  border-radius: 0px;
+  color: #646464;
+  background-color: transparent;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: end;
+  font-size: medium;
+}
+
+.formTextUpdateInput:hover {
+  border-bottom: 1px solid #e9d523;
+}
+
+.formTextDeleteInput:hover {
+  border-bottom: 1px solid #be0013;
+}
+
+.formFieldWrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 5px;
+}
+
+.formButtonsWrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding-bottom: 25px;
+}
+
+.formButton {
+  width: 150px;
+  height: 50px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-size: large;
+  font-weight: bold;
+  text-align: center;
+  color: #646464;
+  border-bottom: 2px solid transparent;
+}
+
+.formButton:hover {
+  border-bottom: 2px solid #646464;
+}
+
+.formUpdateButton {
+  color: #e9d523;
+  border-bottom: 2px solid transparent;
+}
+
+.formUpdateButton:hover {
+  border-bottom: 2px solid #e9d523;
+}
+
+.formDeleteButton {
+  color: #be0013;
+  border-bottom: 2px solid transparent;
+}
+
+.formDeleteButton:hover {
+  border-bottom: 2px solid #be0013;
+}
+
 .tables {
   border-spacing: 0;
   width: 100%;
@@ -748,8 +839,7 @@ a:hover {
 
 .modalWrapper {
   width: 600px;
-  height: 400px;
-  margin-top: 250px;
+  height: auto;
   display: -ms-grid;
   display: grid;
   position: relative;
@@ -776,11 +866,12 @@ a:hover {
   position: absolute;
 }
 
-.modalHeader {
+.modalHeaderWrapper {
   font-size: x-large;
   color: #646464;
   text-align: center;
   margin: auto;
+  padding-top: 25px;
 }
 
 .modalText {
@@ -800,68 +891,6 @@ a:hover {
           margin-block-start: 0 !important;
   -webkit-margin-after: 0 !important;
           margin-block-end: 0 !important;
-}
-
-.modalTextInput {
-  height: 25px;
-  width: 300px;
-  border: none;
-  outline: none;
-  border-bottom: 1px solid #646464;
-  border-radius: 0px;
-  background-color: transparent;
-}
-
-.modalTextUpdateInput:hover {
-  border-bottom: 1px solid #e9d523;
-}
-
-.modalTextDeleteInput:hover {
-  border-bottom: 1px solid #be0013;
-}
-
-.modalButtonsWrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  margin-top: 40px;
-}
-
-.modalButton {
-  width: 150px;
-  height: 50px;
-  background-color: transparent;
-  border: none;
-  outline: none;
-  font-size: large;
-  font-weight: bold;
-  text-align: center;
-  color: #646464;
-  border-bottom: 2px solid transparent;
-}
-
-.modalButton:hover {
-  border-bottom: 2px solid #646464;
-}
-
-.modalUpdateButton {
-  color: #e9d523;
-  border-bottom: 2px solid transparent;
-}
-
-.modalUpdateButton:hover {
-  border-bottom: 2px solid #e9d523;
-}
-
-.modalDeleteButton {
-  color: #be0013;
-  border-bottom: 2px solid transparent;
-}
-
-.modalDeleteButton:hover {
-  border-bottom: 2px solid #be0013;
 }
 
 .modalDismissButton {

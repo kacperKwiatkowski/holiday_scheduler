@@ -5,11 +5,11 @@ const Modal = ({modalHeader, modalContent, modalData, setModalData}) => {
             className={modalData.active ? 'modalHiddenPosition modalBackground': 'modalVisablePosition modalBackground'} 
         >
             <div className="modalWrapper">
-                <div className="modalHeader">
+                <div className="modalHeaderWrapper">
                     {modalHeader} 
                 </div>
 
-                <div>
+                <div className="modalContentWrapper">
                     {modalContent}
                 </div>
 

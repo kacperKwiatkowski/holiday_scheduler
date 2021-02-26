@@ -27,55 +27,60 @@ const UpdateUser = ({entity}) => {
             }
         }
         render={({ handleSubmit, form, values }) => (
-          <form onSubmit={handleSubmit}>
-            <div>
-              <Field
-                name="id"
-
-                component="input"
-                type="hidden"
-              />
-            </div>
-            <div>
-              <Field
-                className="modalTextInput modalTextUpdateInput" 
-                name="firstName"
-                component="input"
-                type="text"
-              />
-            </div>
-            <div>
-              <Field
-
-                className="modalTextInput modalTextUpdateInput" 
-                name="lastName"
-                component="input"
-                type="text"
-              />
-            </div>
-            <div>
-              <Field
-
-                className="modalTextInput modalTextUpdateInput" 
-                name="email"
-                component="input"
-                type="email"
-              />
-            </div>
-            <div>
-              <Field
-
-                className="modalTextInput modalTextUpdateInput" 
-                name="daysOffLeft"
-                component="input"
-                type="number"
-                min="0"
-                max="52"
-              />
-            </div>
-            <div>
+          <form 
+            onSubmit={handleSubmit}
+          >
+            <div className="formFieldsWrapper">
+              <div className="formFieldWrapper">
                 <Field
-                    className="modalTextInput modalTextUpdateInput" 
+                  name="id"
+                  component="input"
+                  type="hidden"
+                />
+              </div>
+              <div className="formFieldWrapper">
+                <label className="formLabel">First Name:</label>
+                <Field
+                  className="formTextInput formTextUpdateInput" 
+                  name="firstName"
+                  component="input"
+                  type="text"
+                />
+              </div>
+              <div className="formFieldWrapper">
+                <label className="formLabel">Last Name:</label>
+                <Field
+                  className="formTextInput formTextUpdateInput" 
+                  name="lastName"
+                  component="input"
+                  type="text"
+                />
+              </div>
+              <div className="formFieldWrapper">
+                <label className="formLabel">Email:</label>
+                <Field
+                  className="formTextInput formTextUpdateInput" 
+                  name="email"
+                  component="input"
+                  type="email"
+                />
+              </div>
+              <div className="formFieldWrapper">
+                <label className="formLabel">Days Off Left:</label>
+                <Field
+
+                  className="formTextInput formTextUpdateInput" 
+                  name="daysOffLeft"
+                  component="input"
+                  type="number"
+                  min="0"
+                  max="52"
+                />
+              </div>
+            <div className="formFieldWrapper">
+              <label className="formLabel">Role Type:</label>
+                <Field
+                    className="formTextInput formTextUpdateInput" 
                     name="roleType"
                     component="select"
                 >
@@ -85,9 +90,10 @@ const UpdateUser = ({entity}) => {
                     <option value="ADMIN">ADMIN</option>
                 </Field>
             </div>
-            <div className="modalButtonsWrapper">
+            </div>
+            <div className="formButtonsWrapper">
                 <button
-                    className="modalButton"
+                    className="formButton"
                     type="button"
                     onClick={form.reset}
                 >
@@ -95,7 +101,7 @@ const UpdateUser = ({entity}) => {
                 </button>
                 <button 
                     type="submit"
-                    className={`modalButton modalUpdateButton`}
+                    className={`formButton formUpdateButton`}
                 >
                     UPDATE
                 </button>

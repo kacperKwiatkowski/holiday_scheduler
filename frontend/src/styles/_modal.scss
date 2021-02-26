@@ -18,8 +18,7 @@
 
 .modalWrapper{
     width: 600px;
-    height: 400px;
-    margin-top: 250px;
+    height: auto;
     display: grid;
     position: relative;
     justify-content: center;
@@ -42,12 +41,13 @@
     position:absolute;
 }
 
-.modalHeader{
+.modalHeaderWrapper{
 
     font-size: x-large;
     color: $textGrey;
     text-align: center;
     margin: auto;
+    padding-top: 25px;
 }
 
 .modalText{
@@ -65,82 +65,7 @@
     margin-block-end: 0 !important;
 }
 
-.modalTextInput{
-    height: 25px;
-    width: 300px;
-    border: none;
-    outline: none;
-    border-bottom: 1px solid $textGrey; 
-    border-radius: 0px;
-    background-color: transparent;
 
-}
-
-.modalTextUpdateInput{
-
-    &:hover{
-        border-bottom: 1px solid $updateYellow;
-    }
-}
-
-
-.modalTextDeleteInput{
-
-    &:hover{
-        border-bottom: 1px solid $errorRed;
-    }
-}
-
-.modalButtonsWrapper{
-    display: flex;
-    justify-content:space-around;
-
-    margin-top: 40px;
-}
-
-.modalButton{
-    width: 150px;
-    height: 50px;
-
-    background-color: transparent;
-    border: none;
-    outline: none;
-
-    font-size: large;
-    font-weight: bold;
-    text-align: center;
-
-    color: $textGrey;
-    border-bottom: 2px solid transparent; 
-
-    &:hover{
-
-        border-bottom: 2px solid $textGrey; 
-    }
-
-}
-
-.modalUpdateButton{
-
-    color: $updateYellow;
-    border-bottom: 2px solid transparent; 
-
-    &:hover{
-
-        border-bottom: 2px solid $updateYellow; 
-    }
-}
-
-.modalDeleteButton{
-
-    color: $errorRed;
-    border-bottom: 2px solid transparent; 
-
-    &:hover{
-
-        border-bottom: 2px solid $errorRed;
-    }
-}
 
 .modalDismissButton{
     width: 20px;
