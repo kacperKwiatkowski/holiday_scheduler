@@ -1,7 +1,6 @@
 @import "./variables";
 
 .tables{
-    
     border-spacing: 0;
     width: 100%;
     color: $textGrey;
@@ -10,6 +9,7 @@
     
     th{
         height: 60px;
+        margin: auto;
         color: $textGrey;
         background-color: $headerRowBackground;
         text-align: left;

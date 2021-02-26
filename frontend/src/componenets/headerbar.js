@@ -42,8 +42,8 @@ const Headerbar = () => {
             access: "HR"
         },
         {
-            title: 'TEAM',
-            url: "/team",
+            title: 'TEAMS',
+            url: "/teams",
             cName: 'sidebarNav',
             access: "HR"
         },
@@ -84,7 +84,7 @@ const Headerbar = () => {
                                 <td rowspan="6">
                                     <img src={Logo} />
                                 </td>
-                                <td>FIRST NAME: ${loggedUser.firstName}</td>
+                                <td>FIRST NAME: {loggedUser.firstName}</td>
                             </tr>
                             <tr>
                                 <td>LAST NAME: {loggedUser.lastName}</td>

@@ -68,6 +68,19 @@ public class VacationService {
         return foundVacations.stream().flatMap(Collection::stream).collect(Collectors.toList());
     }
 
+    public VacationDto updateVacation(VacationDto vacationToUpdate){
+        Optional<Vacation> foundUser = Optional.ofNullable(vacationRepository.findById(vacationToUpdate.getId()));
+        if(foundUser.isPresent()){
+            Vacation vacation = vacationMapper.mapToEntity(vacationToUpdate);
+            vacationRepository.save(vacation);
+            log.info("Vacation: " + vacationToUpdate.getId() + "updated successfully");
+            return vacationToUpdate;
+        } else {
+            log.info("Vacation: " + vacationToUpdate.getId()  + "updated unsuccessfully");
+            throw ObjectNotFoundException.createWith("PATCH impossible, user with such id doesnt exists.");
+        }
+    }
+
     @Transactional
     public VacationDto deleteVacation(int id){
         Optional<Vacation> foundVacation = Optional.ofNullable(vacationRepository.findById(id));

@@ -6,6 +6,7 @@ const TableControls = ({header, setPagination}) => {
 
     const[usersCount, setUsersCount] = useState(0)
     const[state, setState] = useState({
+        //FIXME pagination drops sortBy param here
         filter: "", pageNum: 1, pageSize: 5,  sortOrder: "ASC"
     })
 
@@ -21,10 +22,6 @@ const TableControls = ({header, setPagination}) => {
             setTimeout(setState({... state, 'filter': value}), 2000)
         }
         setPagination({
-            ...state,
-            [event.target.name]: value
-        });
-        setState({
             ...state,
             [event.target.name]: value
         });

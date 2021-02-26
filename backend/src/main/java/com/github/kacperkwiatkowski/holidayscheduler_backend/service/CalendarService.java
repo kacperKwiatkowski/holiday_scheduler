@@ -72,7 +72,7 @@ public class CalendarService {
         String s1 = vacationDto.getLastDay().substring(3,5);
         String s2 = vacationDto.getFirstDay().substring(3,5);
 
-        if(!vacationDto.getLastDay().substring(2,4).equals(vacationDto.getFirstDay().substring(3,5))){
+        if(!vacationDto.getLastDay().substring(3,5).equals(vacationDto.getFirstDay().substring(3,5))){
             lastDay = daysInMonth;
         }
 

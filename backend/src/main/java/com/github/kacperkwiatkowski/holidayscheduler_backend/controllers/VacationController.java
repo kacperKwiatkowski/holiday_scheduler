@@ -2,6 +2,7 @@ package com.github.kacperkwiatkowski.holidayscheduler_backend.controllers;
 
 import com.github.kacperkwiatkowski.holidayscheduler_backend.dto.UserDto;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.dto.VacationDto;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.exceptions.ObjectNotFoundException;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.service.VacationService;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
@@ -36,10 +37,21 @@ public class VacationController {
         return ResponseEntity.ok(vacationService.createVacation(vacationToCreate));
     }
 
-    @DeleteMapping(path = "/delete")
+    @PatchMapping(path = "/update")
+    @PreAuthorize("hasAuthority('vacation:notAcceptedEdit')")
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    ResponseEntity<VacationDto> updateVacation(@RequestBody VacationDto vacationToUpdate) throws ObjectNotFoundException {
+        log.info("Controller 'updateVacation' initiated.");
+        //TODO Return entity
+        return ResponseEntity.ok(vacationService.updateVacation(vacationToUpdate));
+
+    }
+
+    @DeleteMapping(path = "/delete/{id}")
     @PreAuthorize("hasAuthority('vacation:delete')")
     @ResponseStatus(HttpStatus.OK)
-    ResponseEntity<VacationDto> deleteVacation(@RequestParam String id){
+    ResponseEntity<VacationDto> deleteVacation(@PathVariable("id") int id){
         logger.info("Controller 'deleteVacation' initiated.");
         return ResponseEntity.ok(vacationService.deleteVacation(Integer.valueOf(id)));
     }

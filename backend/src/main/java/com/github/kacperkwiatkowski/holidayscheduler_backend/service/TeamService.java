@@ -15,6 +15,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,15 +52,17 @@ public class TeamService {
 
         Optional<Team> foundTeam = Optional.ofNullable(teamRepository.findById(teamToUpdate.getId()));
         if(foundTeam.isPresent()){
-            teamMapper.mapToEntity(teamToUpdate);
+            teamRepository.save(teamMapper.mapToEntity(teamToUpdate));
             return teamToUpdate;
         } else {
             throw ObjectNotFoundException.createWith("Team with such ID does not exist.");
         }
     }
 
+    @Transactional
     public TeamDto deleteTeam(int id){
         Optional<Team> foundTeam = Optional.ofNullable(teamRepository.findById(id));
+        //FIXME Resolve DB alteration problem
         if (foundTeam.isPresent()){
             teamRepository.deleteById(id);
             log.info("Deletion successful.");
@@ -73,7 +76,7 @@ public class TeamService {
 
         Pageable paging;
 
-        if(sortOrder.equals("ACS")){
+        if(sortOrder.equals("ASC")){
             paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy).ascending());
         } else {
             paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy).descending());

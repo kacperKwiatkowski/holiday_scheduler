@@ -58,6 +58,7 @@ public class TeamController {
         return ResponseEntity.ok(teamService.updateTeam(teamToUpdate));
     }
 
+    @DeleteMapping(path = "/delete/{id}")
     @PreAuthorize("hasAuthority('team:delete')")
     ResponseEntity<TeamDto> deleteUser(@PathVariable("id") int id){
         logger.info("Controller 'deleteUser' initiated.");

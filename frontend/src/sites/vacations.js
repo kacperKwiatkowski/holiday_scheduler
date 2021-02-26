@@ -5,6 +5,8 @@ import { fetchObjects } from '../actions/fetchObjectsActions'
 import Headerbar from "../componenets/headerbar"
 import TableControls from "../componenets/tableControls"
 import Modal from "../componenets/modal";
+import UpdateVacation from "../forms/updateVacation";
+import DeleteVacation from "../forms/deleteVacation";
 import Table from "../componenets/table";
 
 const Vacations = () => {
@@ -40,6 +42,7 @@ const Vacations = () => {
             />
             <Modal 
                 modalHeader={`${modalData.action} VACATION REQUEST`}
+                modalContent={modalData.action === 'UPDATE' ? <UpdateVacation entity={modalData.data}/> : <DeleteVacation entity={modalData.data}/>}
                 modalData={modalData}
                 setModalData={setModalData}  
             />

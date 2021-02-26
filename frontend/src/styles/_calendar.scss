@@ -1,7 +1,7 @@
 @import "./variables";
 
 table{
-
+    margin-top: 80px;
     border-spacing: 0 !important;
     border-collapse: 0;
 }
@@ -10,20 +10,35 @@ table.calendarTable {
     border-collapse:collapse;
     align-items:center;
     margin-left: 20px;
-
     width: 100%;
+    white-space: nowrap;
+  border-collapse: separate;
+
 
     thead{
         height: 30px;
+
     }
 
+    thead th {
+        padding: 3px;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        width: 25vw;
+        background: white;
+      }
+
     th{
+
+  position: sticky;
         height: 150px;
         width: 200px;
         color: $textGrey;
         font-size: small;
         margin: 15px;
         padding: 20px;
+
     }
 
 

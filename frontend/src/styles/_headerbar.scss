@@ -1,7 +1,7 @@
 @import "./variables";
 
 .headerbarWrapper{
-    padding-bottom: 70px;
+    padding-bottom: 50px;
 }
 
 .navbarWrapper{
@@ -15,7 +15,7 @@
     position:fixed;
     top: 0;
     left: 0;
-    z-index: 3;
+    z-index: 5;
 
     background-color: $backgroundWhite;
     transition: all 0.2s ease-in-out;
@@ -134,10 +134,8 @@ a:hover{
     width: 100%;
     background-color:royalblue;
     box-shadow: 0px 20px 20px -17px $decorationsBlue;
-
-    top: 60px;
     position:fixed;
-    z-index: 2;
+    z-index: 4;
 
     display: flex;
     align-items:center;

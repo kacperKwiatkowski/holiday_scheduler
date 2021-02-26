@@ -4,7 +4,7 @@ import { fetchObjects } from '../actions/fetchObjectsActions'
 import Headerbar from "../componenets/headerbar"
 import TableControls from "../componenets/tableControls"
 import Modal from "../componenets/modal";
-import UpdateUser from "../forms/updateUser"
+import UpdateUser from "../forms/updateUser";
 import DeleteUser from "../forms/deleteUser";
 import Table from "../componenets/table";
 
