@@ -5,6 +5,7 @@ import com.github.kacperkwiatkowski.holidayscheduler_backend.service.NationalHol
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,13 +22,27 @@ public class NationalHolidaysController {
         this.nationalHolidayService = nationalHolidayService;
     }
 
+    @GetMapping(value = "/read")
+    @PreAuthorize("hasAuthority('nationalHolidays:management')")
+    @ResponseStatus(HttpStatus.OK)
+    ResponseEntity<List<NationalHolidayDto>> downloadNationalHolidays(){
+        return ResponseEntity.ok(nationalHolidayService.readNationalHolidays());
+    }
+
     @PostMapping(value = "/download/{year}/{key}")
     @ResponseStatus(HttpStatus.OK)
-    ResponseEntity<List<NationalHolidayDto>> uploadNationalHolidaysToDatabase(
+    void uploadNationalHolidaysToDatabase(
             @PathVariable String year,
             @PathVariable String key
     ){
         log.info("Controller 'uploadNationalHolidaysToDatabase' initiated.");
-        return ResponseEntity.ok(nationalHolidayService.uploadNationalHolidaysToDatabase(year, key));
+        nationalHolidayService.uploadNationalHolidaysToDatabase(year, key);
+    }
+
+    @DeleteMapping(value = "/delete/{id}")
+    @PreAuthorize("hasAuthority('nationalHolidays:management')")
+    @ResponseStatus(HttpStatus.OK)
+    ResponseEntity<NationalHolidayDto> deleteNationalHolidays(@PathVariable("id") int id){
+        return ResponseEntity.ok(nationalHolidayService.deleteNationalHoliday(id));
     }
 }

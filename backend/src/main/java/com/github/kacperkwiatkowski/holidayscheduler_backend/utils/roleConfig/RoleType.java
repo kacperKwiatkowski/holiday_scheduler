@@ -77,7 +77,8 @@ public enum RoleType {
                     TEAM_READ,
                     TEAM_UPDATE,
                     TEAM_DELETE,
-                    SELF_EDIT
+                    SELF_EDIT,
+                    NATIONAL_HOLIDAY_MANAGEMENT
             ));
 
 

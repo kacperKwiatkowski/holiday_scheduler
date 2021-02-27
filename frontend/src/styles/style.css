@@ -35,6 +35,9 @@
       -ms-flex-pack: center;
           justify-content: center;
   width: 50rem;
+  position: relative;
+  top: 25%;
+  margin: auto;
 }
 
 .settingsForm {
@@ -98,7 +101,7 @@
 }
 
 .settingsFormLabel {
-  width: 50px;
+  width: 100px;
   font-size: medium;
   margin: auto;
   margin-left: 0;
@@ -108,7 +111,7 @@
 }
 
 .settingsFormField {
-  width: 100%;
+  width: 95%;
   height: 30px;
   border: none;
   outline: none;

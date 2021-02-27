@@ -1,32 +1,24 @@
+import React, {useState, useEffect} from "react";
 import { Form, Field } from 'react-final-form'
-
-import { useDispatch} from 'react-redux';
-
-import uploadNationalHolidays from '../actions/uploadNationalHolidays'
+import { useDispatch, useSelector} from 'react-redux';
+import { fetchNationalHolidays } from '../actions/fetchNationalHolidays'
+import { deleteObject } from '../actions/deleteObjectAction'
 
 const NationalHolidayUpload = () => {
 
-    const dispatch = useDispatch();  
+    const dispatch = useDispatch();
+    const nationalHolidays = useSelector((state) => state.nationalHolidaysReducer)
+
+
+
+    useEffect(() => {
+        dispatch(fetchNationalHolidays())
+    }, [])
 
     const onSubmit = values => {
-        console.log("TEST")
-        uploadNationalHolidays({year: values.year, key: values.key})
-    }
 
-    var initialYear = new Date().getFullYear()
-
-    const mapYears = () => {
-
-        var year = new Date().getFullYear()
-
-        var years = [];
-
-        for(var i = 0; i<5; i++){
-            years.push(year)
-            year+=1;
-        }
-
-        return years;
+        console.log(values.id)
+        dispatch(deleteObject({object: 'nationalholiday', id: values.id}))
     }
 
     return (
@@ -34,7 +26,7 @@ const NationalHolidayUpload = () => {
         onSubmit={onSubmit}
         initialValues={
             {
-                year: initialYear
+                id: ''
             }
         }
         render={({ handleSubmit, form, values }) => (
@@ -44,34 +36,29 @@ const NationalHolidayUpload = () => {
           >
 
             <div className="settingsFormHeader">
-                Upload national holidays
+                Manage national holidays
             </div>
             <div className="settingsFormFieldsWrapper">
   
               <div className="settingsFormFieldWrapper">
-                <label className="settingsFormLabel">Year:</label>
+                <label className="settingsFormLabel">National holiday:</label>
                 <Field                  
                     className="settingsFormField" 
-                    name="year"
+                    name="id"
                     component="select"
                     type="text"
                 >
-                    {mapYears().map(year => {
-                        return(
-                            <option>{year}</option>
-                        )
-                    })}
+                    {
+                        nationalHolidays.map(holiday => {
+                            return(
+
+                                <option value={holiday.id}>{holiday.holidayDate + " | " + holiday.name}</option>
+                            )
+                        })
+                    }
                 </Field>
               </div>
-              <div className="settingsFormFieldWrapper">
-                <label className="settingsFormLabel">Key:</label>
-                <Field
-                    className="settingsFormField" 
-                    name="key"
-                    component="input"
-                    type="text"
-                />
-              </div>
+
 
             </div>
             <div className="settingsFormButtonsWrapper">
@@ -86,7 +73,7 @@ const NationalHolidayUpload = () => {
                     type="submit"
                     className="settingsFormButton"
                 >
-                    UPLOAD
+                    DELETE
                 </button>
 
             </div>

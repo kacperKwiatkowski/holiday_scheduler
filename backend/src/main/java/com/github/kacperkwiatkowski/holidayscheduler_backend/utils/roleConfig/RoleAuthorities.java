@@ -26,7 +26,8 @@ public enum RoleAuthorities {
     TEAM_READ("team:read"),
     TEAM_UPDATE("team:update"),
     TEAM_DELETE("team:delete"),
-    SELF_EDIT("self:edit");
+    SELF_EDIT("self:edit"),
+    NATIONAL_HOLIDAY_MANAGEMENT("nationalHolidays:management");
 
     private final String permission;
 

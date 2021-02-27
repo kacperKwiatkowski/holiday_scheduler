@@ -1,14 +1,15 @@
 import Axios from 'axios'
 import interceptor from "../interceptor/interceptor"
 
-const fetchNationalHolidays = async ({year, key}) =>  {
+export const fetchNationalHolidays = () => async dispatch =>  {
 
     const response = await Axios({
-        method: 'POST',
-        url: `http://localhost:8080/api/nationalholiday/download/${year}/${key}`
+        method: 'GET',
+        url: `http://localhost:8080/api/nationalholiday/read`
     })
 
-    return response.data;
+    dispatch({
+        type: "FETCH_NATIONAL_HOLIDAYS",
+        payload: response.data
+    })
 }
-
-export default fetchNationalHolidays;
