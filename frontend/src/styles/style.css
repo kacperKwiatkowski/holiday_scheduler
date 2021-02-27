@@ -1,9 +1,156 @@
-.accordeonWrapper {
-  margin: 100px 20px 0 20px;
+.settingsWrapper {
+  margin: 70px 20px 0 20px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .settingsPanel {
+  width: 30rem;
+  height: 70vh;
   list-style: none;
+  margin: 20px;
+  padding-left: 0px;
+  padding: 30px;
+  text-align: left;
+  -webkit-box-shadow: 8px 8px 5px -10px #006FFF;
+          box-shadow: 8px 8px 5px -10px #006FFF;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.settingsPanel:hover {
+  -webkit-box-shadow: 4px 4px 5px 0px #006FFF;
+          box-shadow: 4px 4px 5px 0px #006FFF;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.settingsFormWrapper {
+  padding: auto;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 50rem;
+}
+
+.settingsForm {
+  width: 70rem;
+  height: 70vh;
+  margin: 20px;
+  padding-left: 0px;
+  padding: 30px;
+  -webkit-box-shadow: 8px 8px 5px -10px #006FFF;
+          box-shadow: 8px 8px 5px -10px #006FFF;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.settingsForm:hover {
+  -webkit-box-shadow: 4px 4px 5px 0px #006FFF;
+          box-shadow: 4px 4px 5px 0px #006FFF;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.settingsLink {
+  color: #808182;
+  font-size: x-large;
+  font-weight: bold;
+  padding-bottom: 30px;
+}
+
+.settingsLink:hover {
+  text-decoration: underline;
+}
+
+.settingsFormHeader {
+  color: #808182;
+  font-size: x-large;
+  font-weight: bold;
+  padding-bottom: 30px;
+}
+
+.settingsFormFieldsWrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.settingsFormFieldWrapper {
+  padding: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.settingsFormLabel {
+  width: 50px;
+  font-size: medium;
+  margin: auto;
+  margin-left: 0;
+  float: left;
+  padding-right: 10px;
+  color: #646464;
+}
+
+.settingsFormField {
+  width: 100%;
+  height: 30px;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #646464;
+  border-radius: 0px;
+  color: #646464;
+  background-color: transparent;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: end;
+  font-size: medium;
+}
+
+.settingsFormField:hover {
+  border-bottom: 1px solid #006FFF;
+}
+
+.settingsFormButtonsWrapper {
+  float: right;
+  padding: 20px;
+}
+
+.settingsFormButton {
+  width: 120px;
+  height: 30px;
+  border: none;
+  outline: none;
+  font-size: medium;
+  margin: 5px;
+  text-align: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: large;
+  border-bottom: 2px solid transparent;
+  background-color: transparent;
+  color: #006FFF;
+}
+
+.settingsFormButton:hover {
+  border-bottom: 2px solid #006FFF;
+  background-color: transparent;
 }
 
 table {

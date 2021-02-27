@@ -1,0 +1,156 @@
+@import "./variables";
+
+
+.settingsWrapper{
+
+    margin: 70px 20px 0 20px;
+
+    align-items: center;
+    display: flex;
+}
+
+.settingsPanel{
+
+    width: 30rem;
+    height: 70vh;
+    list-style: none;
+
+    margin: 20px;
+    padding-left: 0px;
+    padding: 30px;
+
+    text-align: left;
+
+    box-shadow: 8px 8px 5px -10px $decorationsBlue;
+
+    transition: all 0.3s;
+
+    &:hover{
+
+        box-shadow: 4px 4px 5px 0px $decorationsBlue;
+    
+        transition: all 0.3s;
+    }
+    
+}
+
+.settingsFormWrapper{
+    padding: auto;
+    justify-content: center;
+    width: 50rem;
+}
+
+.settingsForm{
+
+    width: 70rem;
+    height: 70vh;
+    margin: 20px;
+    padding-left: 0px;
+    padding: 30px;
+
+    box-shadow: 8px 8px 5px -10px $decorationsBlue;
+
+    transition: all 0.3s;
+
+    &:hover{
+
+        box-shadow: 4px 4px 5px 0px $decorationsBlue;
+
+        transition: all 0.3s;
+    
+    }
+}
+
+.settingsLink{
+
+    color: #808182;
+    font-size: x-large;
+    font-weight: bold;
+    padding-bottom: 30px;
+
+    &:hover{
+        text-decoration: underline;
+    }
+}
+
+.settingsFormHeader{
+    
+    color: #808182;
+    font-size: x-large;
+    font-weight: bold;
+    padding-bottom: 30px;
+}
+
+.settingsFormFieldsWrapper{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.settingsFormFieldWrapper{
+
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.settingsFormLabel{
+
+    width: 50px;
+    font-size: medium;
+    margin: auto;
+    margin-left: 0;
+    float: left;
+    padding-right: 10px;
+
+    color: $textGrey;    
+}
+
+.settingsFormField{
+    width: 100%;
+    height: 30px;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid $textGrey; 
+    border-radius: 0px;
+    color: $textGrey;
+    background-color: transparent;
+    justify-content: end;
+    font-size: medium;
+
+    &:hover{
+        border-bottom: 1px solid $decorationsBlue;
+    }
+
+}
+
+.settingsFormButtonsWrapper{
+    float: right;
+    padding: 20px;
+}
+
+.settingsFormButton{
+    width: 120px;
+    height: 30px;
+    border: none;
+    outline: none;
+    font-size:medium;
+    margin: 5px;
+    text-align: center;
+    justify-content: center;
+    font-size: large;
+
+    border-bottom: 2px solid transparent;
+    
+    background-color: transparent;
+
+    color: $decorationsBlue;
+
+    &:hover{
+
+        
+        border-bottom: 2px solid $decorationsBlue;
+    
+        background-color: transparent;
+    }
+}

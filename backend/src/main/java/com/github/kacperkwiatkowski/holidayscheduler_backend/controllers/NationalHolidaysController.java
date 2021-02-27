@@ -11,6 +11,7 @@ import java.util.List;
 
 @Slf4j
 @RestController
+@CrossOrigin
 @RequestMapping("/api/nationalholiday")
 public class NationalHolidaysController {
 
