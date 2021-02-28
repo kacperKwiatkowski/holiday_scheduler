@@ -93,6 +93,7 @@ const TableControls = ({header, setPagination, object}) => {
                     className="filterBar" 
                     placeholder="Filter results" 
                     onChange={handleChange}
+                    osOnChangeTimerDelay = {3000}
                 />
 
                 <label 

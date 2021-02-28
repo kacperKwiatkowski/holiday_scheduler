@@ -83,6 +83,22 @@ const CalendarControls = ({header, setPagination}) => {
         )
     }
 
+    const months = ['01','02','03','04','05','06','07','08','09','10','11','12'] 
+
+    const years = () => {
+
+        var year = new Date().getFullYear()
+
+        var years = [];
+
+        years.push(year - 1)
+        years.push(year)
+        years.push(year + 1)
+
+        return years;
+    }
+
+
     return (
         <form className="controlsWrapper">
             <div className="pageHeader">{header}</div>
@@ -137,16 +153,30 @@ const CalendarControls = ({header, setPagination}) => {
                     name="month" 
                     className="controlsElements"
                     onChange={handleChange}
+                    value={state.month}
                 >
-                    <option>02</option>
+                    {
+                        months.map(month => {
+                            return(
+                                <option>{month}</option>
+                            )
+                        })
+                    }
                 </select>
                 <label className="controlsLabels">Year</label>
                 <select
                     onChange={handleChange}
                     name="year" 
                     className="controlsElements"
+                    value={state.year}
                 >
-                    <option>2021</option>
+                    {
+                        years().map(year => {
+                            return(
+                                <option>{year}</option>
+                            )
+                        })
+                    }
                 </select>
             </div>
         </form>

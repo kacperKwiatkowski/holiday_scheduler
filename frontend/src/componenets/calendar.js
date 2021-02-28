@@ -38,6 +38,7 @@ const Calendar = ({records, calendarPagination}) => {
         const dates = []
         let i;
         let monthLength = daysInMonth(currentMonth, currentYear)
+        console.log(monthLength)
     
         for(i = 1; i <= monthLength; i++){
             let currentDay = returnDayFormat(i);
@@ -49,6 +50,8 @@ const Calendar = ({records, calendarPagination}) => {
                 }
             )
         }
+
+        console.log(dates)
         return dates;
     }
 
@@ -86,16 +89,17 @@ const Calendar = ({records, calendarPagination}) => {
     }
 
     const renderTableRowsDate = (holidayStatus) => {
-
         return( 
             holidayStatus.map((date, index) => {
                 let buttonClassName = returnVacationTypeTag(date)
-            return(
-                <td key={index}>
-                    <div className="dateTag">{daysOfMonth[index].date}</div>
-                    <button className={"vacationButton " + buttonClassName}>{date}</button>
-                </td>
-            )
+                if(index<daysOfMonth.length){
+                    return(
+                        <td key={index}>
+                            <div className="dateTag">{daysOfMonth[index].date}</div>
+                            <button className={"vacationButton " + buttonClassName}>{date}</button>
+                        </td>
+                    )
+                }
         }))
     }
 
