@@ -75,6 +75,6 @@ public class TeamController {
             @RequestParam(defaultValue = "") String filter)
     {
         logger.info("Pagination successful");
-        return new ResponseEntity<List<TeamDto>>(teamService.listAll(pageNo, pageSize, sortBy, sortOrder), new HttpHeaders(), HttpStatus.OK);
+        return new ResponseEntity<List<TeamDto>>(teamService.listAll(pageNo, pageSize, sortBy, sortOrder, filter), new HttpHeaders(), HttpStatus.OK);
     }
 }

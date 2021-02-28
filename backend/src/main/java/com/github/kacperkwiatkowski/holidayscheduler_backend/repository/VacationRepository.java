@@ -21,4 +21,8 @@ public interface VacationRepository extends JpaRepository<Vacation, Integer> {
 
     Page<Vacation> findById(String filter, Pageable paging);
 
+    @Query("SELECT v FROM Vacation v WHERE v.user.firstName LIKE %?1%"
+            + " OR v.user.lastName LIKE %?1%")
+    Page<Vacation> findWithFilter(String filter, Pageable paging);
+
 }

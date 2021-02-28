@@ -2,15 +2,15 @@ import axios from "axios";
 import React, {useEffect, useState} from "react";
 import "../styles/style.css"
 
-const TableControls = ({header, setPagination}) => {
+const TableControls = ({header, setPagination, object}) => {
 
-    const[usersCount, setUsersCount] = useState(0)
+    const[objectCount, setobjectCount] = useState(0)
     const[state, setState] = useState({
         //FIXME pagination drops sortBy param here
         filter: "", pageNum: 1, pageSize: 5,  sortOrder: "ASC"
     })
 
-    useEffect(() => getUsersCount(), [])
+    useEffect(() => getObjectCount(), [])
 
     function handleChange(event) {
         const value = event.target.value;
@@ -25,22 +25,24 @@ const TableControls = ({header, setPagination}) => {
             ...state,
             [event.target.name]: value
         });
+
+        console.log(state)
     }
 
 
-    const getUsersCount = async () => {
-        const response = await axios.get("http://localhost:8080/api/values/user/count")
+    const getObjectCount = async () => {
+        const response = await axios.get(`http://localhost:8080/api/values/${object}/count`)
         const { data } = await response;
-        setUsersCount(data);
+        setobjectCount(data);
     }
 
     const renderPageNumControls = () => {
 
         var pageS = [];
         var i = 0;
-        var max = usersCount / state.pageSize ;
+        var max = objectCount / state.pageSize ;
 
-        if(usersCount!=0){
+        if(objectCount!=0){
             for(i = 0; i <= max; i++){
                 pageS.push(i+1)
             }
@@ -63,9 +65,9 @@ const TableControls = ({header, setPagination}) => {
         var pageS = [];
         var i = 0;
 
-        if(usersCount!=0){
+        if(objectCount!=0){
             for(i; i <= 25; i=i+5){
-                if(usersCount>i*(state.pageNum)){
+                if(objectCount>i*(state.pageNum)){
                     pageS.push(i+5)
                 }
             }

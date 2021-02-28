@@ -98,8 +98,6 @@ public class VacationService {
 
         Pageable paging;
 
-        //FIXME Sorting causes problems
-
         if(sortOrder.equals("ASC")){
             paging = PageRequest.of(pageNum, pageSize, Sort.Direction.ASC, sortBy);
         } else {
@@ -111,7 +109,7 @@ public class VacationService {
         if(filter.length()<3){
             pagedResult = vacationRepository.findAll(paging);
         } else {
-            pagedResult = vacationRepository.findById(filter, paging);
+            pagedResult = vacationRepository.findWithFilter(filter, paging);
         }
 
         if(pagedResult.hasContent()) {

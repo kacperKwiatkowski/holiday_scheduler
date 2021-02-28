@@ -2,9 +2,11 @@ package com.github.kacperkwiatkowski.holidayscheduler_backend.service;
 
 import com.github.kacperkwiatkowski.holidayscheduler_backend.dto.TeamDto;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.dto.UserDto;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.dto.VacationDto;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.exceptions.ObjectNotFoundException;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.mappers.TeamMapper;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.model.Team;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.model.Vacation;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.TeamRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -88,6 +90,31 @@ public class TeamService {
             return pagedResult.stream().map(teamMapper::mapToDto).collect(Collectors.toList());
         } else {
             throw new ObjectNotFoundException("SEARCH impossible, no object were found.");
+        }
+    }
+
+    public List<TeamDto> listAll(Integer pageNum, Integer pageSize, String sortBy, String sortOrder, String filter) {
+
+        Pageable paging;
+
+        if(sortOrder.equals("ASC")){
+            paging = PageRequest.of(pageNum, pageSize, Sort.Direction.ASC, sortBy);
+        } else {
+            paging = PageRequest.of(pageNum, pageSize, Sort.Direction.DESC, sortBy);
+        }
+
+        Page<Team> pagedResult;
+
+        if(filter.length()<3){
+            pagedResult = teamRepository.findAll(paging);
+        } else {
+            pagedResult = teamRepository.findWithFilter(filter, paging);
+        }
+
+        if(pagedResult.hasContent()) {
+            return pagedResult.stream().map(teamMapper::mapToDto).collect(Collectors.toList());
+        } else {
+            throw new ObjectNotFoundException("Pagination impossible");
         }
     }
 }

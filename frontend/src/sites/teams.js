@@ -36,6 +36,7 @@ const Teams = () => {
             <TableControls 
                 header = {"Teams"}
                 setPagination={setPagination}
+                object={"teams"}
             />
             <Table 
                 data = {team}

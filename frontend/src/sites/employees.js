@@ -25,23 +25,13 @@ const Employees = () => {
         dispatch(fetchObjects({object: "user", pagination}))
     }, [pagination])
 
-    const distinguishAction = () => {
-        console.log("DIS")
-        if(modalData.action==='UPDATE'){
-            return <UpdateUser entity={modalData.data}/>
-        } else {
-            return <DeleteUser entity={modalData.data}/>
-        }
-    }
-
-    console.log()
-
     return (
         <div>
             <Headerbar /> 
             <TableControls 
                 header = {"Employees"} 
                 setPagination={setPagination}
+                object={"user"}
             />
             <Table 
                 data = {users}

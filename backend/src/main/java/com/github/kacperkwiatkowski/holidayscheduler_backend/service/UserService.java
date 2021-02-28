@@ -120,7 +120,7 @@ public class UserService {
         if(filter.length()<3){
             pagedResult = userRepository.findAll(paging);
         } else {
-            pagedResult = userRepository.findByLastName(filter, paging);
+            pagedResult = userRepository.findWithFilter(filter, paging);
         }
 
         if(pagedResult.hasContent()) {
