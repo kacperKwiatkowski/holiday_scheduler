@@ -5,5 +5,6 @@ frontend/node_modules
 
 backend/backend.iml
 backend/target
+backend/src/main/resources/awsKeys.properties
 
 frontend/node_modules

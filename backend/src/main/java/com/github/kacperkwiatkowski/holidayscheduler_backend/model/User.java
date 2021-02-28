@@ -14,7 +14,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "users")
 public class User implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,6 +48,8 @@ public class User implements Serializable{
     @ManyToOne(cascade = CascadeType.MERGE,
             fetch = FetchType.EAGER)
     private Team team;
+
+    private String imageUrl;
 
     public User(String email, String password, String firstName, String lastName, RoleType roleType, int daysOffLeft) {
         this.email = email;

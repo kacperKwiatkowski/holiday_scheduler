@@ -22,7 +22,7 @@ public class Team {
     private String name;
 
     @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "teamSquad", joinColumns = @JoinColumn(name = "teamId"))
+    @CollectionTable(name = "TeamSquad", joinColumns = @JoinColumn(name = "teamId"))
     private List<Integer> teamSquad;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
