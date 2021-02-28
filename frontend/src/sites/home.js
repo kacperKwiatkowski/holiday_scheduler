@@ -10,6 +10,7 @@ const Home = () => {
     const dispatch = useDispatch();
     const records = useSelector((state) => state.recordReducer)
     const [calendarPagination, setCalendarPagination] = useState({       
+        filter: "",
         pageNum: 1,
         pageSize: 5,
         sortBy: "lastName",

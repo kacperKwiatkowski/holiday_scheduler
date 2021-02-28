@@ -3,8 +3,11 @@ import Axios from "axios";
 import interceptor from "../interceptor/interceptor"
 
 export const fetchCalendar = (pagination) => async dispatch => {
+
+    console.log(pagination)
     const response = await Axios.get("http://localhost:8080/calendar/page", {
         params:{
+            filter: pagination.filter, 
             pageNum: pagination.pageNum - 1,
             pageSize: pagination.pageSize,
             sortBy: pagination.sortBy,

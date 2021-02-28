@@ -6,6 +6,7 @@ const CalendarControls = ({header, setPagination}) => {
 
     const[usersCount, setUsersCount] = useState(0)
     const[state, setState] = useState({
+        filter: "",
         pageNum: 1,
         pageSize: 5,
         sortBy: "lastName",

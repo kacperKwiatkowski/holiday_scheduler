@@ -25,8 +25,6 @@ const TableControls = ({header, setPagination, object}) => {
             ...state,
             [event.target.name]: value
         });
-
-        console.log(state)
     }
 
 
