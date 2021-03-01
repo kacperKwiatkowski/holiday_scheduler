@@ -2,9 +2,9 @@ import React, {useState, useEffect} from "react";
 import { useDispatch, useSelector} from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { fetchLoggedUser } from '../actions/fetchLoggedUser'
+import Dropzone from './dropzone';
 
-import Logo from './Logo.png';
+import { fetchLoggedUser } from '../actions/fetchLoggedUser'
 
 const Headerbar = () => {
 
@@ -82,7 +82,8 @@ const Headerbar = () => {
                         <tbody>
                             <tr>
                                 <td rowspan="6">
-                                    <img src={Logo} />
+                                    <Dropzone loggedUser={loggedUser}/>
+
                                 </td>
                                 <td>FIRST NAME: {loggedUser.firstName}</td>
                             </tr>

@@ -6,6 +6,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Optional;
 
 @Data
 @Builder
@@ -58,5 +59,9 @@ public class User implements Serializable{
         this.lastName = lastName;
         this.roleType = roleType;
         this.daysOffLeft = daysOffLeft;
+    }
+
+    public Optional<String> getUserOptionalOfUserImageUrl() {
+        return Optional.ofNullable(imageUrl);
     }
 }

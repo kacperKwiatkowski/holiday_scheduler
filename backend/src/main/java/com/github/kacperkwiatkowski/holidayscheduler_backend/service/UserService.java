@@ -1,7 +1,9 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.service;
 
+import com.github.kacperkwiatkowski.holidayscheduler_backend.buckets.BucketName;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.dto.UserDto;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.exceptions.ObjectNotFoundException;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.filestore.FileStore;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.mappers.UserMapper;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.model.User;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.UserRepository;
@@ -11,11 +13,13 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.io.IOException;
+import java.util.*;
 import java.util.stream.Collectors;
+
+import static org.apache.http.entity.ContentType.*;
 
 @Slf4j
 @Service
@@ -24,7 +28,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
 
-    public UserService(UserRepository userRepository, UserMapper userMapper) {
+    public UserService(UserRepository userRepository, UserMapper userMapper, FileStore fileStore) {
         this.userRepository = userRepository;
         this.userMapper = userMapper;
     }
@@ -129,4 +133,6 @@ public class UserService {
             throw new ObjectNotFoundException("Pagination impossible");
         }
     }
+
+
 }
