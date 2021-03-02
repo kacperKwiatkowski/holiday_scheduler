@@ -1,0 +1,47 @@
+.cards-wrapper{
+
+    display:flex;
+    align-items: center;
+
+    
+}
+
+.card-wrapper{
+    width: 250px;
+    height: 200px;
+    padding: 50px;
+    margin: 50px;
+
+    box-shadow: 8px 8px 5px -10px $decorationsBlue;
+
+    transition: all 0.3s;
+
+    &:hover{
+
+        box-shadow: 4px 4px 5px 0px $decorationsBlue;
+    
+        transition: all 0.3s;
+    }
+}
+
+.card-image{
+    width: 150px;
+    height: 150px;
+
+    margin: auto;
+    padding: auto;
+
+    display: flex;
+    align-items: center;
+
+}
+
+
+.card-text{
+    padding-inline-start: 0 !important;
+
+    list-style: none;
+    text-align: center;
+
+
+}

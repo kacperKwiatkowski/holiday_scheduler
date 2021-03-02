@@ -1,6 +1,7 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.controllers;
 
 import com.github.kacperkwiatkowski.holidayscheduler_backend.dto.TeamDto;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.dto.UserDto;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.exceptions.ObjectNotFoundException;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.model.Team;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.TeamRepository;
@@ -44,11 +45,30 @@ public class TeamController {
     }
 
     @GetMapping (path = "/read/{id}")
+    @PreAuthorize("hasAuthority('team:read')")
     @ResponseStatus (HttpStatus.OK)
     ResponseEntity<TeamDto> readTeam (@PathVariable int id) {
         log.info("Controller 'createTeam' initiated.");
         return ResponseEntity.ok(teamService.readTeam(id));
     }
+
+    @GetMapping (path = "/read/squad/{id}")
+    @PreAuthorize("hasAuthority('team:read')")
+    @ResponseStatus (HttpStatus.OK)
+    ResponseEntity<List<UserDto>> readTeamSquad (@PathVariable int id) {
+        log.info("Controller 'createTeam' initiated.");
+        return ResponseEntity.ok(teamService.readTeamMembers(id));
+    }
+
+
+    @GetMapping (path = "/read")
+    @PreAuthorize("hasAuthority('team:read')")
+    @ResponseStatus (HttpStatus.OK)
+    ResponseEntity<List<TeamDto>> readEachTeam () {
+        log.info("Controller 'readEachTeam' initiated.");
+        return ResponseEntity.ok(teamService.readEachTeam());
+    }
+
 
     @PatchMapping(path = "/update")
     @PreAuthorize("hasAuthority('team:update')")

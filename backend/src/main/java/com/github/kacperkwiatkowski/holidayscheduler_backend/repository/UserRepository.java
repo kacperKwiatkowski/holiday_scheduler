@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
 
@@ -17,6 +19,10 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     void deleteById(int id);
 
     User findFirstByEmail(String email);
+
+
+    @Query("SELECT u FROM User u WHERE u.id IN :ids")
+    List<User> findUsersWithIds(List<Integer> ids);
 
     @Query("SELECT u FROM User u WHERE u.firstName LIKE %?1%"
             + " OR u.lastName LIKE %?1%")

@@ -4,7 +4,8 @@ import actionReducer from './actionReducer'
 import recordReducer from './recordReducer'
 import loggedUserReducer from "./loggedUserReducer";
 import nationalHolidaysReducer from "./nationalHolidaysReducer";
-import loggedUserImageReducer from "./loggedUserImageReducer"
+import teamsReducer from "./teamsReducer"
+import teamReducer from "./teamReducer"
 
 export default combineReducers({
     objectReducer,
@@ -12,5 +13,6 @@ export default combineReducers({
     recordReducer,
     loggedUserReducer,
     nationalHolidaysReducer,
-    loggedUserImageReducer
+    teamsReducer,
+    teamReducer
 })
