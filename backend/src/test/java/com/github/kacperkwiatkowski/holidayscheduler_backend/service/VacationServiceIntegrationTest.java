@@ -64,7 +64,7 @@ class VacationServiceIntegrationTest {
         //given
         vacationMapper = new VacationMapper(vacationRepository, userRepository);
 
-        User user = userRepository.save(new User("test@gmail.com", "1234", "Test", "Test", RoleType.ADMIN, 26));
+        User user = userRepository.save(new User("test@gmail.com", "1234", "Test", "Test", RoleType.ADMIN, 26, "Test"));
 
         VacationDto vacationDto = VacationDto
                 .builder()
@@ -92,7 +92,7 @@ class VacationServiceIntegrationTest {
         //given
         vacationMapper = new VacationMapper(vacationRepository, userRepository);
 
-        User user = userRepository.save(new User("test@gmail.com", "1234", "Test", "Test", RoleType.ADMIN, 26));
+        User user = userRepository.save(new User("test@gmail.com", "1234", "Test", "Test", RoleType.ADMIN, 26, "Test"));
 
         VacationDto vacationDto = VacationDto
                 .builder()

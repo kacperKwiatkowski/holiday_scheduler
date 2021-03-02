@@ -5,8 +5,6 @@ import { useDispatch} from 'react-redux';
 import Axios from "axios";
 import interceptor from "../interceptor/interceptor"
 
-import { fetchLoggedUser } from '../actions/fetchLoggedUser'
-
 const Login = () => {
 
     const dispatch = useDispatch();

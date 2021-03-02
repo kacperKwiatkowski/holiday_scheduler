@@ -45,7 +45,7 @@ const Table = (props) => {
         return (
         <tr>
             {Object.entries(object).map(([key, value]) => {
-                if(!key.toLowerCase().includes('id')){
+                if(value !== null && !key.toLowerCase().includes('id')){
                     return (
                         <td key={key}>
                         {value.toString()}
@@ -55,7 +55,7 @@ const Table = (props) => {
             })}
 
             <td className="actionButtonsWrapper">
-                <button className="editButton" onClick={() => props.setModalData({active: false, data: object, action: "UPDATE"})}><FaPen className="editButtonIcon"/></button>
+                <button className="editButton" onClick={() => props.setModalData({active: false, data: object, action: "UPDATE"})}><FaPen className="dropActiveButtonIcon"/></button>
                 <button className="deleteButton" onClick={() => props.setModalData({active: false, data: object, action: "DELETE"})}><FaTimes className="deleteButtonIcon"/></button>
             </td>
         </tr>

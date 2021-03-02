@@ -3,6 +3,7 @@ package com.github.kacperkwiatkowski.holidayscheduler_backend.controllers;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.service.ImageService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -30,8 +31,8 @@ public class ImageController {
     }
 
     @GetMapping( "/{id}/image/download")
-    public void downloadUserImage(
+    public ResponseEntity<byte[]>  downloadUserImage(
             @PathVariable("id") int id) {
-        imageService.downloadUserImage(id);
+        return ResponseEntity.ok(imageService.downloadUserImage(id));
     }
 }

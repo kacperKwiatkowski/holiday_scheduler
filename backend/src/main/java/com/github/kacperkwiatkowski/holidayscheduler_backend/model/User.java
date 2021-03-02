@@ -52,13 +52,14 @@ public class User implements Serializable{
 
     private String imageUrl;
 
-    public User(String email, String password, String firstName, String lastName, RoleType roleType, int daysOffLeft) {
+    public User(String email, String password, String firstName, String lastName, RoleType roleType, int daysOffLeft, String imageUrl) {
         this.email = email;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.roleType = roleType;
         this.daysOffLeft = daysOffLeft;
+        this.imageUrl = imageUrl;
     }
 
     public Optional<String> getUserOptionalOfUserImageUrl() {

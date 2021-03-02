@@ -3,20 +3,20 @@ import React, {useCallback} from 'react'
 import { useSelector} from 'react-redux'
 import {useDropzone} from 'react-dropzone'
 import interceptor from "../interceptor/interceptor"
+import { FaAngleDown, FaAngleDoubleDown } from "react-icons/fa";
 
 
-const Dropzone = () => {
-    
-    var loggedUser = useSelector((state) => state.loggedUserReducer)
-  
+const Dropzone = ({id}) => {
+
     const onDrop = useCallback(acceptedFiles => {
+
       const file = acceptedFiles[0]
-      console.log(file)
 
       const formData = new FormData();
       formData.append("file", file)
+    
       
-      Axios.post(`http://localhost:8080/api/images/${loggedUser.id}/image/upload`, formData, 
+      Axios.post(`http://localhost:8080/api/images/${id}/image/upload`, formData, 
       {
         headers: {
             "Content-Type": "multipart/form-data"
@@ -24,23 +24,20 @@ const Dropzone = () => {
       }
     ).then(() => console.log("File uploaded succesfuly"))
     .catch(err => console.log(err))
-  }, [])
+  }, [id])
+
   const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
 
   return (
-    <div {...getRootProps()}>
-      <input {...getInputProps()} />
+    <div className="profile-dropDown-image-wrapper" {...getRootProps()}>
+      <input className="profile-dropDown-image-drag" {...getInputProps()} />
       {
         isDragActive ?
-          <p>Drop the image here</p> :
-          <p>Drag 'n' drop some files here, or click to select files</p>
+        <FaAngleDoubleDown className="dropIcon"/> :
+        <FaAngleDown className="dropIcon"/>
       }
       {
-          loggedUser.id + " " + loggedUser.imageUrl
-      }
-      {
-          loggedUser.imageUrl ? <img src={`http://localhost:8080/api/images/${loggedUser.id}/image/download`}/> : ''
-      }
+          <img className="profile-dropDown-image" src={`http://localhost:8080/api/images/${id}/image/download`} alt={""}/>      }
     </div>
   )
 }

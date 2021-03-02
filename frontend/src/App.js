@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import store from "./store/store";
 import Home from "./sites/home"
 import Employees from "./sites/employees"
+import Team from "./sites/team"
 import Teams from "./sites/teams"
 import Vacations from "./sites/vacations"
 import Settings from "./sites/settings"
@@ -17,6 +18,7 @@ const App = () => {
                 <Route exact path={'/'} component={Welcome}/>
                 <Route path={`/home`} component={Home}/>
                 <Route path={`/employees`} component={Employees} />
+                <Route path={`/team`} component={Team}/>
                 <Route path={`/teams`} component={Teams}/>
                 <Route path={`/vacations`} component={Vacations}/>
                 <Route path={`/settings`} component={Settings}/>

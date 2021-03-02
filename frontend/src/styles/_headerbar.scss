@@ -153,7 +153,7 @@ a:hover{
 
 .profile-dropDown-table{
     height: 300px;
-
+    margin-top: 50px !important;
     color:white;
 }
 
@@ -181,4 +181,50 @@ a:hover{
     &:hover{
         border-bottom: 4px solid white;
     }
+}
+
+.profile-dropDown-image-wrapper{
+
+    width: 200px;
+    height: 200px;
+
+    outline: none;
+    position: relative;
+
+    transition: ease-in 0.3s;
+
+    &:hover{
+
+        transition: ease-in 0.3s;
+        opacity: 0.7;
+        
+    }
+}
+
+.profile-dropDown-image-drag{
+    width: 50px;
+    height: 50px;  
+    position: absolute;
+    border: none;
+    outline: none;
+}
+
+.profile-dropDown-image{
+    max-width: 200px;
+    max-height: 200px;
+    border-radius: 10px;
+    border: 3px solid white;
+      
+    position: absolute;
+
+
+}
+
+.dropIcon{
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    z-index: 10;
+    color: white;
+    padding: 5px;
 }

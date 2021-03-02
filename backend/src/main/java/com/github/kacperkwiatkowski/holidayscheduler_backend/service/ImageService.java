@@ -54,14 +54,25 @@ public class ImageService {
                 BucketName.USER_IMAGE.getBucketName(),
                 user.getId());
 
+        String defaultPath = String.format("%s/%s",
+                BucketName.USER_IMAGE.getBucketName(),
+                "default");
+
+        if(user.getUserOptionalOfUserImageUrl().isPresent()){
+
+        }
+
         return user.getUserOptionalOfUserImageUrl()
-                .map(key -> fileStore.download(path, key))
-                .orElse(new byte[0]);
+                .map(key ->
+                        fileStore.download(path, key))
+                .orElse(
+                        fileStore.download(defaultPath, "default.jpg"));
+
     }
 
     private void uploadImage(MultipartFile file, Map<String, String> metadata, User user) {
         String path = String.format("%s/%s", BucketName.USER_IMAGE.getBucketName(), user.getId());
-        String filename = String.format("%s-%s", file.getOriginalFilename(), UUID.randomUUID());
+        String filename = String.format("%s-%s", "profile", "image");
         user.setImageUrl(filename);
         userRepository.save(user);
         try {
