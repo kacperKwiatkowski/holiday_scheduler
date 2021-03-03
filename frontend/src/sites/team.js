@@ -3,8 +3,9 @@ import { useDispatch, useSelector} from 'react-redux';
 import { fetchEachTeam } from '../actions/fetchEachTeam'
 
 import Headerbar from "../componenets/headerbar"
-import TableControls from "../componenets/tableControls"
-import TeamSelector from "../componenets/teamSelector";
+import Pagination from "../componenets/pagination"
+import TeamSelector from "../selectors/teamSelector";
+import TeamContent from "../componenets/teamContent";
 import Modal from "../componenets/modal";
 
 import UpdateTeam from "../forms/updateTeam"
@@ -13,8 +14,8 @@ import DeleteTeam from "../forms/deleteTeam";
 const Teams = () => {
 
     const dispatch = useDispatch();
-    const teams = useSelector((state) => state.teamsReducer)
     const[pagination, setPagination] = useState({
+        selectedTeam: 1
     })
     const [modalData, setModalData] = useState({active: true, data: "", action: ""});
 
@@ -22,19 +23,21 @@ const Teams = () => {
         dispatch(fetchEachTeam())
     }, [pagination])
 
-
-    console.log(teams)
+    console.log(pagination)
     
     return (
         <div>
 
             <Headerbar /> 
-            <TableControls 
+            <Pagination 
                 header = {"Team"}
+                pagination={pagination}
                 setPagination={setPagination}
+                teamSelector={<TeamSelector setPagination={setPagination} />}
                 object={"team"}
             />
-            <TeamSelector teams={teams}/>
+            {pagination.selectedTeam === null ? "Sorry" : <TeamContent pagination={pagination}/>}
+
             <Modal 
                 modalHeader={`${modalData.action} TEAM`}
                 modalContent={modalData.action === 'UPDATE' ? <UpdateTeam entity={modalData.data}/> : <DeleteTeam entity={modalData.data}/>}
