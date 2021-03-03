@@ -160,16 +160,25 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  position: relative;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0%);
+          transform: translate(-50%, 0%);
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 
 .card-wrapper {
-  width: 250px;
+  width: 400px;
   height: 200px;
-  padding: 50px;
-  margin: 50px;
+  padding: 10px;
+  margin: 10px;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-shadow: 8px 8px 5px -10px #006FFF;
           box-shadow: 8px 8px 5px -10px #006FFF;
   -webkit-transition: all 0.3s;
@@ -187,13 +196,14 @@
   width: 150px;
   height: 150px;
   margin: auto;
-  padding: auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+}
+
+.card-content {
+  margin: auto;
+  padding: auto;
 }
 
 .card-text {
@@ -201,6 +211,39 @@
           padding-inline-start: 0 !important;
   list-style: none;
   text-align: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.card-text-elements {
+  padding: 5px;
+}
+
+.card-buttons-wrapper {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: auto;
+}
+
+.card-member-remove-button {
+  width: 80px;
+  height: 20px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: #006FFF;
+  border-bottom: 2px solid transparent;
+}
+
+.card-member-remove-button:hover {
+  border-bottom: 2px solid #006FFF;
 }
 
 table {
@@ -448,8 +491,29 @@ table.calendarTable td {
   transition: all 0.2s ease-in-out;
 }
 
+.service-form-wrapper {
+  padding-top: 15px;
+}
+
 .formFieldsWrapper {
   padding: 15px;
+}
+
+.email-form-boundaries {
+  max-width: 500px;
+}
+
+.form-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: large;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: white;
+  margin: auto;
+  padding: auto;
 }
 
 .formLabel {
@@ -482,6 +546,28 @@ table.calendarTable td {
 
 .formTextDeleteInput:hover {
   border-bottom: 1px solid #be0013;
+}
+
+.formTextRemoveInput:hover {
+  border-bottom: 1px solid #006FFF;
+}
+
+.profile-form-service-label {
+  font-size: small;
+  color: white;
+  margin-left: 10px;
+}
+
+.formTextServiceInput {
+  max-width: 30vw;
+  width: 100em;
+  max-height: 15vh;
+  background-color: white;
+  margin: 0px 0px 10px 0px;
+}
+
+.formTextServiceInput:hover {
+  border-bottom: 1px solid #006FFF;
 }
 
 .formFieldWrapper {
@@ -537,6 +623,24 @@ table.calendarTable td {
 
 .formDeleteButton:hover {
   border-bottom: 2px solid #be0013;
+}
+
+.formRemoveButton {
+  color: #006FFF;
+  border-bottom: 2px solid transparent;
+}
+
+.formRemoveButton:hover {
+  border-bottom: 2px solid #006FFF;
+}
+
+.formServiceButton {
+  color: white;
+  border-bottom: 2px solid transparent;
+}
+
+.formServiceButton:hover {
+  border-bottom: 2px solid white;
 }
 
 .tables {
@@ -635,6 +739,10 @@ table.calendarTable td {
 
 .tablesFieldInput:disabled {
   border-bottom: 1px solid #646464;
+}
+
+.team-header {
+  font-size: small;
 }
 
 .headerbarWrapper {
@@ -784,7 +892,7 @@ a:hover {
 }
 
 .profile-dropDown {
-  height: 400px;
+  height: 200px;
   width: 100%;
   background-color: royalblue;
   -webkit-box-shadow: 0px 20px 20px -17px #006FFF;
@@ -802,51 +910,60 @@ a:hover {
           justify-content: space-between;
 }
 
+.profile-dropDown-service-form {
+  margin: auto;
+  outline: none;
+  border: none;
+}
+
 .profile-dropDown-visable {
   -webkit-transition: all 0.6s;
   transition: all 0.6s;
+  top: 60px;
 }
 
 .profile-dropDown-hidden {
   -webkit-transform: translateY(-100vh);
           transform: translateY(-100vh);
-  -webkit-transition: all 0.6s;
-  transition: all 0.6s;
+  -webkit-transition: all 1.0s;
+  transition: all 1.0s;
 }
 
 .profile-dropDown-table {
-  height: 300px;
-  margin-top: 50px !important;
+  height: 150px;
+  margin: auto 0 auto 0;
   color: white;
 }
 
 .profile-dropDown-buttons-wrapper {
-  height: 300px;
+  height: 150px;
   color: white;
-  padding-right: 150px;
+  margin: auto 0 auto 0;
+  padding-right: 50px;
 }
 
 .profile-dropDown-table td {
   padding-left: 50px;
+  font-size: small;
 }
 
 .profile-dropDown-button {
-  width: 300px;
-  font-size: x-large;
+  width: 200px;
+  font-size: large;
   background-color: transparent;
   color: white;
   border: none;
   outline: none;
-  border-bottom: 4px solid transparent;
+  border-bottom: 3px solid transparent;
 }
 
 .profile-dropDown-button:hover {
-  border-bottom: 4px solid white;
+  border-bottom: 3px solid white;
 }
 
 .profile-dropDown-image-wrapper {
-  width: 200px;
-  height: 200px;
+  width: 160px;
+  height: 160px;
   outline: none;
   position: relative;
   -webkit-transition: ease-in 0.3s;
@@ -868,8 +985,8 @@ a:hover {
 }
 
 .profile-dropDown-image {
-  max-width: 200px;
-  max-height: 200px;
+  max-width: 150px;
+  max-height: 150px;
   border-radius: 10px;
   border: 3px solid white;
   position: absolute;
@@ -1102,7 +1219,7 @@ a:hover {
   border: none;
   background-color: rgba(114, 114, 114, 0.3);
   position: fixed;
-  z-index: 4;
+  z-index: 10;
 }
 
 .modalWrapper {
@@ -1117,7 +1234,7 @@ a:hover {
   margin: auto;
   font-size: xx-large;
   background-color: #ffffff;
-  z-index: 3;
+  z-index: 10;
 }
 
 .modalHiddenPosition {

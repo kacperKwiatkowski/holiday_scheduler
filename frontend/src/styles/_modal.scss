@@ -13,7 +13,7 @@
     background-color: rgba(114, 114, 114, 0.3);
     position: fixed;
 
-    z-index: 4;
+    z-index: 10;
 }
 
 .modalWrapper{
@@ -26,7 +26,7 @@
     font-size: xx-large;
     background-color: $backgroundWhite;
 
-    z-index: 3;
+    z-index: 10;
 }
 
 .modalHiddenPosition{

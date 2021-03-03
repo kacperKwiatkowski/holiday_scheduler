@@ -13,10 +13,13 @@ import DeleteTeam from "../forms/deleteTeam";
 
 const Teams = () => {
 
+    const teams = useSelector((state) => state.teamsReducer)
+
     const dispatch = useDispatch();
     const[pagination, setPagination] = useState({
-        selectedTeam: 1
+        selectedTeam: null
     })
+
     const [modalData, setModalData] = useState({active: true, data: "", action: ""});
 
     useEffect(() => {
@@ -36,11 +39,12 @@ const Teams = () => {
                 teamSelector={<TeamSelector setPagination={setPagination} />}
                 object={"team"}
             />
-            {pagination.selectedTeam === null ? "Sorry" : <TeamContent pagination={pagination}/>}
+            {pagination.selectedTeam === null ? "Select a team" : 
+                <TeamContent pagination={pagination} setModalData={setModalData}  />}
 
             <Modal 
-                modalHeader={`${modalData.action} TEAM`}
-                modalContent={modalData.action === 'UPDATE' ? <UpdateTeam entity={modalData.data}/> : <DeleteTeam entity={modalData.data}/>}
+                modalHeader={`REMOVE FROM TEAM`}
+                modalContent={modalData.action}
                 modalData={modalData}
                 setModalData={setModalData}  
             />

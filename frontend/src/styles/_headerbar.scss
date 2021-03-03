@@ -129,7 +129,7 @@ a:hover{
 }
 
 .profile-dropDown{
-    height: 400px;
+    height: 200px;
     width: 100%;
     background-color:royalblue;
     box-shadow: 0px 20px 20px -17px $decorationsBlue;
@@ -142,51 +142,60 @@ a:hover{
 
 }
 
+.profile-dropDown-service-form{
+    margin: auto;
+    outline: none;
+    border: none;
+}
+
 .profile-dropDown-visable{
     transition: all 0.6s;
+    top: 60px;
 }
 
 .profile-dropDown-hidden{
     transform: translateY(-100vh);
-    transition: all 0.6s;
+    transition: all 1.0s;
 }
 
 .profile-dropDown-table{
-    height: 300px;
-    margin-top: 50px !important;
+    height: 150px;
+    margin: auto 0 auto 0;
     color:white;
 }
 
 .profile-dropDown-buttons-wrapper{
-    height: 300px;
+    height: 150px;
 
     color:white;
-    padding-right: 150px;
+    margin: auto 0 auto 0;
+    padding-right: 50px;
 }
 
 
 .profile-dropDown-table td{
     padding-left: 50px;
+    font-size: small;
 }
 
 .profile-dropDown-button{
-    width: 300px;
-    font-size: x-large;
+    width: 200px;
+    font-size: large;
     background-color: transparent;
     color: white;
     border: none;
     outline: none;
-    border-bottom: 4px solid transparent;
+    border-bottom: 3px solid transparent;
 
     &:hover{
-        border-bottom: 4px solid white;
+        border-bottom: 3px solid white;
     }
 }
 
 .profile-dropDown-image-wrapper{
 
-    width: 200px;
-    height: 200px;
+    width: 160px;
+    height: 160px;
 
     outline: none;
     position: relative;
@@ -210,8 +219,8 @@ a:hover{
 }
 
 .profile-dropDown-image{
-    max-width: 200px;
-    max-height: 200px;
+    max-width: 150px;
+    max-height: 150px;
     border-radius: 10px;
     border: 3px solid white;
       

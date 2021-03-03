@@ -41,8 +41,6 @@ const CalendarControls = ({header, setPagination}) => {
         var pageS = [];
         var i = 0;
         var max = usersCount / state.pageSize ;
-        
-        console.log(usersCount)
 
         if(usersCount!=0){
             for(i = 0; i <= max; i++){

@@ -118,4 +118,10 @@ public class TeamService {
             throw new ObjectNotFoundException("Pagination impossible");
         }
     }
+
+    @Transactional
+    public UserDto removeFromTeam(int id){
+        //TODO apply bussiness logic
+        return null;
+    }
 }

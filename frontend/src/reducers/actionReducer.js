@@ -6,6 +6,8 @@ const ActionReducer = (state = initialState, action) => {
             return action.payload;
         case "DELETE_OBJECT":
             return action.payload;
+        case "REMOVE_OBJECT":
+            return action.payload;
         default:
             return state;
     }

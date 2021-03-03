@@ -38,7 +38,6 @@ const Calendar = ({records, calendarPagination}) => {
         const dates = []
         let i;
         let monthLength = daysInMonth(currentMonth, currentYear)
-        console.log(monthLength)
     
         for(i = 1; i <= monthLength; i++){
             let currentDay = returnDayFormat(i);
@@ -51,7 +50,6 @@ const Calendar = ({records, calendarPagination}) => {
             )
         }
 
-        console.log(dates)
         return dates;
     }
 

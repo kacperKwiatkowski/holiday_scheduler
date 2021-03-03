@@ -38,14 +38,6 @@ public class ValuesController {
         return ResponseEntity.ok(teamRepository.count());
     }
 
-
-    @GetMapping("/teams/list/id")
-    @ResponseStatus(HttpStatus.OK)
-    ResponseEntity<Long> teamsListOfIds(){
-        log.info("Controller 'teamsListOfIds' initiated.");
-        return ResponseEntity.ok(teamRepository.count());
-    }
-
     @GetMapping("/vacation/count")
     @ResponseStatus(HttpStatus.OK)
     ResponseEntity<Long> vacationCount(){

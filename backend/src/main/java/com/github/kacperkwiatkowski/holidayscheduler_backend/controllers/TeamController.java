@@ -97,4 +97,12 @@ public class TeamController {
         logger.info("Pagination successful");
         return new ResponseEntity<List<TeamDto>>(teamService.listAll(pageNo, pageSize, sortBy, sortOrder, filter), new HttpHeaders(), HttpStatus.OK);
     }
+
+    @PostMapping(path = "/member/remove/{id}")
+    @PreAuthorize("hasAuthority('team:update')")
+    public ResponseEntity<UserDto> removeFromTeam(
+            @PathVariable Integer id
+    ){
+        return ResponseEntity.ok(teamService.removeFromTeam(id));
+    }
 }

@@ -1,5 +1,5 @@
 
-import React, {useState} from "react";
+import React, {useEffect} from "react";
 
 import {useSelector} from 'react-redux';
 
@@ -8,6 +8,7 @@ const TeamSelector = ({pagination, setPagination}) => {
 
 
     const teams = useSelector((state) => state.teamsReducer)
+
 
     function handleChange(event) {
         const value = event.target.value;
@@ -23,7 +24,7 @@ const TeamSelector = ({pagination, setPagination}) => {
                 name="selectedTeam" 
                 className="controlsElements"
                 onChange={handleChange}
-            >
+        >
                 {
                     teams.map((team) => {return(<option value={team.id}>{team.name}</option>)})
                 }

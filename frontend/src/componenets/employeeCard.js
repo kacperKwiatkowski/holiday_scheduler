@@ -1,16 +1,25 @@
-const EmployeeCard = ({member}) => {
+
+import RemoveFromTeam from "../forms/removeFromTeam";
+import { FaPen, FaTimes } from "react-icons/fa";
+
+const EmployeeCard = ({member, setModalData}) => {
 
     return(
 
         <div className="card-wrapper">
             <img className="card-image" src={`http://localhost:8080/api/images/${member.id}/image/download`} alt={""}/> 
-            <ul className="card-text">
-                <li>{member.firstName}</li>
+            <div className="card-content">
+                <ul className="card-text">
+                    <li className="card-text-elements">{member.firstName}</li>
 
-                <li>{member.lastName}</li>
+                    <li className="card-text-elements">{member.lastName}</li>
 
-                <li>{member.email}</li>
-            </ul>
+                    <li className="card-text-elements">{member.email}</li>
+                </ul>
+                <div className="card-buttons-wrapper">
+                    <button className="card-member-remove-button" onClick={() => setModalData({active: false, data: "REMOVE", action: <RemoveFromTeam entity={member}/>})}>REMOVE</button>
+                </div>
+            </div>
         </div>
     )
 }

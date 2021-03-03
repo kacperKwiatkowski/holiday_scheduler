@@ -5,9 +5,7 @@ import { fetchTeam } from '../actions/fetchTeam'
 import interceptor from "../interceptor/interceptor"
 import Card from "./employeeCard";
 
-const TeamContent = ({pagination}) => { 
-
-    console.log(pagination.selectedTeam)
+const TeamContent = ({pagination, setModalData}) => { 
 
     const dispatch = useDispatch();
 
@@ -25,13 +23,15 @@ const TeamContent = ({pagination}) => {
         .catch(err => console.log(err))
     }
 
+    console.log(team)
+
     const renderTeam = () => {
 
 
         return(
             team.map((member) => {
                 return(
-                    <Card member={member} />
+                    <Card member={member} setModalData={setModalData}/>
                 )
             })
         )
@@ -40,12 +40,14 @@ const TeamContent = ({pagination}) => {
     return(
         <table className="tables">
             <thead>
-
+                <div className="team-header">
+                </div>
             </thead>
             <tbody>
-                <div className="cards-wrapper">
-                        {team === (null || undefined) ? "SORRY" : renderTeam()}
-                </div>
+                    <div className="cards-wrapper">
+                            {team === (null || undefined) ? "SORRY" : renderTeam()}
+                    </div>
+
 
 
             </tbody>

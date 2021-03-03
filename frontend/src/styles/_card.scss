@@ -1,16 +1,23 @@
 .cards-wrapper{
 
-    display:flex;
-    align-items: center;
+    display: flex;  
+    flex-wrap: wrap;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    justify-content: space-around;
 
     
 }
 
 .card-wrapper{
-    width: 250px;
+    width: 400px;
     height: 200px;
-    padding: 50px;
-    margin: 50px;
+    padding: 10px;
+    margin: 10px;
+
+    position: relative;
+    display:flex;
 
     box-shadow: 8px 8px 5px -10px $decorationsBlue;
 
@@ -29,11 +36,14 @@
     height: 150px;
 
     margin: auto;
-    padding: auto;
 
     display: flex;
-    align-items: center;
 
+}
+
+.card-content{
+    margin: auto;
+    padding: auto;
 }
 
 
@@ -43,5 +53,34 @@
     list-style: none;
     text-align: center;
 
+    justify-content: space-around;
 
+}
+
+.card-text-elements{
+    padding: 5px;
+}
+
+.card-buttons-wrapper{
+    width: max-content;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+}
+
+.card-member-remove-button{
+    width: 80px;
+    height: 20px;    
+    
+    background-color: transparent;
+    border: none;
+    outline: none;
+
+    color: $decorationsBlue;
+    border-bottom: 2px solid transparent; 
+
+    &:hover{
+
+        border-bottom: 2px solid $decorationsBlue;
+    }
 }

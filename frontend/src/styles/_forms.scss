@@ -1,5 +1,22 @@
+.service-form-wrapper{
+    padding-top: 15px;
+}
+
 .formFieldsWrapper{
     padding:15px;
+}
+
+.email-form-boundaries{
+    max-width: 500px;
+}
+
+.form-header{
+    display: flex;
+    font-size: large;
+    justify-content: center;
+    color: white;
+    margin: auto;
+    padding: auto;
 }
 
 .formLabel{
@@ -38,6 +55,33 @@
 
     &:hover{
         border-bottom: 1px solid $errorRed;
+    }
+}
+
+.formTextRemoveInput{
+
+    &:hover{
+        border-bottom: 1px solid $decorationsBlue;
+    }
+}
+
+.profile-form-service-label{
+    font-size: small;
+    color:white;
+    margin-left: 10px;
+}
+
+.formTextServiceInput{
+
+    max-width: 30vw;
+    width: 100em;
+    max-height: 15vh;
+    background-color: white;
+
+    margin: 0px 0px 10px 0px;
+
+    &:hover{
+        border-bottom: 1px solid $decorationsBlue;
     }
 }
 
@@ -95,5 +139,27 @@
     &:hover{
 
         border-bottom: 2px solid $errorRed;
+    }
+}
+
+.formRemoveButton{
+
+    color: $decorationsBlue;
+    border-bottom: 2px solid transparent; 
+
+    &:hover{
+
+        border-bottom: 2px solid $decorationsBlue;
+    }
+}
+
+.formServiceButton{
+
+    color: white;
+    border-bottom: 2px solid transparent; 
+
+    &:hover{
+
+        border-bottom: 2px solid white;
     }
 }
