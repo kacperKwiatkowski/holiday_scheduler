@@ -1,9 +1,9 @@
 import { Form, Field } from 'react-final-form'
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from "react-router-dom";
-import { postEmail } from '../actions/postEmail'
+import { postVacationRequest } from '../actions/postVacationRequest'
 
-const SendEmail = () => {
+const RequestVacation = () => {
 
     const dispatch = useDispatch();    
     const history = useHistory();
@@ -11,7 +11,16 @@ const SendEmail = () => {
     const {id} = useSelector((state) => state.loggedUserReducer)
 
     const onSubmit = values => {
-      dispatch(postEmail({id: id, data: values}))
+      values.firstDay = parseDateFormatForServer(values.firstDay)
+
+      values.lastDay = parseDateFormatForServer(values.lastDay)
+
+      dispatch(postVacationRequest({id: id, data: values}))
+    }
+
+    const parseDateFormatForServer = (date) => {
+      const parts = date.split("-");
+      return parts[2] + "/" + parts[1] + "/" + parts[0];
     }
 
     return (
@@ -28,38 +37,45 @@ const SendEmail = () => {
             onSubmit={handleSubmit}
           >
             <div className="form-header email-form-boundaries">
-              SEND AN E-MAIL
+              REQUEST VACATION
             </div>
             <div className="formFieldsWrapper">
-              <div className="formFieldWrapper">
-                <label className="formLabel">E-MAIL ADDRESS</label>
+            <div className="formFieldWrapper">
+                <label className="formLabel">FIRST DAY:</label>
                 <Field
-                  name="address"
-
                   className="formTextInput formTextServiceInput" 
+                  name="firstDay"
                   component="input"
+                  type="date"
                 />
-              </div>                   
+              </div>
               <div className="formFieldWrapper">
-
-              <label className="formLabel">TITLE</label>
+                <label className="formLabel">LAST DAY:</label>
                 <Field
-                  name="title"
-
                   className="formTextInput formTextServiceInput" 
+                  name="lastDay"
                   component="input"
+                  type="date"
+                
                 />
-              </div>     
-              
-                <div className="formFieldWrapper">
-              <label className="formLabel">MESSAGE</label>  
-                  <Field
-                    name="content"
+              </div>
+              <div className="formFieldWrapper">
+              <label className="formLabel">Leave Type:</label>
+                <Field
                     className="formTextInput formTextServiceInput" 
-                    component="textarea"
-                  />
-                </div>              
-            </div>
+                    name="leaveType"
+                    component="select"
+                >
+                    <option value="PAYED">PAYED</option>
+                    <option value="UNPAID">UNPAID</option>
+                    <option value="SICK">SICK</option>
+                    <option value="MATERNITY">MATERNITY</option>
+                    <option value="BEREAVEMENT">BEREAVEMENT</option>
+                    <option value="SABBATICAL">SABBATICAL</option>
+                </Field>
+                </div>
+            </div>   
+              
             <div className="formButtonsWrapper">
                 <button
                     className="formButton formServiceButton"
@@ -84,4 +100,4 @@ const SendEmail = () => {
 
 
 }
-export default SendEmail;
+export default RequestVacation;

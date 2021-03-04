@@ -73,9 +73,9 @@
 
 .formTextServiceInput{
 
-    max-width: 30vw;
-    width: 100em;
-    max-height: 15vh;
+    max-width: 600px;
+    width:600px;
+    max-height: 30vh;
     background-color: white;
 
     margin: 0px 0px 10px 0px;
@@ -142,7 +142,7 @@
     }
 }
 
-.formRemoveButton{
+.formServiceButton{
 
     color: $decorationsBlue;
     border-bottom: 2px solid transparent; 
@@ -150,16 +150,5 @@
     &:hover{
 
         border-bottom: 2px solid $decorationsBlue;
-    }
-}
-
-.formServiceButton{
-
-    color: white;
-    border-bottom: 2px solid transparent; 
-
-    &:hover{
-
-        border-bottom: 2px solid white;
     }
 }

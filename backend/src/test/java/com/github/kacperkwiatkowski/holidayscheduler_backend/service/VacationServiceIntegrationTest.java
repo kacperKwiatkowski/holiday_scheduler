@@ -8,7 +8,7 @@ import com.github.kacperkwiatkowski.holidayscheduler_backend.model.Vacation;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.UserRepository;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.VacationRepository;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.utils.enums.VacationType;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.utils.roleConfig.RoleType;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.roles.RoleType;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

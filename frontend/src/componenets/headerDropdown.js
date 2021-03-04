@@ -1,5 +1,8 @@
 import React, {useState} from "react";
 import SendEmail from "../forms/sendEmail";
+import ChangeEmail from "../forms/changeEmail";
+import ChangePassword from "../forms/changePassword";
+import RequestVacation from "../forms/requestVacation";
 import Dropzone from './dropzone';
 import Modal from "../componenets/modal";
 
@@ -8,8 +11,32 @@ const HeaderDropdown = ({dropDownStatus, loggedUser}) => {
 
     const [modalData, setModalData] = useState({active: true, data: "", action: ""});
 
-    const renderModal = () => {
-        setModalData({active: !modalData.active, data: 'SEND_EMAIL', action: <SendEmail />})
+    const renderModal = ({action}) => {
+        console.log(action)
+
+        switch (action) {
+            case 'SEND_EMAIL':
+                setModalData({active: !modalData.active, data: 'SEND_EMAIL', action: <SendEmail />})
+                break;
+
+            case 'CHANGE_EMAIL':
+                
+                setModalData({active: !modalData.active, data: 'CHANGE_EMAIL', action: <ChangeEmail />})
+                break;
+
+            case 'CHANGE_PASSWORD':
+                
+                setModalData({active: !modalData.active, data: 'CHANGE_PASSWORD', action: <ChangePassword />})
+                break;
+
+            case 'REQUEST_VACATION':
+                
+                setModalData({active: !modalData.active, data: 'CHANGE_PASSWORD', action: <RequestVacation />})
+                break;
+        
+            default:
+                break;
+        }
 
     }
 
@@ -23,48 +50,47 @@ const HeaderDropdown = ({dropDownStatus, loggedUser}) => {
                         />
 
                     </td>
-                    <td>FIRST NAME: {loggedUser.firstName}</td>
+                    <td>FIRST NAME: {loggedUser.firstName.toUpperCase()}</td>
                 </tr>
                 <tr>
-                    <td>LAST NAME: {loggedUser.lastName}</td>
+                    <td>LAST NAME: {loggedUser.lastName.toUpperCase()}</td>
                 </tr>
                 <tr>
-                    <td>E:MAIL: {loggedUser.email}</td>
+                    <td>E:MAIL: {loggedUser.email.toUpperCase()}</td>
                     </tr>
                 <tr>
-                    <td>ROLE: {loggedUser.roleType}</td>
+                    <td>ROLE: {loggedUser.roleType.toUpperCase()}</td>
                 </tr>
                 <tr>
                     <td>REMAINING DAYS OFF: {loggedUser.daysOffLeft}</td>
-                    </tr>
-                <tr>
-                    <td>TEAM:  </td>
                 </tr>
             </tbody>
         )
     }
 
     const renderPanel = () => {
+
+        {console.log(loggedUser)}
         return(
             <tbody>
                 <tr>
                     <td>
-                        <button className="profile-dropDown-button" onClick={() => renderModal()}>SEND AN EMAIL</button>
+                        <button className="profile-dropDown-button" onClick={() => renderModal({action: "SEND_EMAIL"})}>SEND AN EMAIL</button>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <button className="profile-dropDown-button">CHANGE EMAIL</button>
+                        <button className="profile-dropDown-button" onClick={() => renderModal({action: "CHANGE_EMAIL"})}>CHANGE EMAIL</button>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <button className="profile-dropDown-button">CHANGE PASSWORD</button>
+                        <button className="profile-dropDown-button" onClick={() => renderModal({action: "CHANGE_PASSWORD"})}>CHANGE PASSWORD</button>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <button className="profile-dropDown-button">REQUEST VACATION</button>
+                        <button className="profile-dropDown-button" onClick={() => renderModal({action: "REQUEST_VACATION"})}>REQUEST VACATION</button>
                     </td>
                 </tr>
             </tbody>
@@ -75,7 +101,7 @@ const HeaderDropdown = ({dropDownStatus, loggedUser}) => {
         <>
             <div className={dropDownStatus ? "profile-dropDown profile-dropDown-visable" : "profile-dropDown profile-dropDown-hidden"}>
                 <table className="profile-dropDown-table">
-                    {renderProfile()}
+                    {loggedUser.length === 0 ? null : renderProfile()}
                 </table>
                 <div className="profile-dropDown-service-form">
                     
@@ -87,7 +113,7 @@ const HeaderDropdown = ({dropDownStatus, loggedUser}) => {
                     
             </div>
                 <Modal 
-                    modalHeader={`SEND AN EMAIL`}
+                    modalHeader={modalData.data.replace("_", " ")}
                     modalContent={modalData.action}
                     modalData={modalData}
                     setModalData={setModalData}  

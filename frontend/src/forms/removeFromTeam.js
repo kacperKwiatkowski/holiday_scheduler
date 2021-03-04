@@ -57,7 +57,7 @@ const DeleteUser = ({entity}) => {
             
                         <button 
                             type="submit"
-                            className={`formButton formRemoveButton`}
+                            className={`formButton formServiceButton`}
 
                         >
                             REMOVE

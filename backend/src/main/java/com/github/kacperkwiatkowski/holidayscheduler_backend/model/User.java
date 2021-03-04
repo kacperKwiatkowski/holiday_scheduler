@@ -1,6 +1,6 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.model;
 
-import com.github.kacperkwiatkowski.holidayscheduler_backend.utils.roleConfig.RoleType;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.roles.RoleType;
 import lombok.*;
 
 import javax.persistence.*;

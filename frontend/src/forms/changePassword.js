@@ -1,9 +1,9 @@
 import { Form, Field } from 'react-final-form'
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
 import { useHistory } from "react-router-dom";
-import { postEmail } from '../actions/postEmail'
+import { updateCredentials } from '../actions/updateCredentials'
 
-const SendEmail = () => {
+const ChangePassword = () => {
 
     const dispatch = useDispatch();    
     const history = useHistory();
@@ -11,7 +11,15 @@ const SendEmail = () => {
     const {id} = useSelector((state) => state.loggedUserReducer)
 
     const onSubmit = values => {
-      dispatch(postEmail({id: id, data: values}))
+      dispatch(updateCredentials(
+        {
+          id: id, 
+          object: "password", 
+          oldCredential: values.oldPassword, 
+          newCredential: values.newPassword, 
+          newCredentialRepeated: values.repeatNewPassword
+        }
+      ))
     }
 
     return (
@@ -28,38 +36,38 @@ const SendEmail = () => {
             onSubmit={handleSubmit}
           >
             <div className="form-header email-form-boundaries">
-              SEND AN E-MAIL
+              CHANGE PASSWORD
             </div>
             <div className="formFieldsWrapper">
               <div className="formFieldWrapper">
-                <label className="formLabel">E-MAIL ADDRESS</label>
+                <label className="formLabel">OLD PASSWORD</label>
                 <Field
-                  name="address"
+                  name="oldPassword"
 
-                  className="formTextInput formTextServiceInput" 
+                  className="formTextInput" 
                   component="input"
                 />
               </div>                   
               <div className="formFieldWrapper">
-
-              <label className="formLabel">TITLE</label>
+                <label className="formLabel">NEW PASSWORD</label>
                 <Field
-                  name="title"
+                  name="newPassword"
 
-                  className="formTextInput formTextServiceInput" 
+                  className="formTextInput" 
                   component="input"
                 />
-              </div>     
+              </div>                     
+              <div className="formFieldWrapper">
+                <label className="formLabel">REPEAT NEW PASSWORD</label>
+                <Field
+                  name="repeatNewPassword"
+
+                  className="formTextInput" 
+                  component="input"
+                />
+              </div>  
+            </div>   
               
-                <div className="formFieldWrapper">
-              <label className="formLabel">MESSAGE</label>  
-                  <Field
-                    name="content"
-                    className="formTextInput formTextServiceInput" 
-                    component="textarea"
-                  />
-                </div>              
-            </div>
             <div className="formButtonsWrapper">
                 <button
                     className="formButton formServiceButton"
@@ -73,7 +81,7 @@ const SendEmail = () => {
                     className="formButton formServiceButton"
                     type="submit"
                 >
-                    SEND
+                    CHANGE
                 </button>
 
             </div>
@@ -84,4 +92,4 @@ const SendEmail = () => {
 
 
 }
-export default SendEmail;
+export default ChangePassword;

@@ -174,7 +174,7 @@ a:hover{
 
 
 .profile-dropDown-table td{
-    padding-left: 50px;
+    padding-left: 20px;
     font-size: small;
 }
 
@@ -196,6 +196,9 @@ a:hover{
 
     width: 160px;
     height: 160px;
+
+
+    padding-left: 20px;
 
     outline: none;
     position: relative;
@@ -221,7 +224,6 @@ a:hover{
 .profile-dropDown-image{
     max-width: 150px;
     max-height: 150px;
-    border-radius: 10px;
     border: 3px solid white;
       
     position: absolute;

@@ -1,4 +1,4 @@
-package com.github.kacperkwiatkowski.holidayscheduler_backend.utils.roleConfig;
+package com.github.kacperkwiatkowski.holidayscheduler_backend.roles;
 
 public enum RoleAuthorities {
     EMPLOYEE_CREATE("employee:create"),

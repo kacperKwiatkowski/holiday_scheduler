@@ -1,7 +1,7 @@
 @import "./variables";
 
 .controlsWrapper{   
-    height: 60px;
+    height: 100px;
     background-color: $backgroundWhite;
     color: $textGrey;
 
@@ -16,22 +16,38 @@
 
     position:fixed;
 
+    transform: translateY(-90px);
+
     z-index: 3;
-    top: 60;
+    top: 30;
     left: 0;
+
+    transition: all 0.2s ease-in-out;
+
+    box-shadow: 0px 15px 10px -20px $decorationsBlue;
+
+     &:hover{
+
+        transition: all 0.4s ease-in-out;
+        transform: translateY(-10px);
+
+        box-shadow: 0px 20px 20px -17px $decorationsBlue;
+     }
+
+
 
 }
 
 .pageHeader{
 
-    margin-left: 30px;
+    margin-left: 50px;
     float: left;
     font-size: x-large;
 }
 
 .controlsElementsWrapper{
 
-    margin-right: 30px;
+    margin-right: 50px;
     display: flex;
 }
 
@@ -69,7 +85,7 @@
 
 .controlsElements{
     height: 25px;
-    width: 70px;
+    width: auto;
     color: $textGrey;
     background-color: transparent;
     font-size: medium;

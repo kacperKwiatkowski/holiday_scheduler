@@ -6,6 +6,8 @@ import loggedUserReducer from "./loggedUserReducer";
 import nationalHolidaysReducer from "./nationalHolidaysReducer";
 import teamsReducer from "./teamsReducer"
 import teamReducer from "./teamReducer"
+import credentialsReducer from "./credentialsReducer"
+import postReducer from "./postReducer"
 
 export default combineReducers({
     objectReducer,
@@ -14,5 +16,7 @@ export default combineReducers({
     loggedUserReducer,
     nationalHolidaysReducer,
     teamsReducer,
-    teamReducer
+    teamReducer,
+    credentialsReducer,
+    postReducer
 })

@@ -7,7 +7,7 @@ import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.Vacation
 import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.TeamRepository;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.UserRepository;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.utils.enums.VacationType;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.utils.roleConfig.RoleType;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.roles.RoleType;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -58,15 +58,15 @@ public class HolidaySchedulerBackendApplication {
             List<Integer> chorizo = new ArrayList<>();
 
             Team avocadoTeam = new Team();
-            avocadoTeam.setName("avocado");
+            avocadoTeam.setName("Avocado");
             avocadoTeam.setTeamSquad(new ArrayList<>());
 
             Team guacamoleTeam = new Team();
-            guacamoleTeam.setName("guacamole");
+            guacamoleTeam.setName("Guacamole");
             guacamoleTeam.setTeamSquad(new ArrayList<>());
 
             Team chorizoTeam = new Team();
-            chorizoTeam.setName("chorizo");
+            chorizoTeam.setName("Chorizo");
             chorizoTeam.setTeamSquad(new ArrayList<>());
 
             int at = teamRepository.save(avocadoTeam).getId();

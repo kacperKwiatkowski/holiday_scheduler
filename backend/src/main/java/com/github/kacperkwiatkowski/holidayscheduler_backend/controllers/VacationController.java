@@ -3,6 +3,7 @@ package com.github.kacperkwiatkowski.holidayscheduler_backend.controllers;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.dto.UserDto;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.dto.VacationDto;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.exceptions.ObjectNotFoundException;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.model.Vacation;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.service.VacationService;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
@@ -13,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Slf4j
@@ -29,12 +31,19 @@ public class VacationController {
         this.vacationService = vacationService;
     }
 
-    @PostMapping(path = "/create")
-    @PreAuthorize("hasAuthority('vacation:create')")
+    @PostMapping(path = "/request/{id}")
+    @PreAuthorize("hasAuthority('self:edit')")
     @ResponseStatus(HttpStatus.OK)
-    ResponseEntity<VacationDto> createVacation(@RequestBody VacationDto vacationToCreate){
-        log.info("Controller 'createUser' initiated.");
-        return ResponseEntity.ok(vacationService.createVacation(vacationToCreate));
+    public ResponseEntity createVacation(
+            @PathVariable("id") int id,
+            @RequestParam("firstDay") String firstDay,
+            @RequestParam("lastDay") String lastDay,
+            @RequestParam("leaveType") String leaveType) {
+
+        //TODO Apply logic
+        Vacation vacation = new Vacation();
+        log.info("Controller 'createVacation' initiated.");
+        return null;
     }
 
     @PatchMapping(path = "/update")

@@ -1,4 +1,4 @@
-package com.github.kacperkwiatkowski.holidayscheduler_backend.utils.roleConfig;
+package com.github.kacperkwiatkowski.holidayscheduler_backend.roles;
 
 import com.google.common.collect.Sets;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -6,7 +6,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static com.github.kacperkwiatkowski.holidayscheduler_backend.utils.roleConfig.RoleAuthorities.*;
+import static com.github.kacperkwiatkowski.holidayscheduler_backend.roles.RoleAuthorities.*;
 
 public enum RoleType {
     EMPLOYEE(

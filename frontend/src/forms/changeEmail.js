@@ -1,19 +1,26 @@
 import { Form, Field } from 'react-final-form'
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
 import { useHistory } from "react-router-dom";
-import { postEmail } from '../actions/postEmail'
+import { updateCredentials } from '../actions/updateCredentials'
 
-const SendEmail = () => {
+const ChangeEmail = () => {
 
-    const dispatch = useDispatch();    
-    const history = useHistory();
+  const dispatch = useDispatch();    
+  const history = useHistory();
 
-    const {id} = useSelector((state) => state.loggedUserReducer)
+  const {id} = useSelector((state) => state.loggedUserReducer)
 
-    const onSubmit = values => {
-      dispatch(postEmail({id: id, data: values}))
-    }
-
+  const onSubmit = values => {
+    dispatch(updateCredentials(
+      {
+        id: id, 
+        object: "email", 
+        oldCredential: values.oldEmail, 
+        newCredential: values.newEmail, 
+        newCredentialRepeated: values.repeatNewEmail
+      }
+    ))
+  }
     return (
         <Form
         onSubmit={onSubmit}
@@ -28,38 +35,38 @@ const SendEmail = () => {
             onSubmit={handleSubmit}
           >
             <div className="form-header email-form-boundaries">
-              SEND AN E-MAIL
+              CHANGE EMAIL
             </div>
             <div className="formFieldsWrapper">
               <div className="formFieldWrapper">
-                <label className="formLabel">E-MAIL ADDRESS</label>
+                <label className="formLabel">OLD EMAIL</label>
                 <Field
-                  name="address"
+                  name="oldEmail"
 
-                  className="formTextInput formTextServiceInput" 
+                  className="formTextInput" 
                   component="input"
                 />
               </div>                   
               <div className="formFieldWrapper">
-
-              <label className="formLabel">TITLE</label>
+                <label className="formLabel">NEW EMAIL</label>
                 <Field
-                  name="title"
+                  name="newEmail"
 
-                  className="formTextInput formTextServiceInput" 
+                  className="formTextInput" 
                   component="input"
                 />
-              </div>     
+              </div>                     
+              <div className="formFieldWrapper">
+                <label className="formLabel">REPEAT NEW EMAIL</label>
+                <Field
+                  name="repeatNewEmail"
+
+                  className="formTextInput" 
+                  component="input"
+                />
+              </div>  
+            </div>   
               
-                <div className="formFieldWrapper">
-              <label className="formLabel">MESSAGE</label>  
-                  <Field
-                    name="content"
-                    className="formTextInput formTextServiceInput" 
-                    component="textarea"
-                  />
-                </div>              
-            </div>
             <div className="formButtonsWrapper">
                 <button
                     className="formButton formServiceButton"
@@ -73,7 +80,7 @@ const SendEmail = () => {
                     className="formButton formServiceButton"
                     type="submit"
                 >
-                    SEND
+                    CHANGE
                 </button>
 
             </div>
@@ -84,4 +91,4 @@ const SendEmail = () => {
 
 
 }
-export default SendEmail;
+export default ChangeEmail;

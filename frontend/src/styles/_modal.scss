@@ -17,12 +17,13 @@
 }
 
 .modalWrapper{
-    width: 600px;
+    width: auto;
     height: auto;
     display: grid;
     position: relative;
     justify-content: center;
     margin:auto;
+    padding: 20px;
     font-size: xx-large;
     background-color: $backgroundWhite;
 

@@ -4,7 +4,7 @@ import com.github.kacperkwiatkowski.holidayscheduler_backend.convertors.RoleType
 import com.github.kacperkwiatkowski.holidayscheduler_backend.dto.UserDto;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.model.User;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.UserRepository;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.utils.roleConfig.RoleType;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.roles.RoleType;
 import org.junit.Before;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

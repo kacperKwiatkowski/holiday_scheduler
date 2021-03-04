@@ -9,6 +9,7 @@ import Team from "./sites/team"
 import Teams from "./sites/teams"
 import Vacations from "./sites/vacations"
 import Settings from "./sites/settings"
+import Footer from "./componenets/footer"
 import history from "./componenets/history";
 
 const App = () => {
@@ -23,6 +24,7 @@ const App = () => {
                 <Route path={`/vacations`} component={Vacations}/>
                 <Route path={`/settings`} component={Settings}/>
             </Router>
+            <Footer />
         </Provider>
     )
 }

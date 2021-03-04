@@ -247,20 +247,21 @@
 }
 
 table {
-  margin-top: 80px;
+  margin-top: 40px;
   border-spacing: 0 !important;
   border-collapse: 0;
 }
 
 table.calendarTable {
-  border-collapse: collapse;
+  border-spacing: 0;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin-left: 20px;
+  margin-left: 5px;
   width: 100%;
   white-space: nowrap;
   border-collapse: separate;
+  margin-bottom: 50px;
 }
 
 table.calendarTable thead {
@@ -284,8 +285,7 @@ table.calendarTable th {
   width: 200px;
   color: #646464;
   font-size: small;
-  margin: 15px;
-  padding: 20px;
+  padding: 0 20px 0 10px !important;
 }
 
 table.calendarTable td {
@@ -396,7 +396,7 @@ table.calendarTable td {
 }
 
 .controlsWrapper {
-  height: 60px;
+  height: 100px;
   background-color: #ffffff;
   color: #646464;
   -webkit-box-align: center;
@@ -411,19 +411,34 @@ table.calendarTable td {
   width: 100%;
   padding: 20px 0px 0px 0px;
   position: fixed;
+  -webkit-transform: translateY(-90px);
+          transform: translateY(-90px);
   z-index: 3;
-  top: 60;
+  top: 30;
   left: 0;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  -webkit-box-shadow: 0px 15px 10px -20px #006FFF;
+          box-shadow: 0px 15px 10px -20px #006FFF;
+}
+
+.controlsWrapper:hover {
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+  -webkit-transform: translateY(-10px);
+          transform: translateY(-10px);
+  -webkit-box-shadow: 0px 20px 20px -17px #006FFF;
+          box-shadow: 0px 20px 20px -17px #006FFF;
 }
 
 .pageHeader {
-  margin-left: 30px;
+  margin-left: 50px;
   float: left;
   font-size: x-large;
 }
 
 .controlsElementsWrapper {
-  margin-right: 30px;
+  margin-right: 50px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -455,7 +470,7 @@ table.calendarTable td {
 
 .controlsElements {
   height: 25px;
-  width: 70px;
+  width: auto;
   color: #646464;
   background-color: transparent;
   font-size: medium;
@@ -489,6 +504,28 @@ table.calendarTable td {
   width: 300px;
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
+}
+
+.footer-wrapper {
+  position: fixed;
+  background-color: white;
+  color: #006FFF;
+  width: 100%;
+  height: 60px;
+  top: 100%;
+  -webkit-transform: translateY(-50px);
+          transform: translateY(-50px);
+  -webkit-box-shadow: 0px 15px 10px 10px #006FFF;
+          box-shadow: 0px 15px 10px 10px #006FFF;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.footer-wrapper:hover {
+  -webkit-box-shadow: 0px 15px 10px 20px #006FFF;
+          box-shadow: 0px 15px 10px 20px #006FFF;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
 }
 
 .service-form-wrapper {
@@ -559,9 +596,9 @@ table.calendarTable td {
 }
 
 .formTextServiceInput {
-  max-width: 30vw;
-  width: 100em;
-  max-height: 15vh;
+  max-width: 600px;
+  width: 600px;
+  max-height: 30vh;
   background-color: white;
   margin: 0px 0px 10px 0px;
 }
@@ -625,22 +662,13 @@ table.calendarTable td {
   border-bottom: 2px solid #be0013;
 }
 
-.formRemoveButton {
+.formServiceButton {
   color: #006FFF;
   border-bottom: 2px solid transparent;
 }
 
-.formRemoveButton:hover {
-  border-bottom: 2px solid #006FFF;
-}
-
-.formServiceButton {
-  color: white;
-  border-bottom: 2px solid transparent;
-}
-
 .formServiceButton:hover {
-  border-bottom: 2px solid white;
+  border-bottom: 2px solid #006FFF;
 }
 
 .tables {
@@ -649,6 +677,8 @@ table.calendarTable td {
   color: #646464;
   border-collapse: collapse;
   letter-spacing: 1px;
+  margin-top: 30px;
+  margin-bottom: 50px;
 }
 
 .tables th {
@@ -943,7 +973,7 @@ a:hover {
 }
 
 .profile-dropDown-table td {
-  padding-left: 50px;
+  padding-left: 20px;
   font-size: small;
 }
 
@@ -964,6 +994,7 @@ a:hover {
 .profile-dropDown-image-wrapper {
   width: 160px;
   height: 160px;
+  padding-left: 20px;
   outline: none;
   position: relative;
   -webkit-transition: ease-in 0.3s;
@@ -987,7 +1018,6 @@ a:hover {
 .profile-dropDown-image {
   max-width: 150px;
   max-height: 150px;
-  border-radius: 10px;
   border: 3px solid white;
   position: absolute;
 }
@@ -1223,7 +1253,7 @@ a:hover {
 }
 
 .modalWrapper {
-  width: 600px;
+  width: auto;
   height: auto;
   display: -ms-grid;
   display: grid;
@@ -1232,6 +1262,7 @@ a:hover {
       -ms-flex-pack: center;
           justify-content: center;
   margin: auto;
+  padding: 20px;
   font-size: xx-large;
   background-color: #ffffff;
   z-index: 10;
