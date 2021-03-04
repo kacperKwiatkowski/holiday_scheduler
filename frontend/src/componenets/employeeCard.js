@@ -1,6 +1,4 @@
-
 import RemoveFromTeam from "../forms/removeFromTeam";
-import { FaPen, FaTimes } from "react-icons/fa";
 
 const EmployeeCard = ({member, setModalData}) => {
 

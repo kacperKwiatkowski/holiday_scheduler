@@ -70,7 +70,6 @@ const HeaderDropdown = ({dropDownStatus, loggedUser}) => {
 
     const renderPanel = () => {
 
-        {console.log(loggedUser)}
         return(
             <tbody>
                 <tr>

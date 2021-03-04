@@ -1,14 +1,9 @@
-
-import React, {useEffect} from "react";
-
 import {useSelector} from 'react-redux';
 
 
 const TeamSelector = ({pagination, setPagination}) => {
 
-
     const teams = useSelector((state) => state.teamsReducer)
-
 
     function handleChange(event) {
         const value = event.target.value;
@@ -18,7 +13,6 @@ const TeamSelector = ({pagination, setPagination}) => {
         });
     }
 
-    
     return(
         <select 
                 name="selectedTeam" 

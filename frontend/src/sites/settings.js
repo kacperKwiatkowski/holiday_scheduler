@@ -1,5 +1,3 @@
-import Axios from "axios";
-
 import Headerbar from "../componenets/headerbar"
 import SettingsControls from "../componenets/settingsControls"
 import SettingsContent from "../componenets/settingsContent"

@@ -76,11 +76,11 @@ public class UserController {
     @DeleteMapping(path = "/delete/{id}")
     @PreAuthorize("hasAuthority('employee:delete')")
     @ResponseStatus(HttpStatus.OK)
-    ResponseEntity deleteUser(@PathVariable("id") int id) throws ObjectNotFoundException {
-        userService.deleteUser(id);
+    ResponseEntity<UserDto> deleteUser(@PathVariable("id") int id) throws ObjectNotFoundException {
+
         log.info("Controller 'deleteUser' initiated.");
         //TODO Controller doesn't return the deleted entity
-        return ResponseEntity.status(HttpStatus.OK).build();
+        return ResponseEntity.ok(userService.deleteUser(id));
     }
 
 

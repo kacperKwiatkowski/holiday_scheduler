@@ -97,7 +97,7 @@ const Calendar = ({records, calendarPagination}) => {
                             <button className={"vacationButton " + buttonClassName}>{date}</button>
                         </td>
                     )
-                }
+                } else return null
         }))
     }
 

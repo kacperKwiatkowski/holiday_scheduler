@@ -1,8 +1,6 @@
 import Axios from 'axios'
 import React, {useCallback} from 'react'
-import { useSelector} from 'react-redux'
 import {useDropzone} from 'react-dropzone'
-import interceptor from "../interceptor/interceptor"
 import { FaAngleDown, FaAngleDoubleDown } from "react-icons/fa";
 
 

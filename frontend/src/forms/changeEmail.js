@@ -1,12 +1,10 @@
 import { Form, Field } from 'react-final-form'
 import { useDispatch,useSelector } from 'react-redux';
-import { useHistory } from "react-router-dom";
 import { updateCredentials } from '../actions/updateCredentials'
 
 const ChangeEmail = () => {
 
   const dispatch = useDispatch();    
-  const history = useHistory();
 
   const {id} = useSelector((state) => state.loggedUserReducer)
 
@@ -39,29 +37,29 @@ const ChangeEmail = () => {
             </div>
             <div className="formFieldsWrapper">
               <div className="formFieldWrapper">
-                <label className="formLabel">OLD EMAIL</label>
+                <label className="formLabel">OLD EMAIL:</label>
                 <Field
                   name="oldEmail"
 
-                  className="formTextInput" 
+                  className="formTextInput formTextServiceInput" 
                   component="input"
                 />
               </div>                   
               <div className="formFieldWrapper">
-                <label className="formLabel">NEW EMAIL</label>
+                <label className="formLabel">NEW EMAIL:</label>
                 <Field
                   name="newEmail"
 
-                  className="formTextInput" 
+                  className="formTextInput formTextServiceInput" 
                   component="input"
                 />
               </div>                     
               <div className="formFieldWrapper">
-                <label className="formLabel">REPEAT NEW EMAIL</label>
+                <label className="formLabel">REPEAT NEW EMAIL:</label>
                 <Field
                   name="repeatNewEmail"
 
-                  className="formTextInput" 
+                  className="formTextInput formTextServiceInput" 
                   component="input"
                 />
               </div>  

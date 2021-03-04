@@ -1,5 +1,5 @@
 import Axios from "axios";
-import interceptor from "../interceptor/interceptor"
+import "../interceptor/interceptor"
 
 export const fetchEachTeam = () => async dispatch => {
 

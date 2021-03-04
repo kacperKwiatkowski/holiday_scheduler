@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, {Component, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import "../styles/style.css"
 
 const CalendarControls = ({header, setPagination}) => {
@@ -42,7 +42,7 @@ const CalendarControls = ({header, setPagination}) => {
         var i = 0;
         var max = usersCount / state.pageSize ;
 
-        if(usersCount!=0){
+        if(usersCount!==0){
             for(i = 0; i <= max; i++){
                 pageS.push(i+1)
             }
@@ -64,7 +64,7 @@ const CalendarControls = ({header, setPagination}) => {
         var pageS = [];
         var i = 0;
 
-        if(usersCount!=0){
+        if(usersCount!==0){
             for(i; i <= 25; i=i+5){
                 if(usersCount>i*(state.pageNum)){
                     pageS.push(i+5)

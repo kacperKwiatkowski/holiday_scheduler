@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import { useDispatch, useSelector} from 'react-redux';
+import { useDispatch} from 'react-redux';
 import { fetchEachTeam } from '../actions/fetchEachTeam'
 
 import Headerbar from "../componenets/headerbar"
@@ -8,12 +8,7 @@ import TeamSelector from "../selectors/teamSelector";
 import TeamContent from "../componenets/teamContent";
 import Modal from "../componenets/modal";
 
-import UpdateTeam from "../forms/updateTeam"
-import DeleteTeam from "../forms/deleteTeam";
-
 const Teams = () => {
-
-    const teams = useSelector((state) => state.teamsReducer)
 
     const dispatch = useDispatch();
     const[pagination, setPagination] = useState({

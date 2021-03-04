@@ -1,15 +1,10 @@
 import { Form, Field } from 'react-final-form'
 
-import { useDispatch} from 'react-redux';
-
 import uploadNationalHolidays from '../actions/uploadNationalHolidays'
 
 const NationalHolidayUpload = () => {
 
-    const dispatch = useDispatch();  
-
     const onSubmit = values => {
-        console.log("TEST")
         uploadNationalHolidays({year: values.year, key: values.key})
     }
 

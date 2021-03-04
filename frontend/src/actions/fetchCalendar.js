@@ -1,6 +1,6 @@
 import Axios from "axios";
 
-import interceptor from "../interceptor/interceptor"
+import "../interceptor/interceptor"
 
 export const fetchCalendar = (pagination) => async dispatch => {
 

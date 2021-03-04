@@ -1,16 +1,13 @@
 import { Form, Field } from 'react-final-form'
 import { useDispatch} from 'react-redux';
-import { useHistory } from "react-router-dom";
 import { updateObject } from '../actions/updateObject'
 
 
 const UpdateUser = ({entity}) => {
 
     const dispatch = useDispatch();    
-    const history = useHistory();
 
     const onSubmit = values => {
-      //history.go("/home")
 
       values.firstDay = parseDateFormatForServer(values.firstDay)
 

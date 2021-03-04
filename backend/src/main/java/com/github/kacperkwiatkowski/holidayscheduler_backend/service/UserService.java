@@ -79,11 +79,12 @@ public class UserService {
         }
     }
 
-    public void deleteUser(int id) throws ObjectNotFoundException {
+    public UserDto deleteUser(int id) throws ObjectNotFoundException {
 
         Optional<User> userToDelete = Optional.ofNullable(userRepository.findById(id));
         if(userToDelete.isPresent()){
             userRepository.deleteById(id);
+            return userMapper.mapToDto(userToDelete.get());
 
         } else {
             throw new ObjectNotFoundException("Deletion unsuccessful. Id does not exist.");

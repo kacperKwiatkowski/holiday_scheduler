@@ -1,19 +1,13 @@
 import { Form, Field } from 'react-final-form'
 import { useDispatch} from 'react-redux';
-import { useHistory } from "react-router-dom";
 import { deleteObject } from '../actions/deleteObjectAction'
 
 const DeleteUser = ({entity}) => {
     
     const dispatch = useDispatch();
 
-    const history = useHistory();
-
     const onSubmit = values => {
-
-        //history.go("/home")
         dispatch(deleteObject({object: "team", id: values.id}))
-
     }
 
     const labels = ["Teams's name:", "Teams leader's first name:", "Teams leader's last name:", "Teams leader's email:"]

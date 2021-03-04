@@ -1,12 +1,10 @@
 import { Form, Field } from 'react-final-form'
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from "react-router-dom";
 import { postVacationRequest } from '../actions/postVacationRequest'
 
 const RequestVacation = () => {
 
     const dispatch = useDispatch();    
-    const history = useHistory();
 
     const {id} = useSelector((state) => state.loggedUserReducer)
 
@@ -60,7 +58,7 @@ const RequestVacation = () => {
                 />
               </div>
               <div className="formFieldWrapper">
-              <label className="formLabel">Leave Type:</label>
+              <label className="formLabel">LEAVE TYPE:</label>
                 <Field
                     className="formTextInput formTextServiceInput" 
                     name="leaveType"

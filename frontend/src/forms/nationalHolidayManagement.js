@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useEffect} from "react";
 import { Form, Field } from 'react-final-form'
 import { useDispatch, useSelector} from 'react-redux';
 import { fetchNationalHolidays } from '../actions/fetchNationalHolidays'
@@ -9,11 +9,9 @@ const NationalHolidayUpload = () => {
     const dispatch = useDispatch();
     const nationalHolidays = useSelector((state) => state.nationalHolidaysReducer)
 
-
-
     useEffect(() => {
         dispatch(fetchNationalHolidays())
-    }, [])
+    })
 
     const onSubmit = values => {
 

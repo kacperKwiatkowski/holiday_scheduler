@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import NationalHolidayUpload from "../forms/nationalHolidayUpload"
 import NationalHolidayManagement from "../forms/nationalHolidayManagement"
 
@@ -6,17 +6,6 @@ import NationalHolidayManagement from "../forms/nationalHolidayManagement"
 const SettingsContent = () => {
 
     const [form, setForm] = useState("UPLOAD_NATIONAL_HOLIDAY")
-
-    const switchForms = (form) => {
-        switch (form){
-            case "UPLOAD_NATIONAL_HOLIDAY":
-                return <NationalHolidayUpload />
-            case "MANAGE_NATIONAL_HOLIDAY":
-                return <NationalHolidayUpload />
-            default:
-                return null;
-        }
-    }
 
     return(
         <div className="settingsWrapper">  

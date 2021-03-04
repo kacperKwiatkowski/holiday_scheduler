@@ -1,4 +1,5 @@
 import Axios from 'axios'
+import "../interceptor/interceptor"
 
 export const updateObject = ({object, data}) => async dispatch => {
 

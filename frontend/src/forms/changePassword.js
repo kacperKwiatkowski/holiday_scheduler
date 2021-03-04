@@ -1,12 +1,10 @@
 import { Form, Field } from 'react-final-form'
 import { useDispatch,useSelector } from 'react-redux';
-import { useHistory } from "react-router-dom";
 import { updateCredentials } from '../actions/updateCredentials'
 
 const ChangePassword = () => {
 
-    const dispatch = useDispatch();    
-    const history = useHistory();
+    const dispatch = useDispatch();
 
     const {id} = useSelector((state) => state.loggedUserReducer)
 
@@ -40,29 +38,29 @@ const ChangePassword = () => {
             </div>
             <div className="formFieldsWrapper">
               <div className="formFieldWrapper">
-                <label className="formLabel">OLD PASSWORD</label>
+                <label className="formLabel">OLD PASSWORD:</label>
                 <Field
                   name="oldPassword"
 
-                  className="formTextInput" 
+                  className="formTextInput formTextServiceInput" 
                   component="input"
                 />
               </div>                   
               <div className="formFieldWrapper">
-                <label className="formLabel">NEW PASSWORD</label>
+                <label className="formLabel">NEW PASSWORD:</label>
                 <Field
                   name="newPassword"
 
-                  className="formTextInput" 
+                  className="formTextInput formTextServiceInput" 
                   component="input"
                 />
               </div>                     
               <div className="formFieldWrapper">
-                <label className="formLabel">REPEAT NEW PASSWORD</label>
+                <label className="formLabel">REPEAT NEW PASSWORD:</label>
                 <Field
                   name="repeatNewPassword"
 
-                  className="formTextInput" 
+                  className="formTextInput formTextServiceInput" 
                   component="input"
                 />
               </div>  

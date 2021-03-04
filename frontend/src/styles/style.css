@@ -247,7 +247,7 @@
 }
 
 table {
-  margin-top: 40px;
+  margin-top: 50px;
   border-spacing: 0 !important;
   border-collapse: 0;
 }
@@ -677,7 +677,7 @@ table.calendarTable td {
   color: #646464;
   border-collapse: collapse;
   letter-spacing: 1px;
-  margin-top: 30px;
+  margin-top: 50px;
   margin-bottom: 50px;
 }
 

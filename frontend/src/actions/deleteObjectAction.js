@@ -1,6 +1,6 @@
 import Axios from 'axios'
 
-export const deleteObject = ({object, id}) => async (dispatch, getState) => {
+export const deleteObject = ({object, id}) => async (dispatch) => {
 
     const response = await Axios({
         method: 'DELETE',

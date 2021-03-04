@@ -1,8 +1,8 @@
 import Axios from 'axios'
 import React, {useState, useEffect} from "react";
-import { useDispatch, useSelector} from 'react-redux';
+import { useDispatch} from 'react-redux';
 import { fetchTeam } from '../actions/fetchTeam'
-import interceptor from "../interceptor/interceptor"
+import "../interceptor/interceptor"
 import Card from "./employeeCard";
 
 const TeamContent = ({pagination, setModalData}) => { 

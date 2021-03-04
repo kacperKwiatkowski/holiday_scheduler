@@ -51,7 +51,7 @@ const Table = (props) => {
                         {value.toString()}
                         </td>
                     )  
-                } 
+                } else return null
             })}
 
             <td className="actionButtonsWrapper">

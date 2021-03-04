@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, {useEffect, useState} from "react";
-import "../styles/style.css"
 
 const TableControls = ({header, setPagination, object}) => {
 
@@ -10,16 +9,13 @@ const TableControls = ({header, setPagination, object}) => {
         filter: "", pageNum: 1, pageSize: 5,  sortOrder: "ASC"
     })
 
-    useEffect(() => getObjectCount(), [])
-
     function handleChange(event) {
         const value = event.target.value;
 
         if(event.target.name==='filter'){
             console.log("filter")
-            setTimeout(setPagination({... state, 'filter': value}), 2000)
-
-            setTimeout(setState({... state, 'filter': value}), 2000)
+            setTimeout(setPagination({...state, 'filter': value}), 2000)
+            setTimeout(setState({...state, 'filter': value}), 2000)
         }
         setPagination({
             ...state,
@@ -34,13 +30,16 @@ const TableControls = ({header, setPagination, object}) => {
         setobjectCount(data);
     }
 
+
+    useEffect(() => getObjectCount())
+
     const renderPageNumControls = () => {
 
         var pageS = [];
         var i = 0;
         var max = objectCount / state.pageSize ;
 
-        if(objectCount!=0){
+        if(objectCount!==0){
             for(i = 0; i <= max; i++){
                 pageS.push(i+1)
             }
@@ -63,7 +62,7 @@ const TableControls = ({header, setPagination, object}) => {
         var pageS = [];
         var i = 0;
 
-        if(objectCount!=0){
+        if(objectCount!==0){
             for(i; i <= 25; i=i+5){
                 if(objectCount>i*(state.pageNum)){
                     pageS.push(i+5)

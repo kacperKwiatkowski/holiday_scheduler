@@ -1,15 +1,12 @@
 import { Form, Field } from 'react-final-form'
 import { useDispatch} from 'react-redux';
-import { useHistory } from "react-router-dom";
 import { updateObject } from '../actions/updateObject'
 
 const UpdateUser = ({entity}) => {
 
-    const dispatch = useDispatch();    
-    const history = useHistory();
+    const dispatch = useDispatch();   
 
     const onSubmit = values => {
-      //history.go("/home")
       dispatch(updateObject({object: "team", data: values}))
     }
 

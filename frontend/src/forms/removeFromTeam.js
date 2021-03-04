@@ -1,13 +1,10 @@
 import { Form, Field } from 'react-final-form'
 import { useDispatch} from 'react-redux';
-import { useHistory } from "react-router-dom";
 import { removeObjectAction } from '../actions/removeObjectAction'
 
 const DeleteUser = ({entity}) => {
     
     const dispatch = useDispatch();
-
-    const history = useHistory();
 
     const onSubmit = values => {
 
@@ -49,7 +46,7 @@ const DeleteUser = ({entity}) => {
                                             />
                                         </div>
                                     )
-                                }
+                                } else return null
                             })
                         }
                     </div>

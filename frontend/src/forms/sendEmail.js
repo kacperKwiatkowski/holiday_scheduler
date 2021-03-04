@@ -1,12 +1,10 @@
 import { Form, Field } from 'react-final-form'
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from "react-router-dom";
 import { postEmail } from '../actions/postEmail'
 
 const SendEmail = () => {
 
-    const dispatch = useDispatch();    
-    const history = useHistory();
+    const dispatch = useDispatch();   
 
     const {id} = useSelector((state) => state.loggedUserReducer)
 
@@ -32,7 +30,7 @@ const SendEmail = () => {
             </div>
             <div className="formFieldsWrapper">
               <div className="formFieldWrapper">
-                <label className="formLabel">E-MAIL ADDRESS</label>
+                <label className="formLabel">E-MAIL ADDRESS:</label>
                 <Field
                   name="address"
 
@@ -42,7 +40,7 @@ const SendEmail = () => {
               </div>                   
               <div className="formFieldWrapper">
 
-              <label className="formLabel">TITLE</label>
+              <label className="formLabel">TITLE:</label>
                 <Field
                   name="title"
 
@@ -52,7 +50,7 @@ const SendEmail = () => {
               </div>     
               
                 <div className="formFieldWrapper">
-              <label className="formLabel">MESSAGE</label>  
+              <label className="formLabel">MESSAGE:</label>  
                   <Field
                     name="content"
                     className="formTextInput formTextServiceInput" 
