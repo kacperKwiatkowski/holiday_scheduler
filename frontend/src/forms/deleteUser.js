@@ -11,7 +11,6 @@ const DeleteUser = ({entity}) => {
 
     const onSubmit = values => {
 
-        history.go("/home")
         dispatch(deleteObject({object: "user", id: values.id}))
 
     }
