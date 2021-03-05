@@ -41,7 +41,7 @@ public class TeamController {
     @ResponseStatus(HttpStatus.OK)
     ResponseEntity<TeamDto> createTeam (@RequestBody TeamDto teamToCreate){
         log.info("Controller 'createTeam' initiated.");
-        return ResponseEntity.ok(teamService.creatTeam(teamToCreate));
+        return ResponseEntity.ok(teamService.createTeam(teamToCreate));
     }
 
     @GetMapping (path = "/read/{id}")

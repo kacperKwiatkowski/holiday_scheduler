@@ -28,7 +28,6 @@ public class EmailController {
             @RequestParam("title") String title,
             @RequestParam("content") String content) {
 
-        //TODO Apply logic
         sendEmail(address, title, content);
         log.info("Controller 'sendAnEmail' initiated.");
         return null;

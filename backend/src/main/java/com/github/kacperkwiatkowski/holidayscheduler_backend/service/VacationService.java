@@ -85,6 +85,7 @@ public class VacationService {
     public VacationDto deleteVacation(int id){
         Optional<Vacation> foundVacation = Optional.ofNullable(vacationRepository.findById(id));
         if(foundVacation.isPresent()){
+            //TODO remove connction between user and vacation
             vacationRepository.delete(foundVacation.get());
             log.info("DELETION successful.");
             return vacationMapper.mapToDto(foundVacation.get());

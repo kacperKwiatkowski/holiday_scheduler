@@ -46,6 +46,8 @@ public class CredentialsController {
 
         //TODO Apply logic
 
+        //TODO hash password
+
         log.info("Controller 'changePassword' initiated.");
         return null;
     }

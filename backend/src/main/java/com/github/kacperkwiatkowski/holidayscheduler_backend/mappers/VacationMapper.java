@@ -32,7 +32,9 @@ public class VacationMapper implements ObjectMapper<VacationDto, Vacation> {
         } else {
             vacation = optionalVacation.get();
         }
-            vacation.setFirstDay(LocalDate.parse(vacationDto.getFirstDay(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+            vacation.setFirstDay(
+                    LocalDate
+                            .parse(vacationDto.getFirstDay(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
             vacation.setLastDay(LocalDate.parse(vacationDto.getLastDay(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
             vacation.setUser(userRepository.findById(vacationDto.getUserID()));
             vacation.setAccepted(vacationDto.isAccepted());

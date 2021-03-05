@@ -15,6 +15,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -45,8 +46,8 @@ class VacationServiceTest {
         VacationDto vacationDto = VacationDto
                         .builder()
                         .id(1)
-                        .firstDay(LocalDate.now().toString())
-                        .lastDay(LocalDate.now().toString())
+                        .firstDay(LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")))
+                        .lastDay(LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")))
                         .isAccepted(false)
                         .userID(1)
                         .leaveType(VacationType.MATERNITY.toString())
@@ -73,8 +74,8 @@ class VacationServiceTest {
         VacationDto vacationDto = VacationDto
                 .builder()
                 .id(1)
-                .firstDay(LocalDate.now().toString())
-                .lastDay(LocalDate.now().toString())
+                .firstDay(LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")))
+                .lastDay(LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")))
                 .isAccepted(false)
                 .userID(1)
                 .leaveType(VacationType.MATERNITY.toString())
@@ -100,8 +101,8 @@ class VacationServiceTest {
         VacationDto vacationDto = VacationDto
                 .builder()
                 .id(1)
-                .firstDay(LocalDate.now().toString())
-                .lastDay(LocalDate.now().toString())
+                .firstDay(LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")))
+                .lastDay(LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")))
                 .isAccepted(false)
                 .userID(1)
                 .leaveType(VacationType.MATERNITY.toString())

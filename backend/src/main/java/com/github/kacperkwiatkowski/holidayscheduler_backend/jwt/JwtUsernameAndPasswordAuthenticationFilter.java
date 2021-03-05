@@ -71,7 +71,7 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
 
         String body = "{\"jwt\": \"" + jwtConfig.getTokenPrefix() + token + "\"}";
 
-        //TODO Check for safer options
+        //TODO Check for safer options (cookie perhaps)
         response
                 .getWriter().write(body);
 

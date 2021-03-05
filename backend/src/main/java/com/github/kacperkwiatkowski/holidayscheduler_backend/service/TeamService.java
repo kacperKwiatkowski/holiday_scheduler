@@ -36,7 +36,8 @@ public class TeamService {
         this.userMapper = userMapper;
     }
 
-    public TeamDto creatTeam(TeamDto teamToCreate){
+    public TeamDto createTeam(TeamDto teamToCreate){
+        //TODO create form and endpoint
         teamRepository.save(teamMapper.mapToEntity(teamToCreate));
         return teamToCreate;
     }
@@ -122,6 +123,8 @@ public class TeamService {
     @Transactional
     public UserDto removeFromTeam(int id){
         //TODO apply bussiness logic
+
+        //TODO remove connction between user and team
         return null;
     }
 }

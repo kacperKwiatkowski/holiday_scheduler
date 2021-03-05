@@ -26,7 +26,6 @@ public class HolidaySchedulerBackendApplication {
         SpringApplication.run(HolidaySchedulerBackendApplication.class, args);
     }
 
-    @Profile("!test")
     @Bean
     public CommandLineRunner init(
             UserRepository userRepository,

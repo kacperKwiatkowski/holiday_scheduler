@@ -1,6 +1,5 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.service;
 
-import com.github.kacperkwiatkowski.holidayscheduler_backend.buckets.BucketName;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.dto.UserDto;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.exceptions.ObjectNotFoundException;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.filestore.FileStore;
@@ -13,13 +12,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static org.apache.http.entity.ContentType.*;
 
 @Slf4j
 @Service
