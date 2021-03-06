@@ -1,18 +1,14 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.dto.UserDto;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.dto.VacationDto;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.exceptions.ObjectNotFoundException;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.mappers.UserMapper;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.mappers.VacationMapper;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.model.User;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.model.Vacation;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.UserRepository;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.VacationRepository;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.VacationSqlRepository;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.dto.CalendarDto;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.utils.enums.VacationType;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -25,28 +21,37 @@ import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import static java.time.temporal.ChronoUnit.DAYS;
 
 @Slf4j
 @Service
 public class VacationService {
 
     private final VacationRepository vacationRepository;
-    private final VacationSqlRepository vacationSqlRepository;
     private final VacationMapper vacationMapper;
+    private final UserRepository userRepository;
 
-    public VacationService(VacationRepository vacationRepository, VacationSqlRepository vacationSqlRepository, VacationMapper vacationMapper) {
+    public VacationService(VacationRepository vacationRepository, VacationMapper vacationMapper, UserRepository userRepository) {
         this.vacationRepository = vacationRepository;
-        this.vacationSqlRepository = vacationSqlRepository;
         this.vacationMapper = vacationMapper;
+        this.userRepository = userRepository;
     }
 
+    @Transactional
     public VacationDto createVacation(VacationDto vacationToCreate){
-        //TODO check if leave qualifies.
+        Vacation vacation = vacationMapper.mapToEntity(vacationToCreate);
+        User user = userRepository.findById(vacation.getUser().getId());
 
-        vacationRepository.save(vacationMapper.mapToEntity(vacationToCreate));
+        int daysBetween = getDaysBetween(vacation);
+
+        validateHolidayRequest(vacation, user, daysBetween);
+
+        userRepository.subtractDaysOffFromUser(user.getId(), daysBetween);
+        vacationRepository.save(vacation);
+
         return vacationToCreate;
     }
 
@@ -57,7 +62,7 @@ public class VacationService {
         List<List<VacationDto>> foundVacations = usersIdsToFetchVacations
                 .stream()
                 .map(id ->
-                        vacationSqlRepository.justFind(
+                                vacationRepository.findHolidaysWithinGivenTimeFrame(
                             id,
                             LocalDate.of(year, month, 1),
                             LocalDate.of(year, month, YearMonth.of(year, month).lengthOfMonth()))
@@ -69,9 +74,11 @@ public class VacationService {
     }
 
     public VacationDto updateVacation(VacationDto vacationToUpdate){
-        Optional<Vacation> foundUser = Optional.ofNullable(vacationRepository.findById(vacationToUpdate.getId()));
-        if(foundUser.isPresent()){
+        Optional<Vacation> foundVacation = Optional.ofNullable(vacationRepository.findById(vacationToUpdate.getId()));
+        if(foundVacation.isPresent()){
+
             Vacation vacation = vacationMapper.mapToEntity(vacationToUpdate);
+
             vacationRepository.save(vacation);
             log.info("Vacation: " + vacationToUpdate.getId() + "updated successfully");
             return vacationToUpdate;
@@ -86,6 +93,13 @@ public class VacationService {
         Optional<Vacation> foundVacation = Optional.ofNullable(vacationRepository.findById(id));
         if(foundVacation.isPresent()){
             //TODO remove connction between user and vacation
+
+            if(foundVacation.get().getVacationType()==VacationType.PAYED){
+                userRepository.addDaysOffFromUser(
+                        foundVacation.get().getUser().getId(),
+                        getDaysBetween(foundVacation.get())
+                );
+            }
             vacationRepository.delete(foundVacation.get());
             log.info("DELETION successful.");
             return vacationMapper.mapToDto(foundVacation.get());
@@ -118,5 +132,19 @@ public class VacationService {
         } else {
             throw new ObjectNotFoundException("Pagination impossible");
         }
+    }
+
+    private void validateHolidayRequest(Vacation vacation, User user, int daysBetween) {
+        if(vacation.getVacationType()== VacationType.PAYED && daysBetween > user.getDaysOffLeft()){
+            //TODO Create another controller helper class for this exception
+            throw new ObjectNotFoundException("Not enough days off left to place vacation request");
+        }
+        if (!vacationRepository.findHolidaysWithinGivenTimeFrame(user.getId(), vacation.getFirstDay(), vacation.getLastDay()).isEmpty()){
+            throw new ObjectNotFoundException("Holiday already placed within requested days");
+        }
+    }
+
+    private int getDaysBetween(Vacation vacation) {
+        return (int) (DAYS.between(vacation.getFirstDay(), vacation.getLastDay()) + 1);
     }
 }

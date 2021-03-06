@@ -31,17 +31,12 @@ public class VacationController {
         this.vacationService = vacationService;
     }
 
-    @PostMapping(path = "/request/{id}")
+    @PostMapping(path = "/request")
     @PreAuthorize("hasAuthority('self:edit')")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity createVacation(
-            @PathVariable("id") int id,
-            @RequestParam("firstDay") String firstDay,
-            @RequestParam("lastDay") String lastDay,
-            @RequestParam("leaveType") String leaveType) {
-
-        //TODO Apply logic
-        Vacation vacation = new Vacation();
+            @RequestBody VacationDto vacationDto) {
+        vacationService.createVacation(vacationDto);
         log.info("Controller 'createVacation' initiated.");
         return null;
     }

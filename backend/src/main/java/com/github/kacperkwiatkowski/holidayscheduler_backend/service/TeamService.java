@@ -83,10 +83,10 @@ public class TeamService {
     }
 
     @Transactional
-    public TeamDto deleteTeam(int id){
+    public TeamDto deleteTeam(int id) {
         Optional<Team> foundTeam = Optional.ofNullable(teamRepository.findById(id));
-        //FIXME Resolve DB alteration problem
         if (foundTeam.isPresent()){
+            userRepository.clearUsersRelationToTeamToBeDeleted(id);
             teamRepository.deleteById(id);
             log.info("Deletion successful.");
             return teamMapper.mapToDto(foundTeam.get());
@@ -121,10 +121,24 @@ public class TeamService {
     }
 
     @Transactional
-    public UserDto removeFromTeam(int id){
-        //TODO apply bussiness logic
+    public UserDto removeFromTeam(int userId){
+        Optional<User> foundUser = Optional.ofNullable(userRepository.findById(userId));
+        if (foundUser.isPresent()){
+            userRepository.removeRelationToTeam(userId);
+            updateTeamSquad(foundUser.get().getTeam().getId(), userId);
+            log.info("User removal from team successful.");
+            return userMapper.mapToDto(foundUser.get());
+        } else {
+            throw new ObjectNotFoundException("REMOVAL impossible, object not found.");
+        }
+    }
 
-        //TODO remove connction between user and team
-        return null;
+    private void updateTeamSquad(int teamID, int userId) {
+        //TODO Try to replace this method with a single query
+        Team userTeam = teamRepository.findById(teamID);
+        List<Integer> teamUsers = userTeam.getTeamSquad();
+        teamUsers = teamUsers.stream().filter(u -> u!=userId).collect(Collectors.toList());
+        userTeam.setTeamSquad(teamUsers);
+        teamRepository.save(userTeam);
     }
 }

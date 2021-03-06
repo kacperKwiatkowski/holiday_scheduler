@@ -1,4 +1,29 @@
+import React, {useState, useEffect} from "react";
+import Axios from "axios";
+import "../interceptor/interceptor"
+
 const Calendar = ({records, calendarPagination}) => {
+
+
+    const [nationalHolidays, setNationalHolidays] = useState([{}])
+
+    useEffect(() => {
+        fethcNationalHolidays()
+    }, [calendarPagination])
+
+    const fethcNationalHolidays = () => Axios.get("http://localhost:8080/api/calendar/nationalHolidays", {
+    params: {
+        month: calendarPagination.month,
+        year: calendarPagination.year
+    }})
+    .then(
+        (res) => {
+            console.log(res.data)
+            setNationalHolidays(res.data)
+        }
+    )
+
+    {nationalHolidays.length > 0 ? console.log(nationalHolidays[0].holidayDate.substring(8,10)) : console.log("NONE")}
 
     function daysInMonth (month, year) { 
         return new Date(year, month, 0).getDate(); 

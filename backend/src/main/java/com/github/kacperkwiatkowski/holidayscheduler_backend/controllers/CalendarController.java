@@ -3,6 +3,7 @@ package com.github.kacperkwiatkowski.holidayscheduler_backend.controllers;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.dto.CalendarDto;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.dto.UserDto;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.dto.VacationDto;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.model.NationalHoliday;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.service.CalendarService;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.service.UserService;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.service.VacationService;
@@ -12,11 +13,12 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Queue;
 
 @Slf4j
 @RestController
 @CrossOrigin
-@RequestMapping("/calendar")
+@RequestMapping("/api/calendar")
 public class CalendarController {
 
     private final CalendarService calendarService;
@@ -29,7 +31,7 @@ public class CalendarController {
         this.vacationService = vacationService;
     }
 
-    //@PreAuthorize("hasAuthority('employee:read')")
+    @PreAuthorize("hasAuthority('employee:read')")
     @GetMapping(path = "/page")
     public ResponseEntity<List<CalendarDto>> getCalendar(
             @RequestParam(defaultValue = "") String filter,
@@ -45,6 +47,15 @@ public class CalendarController {
         List<VacationDto> foundVacations = vacationService.readRequiredVacations(foundUsers, Integer.valueOf(month), Integer.valueOf(year));
         List<CalendarDto> generatedCalendar = calendarService.createCalendar(foundUsers, foundVacations, Integer.valueOf(month), Integer.valueOf(year));
         return ResponseEntity.ok(generatedCalendar);
+    }
+
+    @PreAuthorize("hasAuthority('employee:read')")
+    @GetMapping(path = "/nationalHolidays")
+    public ResponseEntity<Queue<NationalHoliday>> getNationalHolidays(
+            @RequestParam int month,
+            @RequestParam int year)
+    {
+        return ResponseEntity.ok(calendarService.nationalHolidaysInThisMonth(year, month));
     }
 
 }
