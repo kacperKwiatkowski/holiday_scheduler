@@ -12,10 +12,8 @@ table.calendarTable {
     margin-left: 5px;
     width: 100%;
     white-space: nowrap;
-    border-collapse: separate;
+    border-collapse: collapse;
     margin-bottom: 50px;
-    
-
 
     thead{
         height: 30px;
@@ -23,22 +21,22 @@ table.calendarTable {
     }
 
     thead th {
-        padding: 3px;
+        // padding: 3px;
         position: sticky;
         top: 0;
         z-index: 1;
         width: 25vw;
-        background: white;
       }
 
     th{
 
-  position: sticky;
+        position: sticky;
         height: 150px;
         width: 200px;
         color: $textGrey;
         font-size: small;
-        padding: 0 20px 0 10px !important;
+        padding: none !important;
+        // padding: 0 20px 0 10px !important;
     }
 
 
@@ -66,12 +64,16 @@ table.calendarTable {
     margin: 15px;
 }
 
+.calendarHolidayCell{
+    background-color: $evenColumnsBackground !important;
+}
+
 .calendarNameButton{
     background-color: white;
     color: $textGrey;
     outline: none;
     font-size:x-small;
-    margin: auto;
+    margin: 6px;
 
     height: 120px;
     width: 160px;
@@ -158,4 +160,9 @@ table.calendarTable {
 
 .noVacation{
     opacity: 0;
+}
+
+.nationalHoliday{
+    border-bottom: 3px solid #0000ff;
+    color: #0000ff;
 }

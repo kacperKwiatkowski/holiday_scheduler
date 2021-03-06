@@ -6,6 +6,7 @@ import com.github.kacperkwiatkowski.holidayscheduler_backend.exceptions.ObjectNo
 import com.github.kacperkwiatkowski.holidayscheduler_backend.mappers.VacationMapper;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.model.User;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.model.Vacation;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.NationalHolidayRepository;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.UserRepository;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.VacationRepository;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.utils.enums.VacationType;
@@ -33,11 +34,13 @@ public class VacationService {
     private final VacationRepository vacationRepository;
     private final VacationMapper vacationMapper;
     private final UserRepository userRepository;
+    private final NationalHolidayRepository nationalHolidayRepository;
 
-    public VacationService(VacationRepository vacationRepository, VacationMapper vacationMapper, UserRepository userRepository) {
+    public VacationService(VacationRepository vacationRepository, VacationMapper vacationMapper, UserRepository userRepository, NationalHolidayRepository nationalHolidayRepository) {
         this.vacationRepository = vacationRepository;
         this.vacationMapper = vacationMapper;
         this.userRepository = userRepository;
+        this.nationalHolidayRepository = nationalHolidayRepository;
     }
 
     @Transactional
@@ -46,6 +49,7 @@ public class VacationService {
         User user = userRepository.findById(vacation.getUser().getId());
 
         int daysBetween = getDaysBetween(vacation);
+
 
         validateHolidayRequest(vacation, user, daysBetween);
 
@@ -92,9 +96,9 @@ public class VacationService {
     public VacationDto deleteVacation(int id){
         Optional<Vacation> foundVacation = Optional.ofNullable(vacationRepository.findById(id));
         if(foundVacation.isPresent()){
-            //TODO remove connction between user and vacation
 
             if(foundVacation.get().getVacationType()==VacationType.PAYED){
+
                 userRepository.addDaysOffFromUser(
                         foundVacation.get().getUser().getId(),
                         getDaysBetween(foundVacation.get())
@@ -145,6 +149,8 @@ public class VacationService {
     }
 
     private int getDaysBetween(Vacation vacation) {
-        return (int) (DAYS.between(vacation.getFirstDay(), vacation.getLastDay()) + 1);
+        return (int)
+                (DAYS.between(vacation.getFirstDay(), vacation.getLastDay()) + 1) -
+                nationalHolidayRepository.findHolidaysWithinGivenTimeFrame(vacation.getFirstDay(), vacation.getLastDay()).size();
     }
 }

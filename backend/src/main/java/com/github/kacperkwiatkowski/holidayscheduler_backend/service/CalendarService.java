@@ -41,6 +41,8 @@ public class CalendarService {
 
         List<CalendarDto> calendar = fillCalendar(users, days);
 
+        calendar = insertNationalHolidays(month, year, days, calendar);
+
         for(VacationDto v : vacations){
             int vacationsUserId = v.getUserID();
 
@@ -51,6 +53,27 @@ public class CalendarService {
             foundEntry.setHolidayStatus(fillMonth(foundEntry.getHolidayStatus(), v, days));
 
             calendar.set(index, foundEntry);
+        }
+
+        return calendar;
+    }
+
+    private List<CalendarDto>  insertNationalHolidays(int month, int year, int days, List<CalendarDto> calendar) {
+        Queue<NationalHoliday> nationalHolidaysInThisMonth =
+                nationalHolidayRepository.findHolidaysWithinGivenTimeFrame(LocalDate.of(year, month, 1), LocalDate.of(year, month, days));
+        while(!nationalHolidaysInThisMonth.isEmpty()){
+
+            calendar
+                    .forEach(
+                            user -> user
+                                    .getHolidayStatus()
+                                    .set(nationalHolidaysInThisMonth
+                                            .peek()
+                                            .getHolidayDate()
+                                            .getDayOfMonth()-1,
+                                        nationalHolidaysInThisMonth.peek().getName().toUpperCase()));
+
+            nationalHolidaysInThisMonth.poll();
         }
 
         return calendar;
@@ -75,10 +98,6 @@ public class CalendarService {
 
         int index = Integer.parseInt(vacationDto.getFirstDay().substring(0,2))-1;
         int lastDay = Integer.parseInt(vacationDto.getLastDay().substring(0,2))-1;
-
-        boolean b = !vacationDto.getLastDay().substring(3,5).equals(vacationDto.getFirstDay().substring(3,5));
-        String s1 = vacationDto.getLastDay().substring(3,5);
-        String s2 = vacationDto.getFirstDay().substring(3,5);
 
         if(!vacationDto.getLastDay().substring(3,5).equals(vacationDto.getFirstDay().substring(3,5))){
             lastDay = daysInMonth;

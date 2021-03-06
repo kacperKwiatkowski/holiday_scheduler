@@ -5,6 +5,7 @@ import com.github.kacperkwiatkowski.holidayscheduler_backend.exceptions.ObjectNo
 import com.github.kacperkwiatkowski.holidayscheduler_backend.mappers.VacationMapper;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.model.User;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.model.Vacation;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.NationalHolidayRepository;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.UserRepository;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.VacationRepository;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.utils.enums.VacationType;
@@ -23,6 +24,7 @@ class VacationServiceTest {
     private VacationRepository vacationRepository = mock(VacationRepository.class);
     private UserRepository userRepository = mock(UserRepository.class);
     private VacationMapper vacationMapperMock = mock(VacationMapper.class);
+    private NationalHolidayRepository nationalHolidayRepository = mock(NationalHolidayRepository.class);
 
     VacationMapper vacationMapper;
     VacationService vacationService;
@@ -30,14 +32,14 @@ class VacationServiceTest {
     @Before
     void setUp(){
         vacationMapper = new VacationMapper(vacationRepository, userRepository);
-        vacationService = new VacationService(vacationRepository, vacationMapper, userRepository);
+        vacationService = new VacationService(vacationRepository, vacationMapper, userRepository, nationalHolidayRepository);
     }
 
     @Test
     void createVacation() {
         //given
         vacationMapper = new VacationMapper(vacationRepository, userRepository);
-        vacationService = new VacationService(vacationRepository, vacationMapper, userRepository);
+        vacationService = new VacationService(vacationRepository, vacationMapper, userRepository, nationalHolidayRepository);
         VacationDto vacationDto = VacationDto
                         .builder()
                         .id(1)
@@ -65,7 +67,7 @@ class VacationServiceTest {
     void deleteVacation_methodReturnsObjectIfIdIsFoundInRepository() {
         //given
         vacationMapper = new VacationMapper(vacationRepository, userRepository);
-        vacationService = new VacationService(vacationRepository, vacationMapper, userRepository);
+        vacationService = new VacationService(vacationRepository, vacationMapper, userRepository, nationalHolidayRepository);
         VacationDto vacationDto = VacationDto
                 .builder()
                 .id(1)
@@ -92,7 +94,7 @@ class VacationServiceTest {
     void deleteVacation_methodThrowsExceptionWhenIdIsNotFoundInRepository() {
         //given
         vacationMapper = new VacationMapper(vacationRepository, userRepository);
-        vacationService = new VacationService(vacationRepository, vacationMapper, userRepository);
+        vacationService = new VacationService(vacationRepository, vacationMapper, userRepository, nationalHolidayRepository);
         VacationDto vacationDto = VacationDto
                 .builder()
                 .id(1)

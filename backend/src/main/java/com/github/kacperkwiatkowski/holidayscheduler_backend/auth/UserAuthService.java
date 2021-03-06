@@ -22,7 +22,6 @@ public class UserAuthService implements UserDetailsService {
 
         try{
             com.github.kacperkwiatkowski.holidayscheduler_backend.model.User user = userRepository.findFirstByEmail(email);
-            //TODO Improve code's layout
             return org.springframework.security.core.userdetails
                     .User.builder()
                     .username(user.getEmail())

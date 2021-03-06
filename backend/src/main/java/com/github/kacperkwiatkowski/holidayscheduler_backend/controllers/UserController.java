@@ -68,7 +68,6 @@ public class UserController {
     @ResponseBody
     ResponseEntity<UserDto> updateUser(@RequestBody UserDto userToUpdate) throws ObjectNotFoundException {
             log.info("Controller 'updateUser' initiated.");
-            //TODO Return entity
             return ResponseEntity.ok(userService.updateUser(userToUpdate));
 
     }
@@ -79,7 +78,6 @@ public class UserController {
     ResponseEntity<UserDto> deleteUser(@PathVariable("id") int id) throws ObjectNotFoundException {
 
         log.info("Controller 'deleteUser' initiated.");
-        //TODO Controller doesn't return the deleted entity
         return ResponseEntity.ok(userService.deleteUser(id));
     }
 

@@ -5,7 +5,7 @@ import "../interceptor/interceptor"
 const Calendar = ({records, calendarPagination}) => {
 
 
-    const [nationalHolidays, setNationalHolidays] = useState([{}])
+    const [nationalHolidays, setNationalHolidays] = useState()
 
     useEffect(() => {
         fethcNationalHolidays()
@@ -18,12 +18,9 @@ const Calendar = ({records, calendarPagination}) => {
     }})
     .then(
         (res) => {
-            console.log(res.data)
             setNationalHolidays(res.data)
         }
     )
-
-    {nationalHolidays.length > 0 ? console.log(nationalHolidays[0].holidayDate.substring(8,10)) : console.log("NONE")}
 
     function daysInMonth (month, year) { 
         return new Date(year, month, 0).getDate(); 
@@ -47,21 +44,39 @@ const Calendar = ({records, calendarPagination}) => {
                 return 'payedBereavementButton'
             case 'SABBATICAL':
                 return 'payedSabbaticalButton'
-            default:
+            case 'NONE':
                 return "noVacation"
+            default:
+                return "nationalHoliday"
           }
+    }
+
+    const mapNationalHolidays = (dates) => {
+
+        if(Array.isArray(nationalHolidays) && nationalHolidays.length){
+            console.log(typeof nationalHolidays === undefined)
+            nationalHolidays.map(n => {
+                dates[parseInt(n.holidayDate.substring(8))-1].nationalHoliday = n.name
+            })
+
+            return dates;
+        } 
+
+        return dates
     }
 
     let daysOfMonth = mapDaysOfWeek()
     
     function mapDaysOfWeek() {
+
+
         const currentMonth = calendarPagination.month;
         const currentYear = calendarPagination.year;
     
         let days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
     
         const dates = []
-        let i;
+        let i
         let monthLength = daysInMonth(currentMonth, currentYear)
     
         for(i = 1; i <= monthLength; i++){
@@ -70,12 +85,15 @@ const Calendar = ({records, calendarPagination}) => {
             dates.push(
                 {
                     date: currentDay + "/" + currentMonth + "/" + currentYear,
-                    day: days[new Date(currentYear, currentMonth-1, i).getDay()]
+                    day: days[new Date(currentYear, currentMonth-1, i).getDay()],
+                    nationalHoliday: ""
                 }
             )
         }
 
-        return dates;
+        console.log(dates)
+
+        return mapNationalHolidays(dates);
     }
 
     const renderTableHead = () => {
@@ -83,10 +101,10 @@ const Calendar = ({records, calendarPagination}) => {
         return( daysOfMonth.map((date, index) => {
             return (
                     <th 
-                        className="calendarHeadCell"
+                        className={date.nationalHoliday==="" ? "calendarHeadCell" : "calendarHeadCell calendarHolidayHeadCell"}
                         key={index}
                     >
-                        {date.day}
+                        {date.nationalHoliday==="" ? date.date : date.nationalHoliday}
                     </th>
                 )
             }
