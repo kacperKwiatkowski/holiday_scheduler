@@ -131,7 +131,7 @@ a:hover{
 .profile-dropDown{
     height: 200px;
     width: 100%;
-    background-color:royalblue;
+    background-color:$decorationsBlue;
     box-shadow: 0px 20px 20px -17px $decorationsBlue;
     position:fixed;
     z-index: 4;
@@ -161,13 +161,13 @@ a:hover{
 .profile-dropDown-table{
     height: 150px;
     margin: auto 0 auto 0;
-    color:white;
+    color:$backgroundWhite;
 }
 
 .profile-dropDown-buttons-wrapper{
     height: 150px;
 
-    color:white;
+    color:$backgroundWhite;
     margin: auto 0 auto 0;
     padding-right: 50px;
 }
@@ -182,13 +182,13 @@ a:hover{
     width: 200px;
     font-size: large;
     background-color: transparent;
-    color: white;
+    color: $backgroundWhite;
     border: none;
     outline: none;
     border-bottom: 3px solid transparent;
 
     &:hover{
-        border-bottom: 3px solid white;
+        border-bottom: 3px solid $backgroundWhite;
     }
 }
 
@@ -224,7 +224,7 @@ a:hover{
 .profile-dropDown-image{
     max-width: 150px;
     max-height: 150px;
-    border: 3px solid white;
+    border: 3px solid $backgroundWhite;
       
     position: absolute;
 
@@ -236,6 +236,6 @@ a:hover{
     width: 30px;
     position: absolute;
     z-index: 10;
-    color: white;
+    color: $backgroundWhite;
     padding: 5px;
 }

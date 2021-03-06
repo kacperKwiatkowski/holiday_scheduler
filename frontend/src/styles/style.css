@@ -16,15 +16,15 @@
   padding-left: 0px;
   padding: 30px;
   text-align: left;
-  -webkit-box-shadow: 8px 8px 5px -10px #006FFF;
-          box-shadow: 8px 8px 5px -10px #006FFF;
+  -webkit-box-shadow: 8px 8px 5px -10px #ff0000;
+          box-shadow: 8px 8px 5px -10px #ff0000;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
 
 .settingsPanel:hover {
-  -webkit-box-shadow: 4px 4px 5px 0px #006FFF;
-          box-shadow: 4px 4px 5px 0px #006FFF;
+  -webkit-box-shadow: 4px 4px 5px 0px #ff0000;
+          box-shadow: 4px 4px 5px 0px #ff0000;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
@@ -46,15 +46,15 @@
   margin: 20px;
   padding-left: 0px;
   padding: 30px;
-  -webkit-box-shadow: 8px 8px 5px -10px #006FFF;
-          box-shadow: 8px 8px 5px -10px #006FFF;
+  -webkit-box-shadow: 8px 8px 5px -10px #ff0000;
+          box-shadow: 8px 8px 5px -10px #ff0000;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
 
 .settingsForm:hover {
-  -webkit-box-shadow: 4px 4px 5px 0px #006FFF;
-          box-shadow: 4px 4px 5px 0px #006FFF;
+  -webkit-box-shadow: 4px 4px 5px 0px #ff0000;
+          box-shadow: 4px 4px 5px 0px #ff0000;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
@@ -107,7 +107,7 @@
   margin-left: 0;
   float: left;
   padding-right: 10px;
-  color: #646464;
+  color: #e94e4e;
 }
 
 .settingsFormField {
@@ -115,9 +115,9 @@
   height: 30px;
   border: none;
   outline: none;
-  border-bottom: 1px solid #646464;
+  border-bottom: 1px solid #e94e4e;
   border-radius: 0px;
-  color: #646464;
+  color: #e94e4e;
   background-color: transparent;
   -webkit-box-pack: end;
       -ms-flex-pack: end;
@@ -126,7 +126,7 @@
 }
 
 .settingsFormField:hover {
-  border-bottom: 1px solid #006FFF;
+  border-bottom: 1px solid #ff0000;
 }
 
 .settingsFormButtonsWrapper {
@@ -148,11 +148,11 @@
   font-size: large;
   border-bottom: 2px solid transparent;
   background-color: transparent;
-  color: #006FFF;
+  color: #ff0000;
 }
 
 .settingsFormButton:hover {
-  border-bottom: 2px solid #006FFF;
+  border-bottom: 2px solid #ff0000;
   background-color: transparent;
 }
 
@@ -179,15 +179,15 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-shadow: 8px 8px 5px -10px #006FFF;
-          box-shadow: 8px 8px 5px -10px #006FFF;
+  -webkit-box-shadow: 8px 8px 5px -10px #ff0000;
+          box-shadow: 8px 8px 5px -10px #ff0000;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
 
 .card-wrapper:hover {
-  -webkit-box-shadow: 4px 4px 5px 0px #006FFF;
-          box-shadow: 4px 4px 5px 0px #006FFF;
+  -webkit-box-shadow: 4px 4px 5px 0px #ff0000;
+          box-shadow: 4px 4px 5px 0px #ff0000;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
@@ -238,12 +238,12 @@
   background-color: transparent;
   border: none;
   outline: none;
-  color: #006FFF;
+  color: #ff0000;
   border-bottom: 2px solid transparent;
 }
 
 .card-member-remove-button:hover {
-  border-bottom: 2px solid #006FFF;
+  border-bottom: 2px solid #ff0000;
 }
 
 table {
@@ -281,7 +281,7 @@ table.calendarTable th {
   position: sticky;
   height: 150px;
   width: 200px;
-  color: #646464;
+  color: #e94e4e;
   font-size: small;
   padding: none !important;
 }
@@ -295,7 +295,7 @@ table.calendarTable td {
       -ms-flex-align: center;
           align-items: center;
   font-size: smaller;
-  color: #646464;
+  color: #e94e4e;
   opacity: 0.5;
   padding: 0;
   margin: 0;
@@ -304,34 +304,34 @@ table.calendarTable td {
 .calendarHeadCell {
   height: 30px !important;
   width: 200px;
-  color: #646464;
+  color: #e94e4e;
   font-size: small;
   margin: 15px;
 }
 
 .calendarHolidayCell {
-  background-color: #fbfbfc !important;
+  background-color: #181818 !important;
 }
 
 .calendarNameButton {
-  background-color: white;
-  color: #646464;
+  background-color: #000000;
+  color: #e94e4e;
   outline: none;
   font-size: x-small;
   margin: 6px;
   height: 120px;
   width: 160px;
   border: none;
-  -webkit-box-shadow: 8px 8px 5px -10px #006FFF;
-          box-shadow: 8px 8px 5px -10px #006FFF;
+  -webkit-box-shadow: 8px 8px 5px -10px #ff0000;
+          box-shadow: 8px 8px 5px -10px #ff0000;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
   cursor: pointer;
 }
 
 .calendarNameButton:hover {
-  -webkit-box-shadow: 4px 4px 5px 0px #006FFF;
-          box-shadow: 4px 4px 5px 0px #006FFF;
+  -webkit-box-shadow: 4px 4px 5px 0px #ff0000;
+          box-shadow: 4px 4px 5px 0px #ff0000;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
   -webkit-transform: translateY(-5px);
@@ -404,8 +404,8 @@ table.calendarTable td {
 
 .controlsWrapper {
   height: 100px;
-  background-color: #ffffff;
-  color: #646464;
+  background-color: #000000;
+  color: #e94e4e;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -425,8 +425,8 @@ table.calendarTable td {
   left: 0;
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
-  -webkit-box-shadow: 0px 15px 10px -20px #006FFF;
-          box-shadow: 0px 15px 10px -20px #006FFF;
+  -webkit-box-shadow: 0px 15px 10px -20px #ff0000;
+          box-shadow: 0px 15px 10px -20px #ff0000;
 }
 
 .controlsWrapper:hover {
@@ -434,8 +434,8 @@ table.calendarTable td {
   transition: all 0.4s ease-in-out;
   -webkit-transform: translateY(-10px);
           transform: translateY(-10px);
-  -webkit-box-shadow: 0px 20px 20px -17px #006FFF;
-          box-shadow: 0px 20px 20px -17px #006FFF;
+  -webkit-box-shadow: 0px 20px 20px -17px #ff0000;
+          box-shadow: 0px 20px 20px -17px #ff0000;
 }
 
 .pageHeader {
@@ -456,7 +456,7 @@ table.calendarTable td {
   border: none;
   outline: none;
   border-radius: 0;
-  color: #646464;
+  color: #e94e4e;
   font-size: large;
   cursor: pointer;
   text-decoration: underline;
@@ -466,7 +466,7 @@ table.calendarTable td {
   height: 25px;
   vertical-align: bottom;
   text-align: center;
-  color: #646464;
+  color: #e94e4e;
   background-color: transparent;
   font-size: medium;
   margin: auto;
@@ -478,7 +478,7 @@ table.calendarTable td {
 .controlsElements {
   height: 25px;
   width: auto;
-  color: #646464;
+  color: #e94e4e;
   background-color: transparent;
   font-size: medium;
   justify-self: baseline;
@@ -486,20 +486,20 @@ table.calendarTable td {
   margin-right: 5px;
   padding: 2px;
   border: none;
-  border-bottom: 1px solid #006FFF;
+  border-bottom: 1px solid #ff0000;
   outline: none;
 }
 
 .filterBar {
   height: 29px;
   width: 150px;
-  color: #646464;
+  color: #e94e4e;
   font-size: medium;
   justify-self: baseline;
   margin: auto;
   margin-right: 5px;
   border: none;
-  border-bottom: 1px solid #006FFF;
+  border-bottom: 1px solid #ff0000;
   outline: none;
 }
 
@@ -515,22 +515,22 @@ table.calendarTable td {
 
 .footer-wrapper {
   position: fixed;
-  background-color: white;
-  color: #006FFF;
+  background-color: #000000;
+  color: #ff0000;
   width: 100%;
   height: 60px;
   top: 100%;
   -webkit-transform: translateY(-50px);
           transform: translateY(-50px);
-  -webkit-box-shadow: 0px 15px 10px 10px #006FFF;
-          box-shadow: 0px 15px 10px 10px #006FFF;
+  -webkit-box-shadow: 0px 15px 10px 10px #ff0000;
+          box-shadow: 0px 15px 10px 10px #ff0000;
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
 
 .footer-wrapper:hover {
-  -webkit-box-shadow: 0px 15px 10px 20px #006FFF;
-          box-shadow: 0px 15px 10px 20px #006FFF;
+  -webkit-box-shadow: 0px 15px 10px 20px #ff0000;
+          box-shadow: 0px 15px 10px 20px #ff0000;
   -webkit-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out;
 }
@@ -566,7 +566,7 @@ table.calendarTable td {
   margin-left: 0;
   float: left;
   padding-right: 10px;
-  color: #646464;
+  color: #e94e4e;
 }
 
 .formTextInput {
@@ -574,9 +574,9 @@ table.calendarTable td {
   width: 300px;
   border: none;
   outline: none;
-  border-bottom: 1px solid #646464;
+  border-bottom: 1px solid #e94e4e;
   border-radius: 0px;
-  color: #646464;
+  color: #e94e4e;
   background-color: transparent;
   -webkit-box-pack: end;
       -ms-flex-pack: end;
@@ -593,7 +593,7 @@ table.calendarTable td {
 }
 
 .formTextRemoveInput:hover {
-  border-bottom: 1px solid #006FFF;
+  border-bottom: 1px solid #ff0000;
 }
 
 .profile-form-service-label {
@@ -611,7 +611,7 @@ table.calendarTable td {
 }
 
 .formTextServiceInput:hover {
-  border-bottom: 1px solid #006FFF;
+  border-bottom: 1px solid #ff0000;
 }
 
 .formFieldWrapper {
@@ -643,12 +643,12 @@ table.calendarTable td {
   font-size: large;
   font-weight: bold;
   text-align: center;
-  color: #646464;
+  color: #e94e4e;
   border-bottom: 2px solid transparent;
 }
 
 .formButton:hover {
-  border-bottom: 2px solid #646464;
+  border-bottom: 2px solid #e94e4e;
 }
 
 .formUpdateButton {
@@ -670,18 +670,18 @@ table.calendarTable td {
 }
 
 .formServiceButton {
-  color: #006FFF;
+  color: #ff0000;
   border-bottom: 2px solid transparent;
 }
 
 .formServiceButton:hover {
-  border-bottom: 2px solid #006FFF;
+  border-bottom: 2px solid #ff0000;
 }
 
 .tables {
   border-spacing: 0;
   width: 100%;
-  color: #646464;
+  color: #e94e4e;
   border-collapse: collapse;
   letter-spacing: 1px;
   margin-top: 50px;
@@ -691,8 +691,8 @@ table.calendarTable td {
 .tables th {
   height: 60px;
   margin: auto;
-  color: #646464;
-  background-color: #f7f7f7;
+  color: #e94e4e;
+  background-color: #131313;
   text-align: left;
   padding-left: 40px;
   font-size: small;
@@ -700,11 +700,11 @@ table.calendarTable td {
 }
 
 .tables tbody tr:nth-child(odd) {
-  background-color: #ffffff;
+  background-color: #000000;
 }
 
 .tables tbody tr:nth-child(even) {
-  background-color: #fbfbfc;
+  background-color: #181818;
 }
 
 .tables td {
@@ -760,12 +760,12 @@ table.calendarTable td {
 .tablesFieldInput {
   height: 20px;
   width: 150px;
-  color: #646464;
+  color: #e94e4e;
   font-size: medium;
   justify-self: baseline;
   margin: auto;
   border: none;
-  border-bottom: 1px solid #646464;
+  border-bottom: 1px solid #e94e4e;
   outline: none;
 }
 
@@ -775,7 +775,7 @@ table.calendarTable td {
 }
 
 .tablesFieldInput:disabled {
-  border-bottom: 1px solid #646464;
+  border-bottom: 1px solid #e94e4e;
 }
 
 .team-header {
@@ -803,16 +803,16 @@ table.calendarTable td {
   top: 0;
   left: 0;
   z-index: 5;
-  background-color: #ffffff;
+  background-color: #000000;
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
-  -webkit-box-shadow: 0px 15px 10px -20px #006FFF;
-          box-shadow: 0px 15px 10px -20px #006FFF;
+  -webkit-box-shadow: 0px 15px 10px -20px #ff0000;
+          box-shadow: 0px 15px 10px -20px #ff0000;
 }
 
 .navbarWrapper:hover {
-  -webkit-box-shadow: 0px 20px 20px -17px #006FFF;
-          box-shadow: 0px 20px 20px -17px #006FFF;
+  -webkit-box-shadow: 0px 20px 20px -17px #ff0000;
+          box-shadow: 0px 20px 20px -17px #ff0000;
   -webkit-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out;
 }
@@ -849,11 +849,11 @@ table.calendarTable td {
   font-size: large;
   border-bottom: 2px solid transparent;
   background-color: transparent;
-  color: #006FFF;
+  color: #ff0000;
 }
 
 .navbarWrapperLogOutButton:hover {
-  border-bottom: 2px solid #006FFF;
+  border-bottom: 2px solid #ff0000;
   background-color: transparent;
 }
 
@@ -867,7 +867,7 @@ table.calendarTable td {
       -ms-flex-align: center;
           align-items: center;
   margin-left: 20px;
-  color: #646464;
+  color: #e94e4e;
 }
 
 .linksmenuNav {
@@ -931,9 +931,9 @@ a:hover {
 .profile-dropDown {
   height: 200px;
   width: 100%;
-  background-color: royalblue;
-  -webkit-box-shadow: 0px 20px 20px -17px #006FFF;
-          box-shadow: 0px 20px 20px -17px #006FFF;
+  background-color: #ff0000;
+  -webkit-box-shadow: 0px 20px 20px -17px #ff0000;
+          box-shadow: 0px 20px 20px -17px #ff0000;
   position: fixed;
   z-index: 4;
   display: -webkit-box;
@@ -969,12 +969,12 @@ a:hover {
 .profile-dropDown-table {
   height: 150px;
   margin: auto 0 auto 0;
-  color: white;
+  color: #000000;
 }
 
 .profile-dropDown-buttons-wrapper {
   height: 150px;
-  color: white;
+  color: #000000;
   margin: auto 0 auto 0;
   padding-right: 50px;
 }
@@ -988,14 +988,14 @@ a:hover {
   width: 200px;
   font-size: large;
   background-color: transparent;
-  color: white;
+  color: #000000;
   border: none;
   outline: none;
   border-bottom: 3px solid transparent;
 }
 
 .profile-dropDown-button:hover {
-  border-bottom: 3px solid white;
+  border-bottom: 3px solid #000000;
 }
 
 .profile-dropDown-image-wrapper {
@@ -1025,7 +1025,7 @@ a:hover {
 .profile-dropDown-image {
   max-width: 150px;
   max-height: 150px;
-  border: 3px solid white;
+  border: 3px solid #000000;
   position: absolute;
 }
 
@@ -1034,12 +1034,16 @@ a:hover {
   width: 30px;
   position: absolute;
   z-index: 10;
-  color: white;
+  color: #000000;
   padding: 5px;
 }
 
+body {
+  background-color: #000000;
+}
+
 .loginFormWrapper {
-  background-color: #ffffff;
+  background-color: #000000;
   padding: 100px;
   position: fixed;
   left: 50%;
@@ -1048,13 +1052,13 @@ a:hover {
           transform: translate(-50%, -50%);
   width: 600px;
   height: 400px;
-  -webkit-box-shadow: 0px 15px 10px -20px #006FFF;
-          box-shadow: 0px 15px 10px -20px #006FFF;
+  -webkit-box-shadow: 0px 15px 10px -20px #ff0000;
+          box-shadow: 0px 15px 10px -20px #ff0000;
 }
 
 .loginFormWrapper:hover {
-  -webkit-box-shadow: 0 10px 25px #006FFF;
-  box-shadow: 0 10px 25px #006FFF;
+  -webkit-box-shadow: 0 10px 25px #ff0000;
+  box-shadow: 0 10px 25px #ff0000;
   -webkit-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out;
 }
@@ -1082,7 +1086,7 @@ a:hover {
 
 .loginFormLabels {
   padding-left: 15px;
-  color: #006FFF;
+  color: #ff0000;
   font-size: 30px;
 }
 
@@ -1102,24 +1106,24 @@ a:hover {
   padding: none;
   padding-left: 15px;
   line-height: 40px;
-  color: #006FFF;
+  color: #ff0000;
   font-size: 20px;
   vertical-align: baseline;
-  background-color: #ffffff;
+  background-color: #000000;
   border: none;
-  border-bottom: 2px solid #006FFF;
+  border-bottom: 2px solid #ff0000;
 }
 
 .loginFormInput:hover {
-  -webkit-box-shadow: 0px 20px 35px -16px #006FFF;
-  box-shadow: 0px 20px 35px -16px #006FFF;
+  -webkit-box-shadow: 0px 20px 35px -16px #ff0000;
+  box-shadow: 0px 20px 35px -16px #ff0000;
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
 
 .loginFormInput:focus {
-  -webkit-box-shadow: 0px 20px 35px -16px #006FFF;
-  box-shadow: 0px 20px 35px -16px #006FFF;
+  -webkit-box-shadow: 0px 20px 35px -16px #ff0000;
+  box-shadow: 0px 20px 35px -16px #ff0000;
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
@@ -1137,7 +1141,7 @@ a:hover {
   color: #be0013;
   font-size: 20px;
   vertical-align: baseline;
-  background-color: #2b2b2b;
+  background-color: #000000;
   border: none;
   border-bottom: 2px solid #be0013;
 }
@@ -1172,14 +1176,14 @@ a:hover {
   margin: 0;
   border: none;
   outline: none;
-  background-color: #ffffff;
-  color: #006FFF;
+  background-color: #000000;
+  color: #ff0000;
   font-weight: 1000;
   font-size: medium;
 }
 
 .forgottenPasswordFormButton:hover {
-  text-shadow: 0 0 15px #006FFF;
+  text-shadow: 0 0 15px #ff0000;
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
@@ -1192,7 +1196,7 @@ a:hover {
   margin: 0;
   border: none;
   outline: none;
-  background-color: #2b2b2b;
+  background-color: #000000;
   color: #be0013;
   font-weight: 1000;
   font-size: medium;
@@ -1210,15 +1214,15 @@ a:hover {
   margin-left: 20px;
   border: none;
   outline: none;
-  background-color: #006FFF;
-  color: #ffffff;
+  background-color: #ff0000;
+  color: #000000;
   font-weight: 1000;
   font-size: medium;
 }
 
 .signInFormButton:hover {
-  -webkit-box-shadow: 0px 20px 35px -6px #006FFF;
-  box-shadow: 0px 20px 35px -6px #006FFF;
+  -webkit-box-shadow: 0px 20px 35px -6px #ff0000;
+  box-shadow: 0px 20px 35px -6px #ff0000;
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
@@ -1232,7 +1236,7 @@ a:hover {
   border: none;
   outline: none;
   background-color: #be0013;
-  color: #2b2b2b;
+  color: #000000;
   font-weight: 1000;
   font-size: medium;
 }
@@ -1271,7 +1275,7 @@ a:hover {
   margin: auto;
   padding: 20px;
   font-size: xx-large;
-  background-color: #ffffff;
+  background-color: #000000;
   z-index: 10;
 }
 
@@ -1291,14 +1295,14 @@ a:hover {
 
 .modalHeaderWrapper {
   font-size: x-large;
-  color: #646464;
+  color: #e94e4e;
   text-align: center;
   margin: auto;
   padding-top: 25px;
 }
 
 .modalText {
-  color: #646464;
+  color: #e94e4e;
   font-size: large;
   text-align: center;
   height: 30px;
@@ -1328,11 +1332,11 @@ a:hover {
   font-size: large;
   font-weight: bold;
   text-align: center;
-  color: #646464;
+  color: #e94e4e;
 }
 
 .modalDismissButton:hover {
-  text-shadow: 2px 2px 2px #646464;
+  text-shadow: 2px 2px 2px #e94e4e;
 }
 
 * {
