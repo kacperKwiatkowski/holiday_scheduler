@@ -2,10 +2,10 @@ package com.github.kacperkwiatkowski.holidayscheduler_backend.service;
 
 import com.github.kacperkwiatkowski.holidayscheduler_backend.dto.UserDto;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.exceptions.ObjectNotFoundException;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.filestore.FileStore;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.mappers.UserMapper;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.model.User;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.UserRepository;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.roles.RoleType;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -22,10 +22,12 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final UserMapper userMapper;
+    private final TeamService teamService;
 
-    public UserService(UserRepository userRepository, UserMapper userMapper, FileStore fileStore) {
+    public UserService(UserRepository userRepository, UserMapper userMapper, TeamService teamService) {
         this.userRepository = userRepository;
         this.userMapper = userMapper;
+        this.teamService = teamService;
     }
 
     public User createUser(UserDto userToCreate){
@@ -78,6 +80,9 @@ public class UserService {
 
         Optional<User> userToDelete = Optional.ofNullable(userRepository.findById(id));
         if(userToDelete.isPresent()){
+
+            checkIfTeamLeaderWithTeam(userToDelete);
+            removeFromTeam(id, userToDelete);
             userRepository.deleteById(id);
             return userMapper.mapToDto(userToDelete.get());
 
@@ -111,5 +116,16 @@ public class UserService {
         }
     }
 
+    private void checkIfTeamLeaderWithTeam(Optional<User> userToDelete) throws ObjectNotFoundException {
+        if(userToDelete.get().getTeam() != null & userToDelete.get().getRoleType()== RoleType.TEAM_LEADER){
+            throw new ObjectNotFoundException("Team leader has a team, delete team first or change team leader and then delete the user.");
+        }
+    }
 
+
+    private void removeFromTeam(int id, Optional<User> userToDelete) {
+        if(userToDelete.get().getTeam()!=null){
+            teamService.removeFromTeam(id);
+        }
+    }
 }

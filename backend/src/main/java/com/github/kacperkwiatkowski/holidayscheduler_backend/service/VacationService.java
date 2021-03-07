@@ -18,6 +18,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.Collection;
@@ -49,8 +50,6 @@ public class VacationService {
         User user = userRepository.findById(vacation.getUser().getId());
 
         int daysBetween = getDaysBetween(vacation);
-
-
         validateHolidayRequest(vacation, user, daysBetween);
 
         userRepository.subtractDaysOffFromUser(user.getId(), daysBetween);
@@ -147,11 +146,22 @@ public class VacationService {
         if (!vacationRepository.findHolidaysWithinGivenTimeFrame(user.getId(), vacation.getFirstDay(), vacation.getLastDay()).isEmpty()){
             throw new ObjectNotFoundException("Holiday already placed within requested days");
         }
+        if(vacation.getFirstDay().isAfter(vacation.getLastDay())){
+            throw new ObjectNotFoundException("Holiday's first dat cannot be after its last day");
+        }
     }
 
     private int getDaysBetween(Vacation vacation) {
-        return (int)
-                (DAYS.between(vacation.getFirstDay(), vacation.getLastDay()) + 1) -
-                nationalHolidayRepository.findHolidaysWithinGivenTimeFrame(vacation.getFirstDay(), vacation.getLastDay()).size();
+        LocalDate currentDay = vacation.getFirstDay();
+        int numOfFreeDays = 0;
+        while (vacation.getLastDay().isAfter(currentDay)){
+            DayOfWeek dow = currentDay.getDayOfWeek();
+            if(!(currentDay.getDayOfWeek()==DayOfWeek.SATURDAY || currentDay.getDayOfWeek()==DayOfWeek.SUNDAY)){
+                numOfFreeDays++;
+            }
+            currentDay = currentDay.plusDays((long) 1);
+        }
+
+        return numOfFreeDays - nationalHolidayRepository.findHolidaysWithinGivenTimeFrame(vacation.getFirstDay(), vacation.getLastDay()).size();
     }
 }
