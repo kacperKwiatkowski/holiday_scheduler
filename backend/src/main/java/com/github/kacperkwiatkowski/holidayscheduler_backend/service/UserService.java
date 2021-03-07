@@ -86,25 +86,6 @@ public class UserService {
         }
     }
 
-    public List<UserDto> listAll(Integer pageNum, Integer pageSize, String sortBy, String sortOrder) {
-
-        Pageable paging;
-
-        if(sortOrder.equals("ASC")){
-            paging = PageRequest.of(pageNum, pageSize, Sort.by(sortBy).ascending());
-        } else {
-            paging = PageRequest.of(pageNum, pageSize, Sort.by(sortBy).descending());
-        }
-
-        Page<User> pagedResult = userRepository.findAll(paging);
-
-        if(pagedResult.hasContent()) {
-            return pagedResult.stream().map(userMapper::mapToDto).collect(Collectors.toList());
-        } else {
-           throw new ObjectNotFoundException("Pagination impossible");
-        }
-    }
-
     public List<UserDto> listAll(Integer pageNum, Integer pageSize, String sortBy, String sortOrder, String filter) {
 
         Pageable paging;

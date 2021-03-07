@@ -48,13 +48,7 @@ const DeleteUser = ({entity}) => {
                         }
                     </div>
                     <div className="formButtonsWrapper">
-                        <button
-                            className="formButton"
-                            type="button"
-                            onClick={form.reset}
-                        >
-                            RESET
-                        </button>
+
                         <button 
                             type="submit"
                             className={`formButton formDeleteButton`}

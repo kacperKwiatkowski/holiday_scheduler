@@ -13,6 +13,8 @@ const UpdateUser = ({entity}) => {
 
       values.lastDay = parseDateFormatForServer(values.lastDay)
 
+      console.log(values)
+
       dispatch(updateObject({object: "vacation", data: values}))
     }
 
@@ -106,8 +108,8 @@ const UpdateUser = ({entity}) => {
                     name="accepted"
                     component="select"
                 >
-                    <option value="EMPLOYEE">ACCEPT</option>
-                    <option value="TEAM_LEADER">REJECT</option>
+                    <option value="true">ACCEPT</option>
+                    <option value="false">REJECT</option>
                 </Field>
               </div>
 

@@ -63,10 +63,11 @@ public class VacationService {
 
         List<Integer> usersIdsToFetchVacations = users.stream().map(UserDto::getId).collect(Collectors.toList());
 
+        //FIXME Write this function as a query
         List<List<VacationDto>> foundVacations = usersIdsToFetchVacations
                 .stream()
                 .map(id ->
-                                vacationRepository.findHolidaysWithinGivenTimeFrame(
+                                vacationRepository.findAcceptedHolidaysWithinGivenTimeFrame(
                             id,
                             LocalDate.of(year, month, 1),
                             LocalDate.of(year, month, YearMonth.of(year, month).lengthOfMonth()))

@@ -62,7 +62,7 @@ public class UserController {
         return new ResponseEntity<List<UserDto>>(userService.getAllUsers(), HttpStatus.OK);
     }
 
-    @PatchMapping(path = "/update")
+    @PatchMapping(path = "/update/{id}")
     @PreAuthorize("hasAuthority('employee:update')")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
@@ -75,7 +75,9 @@ public class UserController {
     @DeleteMapping(path = "/delete/{id}")
     @PreAuthorize("hasAuthority('employee:delete')")
     @ResponseStatus(HttpStatus.OK)
-    ResponseEntity<UserDto> deleteUser(@PathVariable("id") int id) throws ObjectNotFoundException {
+    ResponseEntity<UserDto> deleteUser(
+            @PathVariable("id") int id,String token
+    ) throws ObjectNotFoundException {
 
         log.info("Controller 'deleteUser' initiated.");
         return ResponseEntity.ok(userService.deleteUser(id));

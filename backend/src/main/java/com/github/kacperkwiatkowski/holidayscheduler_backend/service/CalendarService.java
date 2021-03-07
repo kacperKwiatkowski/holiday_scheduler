@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.*;
 
+import static java.lang.Integer.parseInt;
+
 @Slf4j
 @Service
 public class CalendarService {
@@ -41,8 +43,14 @@ public class CalendarService {
 
         List<CalendarDto> calendar = fillCalendar(users, days);
 
+        calendar = insertIndividualHolidays(vacations, days, calendar, month);
+
         calendar = insertNationalHolidays(month, year, days, calendar);
 
+        return calendar;
+    }
+
+    private  List<CalendarDto>  insertIndividualHolidays(List<VacationDto> vacations, int days, List<CalendarDto> calendar, int month) {
         for(VacationDto v : vacations){
             int vacationsUserId = v.getUserID();
 
@@ -50,7 +58,7 @@ public class CalendarService {
 
             int index = calendar.indexOf(foundEntry);
 
-            foundEntry.setHolidayStatus(fillMonth(foundEntry.getHolidayStatus(), v, days));
+            foundEntry.setHolidayStatus(fillMonth(foundEntry.getHolidayStatus(), v, days, month));
 
             calendar.set(index, foundEntry);
         }
@@ -94,14 +102,10 @@ public class CalendarService {
         return emptyMonth;
     }
 
-    private List<String> fillMonth (List<String> month, VacationDto vacationDto, int daysInMonth){
+    private List<String> fillMonth (List<String> month, VacationDto vacationDto, int daysInMonth, int currentMonth){
 
-        int index = Integer.parseInt(vacationDto.getFirstDay().substring(0,2))-1;
-        int lastDay = Integer.parseInt(vacationDto.getLastDay().substring(0,2))-1;
-
-        if(!vacationDto.getLastDay().substring(3,5).equals(vacationDto.getFirstDay().substring(3,5))){
-            lastDay = daysInMonth;
-        }
+        int index = generateIndex(vacationDto, currentMonth);
+        int lastDay = calculateLastDay(vacationDto, daysInMonth, currentMonth);
 
         do{
             if(index>=month.size()) break;
@@ -110,5 +114,23 @@ public class CalendarService {
         } while (lastDay>=index);
 
         return month;
+    }
+
+    private int generateIndex(VacationDto vacationDto, int currentMonth) {
+
+        if(currentMonth > parseInt(vacationDto.getFirstDay().substring(3,5))){
+            return 0;
+        } else {
+            return parseInt(vacationDto.getFirstDay().substring(0,2))-1;
+        }
+    }
+
+    private int calculateLastDay(VacationDto vacationDto, int daysInMonth, int currentMonth) {
+
+        if(parseInt(vacationDto.getLastDay().substring(3,5)) != currentMonth && parseInt(vacationDto.getLastDay().substring(3,5)) > parseInt(vacationDto.getFirstDay().substring(3,5))){
+            return daysInMonth;
+        } else {
+            return parseInt(vacationDto.getLastDay().substring(0,2))-1;
+        }
     }
 }

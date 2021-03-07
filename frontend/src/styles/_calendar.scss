@@ -17,11 +17,9 @@ table.calendarTable {
 
     thead{
         height: 30px;
-
     }
 
     thead th {
-        // padding: 3px;
         position: sticky;
         top: 0;
         z-index: 1;
@@ -35,8 +33,7 @@ table.calendarTable {
         width: 200px;
         color: $textGrey;
         font-size: small;
-        padding: none !important;
-        // padding: 0 20px 0 10px !important;
+        padding: 0px !important;
     }
 
 

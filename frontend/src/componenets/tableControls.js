@@ -5,7 +5,6 @@ const TableControls = ({header, setPagination, object}) => {
 
     const[objectCount, setobjectCount] = useState(0)
     const[state, setState] = useState({
-        //FIXME pagination drops sortBy param here
         filter: "", pageNum: 1, pageSize: 5,  sortOrder: "ASC"
     })
 
@@ -31,7 +30,7 @@ const TableControls = ({header, setPagination, object}) => {
     }
 
 
-    useEffect(() => getObjectCount())
+    useEffect(() => getObjectCount(), [state])
 
     const renderPageNumControls = () => {
 

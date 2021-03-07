@@ -41,7 +41,7 @@ public class VacationController {
         return null;
     }
 
-    @PatchMapping(path = "/update")
+    @PatchMapping(path = "/update/{id}")
     @PreAuthorize("hasAuthority('vacation:notAcceptedEdit')")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody

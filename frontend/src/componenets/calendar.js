@@ -104,7 +104,7 @@ const Calendar = ({records, calendarPagination}) => {
                         className={date.nationalHoliday==="" ? "calendarHeadCell" : "calendarHeadCell calendarHolidayHeadCell"}
                         key={index}
                     >
-                        {date.nationalHoliday==="" ? date.date : date.nationalHoliday}
+                        {date.nationalHoliday==="" ? date.day : date.nationalHoliday}
                     </th>
                 )
             }

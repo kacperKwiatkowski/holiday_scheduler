@@ -1,20 +1,11 @@
-import React, {useState, useEffect} from "react";
-import { useDispatch, useSelector} from 'react-redux';
+import React, {useState} from "react";
 import { Link } from 'react-router-dom';
 import HeaderDropdown from "./headerDropdown";
-
-import { fetchLoggedUser } from '../actions/fetchLoggedUser'
 
 const Headerbar = () => {
 
 
     const[dropDownStatus, setDropDownStatus] = useState(false)
-    const dispatch = useDispatch();
-    const loggedUser = useSelector((state) => state.loggedUserReducer)
-
-    useEffect(() => {
-        dispatch(fetchLoggedUser(localStorage.getItem('loggedUser')))
-    }, [])
 
 
     const logout = () => {
@@ -85,7 +76,6 @@ const Headerbar = () => {
                 <div >
                     <HeaderDropdown 
                         dropDownStatus = {dropDownStatus}
-                        loggedUser = {loggedUser}
                     />
                 </div>
  
