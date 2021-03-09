@@ -19,6 +19,7 @@ const TeamSelector = ({pagination, setPagination}) => {
                 className="controlsElements"
                 onChange={handleChange}
         >
+        <option disabled selected value> -- SELECT A TEAM -- </option>
                 {
                     teams.map((team) => {return(<option value={team.id}>{team.name}</option>)})
                 }

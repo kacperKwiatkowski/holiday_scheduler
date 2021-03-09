@@ -23,7 +23,6 @@ const Teams = () => {
     
     return (
         <div  className={"tables"}>
-            <span></span>
             <Pagination 
                 header = {"Team"}
                 pagination={pagination}
@@ -31,7 +30,7 @@ const Teams = () => {
                 teamSelector={<TeamSelector setPagination={setPagination} />}
                 object={"team"}
             />
-            {pagination.selectedTeam === null ? "Select a team" : 
+            {pagination.selectedTeam === null ? <div className={"no-team-chosen"}>SELECT A TEAM</div>: 
                 <TeamContent pagination={pagination} setModalData={setModalData}  />}
 
             <Modal 

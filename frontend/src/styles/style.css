@@ -678,6 +678,17 @@ table.calendarTable td {
   border-bottom: 2px solid #006FFF;
 }
 
+.team-header {
+  font-size: small;
+}
+
+.no-team-chosen {
+  font-size: x-large;
+  text-align: center;
+  -webkit-transform: translateY(35vh);
+          transform: translateY(35vh);
+}
+
 .tables {
   border-spacing: 0;
   width: 100%;
@@ -780,6 +791,13 @@ table.calendarTable td {
 
 .team-header {
   font-size: small;
+}
+
+.no-team-chosen {
+  font-size: x-large;
+  text-align: center;
+  -webkit-transform: translateY(35vh);
+          transform: translateY(35vh);
 }
 
 .headerbarWrapper {

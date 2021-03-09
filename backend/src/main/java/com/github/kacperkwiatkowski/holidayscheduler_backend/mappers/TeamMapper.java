@@ -30,7 +30,7 @@ public class TeamMapper implements ObjectMapper<TeamDto, Team> {
         }
             team.setName(teamDto.getName());
             team.setTeamSquad(teamDto.getUserIds());
-            team.setTeamLeader(userRepository.findById(teamDto.getId()));
+            team.setTeamLeader(userRepository.findById(teamDto.getTeamLeaderId()));
 
         return team;
     }

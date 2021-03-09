@@ -71,11 +71,41 @@ public class TeamService {
         }
     }
 
+    public List<UserDto> readAvailableTeamLeaders(){
+        return userRepository.findAllAvailableTeamLeaders().stream().map(userMapper::mapToDto).collect(Collectors.toList());
+    }
+
+    @Transactional
     public TeamDto updateTeam(TeamDto teamToUpdate) throws ObjectNotFoundException {
 
         Optional<Team> foundTeam = Optional.ofNullable(teamRepository.findById(teamToUpdate.getId()));
         if(foundTeam.isPresent()){
-            teamRepository.save(teamMapper.mapToEntity(teamToUpdate));
+            int oldTeamLeaderId = foundTeam.get().getTeamLeader().getId();
+
+            Team team = teamMapper.mapToEntity(teamToUpdate);
+
+            //Update teamSquad
+            List<Integer> teamSquad = team.getTeamSquad();
+            //Remove old Team Leader
+            teamSquad.remove(new Integer(oldTeamLeaderId));//(num -> num==oldTeamLeaderId);
+            //Add new Team Leader
+            teamSquad.add(teamToUpdate.getTeamLeaderId());
+            //Set new squad
+            team.setTeamSquad(teamSquad);
+
+            //Update the old team leader
+            User oldTeamLeader = userRepository.findById(oldTeamLeaderId);
+            oldTeamLeader.setTeam(null);
+            userRepository.save(oldTeamLeader);
+
+            //Update new team leader
+            User newTeamLeader = userRepository.findById(teamToUpdate.getTeamLeaderId());
+            newTeamLeader.setTeam(team);
+            userRepository.save(newTeamLeader);
+
+            //Update team
+            teamRepository.save(team);
+
             return teamToUpdate;
         } else {
             throw ObjectNotFoundException.createWith("Team with such ID does not exist.");

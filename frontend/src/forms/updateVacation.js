@@ -13,8 +13,6 @@ const UpdateUser = ({entity}) => {
 
       values.lastDay = parseDateFormatForServer(values.lastDay)
 
-      console.log(values)
-
       dispatch(updateObject({object: "vacation", data: values}))
     }
 

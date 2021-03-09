@@ -61,6 +61,15 @@ public class TeamController {
     }
 
 
+    @GetMapping (path = "/read/leaders/available")
+    @PreAuthorize("hasAuthority('team:read')")
+    @ResponseStatus (HttpStatus.OK)
+    ResponseEntity<List<UserDto>> readAvailableTeamLeaders () {
+        log.info("Controller 'readAvailableTeamLeaders' initiated.");
+        return ResponseEntity.ok(teamService.readAvailableTeamLeaders());
+    }
+
+
     @GetMapping (path = "/read")
     @PreAuthorize("hasAuthority('team:read')")
     @ResponseStatus (HttpStatus.OK)
@@ -70,7 +79,7 @@ public class TeamController {
     }
 
 
-    @PatchMapping(path = "/update")
+    @PatchMapping(path = "/update/{id}")
     @PreAuthorize("hasAuthority('team:update')")
     @ResponseBody
     ResponseEntity<TeamDto> updateTeam (@RequestBody TeamDto teamToUpdate) {

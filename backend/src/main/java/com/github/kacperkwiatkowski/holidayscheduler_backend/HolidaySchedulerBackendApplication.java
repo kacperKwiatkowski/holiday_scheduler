@@ -42,6 +42,8 @@ public class HolidaySchedulerBackendApplication {
             userRepository.save(new User("maria@gmail.com",  passwordEncoder.encode("1234"), "Maria", "Marecka", RoleType.TEAM_LEADER, 26, "profile-image"));
             userRepository.save(new User("wojciech@gmail.com",  passwordEncoder.encode("1234"), "Wojciech", "Wojski", RoleType.TEAM_LEADER, 26, "profile-image"));
             userRepository.save(new User("natalia@gmail.com", passwordEncoder.encode("1234"), "Natalia", "Natalska", RoleType.TEAM_LEADER, 26, "profile-image"));
+            userRepository.save(new User("grzegorz@gmail.com", passwordEncoder.encode("1234"), "Grzegorz", "Gregorowicz", RoleType.TEAM_LEADER, 26, "profile-image"));
+
 
             //CREATE USERS
             userRepository.save(new User("adam@gmail.com",  passwordEncoder.encode("1234"), "Adam", "Adamski", RoleType.EMPLOYEE, 26, "profile-image"));
@@ -74,13 +76,13 @@ public class HolidaySchedulerBackendApplication {
 
             //FILL TEAMS
             avocado.add(3);
+            avocado.add(11);
             avocado.add(10);
             avocado.add(9);
-            avocado.add(8);
             guacamole.add(4);
-            guacamole.add(7);
+            guacamole.add(8);
             chorizo.add(5);
-            chorizo.add(6);
+            chorizo.add(7);
 
             for(Integer a : avocado){
                 User user = userRepository.findById(a).get();
