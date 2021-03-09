@@ -5,70 +5,91 @@ body{
 .loginFormWrapper{
 
     background-color: $backgroundWhite;
-    padding: 100px;
+    padding: 50px 100px 50px 100px;
     position: fixed;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     width: 600px;
-    height: 400px;
+    height: 500px;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
 
 
+    transition: all 0.3s;
     box-shadow: 0px 15px 10px -20px $decorationsBlue;
 
     &:hover{
 
-        -moz-box-shadow: 0 10px 25px $decorationsBlue;
-        -webkit-box-shadow: 0 10px 25px $decorationsBlue;
         box-shadow: 0 10px 25px$decorationsBlue;
     
         transition: all 0.4s ease-in-out;
     }
 }
 
-.loginFormErrorWrapper{
+.loginFormShiftedWrapper{
 
+    transition: all 0.2s;
+    left: 25% !important; 
+}
 
-    transition: all 0.4s ease-in-out;
-    background-color: $backgroundGrey;
-    padding: 100px;
+.registrationFormWrapper{
+    background-color: $backgroundWhite;
+    padding: 50px 100px 50px 100px;
     position: fixed;
-    left: 50%;
+    left: 150%;
     top: 50%;
     transform: translate(-50%, -50%);
     width: 600px;
-    height: 400px;
+    height: 500px;
 
 
-    box-shadow: 0px 15px 10px -20px $errorRed;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+
+    transition: all 0.3s;
+    box-shadow: 0px 15px 10px -20px $decorationsBlue;
 
     &:hover{
-
-        -moz-box-shadow: 0 10px 25px $errorRed;
-        -webkit-box-shadow: 0 10px 25px $errorRed;
-        box-shadow: 0 10px 25px$errorRed;
+        box-shadow: 0 10px 25px$decorationsBlue;
+    
+        transition: all 0.4s ease-in-out;
     }
 }
+
+.loginFormHeader{
+    color: $decorationsBlue;
+    font-size: xx-large;
+    text-align: center;
+    margin: auto;
+}
+
+.loginFormContent{
+    margin: auto;
+}
+
+.registrationFormShiftedWrapper{
+
+    transition: all 0.4s;
+    left: 75%;
+}
+
+
 
 .loginFormLabels{
     padding-left: 15px;
     color: $decorationsBlue;
-    font-size: 30px;
+    font-size:large;
 }
 
-.loginFormErrorLabels{
-
-    transition: all 0.4s ease-in-out;
-    padding-left: 15px;
-    color: $errorRed;
-    font-size: 30px;
-}
 
 .loginFormInput{
     width: 600px;
     height: 60px;
     outline: none;
-    margin-bottom: 80px;
+    margin-bottom: 20px;
     padding: none;
     padding-left: 15px;
 
@@ -83,53 +104,12 @@ body{
 
     &:hover{
 
-        -webkit-box-shadow: 0px 20px 35px -16px$decorationsBlue;
-        -moz-box-shadow: 0px 20px 35px -16px $decorationsBlue;
         box-shadow: 0px 20px 35px -16px $decorationsBlue;  
         transition: all 0.2s ease-in-out;
     }
 
     &:focus{
-
-        -webkit-box-shadow: 0px 20px 35px -16px$decorationsBlue;
-        -moz-box-shadow: 0px 20px 35px -16px $decorationsBlue;
         box-shadow: 0px 20px 35px -16px $decorationsBlue;  
-        transition: all 0.2s ease-in-out;
-    }
-}
-
-.loginFormErrorInput{
-
-    transition: all 0.4s ease-in-out;
-    width: 600px;
-    height: 60px;
-    outline: none;
-    margin-bottom: 80px;
-    padding: none;
-    padding-left: 15px;
-
-    line-height:40px;
-    color: $errorRed;
-    font-size: 20px;
-    vertical-align: baseline;
-
-    background-color:$backgroundDimGrey;
-    border: none;
-    border-bottom: 2px solid $errorRed;
-
-    &:hover{
-
-        -webkit-box-shadow: 0px 20px 35px -16px$errorRed;
-        -moz-box-shadow: 0px 20px 35px -16px $errorRed;
-        box-shadow: 0px 20px 35px -16px $errorRed;  
-        transition: all 0.2s ease-in-out;
-    }
-
-    &:focus{
-
-        -webkit-box-shadow: 0px 20px 35px -16px$errorRed;
-        -moz-box-shadow: 0px 20px 35px -16px $errorRed;
-        box-shadow: 0px 20px 35px -16px $errorRed;  
         transition: all 0.2s ease-in-out;
     }
 }
@@ -138,6 +118,8 @@ body{
     width: 600px;
     display: flex;
     justify-content:flex-end;
+
+    margin: auto;
 }
 
 .forgottenPasswordFormButton{
@@ -153,25 +135,6 @@ body{
 
     &:hover{
         text-shadow: 0 0 15px $decorationsBlue;
-        transition: all 0.2s ease-in-out;
-    }
-}
-
-.forgottenPasswordFormErrorButton{
-
-    transition: all 0.4s ease-in-out;
-    width: 250px;
-    height: 60px;
-    margin: 0;
-    border: none;
-    outline: none;
-    background-color: $backgroundDimGrey;
-    color:$errorRed;
-    font-weight:1000;
-    font-size:medium;
-
-    &:hover{
-        text-shadow: 0 0 15px $errorRed;
         transition: all 0.2s ease-in-out;
     }
 }
@@ -195,24 +158,5 @@ body{
     }
 }
 
-.signInFormErrorButton{
 
-    transition: all 0.4s ease-in-out;
-    width: 100px;
-    height: 60px;
-    margin: 0;
-    border: none;
-    outline: none;
-    background-color: $errorRed;
-    color:$backgroundDimGrey;
-    font-weight:1000;
-    font-size:medium;
-
-    &:hover {
-        -webkit-box-shadow: 0px 20px 35px -6px $errorRed;
-        -moz-box-shadow: 0px 20px 35px -6px $errorRed;
-        box-shadow: 0px 20px 35px -6px $errorRed;  
-        transition: all 0.2s ease-in-out;
-    }
-}
 
