@@ -14,6 +14,7 @@ const Modal = ({modalHeader, modalContent, modalData, setModalData}) => {
                 </div>
 
                 <button 
+                        name="modalDismissButton"
                         type="button"
                         className="modalDismissButton"
                         onClick={() => setModalData({active: true, data: "", task: ""})}

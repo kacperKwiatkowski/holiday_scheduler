@@ -1,5 +1,6 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.repository;
 
+import com.github.kacperkwiatkowski.holidayscheduler_backend.model.Team;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.model.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -44,7 +45,12 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     @Transactional
     @Modifying
     @Query("UPDATE User u SET u.team = null WHERE u.team.id = :id")
-    void clearUsersRelationToTeamToBeDeleted(int id);
+    void clearUsersRelationToTeam(int id);
+
+    @Transactional
+    @Modifying
+    @Query("UPDATE User u SET u.team = :team WHERE u.id = :userId")
+    void updateUserTeamStatus(int userId, Team team);
 
     @Query("SELECT u FROM User u WHERE u.firstName LIKE %?1%"
             + " OR u.lastName LIKE %?1%")

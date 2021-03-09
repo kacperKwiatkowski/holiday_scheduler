@@ -91,7 +91,7 @@ const UpdateUser = ({entity}) => {
                     name="leaveType"
                     component="select"
                 >
-                    <option value="PAYED">PAYED</option>
+                    <option selected value="PAYED">PAYED</option>
                     <option value="UNPAID">UNPAID</option>
                     <option value="SICK">SICK</option>
                     <option value="MATERNITY">MATERNITY</option>
@@ -107,7 +107,7 @@ const UpdateUser = ({entity}) => {
                     component="select"
                 >
                     <option value="true">ACCEPT</option>
-                    <option value="false">REJECT</option>
+                    <option selected value="false">REJECT</option>
                 </Field>
               </div>
 

@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -23,17 +24,22 @@ public class UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
     private final TeamService teamService;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository userRepository, UserMapper userMapper, TeamService teamService) {
+    public UserService(UserRepository userRepository, UserMapper userMapper, TeamService teamService, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.userMapper = userMapper;
         this.teamService = teamService;
+        this.passwordEncoder = passwordEncoder;
     }
 
-    public User createUser(UserDto userToCreate){
+    public UserDto createUser(UserDto userToCreate){
+
         User user = userMapper.mapToEntity(userToCreate);
-        user.setPassword(UUID.randomUUID().toString());
-        return userRepository.save(user);
+        String s = UUID.randomUUID().toString();
+        log.info(s);
+        user.setPassword(passwordEncoder.encode(s));
+        return userMapper.mapToDto(userRepository.save(user));
     }
 
     public UserDto readUser(int id){

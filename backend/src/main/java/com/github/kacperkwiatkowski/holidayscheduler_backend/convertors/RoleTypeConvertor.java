@@ -5,7 +5,9 @@ import com.github.kacperkwiatkowski.holidayscheduler_backend.roles.RoleType;
 public class RoleTypeConvertor {
 
     public static RoleType convertToEnum(String string) {
-        return RoleType.valueOf(string.toUpperCase());
+
+        RoleType a = RoleType.valueOf(string.toUpperCase());
+        return a;
     }
 
     public static String convertToString(RoleType roleType) {

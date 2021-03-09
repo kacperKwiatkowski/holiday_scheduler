@@ -1,28 +1,18 @@
 import { Form, Field } from 'react-final-form'
 import { useDispatch} from 'react-redux';
-import { updateObject } from '../actions/updateObject'
+import { postUser } from '../actions/postUser'
 
-const UpdateUser = ({entity}) => {
+const AddUser = () => {
 
     const dispatch = useDispatch();    
 
     const onSubmit = values => {
-      dispatch(updateObject({object: "user", data: values}))
+      dispatch(postUser({object: "user", data: values}))
     }
 
     return (
         <Form
         onSubmit={onSubmit}
-        initialValues={
-            {
-                id: entity.id,
-                firstName: entity.firstName, 
-                lastName: entity.lastName,
-                email: entity.email,
-                daysOffLeft: entity.daysOffLeft,
-                roleType: entity.roleType
-            }
-        }
         render={({ handleSubmit, form, values }) => (
           <form 
             onSubmit={handleSubmit}
@@ -38,7 +28,7 @@ const UpdateUser = ({entity}) => {
               <div className="formFieldWrapper">
                 <label className="formLabel">First Name:</label>
                 <Field
-                  className="formTextInput formTextUpdateInput" 
+                  className="formTextInput formTextServiceInput" 
                   name="firstName"
                   component="input"
                   type="text"
@@ -47,7 +37,7 @@ const UpdateUser = ({entity}) => {
               <div className="formFieldWrapper">
                 <label className="formLabel">Last Name:</label>
                 <Field
-                  className="formTextInput formTextUpdateInput" 
+                  className="formTextInput formTextServiceInput" 
                   name="lastName"
                   component="input"
                   type="text"
@@ -56,7 +46,7 @@ const UpdateUser = ({entity}) => {
               <div className="formFieldWrapper">
                 <label className="formLabel">Email:</label>
                 <Field
-                  className="formTextInput formTextUpdateInput" 
+                  className="formTextInput formTextServiceInput" 
                   name="email"
                   component="input"
                   type="email"
@@ -66,7 +56,7 @@ const UpdateUser = ({entity}) => {
                 <label className="formLabel">Days Off Left:</label>
                 <Field
 
-                  className="formTextInput formTextUpdateInput" 
+                  className="formTextInput formTextServiceInput" 
                   name="daysOffLeft"
                   component="input"
                   type="number"
@@ -77,7 +67,7 @@ const UpdateUser = ({entity}) => {
             <div className="formFieldWrapper">
               <label className="formLabel">Role Type:</label>
                 <Field
-                    className="formTextInput formTextUpdateInput" 
+                    className="formTextInput formTextServiceInput" 
                     name="roleType"
                     component="select"
                 >
@@ -98,9 +88,9 @@ const UpdateUser = ({entity}) => {
                 </button>
                 <button 
                     type="submit"
-                    className={`formButton formUpdateButton`}
+                    className={`formButton formServiceButton`}
                 >
-                    UPDATE
+                    ADD
                 </button>
 
             </div>
@@ -111,4 +101,4 @@ const UpdateUser = ({entity}) => {
 
 
 }
-export default UpdateUser;
+export default AddUser;

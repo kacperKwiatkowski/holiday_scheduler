@@ -35,7 +35,7 @@ public class UserController {
     @PostMapping(path = "/create")
     @PreAuthorize("hasAuthority('employee:create')")
     @ResponseBody
-    ResponseEntity<User> createUser(@RequestBody UserDto userDto) {
+    ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
         log.info("Controller 'createUser' initiated.");
         return ResponseEntity.ok(userService.createUser(userDto));
     }

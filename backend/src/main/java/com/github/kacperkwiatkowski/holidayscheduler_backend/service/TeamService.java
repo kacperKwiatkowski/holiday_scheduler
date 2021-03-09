@@ -84,26 +84,17 @@ public class TeamService {
 
             Team team = teamMapper.mapToEntity(teamToUpdate);
 
-            //Update teamSquad
             List<Integer> teamSquad = team.getTeamSquad();
-            //Remove old Team Leader
-            teamSquad.remove(new Integer(oldTeamLeaderId));//(num -> num==oldTeamLeaderId);
-            //Add new Team Leader
+            teamSquad.remove(Integer.valueOf(oldTeamLeaderId));
             teamSquad.add(teamToUpdate.getTeamLeaderId());
-            //Set new squad
             team.setTeamSquad(teamSquad);
 
-            //Update the old team leader
             User oldTeamLeader = userRepository.findById(oldTeamLeaderId);
             oldTeamLeader.setTeam(null);
             userRepository.save(oldTeamLeader);
 
-            //Update new team leader
-            User newTeamLeader = userRepository.findById(teamToUpdate.getTeamLeaderId());
-            newTeamLeader.setTeam(team);
-            userRepository.save(newTeamLeader);
+            userRepository.updateUserTeamStatus(teamToUpdate.getTeamLeaderId(), team);
 
-            //Update team
             teamRepository.save(team);
 
             return teamToUpdate;
@@ -116,7 +107,7 @@ public class TeamService {
     public TeamDto deleteTeam(int id) {
         Optional<Team> foundTeam = Optional.ofNullable(teamRepository.findById(id));
         if (foundTeam.isPresent()){
-            userRepository.clearUsersRelationToTeamToBeDeleted(id);
+            userRepository.clearUsersRelationToTeam(id);
             teamRepository.deleteById(id);
             log.info("Deletion successful.");
             return teamMapper.mapToDto(foundTeam.get());

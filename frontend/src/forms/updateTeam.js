@@ -26,6 +26,7 @@ const UpdateUser = ({entity}) => {
 
       console.log(values)
       dispatch(updateObject({object: "team", data: values}))
+      
     }
 
     return (
