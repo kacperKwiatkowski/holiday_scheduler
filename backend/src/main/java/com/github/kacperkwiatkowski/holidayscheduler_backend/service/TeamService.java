@@ -36,11 +36,33 @@ public class TeamService {
         this.userMapper = userMapper;
     }
 
+    @Transactional
     public TeamDto createTeam(TeamDto teamToCreate){
-        //TODO create form and endpoint
-        teamRepository.save(teamMapper.mapToEntity(teamToCreate));
+        userRepository.updateUserTeamStatus(teamToCreate.getTeamLeaderId(), teamRepository.save(teamMapper.mapToEntity(teamToCreate)));
         return teamToCreate;
     }
+
+    @Transactional
+    public TeamDto addMemberToTeam(int id, TeamDto teamToUpdateWithUser){
+        Optional<Team> foundTeam = Optional.ofNullable(teamRepository.findById(teamToUpdateWithUser.getId()));
+
+        //TODO Apply frontend
+        if(foundTeam.isPresent()){
+            List<Integer> usersInTeam = teamToUpdateWithUser.getUserIds();
+            usersInTeam.add(id);
+            teamToUpdateWithUser.setUserIds(usersInTeam);
+            Team team = teamMapper.mapToEntity(teamToUpdateWithUser);
+            teamRepository.save(team);
+
+            userRepository.updateUserTeamStatus(id, team);
+
+            return teamToUpdateWithUser;
+        } else {
+            throw new ObjectNotFoundException("Such team doesn't exist");
+        }
+
+    }
+
 
     public TeamDto readTeam(int teamId){
         Optional<Team> foundTeam = Optional.ofNullable(teamRepository.findById(teamId));

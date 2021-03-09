@@ -25,7 +25,7 @@ public class Team {
     @CollectionTable(name = "TeamSquad", joinColumns = @JoinColumn(name = "teamId"))
     private List<Integer> teamSquad;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER)
     private User teamLeader;
 
     public Team(String name, List<Integer> teamSquad, User teamLeader) {

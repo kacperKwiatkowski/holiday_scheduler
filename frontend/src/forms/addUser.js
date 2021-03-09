@@ -1,13 +1,13 @@
 import { Form, Field } from 'react-final-form'
 import { useDispatch} from 'react-redux';
-import { postUser } from '../actions/postUser'
+import { postObject } from '../actions/postObject'
 
 const AddUser = () => {
 
     const dispatch = useDispatch();    
 
     const onSubmit = values => {
-      dispatch(postUser({object: "user", data: values}))
+      dispatch(postObject({object: "user", data: values}))
     }
 
     return (

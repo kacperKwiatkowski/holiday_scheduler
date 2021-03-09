@@ -1,5 +1,6 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.controllers;
 
+import com.amazonaws.services.workmail.model.User;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.dto.TeamDto;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.dto.UserDto;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.exceptions.ObjectNotFoundException;
@@ -42,6 +43,16 @@ public class TeamController {
     ResponseEntity<TeamDto> createTeam (@RequestBody TeamDto teamToCreate){
         log.info("Controller 'createTeam' initiated.");
         return ResponseEntity.ok(teamService.createTeam(teamToCreate));
+    }
+
+    @PostMapping (path = "/create/member/{id}")
+    @PreAuthorize("hasAuthority('team:create')")
+    @ResponseStatus(HttpStatus.OK)
+    ResponseEntity<TeamDto> addMemberToTeam (
+            @PathVariable int id,
+            @RequestBody TeamDto teamDto){
+        log.info("Controller 'addMemberToTeam' initiated.");
+        return ResponseEntity.ok(teamService.addMemberToTeam(id, teamDto));
     }
 
     @GetMapping (path = "/read/{id}")

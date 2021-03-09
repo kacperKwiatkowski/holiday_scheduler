@@ -6,7 +6,7 @@ const PostReducer = (state = initialState, action) => {
             return action.payload;
         case "POST_VACATION_REQUEST":
             return action.payload;
-        case "POST_NEW_USER":
+        case "POST_OBJECT":
             return action.payload;
         default:
             return state;
