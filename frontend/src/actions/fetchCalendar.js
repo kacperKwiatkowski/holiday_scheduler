@@ -4,7 +4,6 @@ import "../interceptor/interceptor"
 
 export const fetchCalendar = (pagination) => async dispatch => {
 
-    console.log(pagination)
     const response = await Axios.get("http://localhost:8080/api/calendar/page", {
         params:{
             filter: pagination.filter, 

@@ -31,8 +31,6 @@ const Teams = () => {
     
     return (
         <div>
-
-            <Headerbar /> 
             <TableControls 
                 header = {"Teams"}
                 setPagination={setPagination}

@@ -7,7 +7,6 @@ const Settings = () => {
 
     return(
         <div>
-            <Headerbar /> 
             <SettingsControls 
                 header = {"Settings"}
             />

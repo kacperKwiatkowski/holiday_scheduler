@@ -20,13 +20,10 @@ const Teams = () => {
     useEffect(() => {
         dispatch(fetchEachTeam())
     }, [pagination])
-
-    console.log(pagination)
     
     return (
-        <div>
-
-            <Headerbar /> 
+        <div  className={"tables"}>
+            <span></span>
             <Pagination 
                 header = {"Team"}
                 pagination={pagination}

@@ -29,8 +29,6 @@ const Vacations = () => {
 
     return (
         <div>
-
-            <Headerbar /> 
             <TableControls 
                 header = {"Vacations"} 
                 setPagination={setPagination}

@@ -25,7 +25,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     @Query("SELECT u FROM User u WHERE u.id IN :ids")
     List<User> findUsersWithIds(List<Integer> ids);
 
-
     @Transactional
     @Modifying
     @Query("UPDATE User u SET u.daysOffLeft = u.daysOffLeft - :daysToSubtract WHERE u.id = :id")
@@ -50,4 +49,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     @Query("SELECT u FROM User u WHERE u.firstName LIKE %?1%"
             + " OR u.lastName LIKE %?1%")
     Page<User> findWithFilter(String filter, Pageable paging);
+
+    @Query("SELECT u FROM User u WHERE u.team IS NULL AND u.roleType = 1")
+    List<User> findAllAvailableTeamLeaders();
 }

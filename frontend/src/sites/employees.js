@@ -27,7 +27,6 @@ const Employees = () => {
 
     return (
         <div>
-            <Headerbar /> 
             <TableControls 
                 header = {"Employees"} 
                 setPagination={setPagination}

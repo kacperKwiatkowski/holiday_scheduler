@@ -25,7 +25,6 @@ const Home = () => {
 
     return (
         <div>
-            <Headerbar /> 
             <CalendarControls 
                 header = {"Calendar"}
                 setPagination = {setCalendarPagination}

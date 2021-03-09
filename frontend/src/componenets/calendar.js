@@ -91,8 +91,6 @@ const Calendar = ({records, calendarPagination}) => {
             )
         }
 
-        console.log(dates)
-
         return mapNationalHolidays(dates);
     }
 

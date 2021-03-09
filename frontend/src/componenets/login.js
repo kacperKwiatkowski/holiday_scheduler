@@ -38,8 +38,8 @@ const Login = () => {
                 //TODO Store it in a cookie
                 localStorage.setItem("authorization", response.data.jwt);
                 localStorage.setItem('loggedUser', credentials.username);
-
                 history.go("/home")
+
             }
         }).catch(error => {
         console.error(error)
