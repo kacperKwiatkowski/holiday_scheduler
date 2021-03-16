@@ -1,11 +1,9 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.calendar;
 
+import com.github.kacperkwiatkowski.holidayscheduler_backend.nationalHoliday.NationalHolidayDto;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.nationalHoliday.NationalHolidayService;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.user.UserDto;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.vacation.VacationDto;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.nationalHoliday.NationalHoliday;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.nationalHoliday.NationalHolidayRepository;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.user.UserRepository;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.vacation.VacationRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -18,18 +16,15 @@ import static java.lang.Integer.parseInt;
 @Service
 public class CalendarService {
 
-    private final UserRepository userRepository;
-    private final VacationRepository vacationRepository;
-    private final NationalHolidayRepository nationalHolidayRepository;
+    private final NationalHolidayService nationalHolidayService;
 
-    CalendarService(UserRepository userRepository, VacationRepository vacationRepository, NationalHolidayRepository nationalHolidayRepository) {
-        this.userRepository = userRepository;
-        this.vacationRepository = vacationRepository;
-        this.nationalHolidayRepository = nationalHolidayRepository;
+    public CalendarService(NationalHolidayService nationalHolidayService) {
+        this.nationalHolidayService = nationalHolidayService;
     }
 
-    public Queue<NationalHoliday> nationalHolidaysInThisMonth(int year, int month) {
-        return nationalHolidayRepository
+
+    public Queue<NationalHolidayDto> nationalHolidaysInThisMonth(int year, int month) {
+        return nationalHolidayService
                 .findHolidaysWithinGivenTimeFrame(
                         LocalDate.of(year, month, 1),
                         LocalDate.of(year, month, LocalDate.of(year, month, 1).lengthOfMonth())
@@ -66,8 +61,8 @@ public class CalendarService {
     }
 
     private List<CalendarDto>  insertNationalHolidays(int month, int year, int days, List<CalendarDto> calendar) {
-        Queue<NationalHoliday> nationalHolidaysInThisMonth =
-                nationalHolidayRepository.findHolidaysWithinGivenTimeFrame(LocalDate.of(year, month, 1), LocalDate.of(year, month, days));
+        Queue<NationalHolidayDto> nationalHolidaysInThisMonth =
+                nationalHolidayService.findHolidaysWithinGivenTimeFrame(LocalDate.of(year, month, 1), LocalDate.of(year, month, days));
         while(!nationalHolidaysInThisMonth.isEmpty()){
 
             calendar

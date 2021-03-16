@@ -1,5 +1,6 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.vacation;
 
+import com.github.kacperkwiatkowski.holidayscheduler_backend.convertors.VacationTypeConvertor;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.user.User;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.utils.enums.VacationType;
 import lombok.*;
@@ -7,6 +8,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @Builder
 @Getter
@@ -36,11 +38,19 @@ public class Vacation implements Serializable {
     @JoinColumn(name = "users_Id")
     private User user;
 
-    public Vacation(LocalDate firstDay, LocalDate lastDay, boolean isAccepted, VacationType vacationType, User user) {
-        this.firstDay = firstDay;
-        this.lastDay = lastDay;
-        this.isAccepted = isAccepted;
-        this.vacationType = vacationType;
-        this.user = user;
+    public VacationDto mapToDto() {
+        VacationDto vacationDto = VacationDto
+                .builder()
+                .id(id)
+                .firstDay(firstDay.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")))
+                .lastDay(lastDay.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")))
+                .userID(user.getId())
+                .email(user.getEmail())
+                .firstName(user.getFirstName())
+                .lastName(user.getLastName())
+                .isAccepted(isAccepted)
+                .leaveType(VacationTypeConvertor.convertToString(vacationType))
+                .build();
+        return vacationDto;
     }
 }

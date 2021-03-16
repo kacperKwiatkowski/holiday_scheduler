@@ -1,7 +1,6 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.vacation;
 
 import com.github.kacperkwiatkowski.holidayscheduler_backend.exceptions.ObjectNotFoundException;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.mappers.VacationMapper;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.user.User;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.user.UserRepository;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.utils.enums.VacationType;
@@ -31,9 +30,8 @@ class VacationServiceIntegrationTest {
     @Autowired
     private UserRepository userRepository;
 
-    VacationMapper vacationMapper;
-
-
+    @Autowired
+    private VacationFactory vacationFactory;
 
     //given
     //when
@@ -61,7 +59,6 @@ class VacationServiceIntegrationTest {
     @Test
     void deleteVacation_assertDeletionWasSuccessful() {
         //given
-        vacationMapper = new VacationMapper(vacationRepository, userRepository);
 
         User user = userRepository.save(new User("test1@gmail.com", "1234", "Test", "Test", RoleType.ADMIN, 26, "Test"));
 
@@ -75,7 +72,7 @@ class VacationServiceIntegrationTest {
                 .build();
 
         //when
-        Vacation vacation = vacationRepository.save(vacationMapper.mapToEntity(vacationDto));
+        Vacation vacation = vacationRepository.save(vacationFactory.mapToEntity(vacationDto));
 
         user = userRepository.findFirstByEmail("test1@gmail.com");
         user.setVacations(List.of());
@@ -90,7 +87,6 @@ class VacationServiceIntegrationTest {
     @Test
     void deleteVacation_assertDeletionWasUnsuccessful() {
         //given
-        vacationMapper = new VacationMapper(vacationRepository, userRepository);
 
         User user = userRepository.save(new User("test2@gmail.com", "1234", "Test", "Test", RoleType.ADMIN, 26, "Test"));
 
@@ -104,7 +100,7 @@ class VacationServiceIntegrationTest {
                 .build();
 
         //when
-        Vacation vacation = vacationRepository.save(vacationMapper.mapToEntity(vacationDto));
+        Vacation vacation = vacationRepository.save(vacationFactory.mapToEntity(vacationDto));
 
         //then
 

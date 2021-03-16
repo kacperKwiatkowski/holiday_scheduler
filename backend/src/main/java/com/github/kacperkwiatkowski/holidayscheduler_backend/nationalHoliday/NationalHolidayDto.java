@@ -16,4 +16,12 @@ public class NationalHolidayDto {
     private String description;
     private LocalDate holidayDate;
 
+    static NationalHolidayDto mapToDto(NationalHoliday nationalHoliday) {
+        return NationalHolidayDto.builder()
+                .id(nationalHoliday.getId())
+                .name(nationalHoliday.getName())
+                .description(nationalHoliday.getDescription())
+                .holidayDate(nationalHoliday.getHolidayDate())
+                .build();
+    }
 }

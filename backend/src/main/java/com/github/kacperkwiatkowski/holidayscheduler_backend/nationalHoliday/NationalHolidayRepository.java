@@ -8,9 +8,11 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
 
 @Repository
-public interface NationalHolidayRepository extends JpaRepository<NationalHoliday, Integer> {
+interface NationalHolidayRepository extends JpaRepository<NationalHoliday, Integer> {
 
     NationalHoliday findById(int id);
 
@@ -22,5 +24,5 @@ public interface NationalHolidayRepository extends JpaRepository<NationalHoliday
             value = "SELECT * FROM NationalHoliday n WHERE n.holidayDate BETWEEN :firstDay AND :lastDay",
             nativeQuery = true
     )
-    LinkedList<NationalHoliday> findHolidaysWithinGivenTimeFrame(@Param("firstDay")LocalDate firstDay, @Param("lastDay")LocalDate LastDate);
+    LinkedList<NationalHoliday> fetchHolidaysWithinGivenTimeFrameFromRepository(@Param("firstDay")LocalDate firstDay, @Param("lastDay")LocalDate LastDate);
 }

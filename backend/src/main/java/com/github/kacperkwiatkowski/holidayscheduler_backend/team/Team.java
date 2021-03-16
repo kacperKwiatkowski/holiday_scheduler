@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Optional;
 
 @Builder
 @Getter
@@ -29,9 +30,31 @@ public class Team {
     @OneToOne(fetch = FetchType.EAGER)
     private User teamLeader;
 
-    public Team(String name, List<Integer> teamSquad, User teamLeader) {
-        this.name = name;
-        this.teamSquad = teamSquad;
-        this.teamLeader = teamLeader;
+//    public Team mapToEntity(TeamDto teamDto) {
+//        Team team;
+//        Optional<Team> optionalTeam = Optional.ofNullable(teamRepository.findById(teamDto.getId()));
+//        if(optionalTeam.isPresent()){
+//            team = optionalTeam.get();
+//        } else {
+//            team = new Team();
+//        }
+//        team.setName(teamDto.getName());
+//        team.setTeamSquad(teamDto.getUserIds());
+//        team.setTeamLeader(userRepository.findById(teamDto.getTeamLeaderId()));
+//
+//        return team;
+//    }
+
+    TeamDto mapToDto() {
+
+        return TeamDto.builder()
+                .id(id)
+                .name(name)
+                .userIds(teamSquad)
+                .teamLeaderId(teamLeader.getId())
+                .teamLeaderFirstName(teamLeader.getFirstName())
+                .teamLeaderLastName(teamLeader.getLastName())
+                .teamLeaderEmail(teamLeader.getEmail())
+                .build();
     }
 }

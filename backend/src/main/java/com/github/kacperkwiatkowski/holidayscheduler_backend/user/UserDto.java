@@ -15,6 +15,7 @@ public class UserDto {
     private String email;
     private int daysOffLeft;
     private String roleType;
+    private int teamId;
 
 }
 

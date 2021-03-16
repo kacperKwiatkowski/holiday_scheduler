@@ -49,7 +49,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     @Transactional
     @Modifying
     @Query("UPDATE User u SET u.team = :team WHERE u.id = :userId")
-    void updateUserTeamStatus(int userId, Team team);
+    Team updateUserTeamStatus(int userId, Team team);
 
     @Query("SELECT u FROM User u WHERE u.firstName LIKE %?1%"
             + " OR u.lastName LIKE %?1%")

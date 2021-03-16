@@ -1,5 +1,6 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.user;
 
+import com.github.kacperkwiatkowski.holidayscheduler_backend.convertors.RoleTypeConvertor;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.team.Team;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.vacation.Vacation;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.security.RoleType;
@@ -62,6 +63,18 @@ public class User implements Serializable{
         this.roleType = roleType;
         this.daysOffLeft = daysOffLeft;
         this.imageUrl = imageUrl;
+    }
+
+    public UserDto mapToDto() {
+        return UserDto.builder()
+                .id(id)
+                .email(email)
+                .firstName(firstName)
+                .lastName(lastName)
+                .daysOffLeft(daysOffLeft)
+                .roleType(RoleTypeConvertor.convertToString(roleType))
+                .teamId(team.getId())
+                .build();
     }
 
     public Optional<String> getUserOptionalOfUserImageUrl() {

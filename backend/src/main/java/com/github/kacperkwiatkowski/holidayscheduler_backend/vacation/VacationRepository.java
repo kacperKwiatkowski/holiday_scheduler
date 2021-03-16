@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Repository
-public interface VacationRepository extends JpaRepository<Vacation, Integer> {
+interface VacationRepository extends JpaRepository<Vacation, Integer> {
 
     Vacation findById(int id);
 

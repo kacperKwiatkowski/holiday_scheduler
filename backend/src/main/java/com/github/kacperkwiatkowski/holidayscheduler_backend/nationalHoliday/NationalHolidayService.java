@@ -1,7 +1,6 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.nationalHoliday;
 
 import com.github.kacperkwiatkowski.holidayscheduler_backend.exceptions.ObjectNotFoundException;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.mappers.NationalHolidayMapper;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.utils.nationalHolidayApi.Holidays;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.utils.nationalHolidayApi.HolidaysJsonData;
 import com.google.gson.Gson;
@@ -13,9 +12,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.time.LocalDate;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -23,17 +21,15 @@ import java.util.stream.Collectors;
 public class NationalHolidayService {
 
     private final NationalHolidayRepository nationalHolidayRepository;
-    private final NationalHolidayMapper nationalHolidayMapper;
 
-    NationalHolidayService(NationalHolidayRepository nationalHolidayRepository, NationalHolidayMapper nationalHolidayMapper) {
+    NationalHolidayService(NationalHolidayRepository nationalHolidayRepository) {
         this.nationalHolidayRepository = nationalHolidayRepository;
-        this.nationalHolidayMapper = nationalHolidayMapper;
     }
 
     public List<NationalHolidayDto> readNationalHolidays(){
         List<NationalHoliday> nationalHolidaysList = nationalHolidayRepository.findAll();
         if(nationalHolidaysList.size()!=0){
-            return nationalHolidaysList.stream().map(nationalHolidayMapper::mapToDto).collect(Collectors.toList());
+            return nationalHolidaysList.stream().map(NationalHolidayDto::mapToDto).collect(Collectors.toList());
         } else {
             throw ObjectNotFoundException.createWith("No national holiday is found.");
         }
@@ -43,7 +39,7 @@ public class NationalHolidayService {
         Optional<NationalHoliday> nationalHolidayToDelete = Optional.ofNullable(nationalHolidayRepository.findById(id));
         if(nationalHolidayToDelete.isPresent()){
             nationalHolidayRepository.deleteById(id);
-            return  nationalHolidayMapper.mapToDto(nationalHolidayToDelete.get());
+            return  NationalHolidayDto.mapToDto(nationalHolidayToDelete.get());
         } else {
             throw new ObjectNotFoundException("Deletion unsuccessful. Id does not exist.");
         }
@@ -59,6 +55,14 @@ public class NationalHolidayService {
         } catch (Exception e){
             log.info("National holidays upload unsuccessful");
         }
+    }
+
+    public Queue<NationalHolidayDto> findHolidaysWithinGivenTimeFrame(LocalDate firstDay, LocalDate lastDay){
+        return nationalHolidayRepository
+                .fetchHolidaysWithinGivenTimeFrameFromRepository(firstDay, lastDay)
+                .stream()
+                .map(NationalHolidayDto::mapToDto)
+                .collect(Collectors.toCollection(LinkedList::new));
     }
 
     private void validateAndInsertNationalHolidaysIntoDatabase(List<NationalHoliday> nationalHolidays) {

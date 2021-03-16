@@ -1,8 +1,8 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.calendar;
 
+import com.github.kacperkwiatkowski.holidayscheduler_backend.nationalHoliday.NationalHolidayDto;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.user.UserDto;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.vacation.VacationDto;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.nationalHoliday.NationalHoliday;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.user.UserService;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.vacation.VacationService;
 import lombok.extern.slf4j.Slf4j;
@@ -45,15 +45,6 @@ class CalendarController {
         List<VacationDto> foundVacations = vacationService.readRequiredVacations(foundUsers, Integer.valueOf(month), Integer.valueOf(year));
         List<CalendarDto> generatedCalendar = calendarService.createCalendar(foundUsers, foundVacations, Integer.valueOf(month), Integer.valueOf(year));
         return ResponseEntity.ok(generatedCalendar);
-    }
-
-    @PreAuthorize("hasAuthority('employee:read')")
-    @GetMapping(path = "/nationalHolidays")
-    ResponseEntity<Queue<NationalHoliday>> getNationalHolidays(
-            @RequestParam int month,
-            @RequestParam int year)
-    {
-        return ResponseEntity.ok(calendarService.nationalHolidaysInThisMonth(year, month));
     }
 
 }

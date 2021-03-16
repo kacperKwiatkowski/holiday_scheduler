@@ -1,9 +1,8 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.vacation;
 
-import com.github.kacperkwiatkowski.holidayscheduler_backend.nationalHoliday.NationalHolidayRepository;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.nationalHoliday.NationalHolidayService;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.user.UserDto;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.exceptions.ObjectNotFoundException;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.mappers.VacationMapper;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.user.User;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.user.UserRepository;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.utils.enums.VacationType;
@@ -28,20 +27,20 @@ import java.util.stream.Collectors;
 public class VacationService {
 
     private final VacationRepository vacationRepository;
-    private final VacationMapper vacationMapper;
     private final UserRepository userRepository;
-    private final NationalHolidayRepository nationalHolidayRepository;
+    private final VacationFactory vacationFactory;
+    private final NationalHolidayService nationalHolidayService;
 
-    VacationService(VacationRepository vacationRepository, VacationMapper vacationMapper, UserRepository userRepository, NationalHolidayRepository nationalHolidayRepository) {
+    VacationService(VacationRepository vacationRepository, UserRepository userRepository, VacationFactory vacationFactory, NationalHolidayService nationalHolidayService) {
         this.vacationRepository = vacationRepository;
-        this.vacationMapper = vacationMapper;
         this.userRepository = userRepository;
-        this.nationalHolidayRepository = nationalHolidayRepository;
+        this.vacationFactory = vacationFactory;
+        this.nationalHolidayService = nationalHolidayService;
     }
 
     @Transactional
     public VacationDto createVacation(VacationDto vacationToCreate){
-        Vacation vacation = vacationMapper.mapToEntity(vacationToCreate);
+        Vacation vacation = vacationFactory.mapToEntity(vacationToCreate);
         User user = userRepository.findById(vacation.getUser().getId());
 
         int daysBetween = getDaysBetween(vacation);
@@ -65,7 +64,7 @@ public class VacationService {
                             id,
                             LocalDate.of(year, month, 1),
                             LocalDate.of(year, month, YearMonth.of(year, month).lengthOfMonth()))
-                                .stream().map(vacationMapper::mapToDto).collect(Collectors.toList())
+                                .stream().map(Vacation::mapToDto).collect(Collectors.toList())
                         )
                 .collect(Collectors.toList());
 
@@ -76,7 +75,7 @@ public class VacationService {
         Optional<Vacation> foundVacation = Optional.ofNullable(vacationRepository.findById(vacationToUpdate.getId()));
         if(foundVacation.isPresent()){
 
-            Vacation vacation = vacationMapper.mapToEntity(vacationToUpdate);
+            Vacation vacation = vacationFactory.mapToEntity(vacationToUpdate);
 
             vacationRepository.save(vacation);
             log.info("Vacation: " + vacationToUpdate.getId() + "updated successfully");
@@ -101,7 +100,7 @@ public class VacationService {
             }
             vacationRepository.delete(foundVacation.get());
             log.info("DELETION successful.");
-            return vacationMapper.mapToDto(foundVacation.get());
+            return (foundVacation.get().mapToDto());
         } else {
             log.info("DELETION unsuccessful.");
             throw new ObjectNotFoundException("DELETION unsuccessful, object not found");
@@ -127,7 +126,7 @@ public class VacationService {
         }
 
         if(pagedResult.hasContent()) {
-            return pagedResult.stream().map(vacationMapper::mapToDto).collect(Collectors.toList());
+            return pagedResult.stream().map(Vacation::mapToDto).collect(Collectors.toList());
         } else {
             throw new ObjectNotFoundException("Pagination impossible");
         }
@@ -157,6 +156,6 @@ public class VacationService {
             currentDay = currentDay.plusDays((long) 1);
         }
 
-        return numOfFreeDays - nationalHolidayRepository.findHolidaysWithinGivenTimeFrame(vacation.getFirstDay(), vacation.getLastDay()).size();
+        return numOfFreeDays - nationalHolidayService.findHolidaysWithinGivenTimeFrame(vacation.getFirstDay(), vacation.getLastDay()).size();
     }
 }

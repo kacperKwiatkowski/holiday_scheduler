@@ -1,9 +1,8 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.vacation;
 
 import com.github.kacperkwiatkowski.holidayscheduler_backend.exceptions.ObjectNotFoundException;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.mappers.VacationMapper;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.nationalHoliday.NationalHolidayService;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.user.User;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.nationalHoliday.NationalHolidayRepository;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.user.UserRepository;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.utils.enums.VacationType;
 import org.junit.Before;
@@ -20,23 +19,20 @@ class VacationServiceTest {
 
     private VacationRepository vacationRepository = mock(VacationRepository.class);
     private UserRepository userRepository = mock(UserRepository.class);
-    private VacationMapper vacationMapperMock = mock(VacationMapper.class);
-    private NationalHolidayRepository nationalHolidayRepository = mock(NationalHolidayRepository.class);
+    private VacationFactory vacationFactory = mock(VacationFactory.class);
+    private NationalHolidayService nationalHolidayService = mock(NationalHolidayService.class);
 
-    VacationMapper vacationMapper;
     VacationService vacationService;
 
     @Before
     void setUp(){
-        vacationMapper = new VacationMapper(vacationRepository, userRepository);
-        vacationService = new VacationService(vacationRepository, vacationMapper, userRepository, nationalHolidayRepository);
+        vacationService = new VacationService(vacationRepository, userRepository, vacationFactory, nationalHolidayService);
     }
 
     @Test
     void createVacation() {
         //given
-        vacationMapper = new VacationMapper(vacationRepository, userRepository);
-        vacationService = new VacationService(vacationRepository, vacationMapper, userRepository, nationalHolidayRepository);
+        vacationService = new VacationService(vacationRepository, userRepository, vacationFactory, nationalHolidayService);
         VacationDto vacationDto = VacationDto
                         .builder()
                         .id(1)
@@ -47,7 +43,7 @@ class VacationServiceTest {
                         .leaveType(VacationType.MATERNITY.toString())
                         .build();
 
-        Vacation vacation = vacationMapper.mapToEntity(vacationDto);
+        Vacation vacation = vacationFactory.mapToEntity(vacationDto);
 
         //when
         when(vacationRepository.save(vacation)).thenReturn(vacation);
@@ -63,8 +59,7 @@ class VacationServiceTest {
     @Test
     void deleteVacation_methodReturnsObjectIfIdIsFoundInRepository() {
         //given
-        vacationMapper = new VacationMapper(vacationRepository, userRepository);
-        vacationService = new VacationService(vacationRepository, vacationMapper, userRepository, nationalHolidayRepository);
+        vacationService = new VacationService(vacationRepository, userRepository, vacationFactory, nationalHolidayService);
         VacationDto vacationDto = VacationDto
                 .builder()
                 .id(1)
@@ -75,13 +70,13 @@ class VacationServiceTest {
                 .leaveType(VacationType.MATERNITY.toString())
                 .build();
 
-        Vacation vacation = vacationMapper.mapToEntity(vacationDto);
+        Vacation vacation = vacationFactory.mapToEntity(vacationDto);
         vacation.setUser(new User());
 
         //when
         when(vacationRepository.findById(anyInt())).thenReturn(vacation);
         when(userRepository.findById(anyInt())).thenReturn(new User());
-        when(vacationMapperMock.mapToDto(vacation)).thenReturn(vacationDto);
+        when(vacation.mapToDto()).thenReturn(vacationDto);
 
         //then
         assertTrue(vacationService.deleteVacation(anyInt()) instanceof VacationDto);
@@ -90,8 +85,7 @@ class VacationServiceTest {
     @Test
     void deleteVacation_methodThrowsExceptionWhenIdIsNotFoundInRepository() {
         //given
-        vacationMapper = new VacationMapper(vacationRepository, userRepository);
-        vacationService = new VacationService(vacationRepository, vacationMapper, userRepository, nationalHolidayRepository);
+        vacationService = new VacationService(vacationRepository, userRepository, vacationFactory, nationalHolidayService);
         VacationDto vacationDto = VacationDto
                 .builder()
                 .id(1)
@@ -102,7 +96,7 @@ class VacationServiceTest {
                 .leaveType(VacationType.MATERNITY.toString())
                 .build();
 
-        Vacation vacation = vacationMapper.mapToEntity(vacationDto);
+        Vacation vacation = vacationFactory.mapToEntity(vacationDto);
         vacation.setId(1);
         vacation.setUser(new User());
 
