@@ -10,9 +10,10 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Integer> {
+interface UserRepository extends JpaRepository<User, Integer> {
 
     User findById(int id);
 
@@ -57,4 +58,8 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
     @Query("SELECT u FROM User u WHERE u.team IS NULL AND u.roleType = 1")
     List<User> findAllAvailableTeamLeaders();
+
+    @Query("SELECT imageUrl FROM User s WHERE s.id = :id")
+    Optional<String> fetchImageUrl(int id);
+
 }

@@ -3,8 +3,8 @@ package com.github.kacperkwiatkowski.holidayscheduler_backend.image;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.buckets.BucketName;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.exceptions.ObjectNotFoundException;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.buckets.FileStore;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.user.User;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.user.UserRepository;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.user.UserDto;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.user.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,16 +18,17 @@ import static org.apache.http.entity.ContentType.*;
 @Service
 public class ImageService {
 
-    private final UserRepository userRepository;
+    private final UserService userService;
     private final FileStore fileStore;
 
-    ImageService(UserRepository userRepository, FileStore fileStore) { this.userRepository = userRepository;
+    ImageService(UserService userService, FileStore fileStore) {
+        this.userService = userService;
 
         this.fileStore = fileStore;
     }
 
     public void uploadUserImage(int id, MultipartFile file){
-        Optional<User> foundUser = Optional.ofNullable(userRepository.findById(id));
+        Optional<UserDto> foundUser = Optional.ofNullable(userService.findById(id));
         if(foundUser.isEmpty()){
             throw ObjectNotFoundException.createWith("Id does not exist.");
         }
@@ -39,13 +40,13 @@ public class ImageService {
     }
 
     public byte[] downloadUserImage(int id){
-        Optional<User> foundUser = Optional.ofNullable(userRepository.findById(id));
+        Optional<UserDto> foundUser = Optional.ofNullable(userService.findById(id));
 
         if(foundUser.isEmpty()){
             throw ObjectNotFoundException.createWith("Id does not exist.");
         }
 
-        User user = foundUser.get();
+        UserDto user = foundUser.get();
 
         String path = String.format("%s/%s",
                 BucketName.USER_IMAGE.getBucketName(),
@@ -55,11 +56,7 @@ public class ImageService {
                 BucketName.USER_IMAGE.getBucketName(),
                 "default");
 
-        if(user.getUserOptionalOfUserImageUrl().isPresent()){
-
-        }
-
-        return user.getUserOptionalOfUserImageUrl()
+        return userService.getUserOptionalOfUserImageUrl(user.getId())
                 .map(key ->
                         fileStore.download(path, key))
                 .orElse(
@@ -67,11 +64,11 @@ public class ImageService {
 
     }
 
-    private void uploadImage(MultipartFile file, Map<String, String> metadata, User user) {
+    private void uploadImage(MultipartFile file, Map<String, String> metadata, UserDto user) {
         String path = String.format("%s/%s", BucketName.USER_IMAGE.getBucketName(), user.getId());
         String filename = String.format("%s-%s", "profile", "image");
         user.setImageUrl(filename);
-        userRepository.save(user);
+        userService.save(user);
         try {
             fileStore.save(path, filename, Optional.of(metadata), file.getInputStream());
         } catch (IOException e) {

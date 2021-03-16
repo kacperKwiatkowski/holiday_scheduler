@@ -85,6 +85,8 @@ class TeamController {
     @PatchMapping(path = "/update/{id}")
     @PreAuthorize("hasAuthority('team:update')")
     @ResponseBody
+
+        //FIXME Doesnt work
     ResponseEntity<TeamDto> updateTeam (@RequestBody TeamDto teamToUpdate) {
         log.info("Controller 'updateTeam' initiated.");
         return ResponseEntity.ok(teamService.updateTeam(teamToUpdate));
@@ -115,6 +117,7 @@ class TeamController {
     ResponseEntity<UserDto> removeFromTeam(
             @PathVariable Integer id
     ){
+        //FIXME Doesnt work
         return ResponseEntity.ok(teamService.removeFromTeam(id));
     }
 

@@ -1,8 +1,8 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.user;
 
 import com.github.kacperkwiatkowski.holidayscheduler_backend.exceptions.ObjectNotFoundException;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.mappers.UserMapper;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.security.RoleType;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.team.Team;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.team.TeamService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -20,30 +20,28 @@ import java.util.stream.Collectors;
 public class UserService {
 
     private final UserRepository userRepository;
-    private final UserMapper userMapper;
-    private final TeamService teamService;
     private final PasswordEncoder passwordEncoder;
+    private final UserFactory userFactory;
 
-    UserService(UserRepository userRepository, UserMapper userMapper, TeamService teamService, PasswordEncoder passwordEncoder) {
+    UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, UserFactory userFactory) {
         this.userRepository = userRepository;
-        this.userMapper = userMapper;
-        this.teamService = teamService;
         this.passwordEncoder = passwordEncoder;
+        this.userFactory = userFactory;
     }
 
     public UserDto createUser(UserDto userToCreate){
 
-        User user = userMapper.mapToEntity(userToCreate);
+        User user = userFactory.mapToEntity(userToCreate);
         String s = UUID.randomUUID().toString();
         log.info(s);
         user.setPassword(passwordEncoder.encode(s));
-        return userMapper.mapToDto(userRepository.save(user));
+        return userRepository.save(user).mapToDto();
     }
 
     public UserDto readUser(int id){
         Optional<User> user = Optional.ofNullable(userRepository.findById(id));
         if(user.isPresent()){
-            return userMapper.mapToDto(user.get());
+            return user.get().mapToDto();
         } else {
             throw ObjectNotFoundException.createWith("Id does not exist.");
         }
@@ -52,7 +50,7 @@ public class UserService {
     public UserDto readUser(String email){
         Optional<User> user = Optional.ofNullable(userRepository.findByEmail(email));
         if(user.isPresent()){
-            return userMapper.mapToDto(user.get());
+            return user.get().mapToDto();
         } else {
             throw ObjectNotFoundException.createWith("Id does not exist.");
         }
@@ -61,7 +59,7 @@ public class UserService {
     public List<UserDto> getAllUsers(){
         Optional<List<User>> users = Optional.ofNullable(userRepository.findAll());
         if(users.isPresent()){
-            return users.get().stream().map(userMapper::mapToDto).collect(Collectors.toList());
+            return users.get().stream().map(User::mapToDto).collect(Collectors.toList());
         } else {
             throw ObjectNotFoundException.createWith("The list is empty.");
         }
@@ -70,7 +68,7 @@ public class UserService {
     public UserDto updateUser(UserDto userToUpdate){
         Optional<User> foundUser = Optional.ofNullable(userRepository.findById(userToUpdate.getId()));
         if(foundUser.isPresent()){
-            User user = userMapper.mapToEntity(userToUpdate);
+            User user = userFactory.mapToEntity(userToUpdate);
             userRepository.save(user);
             log.info("User: " + userToUpdate.getId() + "updated successfully");
             return userToUpdate;
@@ -86,9 +84,8 @@ public class UserService {
         if(userToDelete.isPresent()){
 
             checkIfTeamLeaderWithTeam(userToDelete);
-            removeFromTeam(id, userToDelete);
             userRepository.deleteById(id);
-            return userMapper.mapToDto(userToDelete.get());
+            return userToDelete.get().mapToDto();
 
         } else {
             throw new ObjectNotFoundException("Deletion unsuccessful. Id does not exist.");
@@ -114,7 +111,7 @@ public class UserService {
         }
 
         if(pagedResult.hasContent()) {
-            return pagedResult.stream().map(userMapper::mapToDto).collect(Collectors.toList());
+            return pagedResult.stream().map(User::mapToDto).collect(Collectors.toList());
         } else {
             throw new ObjectNotFoundException("Pagination impossible");
         }
@@ -127,9 +124,61 @@ public class UserService {
     }
 
 
-    private void removeFromTeam(int id, Optional<User> userToDelete) {
-        if(userToDelete.get().getTeam()!=null){
-            teamService.removeFromTeam(id);
+
+
+    public void updateUserTeamStatus(int teamLeaderId, Team save) {
+        userRepository.updateUserTeamStatus(teamLeaderId, save);
+    }
+
+    public List<UserDto> fetchTeamSquad(List<Integer> teamSquadIds) {
+        List<User> foundUsers = userRepository.findUsersWithIds(teamSquadIds);
+        return foundUsers.stream().map(User::mapToDto).collect(Collectors.toList());
+    }
+
+    public List<UserDto> findAvailableTeamLeaders() {
+        return userRepository.findAllAvailableTeamLeaders().stream().map(User::mapToDto).collect(Collectors.toList());
+    }
+
+    public void switchTeamLeaders(int teamLeaderId, Team team) {
+        User oldTeamLeader = userRepository.findById(teamLeaderId);
+        oldTeamLeader.setTeam(null);
+        userRepository.save(oldTeamLeader);
+
+        userRepository.updateUserTeamStatus(team.getTeamLeader().getId(), team);
+    }
+
+    public void clearUsersRelationToTeam(int id) {
+        userRepository.clearUsersRelationToTeam(id);
+    }
+
+    public UserDto removeUserFromTeam(int userId) {
+        Optional<User> foundUser = Optional.ofNullable(userRepository.findById(userId));
+        if (foundUser.isPresent()){
+            userRepository.removeRelationToTeam(userId);
+            log.info("User removal from team successful.");
+            return foundUser.get().mapToDto();
+        } else {
+            throw new ObjectNotFoundException("REMOVAL impossible, object not found.");
         }
+    }
+
+    public Optional<String> getUserOptionalOfUserImageUrl(int userId) {
+        return userRepository.fetchImageUrl(userId);
+    }
+
+    public UserDto findById(int id) {
+        return userRepository.findById(id).mapToDto();
+    }
+
+    public void save(UserDto user) {
+        userRepository.save(userFactory.mapToEntity(user));
+    }
+
+    public void addDaysOffFromUser(int id, int daysBetween) {
+        userRepository.addDaysOffFromUser(id, daysBetween);
+    }
+
+    public void subtractDaysOffFromUser(int id, int daysBetween) {
+        userRepository.subtractDaysOffFromUser(id, daysBetween);
     }
 }

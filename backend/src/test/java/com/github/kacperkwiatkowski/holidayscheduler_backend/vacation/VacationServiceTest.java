@@ -3,7 +3,8 @@ package com.github.kacperkwiatkowski.holidayscheduler_backend.vacation;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.exceptions.ObjectNotFoundException;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.nationalHoliday.NationalHolidayService;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.user.User;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.user.UserRepository;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.user.UserDto;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.user.UserService;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.utils.enums.VacationType;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
@@ -18,21 +19,21 @@ import static org.mockito.Mockito.*;
 class VacationServiceTest {
 
     private VacationRepository vacationRepository = mock(VacationRepository.class);
-    private UserRepository userRepository = mock(UserRepository.class);
     private VacationFactory vacationFactory = mock(VacationFactory.class);
     private NationalHolidayService nationalHolidayService = mock(NationalHolidayService.class);
+    private UserService userService = mock(UserService.class);
 
     VacationService vacationService;
 
     @Before
     void setUp(){
-        vacationService = new VacationService(vacationRepository, userRepository, vacationFactory, nationalHolidayService);
+        vacationService  = new VacationService(vacationRepository, vacationFactory, nationalHolidayService, userService);
     }
 
     @Test
     void createVacation() {
         //given
-        vacationService = new VacationService(vacationRepository, userRepository, vacationFactory, nationalHolidayService);
+        vacationService  = new VacationService(vacationRepository, vacationFactory, nationalHolidayService, userService);
         VacationDto vacationDto = VacationDto
                         .builder()
                         .id(1)
@@ -59,7 +60,7 @@ class VacationServiceTest {
     @Test
     void deleteVacation_methodReturnsObjectIfIdIsFoundInRepository() {
         //given
-        vacationService = new VacationService(vacationRepository, userRepository, vacationFactory, nationalHolidayService);
+        vacationService  = new VacationService(vacationRepository, vacationFactory, nationalHolidayService, userService);
         VacationDto vacationDto = VacationDto
                 .builder()
                 .id(1)
@@ -75,7 +76,7 @@ class VacationServiceTest {
 
         //when
         when(vacationRepository.findById(anyInt())).thenReturn(vacation);
-        when(userRepository.findById(anyInt())).thenReturn(new User());
+        when(userService.findById(anyInt())).thenReturn(new UserDto());
         when(vacation.mapToDto()).thenReturn(vacationDto);
 
         //then
@@ -85,7 +86,7 @@ class VacationServiceTest {
     @Test
     void deleteVacation_methodThrowsExceptionWhenIdIsNotFoundInRepository() {
         //given
-        vacationService = new VacationService(vacationRepository, userRepository, vacationFactory, nationalHolidayService);
+        vacationService  = new VacationService(vacationRepository, vacationFactory, nationalHolidayService, userService);
         VacationDto vacationDto = VacationDto
                 .builder()
                 .id(1)
@@ -102,7 +103,7 @@ class VacationServiceTest {
 
         //when
         when(vacationRepository.findById(anyInt())).thenReturn(null);
-        when(userRepository.findById(anyInt())).thenReturn(new User());
+        when(userService.findById(anyInt())).thenReturn(new UserDto());
 
         //then
 

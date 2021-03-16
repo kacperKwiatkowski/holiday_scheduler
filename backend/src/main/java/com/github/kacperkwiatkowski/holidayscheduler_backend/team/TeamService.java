@@ -2,10 +2,9 @@ package com.github.kacperkwiatkowski.holidayscheduler_backend.team;
 
 import com.github.kacperkwiatkowski.holidayscheduler_backend.user.UserDto;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.exceptions.ObjectNotFoundException;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.mappers.TeamMapper;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.mappers.UserMapper;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.user.User;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.user.UserRepository;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.user.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -22,20 +21,18 @@ import java.util.stream.Collectors;
 public class TeamService {
 
     private final TeamRepository teamRepository;
-    private final UserRepository userRepository;
-    private final TeamMapper teamMapper;
-    private final UserMapper userMapper;
+    private final TeamFactory teamFactory;
+    private final UserService userService;
 
-    TeamService(TeamRepository teamRepository, UserRepository userRepository, TeamMapper teamMapper, UserMapper userMapper) {
+    TeamService(TeamRepository teamRepository, UserRepository userRepository, TeamFactory teamFactory, UserService userService) {
         this.teamRepository = teamRepository;
-        this.userRepository = userRepository;
-        this.teamMapper = teamMapper;
-        this.userMapper = userMapper;
+        this.teamFactory = teamFactory;
+        this.userService = userService;
     }
 
     @Transactional
     public TeamDto createTeam(TeamDto teamToCreate){
-        userRepository.updateUserTeamStatus(teamToCreate.getTeamLeaderId(), teamRepository.save(teamMapper.mapToEntity(teamToCreate)));
+        userService.updateUserTeamStatus(teamToCreate.getTeamLeaderId(), teamRepository.save(teamFactory.mapToEntity(teamToCreate)));
         return teamToCreate;
     }
 
@@ -48,10 +45,11 @@ public class TeamService {
             List<Integer> usersInTeam = teamToUpdateWithUser.getUserIds();
             usersInTeam.add(id);
             teamToUpdateWithUser.setUserIds(usersInTeam);
-            Team team = teamMapper.mapToEntity(teamToUpdateWithUser);
+            Team team = teamFactory.mapToEntity(teamToUpdateWithUser);
             teamRepository.save(team);
 
-            userRepository.updateUserTeamStatus(id, team);
+
+            userService.updateUserTeamStatus(id, team);
 
             return teamToUpdateWithUser;
         } else {
@@ -64,7 +62,7 @@ public class TeamService {
     public TeamDto readTeam(int teamId){
         Optional<Team> foundTeam = Optional.ofNullable(teamRepository.findById(teamId));
         if(foundTeam.isPresent()){
-            return teamMapper.mapToDto(foundTeam.get());
+            return foundTeam.get().mapToDto();
         } else {
             throw ObjectNotFoundException.createWith("Team with such ID does not exist.");
         }
@@ -73,7 +71,7 @@ public class TeamService {
     public List<TeamDto> readEachTeam(){
         List<Team> foundTeams = teamRepository.findAll();
         if(foundTeams.size()!=0){
-            return foundTeams.stream().map(teamMapper::mapToDto).collect(Collectors.toList());
+            return foundTeams.stream().map(Team::mapToDto).collect(Collectors.toList());
         } else {
             throw ObjectNotFoundException.createWith("Team with such ID does not exist.");
         }
@@ -82,16 +80,14 @@ public class TeamService {
     public List<UserDto> readTeamMembers(int id){
         Optional<Team> foundTeam = Optional.ofNullable(teamRepository.findById(id));
         if(foundTeam.isPresent()){
-            List<Integer> teamSquadIds = foundTeam.get().getTeamSquad();
-            List<User> foundUsers = userRepository.findUsersWithIds(teamSquadIds);
-            return foundUsers.stream().map(userMapper::mapToDto).collect(Collectors.toList());
+            return userService.fetchTeamSquad(foundTeam.get().getTeamSquad());
         } else {
             throw ObjectNotFoundException.createWith("Team with such ID does not exist.");
         }
     }
 
     public List<UserDto> readAvailableTeamLeaders(){
-        return userRepository.findAllAvailableTeamLeaders().stream().map(userMapper::mapToDto).collect(Collectors.toList());
+        return userService.findAvailableTeamLeaders();
     }
 
     @Transactional
@@ -101,18 +97,15 @@ public class TeamService {
         if(foundTeam.isPresent()){
             int oldTeamLeaderId = foundTeam.get().getTeamLeader().getId();
 
-            Team team = teamMapper.mapToEntity(teamToUpdate);
+            Team team = teamFactory.mapToEntity(teamToUpdate);
 
             List<Integer> teamSquad = team.getTeamSquad();
             teamSquad.remove(Integer.valueOf(oldTeamLeaderId));
             teamSquad.add(teamToUpdate.getTeamLeaderId());
             team.setTeamSquad(teamSquad);
 
-            User oldTeamLeader = userRepository.findById(oldTeamLeaderId);
-            oldTeamLeader.setTeam(null);
-            userRepository.save(oldTeamLeader);
+            userService.switchTeamLeaders(teamToUpdate.getTeamLeaderId(), team);
 
-            userRepository.updateUserTeamStatus(teamToUpdate.getTeamLeaderId(), team);
 
             teamRepository.save(team);
 
@@ -126,10 +119,10 @@ public class TeamService {
     public TeamDto deleteTeam(int id) {
         Optional<Team> foundTeam = Optional.ofNullable(teamRepository.findById(id));
         if (foundTeam.isPresent()){
-            userRepository.clearUsersRelationToTeam(id);
+            userService.clearUsersRelationToTeam(id);
             teamRepository.deleteById(id);
             log.info("Deletion successful.");
-            return teamMapper.mapToDto(foundTeam.get());
+            return foundTeam.get().mapToDto();
         } else {
             throw new ObjectNotFoundException("DELETION impossible, object not found.");
         }
@@ -154,23 +147,20 @@ public class TeamService {
         }
 
         if(pagedResult.hasContent()) {
-            return pagedResult.stream().map(teamMapper::mapToDto).collect(Collectors.toList());
+            return pagedResult.stream().map(Team::mapToDto).collect(Collectors.toList());
         } else {
             throw new ObjectNotFoundException("Pagination impossible");
         }
     }
 
+
+
     @Transactional
     public UserDto removeFromTeam(int userId){
-        Optional<User> foundUser = Optional.ofNullable(userRepository.findById(userId));
-        if (foundUser.isPresent()){
-            userRepository.removeRelationToTeam(userId);
-            updateTeamSquad(foundUser.get().getTeam().getId(), userId);
-            log.info("User removal from team successful.");
-            return userMapper.mapToDto(foundUser.get());
-        } else {
-            throw new ObjectNotFoundException("REMOVAL impossible, object not found.");
-        }
+        UserDto removedUser = userService.removeUserFromTeam(userId);
+        updateTeamSquad(removedUser.getTeamId(), userId);
+        return removedUser;
+
     }
 
     private void updateTeamSquad(int teamID, int userId) {
@@ -181,4 +171,6 @@ public class TeamService {
         userTeam.setTeamSquad(teamUsers);
         teamRepository.save(userTeam);
     }
+
+
 }

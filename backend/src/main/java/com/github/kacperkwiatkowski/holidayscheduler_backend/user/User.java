@@ -65,7 +65,7 @@ public class User implements Serializable{
         this.imageUrl = imageUrl;
     }
 
-    public UserDto mapToDto() {
+    UserDto mapToDto() {
         return UserDto.builder()
                 .id(id)
                 .email(email)
@@ -73,11 +73,10 @@ public class User implements Serializable{
                 .lastName(lastName)
                 .daysOffLeft(daysOffLeft)
                 .roleType(RoleTypeConvertor.convertToString(roleType))
-                .teamId(team.getId())
                 .build();
     }
 
-    public Optional<String> getUserOptionalOfUserImageUrl() {
+    Optional<String> getUserOptionalOfUserImageUrl() {
         return Optional.ofNullable(imageUrl);
     }
 }
