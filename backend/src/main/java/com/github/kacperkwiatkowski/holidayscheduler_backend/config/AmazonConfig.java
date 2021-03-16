@@ -13,10 +13,10 @@ import java.io.IOException;
 import java.util.Properties;
 
 @Configuration
-public class AmazonConfig {
+class AmazonConfig {
 
     @Bean
-    public AmazonS3 s3() {
+    AmazonS3 s3() {
 
         Properties awsKeys = getProperties();
 

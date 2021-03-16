@@ -12,7 +12,7 @@ import java.util.Collections;
 import java.util.List;
 
 @ControllerAdvice
-public class ApplicationExceptionHandler {
+class ApplicationExceptionHandler {
 
     @ExceptionHandler({ObjectNotFoundException.class, IncorrectBodyException.class})
     public final ResponseEntity<ApiError> handleException(Exception ex, WebRequest request) {

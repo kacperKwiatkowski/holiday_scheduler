@@ -1,9 +1,7 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.controllers;
 
-import com.github.kacperkwiatkowski.holidayscheduler_backend.dto.UserDto;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.dto.VacationDto;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.exceptions.ObjectNotFoundException;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.model.Vacation;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.service.VacationService;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
@@ -14,27 +12,26 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Slf4j
 @RestController
 @CrossOrigin
 @RequestMapping("/api/vacation")
-public class VacationController {
+class VacationController {
 
     private static final Logger logger = LoggerFactory.getLogger(VacationController.class);
 
     private final VacationService vacationService;
 
-    public VacationController(VacationService vacationService) {
+    VacationController(VacationService vacationService) {
         this.vacationService = vacationService;
     }
 
     @PostMapping(path = "/request")
     @PreAuthorize("hasAuthority('self:edit')")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity createVacation(
+    ResponseEntity createVacation(
             @RequestBody VacationDto vacationDto) {
         vacationService.createVacation(vacationDto);
         log.info("Controller 'createVacation' initiated.");
@@ -61,7 +58,7 @@ public class VacationController {
     }
 
     @GetMapping(path = "/page")
-    public ResponseEntity<List<VacationDto>> getAllVacations(
+    ResponseEntity<List<VacationDto>> getAllVacations(
             @RequestParam(defaultValue = "0") Integer pageNum,
             @RequestParam(defaultValue = "10") Integer pageSize,
             @RequestParam(defaultValue = "firstDay") String sortBy,

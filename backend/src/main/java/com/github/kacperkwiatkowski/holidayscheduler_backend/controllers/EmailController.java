@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @CrossOrigin
 @RequestMapping("/api/email")
-public class EmailController {
+class EmailController {
 
     @Autowired
     private JavaMailSender javaMailSender;
@@ -22,7 +22,7 @@ public class EmailController {
     @PostMapping(path = "/send/{id}")
     @PreAuthorize("hasAuthority('self:edit')")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity sendAnEmail(
+    ResponseEntity sendAnEmail(
             @PathVariable("id") int id,
             @RequestParam("address") String address,
             @RequestParam("title") String title,

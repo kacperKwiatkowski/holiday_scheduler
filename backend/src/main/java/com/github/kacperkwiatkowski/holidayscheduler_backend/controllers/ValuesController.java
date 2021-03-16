@@ -18,7 +18,7 @@ public class ValuesController {
     private final TeamRepository teamRepository;
     private final VacationRepository vacationRepository;
 
-    public ValuesController(UserRepository userRepository, TeamRepository teamRepository, VacationRepository vacationRepository) {
+    ValuesController(UserRepository userRepository, TeamRepository teamRepository, VacationRepository vacationRepository) {
         this.userRepository = userRepository;
         this.teamRepository = teamRepository;
         this.vacationRepository = vacationRepository;

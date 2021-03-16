@@ -16,7 +16,7 @@ import java.util.Map;
 
 import static java.lang.Integer.parseInt;
 
-public class AdminCommandsRestrictionsInterceptor extends HandlerInterceptorAdapter {
+class AdminCommandsRestrictionsInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {

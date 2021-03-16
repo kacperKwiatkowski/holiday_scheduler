@@ -23,7 +23,7 @@ public class CalendarService {
     private final VacationRepository vacationRepository;
     private final NationalHolidayRepository nationalHolidayRepository;
 
-    public CalendarService(UserRepository userRepository, VacationRepository vacationRepository, NationalHolidayRepository nationalHolidayRepository) {
+    CalendarService(UserRepository userRepository, VacationRepository vacationRepository, NationalHolidayRepository nationalHolidayRepository) {
         this.userRepository = userRepository;
         this.vacationRepository = vacationRepository;
         this.nationalHolidayRepository = nationalHolidayRepository;

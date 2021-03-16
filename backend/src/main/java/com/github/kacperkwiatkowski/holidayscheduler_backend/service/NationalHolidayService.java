@@ -31,7 +31,7 @@ public class NationalHolidayService {
     private final NationalHolidayRepository nationalHolidayRepository;
     private final NationalHolidayMapper nationalHolidayMapper;
 
-    public NationalHolidayService(NationalHolidayRepository nationalHolidayRepository, NationalHolidayMapper nationalHolidayMapper) {
+    NationalHolidayService(NationalHolidayRepository nationalHolidayRepository, NationalHolidayMapper nationalHolidayMapper) {
         this.nationalHolidayRepository = nationalHolidayRepository;
         this.nationalHolidayMapper = nationalHolidayMapper;
     }

@@ -1,6 +1,6 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.exceptions;
 
-public class IncorrectBodyException extends Exception {
+class IncorrectBodyException extends Exception {
 
     private String message;
 

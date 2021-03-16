@@ -37,7 +37,7 @@ public class VacationService {
     private final UserRepository userRepository;
     private final NationalHolidayRepository nationalHolidayRepository;
 
-    public VacationService(VacationRepository vacationRepository, VacationMapper vacationMapper, UserRepository userRepository, NationalHolidayRepository nationalHolidayRepository) {
+    VacationService(VacationRepository vacationRepository, VacationMapper vacationMapper, UserRepository userRepository, NationalHolidayRepository nationalHolidayRepository) {
         this.vacationRepository = vacationRepository;
         this.vacationMapper = vacationMapper;
         this.userRepository = userRepository;

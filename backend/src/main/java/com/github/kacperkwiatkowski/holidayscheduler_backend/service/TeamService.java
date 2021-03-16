@@ -29,7 +29,7 @@ public class TeamService {
     private final TeamMapper teamMapper;
     private final UserMapper userMapper;
 
-    public TeamService(TeamRepository teamRepository, UserRepository userRepository, TeamMapper teamMapper, UserMapper userMapper) {
+    TeamService(TeamRepository teamRepository, UserRepository userRepository, TeamMapper teamMapper, UserMapper userMapper) {
         this.teamRepository = teamRepository;
         this.userRepository = userRepository;
         this.teamMapper = teamMapper;

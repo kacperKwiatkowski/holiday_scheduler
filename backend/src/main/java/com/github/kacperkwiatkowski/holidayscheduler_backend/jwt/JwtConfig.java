@@ -16,34 +16,34 @@ public class JwtConfig {
     private String tokenPrefix;
     private Integer tokenExpirationAfterDays;
 
-    public JwtConfig() {
+    JwtConfig() {
     }
 
-    public String getSecretKey() {
+    String getSecretKey() {
         return secretKey;
     }
 
-    public void setSecretKey(String secretKey) {
+    void setSecretKey(String secretKey) {
         this.secretKey = secretKey;
     }
 
-    public String getTokenPrefix() {
+    String getTokenPrefix() {
         return tokenPrefix;
     }
 
-    public void setTokenPrefix(String tokenPrefix) {
+    void setTokenPrefix(String tokenPrefix) {
         this.tokenPrefix = tokenPrefix;
     }
 
-    public Integer getTokenExpirationAfterDays() {
+    Integer getTokenExpirationAfterDays() {
         return tokenExpirationAfterDays;
     }
 
-    public void setTokenExpirationAfterDays(Integer tokenExpirationAfterDays) {
+    void setTokenExpirationAfterDays(Integer tokenExpirationAfterDays) {
         this.tokenExpirationAfterDays = tokenExpirationAfterDays;
     }
 
-    public String getAuthorizationHeader() {
+    String getAuthorizationHeader() {
         return HttpHeaders.AUTHORIZATION;
     }
 }

@@ -27,13 +27,13 @@ import java.util.Optional;
 @Controller
 @CrossOrigin
 @RequestMapping("/api/team")
-public class TeamController {
+class TeamController {
 
     private static final Logger logger = LoggerFactory.getLogger(TeamController.class);
 
     private final TeamService teamService;
 
-    public TeamController(TeamService teamService) {
+    TeamController(TeamService teamService) {
         this.teamService = teamService;
     }
 
@@ -107,7 +107,7 @@ public class TeamController {
 
     @GetMapping(path = "/page")
     @PreAuthorize("hasAuthority('team:read')")
-    public ResponseEntity<List<TeamDto>> getAllTeams(
+    ResponseEntity<List<TeamDto>> getAllTeams(
             @RequestParam(defaultValue = "0") Integer pageNo,
             @RequestParam(defaultValue = "10") Integer pageSize,
             @RequestParam(defaultValue = "id") String sortBy,
@@ -120,7 +120,7 @@ public class TeamController {
 
     @PostMapping(path = "/member/remove/{id}")
     @PreAuthorize("hasAuthority('team:update')")
-    public ResponseEntity<UserDto> removeFromTeam(
+    ResponseEntity<UserDto> removeFromTeam(
             @PathVariable Integer id
     ){
         return ResponseEntity.ok(teamService.removeFromTeam(id));

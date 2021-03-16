@@ -14,11 +14,11 @@ import java.util.List;
 @RestController
 @CrossOrigin
 @RequestMapping("/api/nationalholiday")
-public class NationalHolidaysController {
+class NationalHolidaysController {
 
     private final NationalHolidayService nationalHolidayService;
 
-    public NationalHolidaysController(NationalHolidayService nationalHolidayService) {
+    NationalHolidaysController(NationalHolidayService nationalHolidayService) {
         this.nationalHolidayService = nationalHolidayService;
     }
 

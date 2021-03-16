@@ -11,11 +11,11 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 @CrossOrigin
 @RequestMapping("/api/images")
-public class ImageController {
+class ImageController {
 
     private final ImageService imageService;
 
-    public ImageController(ImageService imageService) {
+    ImageController(ImageService imageService) {
         this.imageService = imageService;
     }
 
@@ -24,14 +24,14 @@ public class ImageController {
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public void uploadUserImage(
+    void uploadUserImage(
             @PathVariable("id") int id,
             @RequestParam("file") MultipartFile file) {
         imageService.uploadUserImage(id, file);
     }
 
     @GetMapping( "/{id}/image/download")
-    public ResponseEntity<byte[]>  downloadUserImage(
+    ResponseEntity<byte[]>  downloadUserImage(
             @PathVariable("id") int id) {
         return ResponseEntity.ok(imageService.downloadUserImage(id));
     }

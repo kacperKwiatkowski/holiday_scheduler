@@ -20,12 +20,10 @@ import static org.apache.http.entity.ContentType.*;
 public class ImageService {
 
     private final UserRepository userRepository;
-    private final UserMapper userMapper;
     private final FileStore fileStore;
 
-    public ImageService(UserRepository userRepository, UserMapper userMapper, FileStore fileStore) {
-        this.userRepository = userRepository;
-        this.userMapper = userMapper;
+    ImageService(UserRepository userRepository, FileStore fileStore) { this.userRepository = userRepository;
+
         this.fileStore = fileStore;
     }
 

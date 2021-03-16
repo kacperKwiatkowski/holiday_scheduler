@@ -6,7 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.Set;
 
-public class ApplicationUser implements UserDetails {
+class ApplicationUser implements UserDetails {
 
     private final String username;
     private final String password;
@@ -16,7 +16,7 @@ public class ApplicationUser implements UserDetails {
     private final boolean isCredentialsNonExpired;
     private final boolean isEnabled;
 
-    public ApplicationUser(
+    ApplicationUser(
             String username,
             String password,
             Set<? extends GrantedAuthority> grantedAuthorities,

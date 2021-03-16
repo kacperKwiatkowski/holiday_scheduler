@@ -19,13 +19,13 @@ import java.util.Queue;
 @RestController
 @CrossOrigin
 @RequestMapping("/api/calendar")
-public class CalendarController {
+class CalendarController {
 
     private final CalendarService calendarService;
     private final UserService userService;
     private final VacationService vacationService;
 
-    public CalendarController(CalendarService calendarService, UserService userService, VacationService vacationService) {
+    CalendarController(CalendarService calendarService, UserService userService, VacationService vacationService) {
         this.calendarService = calendarService;
         this.userService = userService;
         this.vacationService = vacationService;
@@ -33,7 +33,7 @@ public class CalendarController {
 
     @PreAuthorize("hasAuthority('employee:read')")
     @GetMapping(path = "/page")
-    public ResponseEntity<List<CalendarDto>> getCalendar(
+    ResponseEntity<List<CalendarDto>> getCalendar(
             @RequestParam(defaultValue = "") String filter,
             @RequestParam(defaultValue = "0") Integer pageNum,
             @RequestParam(defaultValue = "10") Integer pageSize,
@@ -51,7 +51,7 @@ public class CalendarController {
 
     @PreAuthorize("hasAuthority('employee:read')")
     @GetMapping(path = "/nationalHolidays")
-    public ResponseEntity<Queue<NationalHoliday>> getNationalHolidays(
+    ResponseEntity<Queue<NationalHoliday>> getNationalHolidays(
             @RequestParam int month,
             @RequestParam int year)
     {

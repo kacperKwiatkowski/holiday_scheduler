@@ -26,7 +26,7 @@ public class UserService {
     private final TeamService teamService;
     private final PasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository userRepository, UserMapper userMapper, TeamService teamService, PasswordEncoder passwordEncoder) {
+    UserService(UserRepository userRepository, UserMapper userMapper, TeamService teamService, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.userMapper = userMapper;
         this.teamService = teamService;

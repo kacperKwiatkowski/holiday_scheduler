@@ -13,18 +13,18 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 @CrossOrigin
 @RequestMapping("/api/credentials")
-public class CredentialsController {
+class CredentialsController {
 
     private final UserRepository userRepository;
 
-    public CredentialsController(UserRepository userRepository) {
+    CredentialsController(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
     @PostMapping(path = "/{id}/email/change")
     @PreAuthorize("hasAuthority('self:edit')")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity changeEmail(
+    ResponseEntity changeEmail(
             @PathVariable("id") int id,
             @RequestParam("oldCredential") String oldEmail,
             @RequestParam("newCredential") String oldEmailRepeated,
@@ -38,7 +38,7 @@ public class CredentialsController {
     @PostMapping(path = "/{id}/password/change")
     @PreAuthorize("hasAuthority('self:edit')")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity changePassword(
+    ResponseEntity changePassword(
             @PathVariable("id") int id,
             @RequestParam("oldCredential") String oldPassword,
             @RequestParam("newCredential") String oldPasswordRepeated,

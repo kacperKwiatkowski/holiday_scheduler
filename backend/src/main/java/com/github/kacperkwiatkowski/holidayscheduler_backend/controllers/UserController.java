@@ -24,9 +24,9 @@ import java.util.Optional;
 @RestController
 @CrossOrigin
 @RequestMapping("/api/user")
-public class UserController {
+class UserController {
 
-    public UserController(UserService userService) {
+    UserController(UserService userService) {
         this.userService = userService;
     }
 
@@ -42,14 +42,14 @@ public class UserController {
 
     @GetMapping(path = "/read/{id}")
     @PreAuthorize("hasAuthority('employee:read')")
-    public ResponseEntity<UserDto> getUser(@PathVariable int id) throws ObjectNotFoundException {
+    ResponseEntity<UserDto> getUser(@PathVariable int id) throws ObjectNotFoundException {
         log.info("Controller 'getUser' initiated.");
         return new ResponseEntity<UserDto>(userService.readUser(id), HttpStatus.OK);
     }
 
     @GetMapping(path = "/read/logged")
     @PreAuthorize("hasAuthority('self:edit')")
-    public ResponseEntity<UserDto> getUser(@RequestParam String email) throws ObjectNotFoundException {
+    ResponseEntity<UserDto> getUser(@RequestParam String email) throws ObjectNotFoundException {
         log.info("Controller 'getUser' initiated.");
         return new ResponseEntity<UserDto>(userService.readUser(email), HttpStatus.OK);
     }
@@ -57,7 +57,7 @@ public class UserController {
 
     @GetMapping(path = "/read/all")
     @PreAuthorize("hasAuthority('employee:read')")
-    public ResponseEntity<List<UserDto>> getAllUser() throws ObjectNotFoundException {
+    ResponseEntity<List<UserDto>> getAllUser() throws ObjectNotFoundException {
         log.info("Controller 'getAllUser' initiated.");
         return new ResponseEntity<List<UserDto>>(userService.getAllUsers(), HttpStatus.OK);
     }
@@ -85,7 +85,7 @@ public class UserController {
 
 
     @GetMapping(path = "/page")
-    public ResponseEntity<List<UserDto>> getAllUsers(
+    ResponseEntity<List<UserDto>> getAllUsers(
             @RequestParam(defaultValue = "0") Integer pageNum,
             @RequestParam(defaultValue = "10") Integer pageSize,
             @RequestParam(defaultValue = "lastName") String sortBy,
