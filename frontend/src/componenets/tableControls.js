@@ -24,7 +24,7 @@ const TableControls = ({header, setPagination, object}) => {
 
 
     const getObjectCount = async () => {
-        const response = await axios.get(`http://localhost:8080/api/values/${object}/count`)
+        const response = await axios.get(`http://localhost:8080/api/${object}/count`)
         const { data } = await response;
         setobjectCount(data);
     }

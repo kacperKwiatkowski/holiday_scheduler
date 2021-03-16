@@ -1,9 +1,9 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.mappers;
 
-import com.github.kacperkwiatkowski.holidayscheduler_backend.dto.TeamDto;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.model.Team;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.TeamRepository;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.UserRepository;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.team.TeamDto;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.team.Team;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.team.TeamRepository;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.user.UserRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;

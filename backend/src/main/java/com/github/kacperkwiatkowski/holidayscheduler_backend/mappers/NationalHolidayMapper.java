@@ -1,8 +1,7 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.mappers;
 
-import com.github.kacperkwiatkowski.holidayscheduler_backend.dto.NationalHolidayDto;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.model.NationalHoliday;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.NationalHolidayRepository;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.nationalHoliday.NationalHolidayDto;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.nationalHoliday.NationalHoliday;
 import org.springframework.stereotype.Component;
 
 @Component

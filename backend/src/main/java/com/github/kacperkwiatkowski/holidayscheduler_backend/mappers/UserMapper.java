@@ -1,10 +1,9 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.mappers;
 
 import com.github.kacperkwiatkowski.holidayscheduler_backend.convertors.RoleTypeConvertor;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.dto.UserDto;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.model.User;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.UserRepository;
-import org.mapstruct.Mapper;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.user.UserDto;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.user.User;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.user.UserRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;

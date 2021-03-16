@@ -1,7 +1,7 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.auth;
 
-import com.github.kacperkwiatkowski.holidayscheduler_backend.model.User;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.UserRepository;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.user.User;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -21,7 +21,7 @@ public class UserAuthService implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
         try{
-            com.github.kacperkwiatkowski.holidayscheduler_backend.model.User user = userRepository.findFirstByEmail(email);
+            User user = userRepository.findFirstByEmail(email);
             return org.springframework.security.core.userdetails
                     .User.builder()
                     .username(user.getEmail())

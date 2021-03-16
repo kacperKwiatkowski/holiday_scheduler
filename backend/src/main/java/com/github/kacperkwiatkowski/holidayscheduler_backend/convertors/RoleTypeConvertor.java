@@ -1,6 +1,6 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.convertors;
 
-import com.github.kacperkwiatkowski.holidayscheduler_backend.roles.RoleType;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.security.RoleType;
 
 public class RoleTypeConvertor {
 

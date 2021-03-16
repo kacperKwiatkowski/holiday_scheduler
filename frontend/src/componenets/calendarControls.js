@@ -31,7 +31,7 @@ const CalendarControls = ({header, setPagination}) => {
 
 
     const getUsersCount = async () => {
-        const response = await axios.get(`http://localhost:8080/api/values/user/count`)
+        const response = await axios.get(`http://localhost:8080/api/user/count`)
         const { data } = await response;
         setUsersCount(data);
     }

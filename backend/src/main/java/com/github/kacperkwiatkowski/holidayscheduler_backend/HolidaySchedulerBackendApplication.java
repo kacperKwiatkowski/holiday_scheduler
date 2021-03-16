@@ -1,18 +1,17 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend;
 
-import com.github.kacperkwiatkowski.holidayscheduler_backend.model.Team;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.model.User;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.model.Vacation;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.VacationRepository;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.TeamRepository;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.UserRepository;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.team.Team;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.user.User;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.vacation.Vacation;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.vacation.VacationRepository;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.team.TeamRepository;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.user.UserRepository;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.utils.enums.VacationType;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.roles.RoleType;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.security.RoleType;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Profile;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDate;

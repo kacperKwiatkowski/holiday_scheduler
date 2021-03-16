@@ -1,10 +1,10 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.mappers;
 
 import com.github.kacperkwiatkowski.holidayscheduler_backend.convertors.RoleTypeConvertor;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.dto.UserDto;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.model.User;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.repository.UserRepository;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.roles.RoleType;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.user.UserDto;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.user.User;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.user.UserRepository;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.security.RoleType;
 import org.junit.Before;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

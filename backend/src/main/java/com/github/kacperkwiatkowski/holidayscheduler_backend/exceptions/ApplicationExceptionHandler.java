@@ -20,9 +20,9 @@ class ApplicationExceptionHandler {
 
         if (ex instanceof ObjectNotFoundException) {
             HttpStatus status = HttpStatus.NOT_FOUND;
-            ObjectNotFoundException enfe = (ObjectNotFoundException) ex;
+            ObjectNotFoundException onfe = (ObjectNotFoundException) ex;
 
-            return handleEntityNotFoundException(enfe, headers, status, request);
+            return handleEntityNotFoundException(onfe, headers, status, request);
         } else {
             HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
             return handleExceptionInternal(ex, null, headers, status, request);
