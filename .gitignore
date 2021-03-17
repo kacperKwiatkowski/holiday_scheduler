@@ -1,10 +1,8 @@
 holiday_scheduler.iml
 .idea
 
-frontend/node_modules
-
-backend/backend.iml
-backend/target
-backend/src/main/resources/awsKeys.properties
+monolith/backend.iml
+monolith/target
+monolith/src/main/resources/awsKeys.properties
 
 frontend/node_modules

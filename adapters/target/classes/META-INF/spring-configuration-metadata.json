@@ -1,0 +1,11 @@
+{
+  "groups": [
+    {
+      "name": "application.jwt",
+      "type": "com.github.kacperkwiatkowski.auth.JwtConfig",
+      "sourceType": "com.github.kacperkwiatkowski.auth.JwtConfig"
+    }
+  ],
+  "properties": [],
+  "hints": []
+}
