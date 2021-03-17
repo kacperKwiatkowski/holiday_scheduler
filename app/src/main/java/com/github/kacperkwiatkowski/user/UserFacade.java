@@ -1,9 +1,7 @@
 package com.github.kacperkwiatkowski.user;
 
 import com.github.kacperkwiatkowski.exceptions.ObjectNotFoundException;
-import com.github.kacperkwiatkowski.security.RoleType;
-import com.github.kacperkwiatkowski.dto.UserDto;
-import com.github.kacperkwiatkowski.dto.UserSecurityDto;
+import com.github.kacperkwiatkowski.enums.RoleType;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -38,13 +36,13 @@ public class UserFacade {
         String s = UUID.randomUUID().toString();
         log.info(s);
         user.setPassword(passwordEncoder.encode(s));
-        return userRepository.save(user).mapToDto();
+        return UserDto.mapToDto(userRepository.save(user));
     }
 
     public UserDto readUser(int id){
         Optional<User> user = Optional.ofNullable(userRepository.findById(id));
         if(user.isPresent()){
-            return user.get().mapToDto();
+            return UserDto.mapToDto(user.get());
         } else {
             throw ObjectNotFoundException.createWith("Id does not exist.");
         }
@@ -53,7 +51,7 @@ public class UserFacade {
     public UserDto readUser(String email){
         Optional<User> user = Optional.ofNullable(userRepository.findByEmail(email));
         if(user.isPresent()){
-            return user.get().mapToDto();
+            return UserDto.mapToDto(user.get());
         } else {
             throw ObjectNotFoundException.createWith("Id does not exist.");
         }
@@ -62,7 +60,7 @@ public class UserFacade {
     public List<UserDto> getAllUsers(){
         Optional<List<User>> users = Optional.ofNullable(userRepository.findAll());
         if(users.isPresent()){
-            return users.get().stream().map(User::mapToDto).collect(Collectors.toList());
+            return users.get().stream().map(UserDto::mapToDto).collect(Collectors.toList());
         } else {
             throw ObjectNotFoundException.createWith("The list is empty.");
         }
@@ -88,7 +86,7 @@ public class UserFacade {
 
             //checkIfTeamLeaderWithTeam(userToDelete);
             userRepository.deleteById(id);
-            return userToDelete.get().mapToDto();
+            return UserDto.mapToDto(userToDelete.get());
 
         } else {
             throw new ObjectNotFoundException("Deletion unsuccessful. Id does not exist.");
@@ -114,7 +112,7 @@ public class UserFacade {
         }
 
         if(pagedResult.hasContent()) {
-            return pagedResult.stream().map(User::mapToDto).collect(Collectors.toList());
+            return pagedResult.stream().map(UserDto::mapToDto).collect(Collectors.toList());
         } else {
             throw new ObjectNotFoundException("Pagination impossible");
         }
@@ -170,7 +168,7 @@ public class UserFacade {
 //    }
 
     public UserDto findById(int id) {
-        return userRepository.findById(id).mapToDto();
+        return UserDto.mapToDto(userRepository.findById(id));
     }
 
     public void save(UserDto user) {

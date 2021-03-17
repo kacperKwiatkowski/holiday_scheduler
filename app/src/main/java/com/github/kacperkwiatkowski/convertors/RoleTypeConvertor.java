@@ -1,6 +1,6 @@
 package com.github.kacperkwiatkowski.convertors;
 
-import com.github.kacperkwiatkowski.security.RoleType;
+import com.github.kacperkwiatkowski.enums.RoleType;
 
 public class RoleTypeConvertor {
 

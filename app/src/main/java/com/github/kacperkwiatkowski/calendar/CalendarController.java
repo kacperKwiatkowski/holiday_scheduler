@@ -1,7 +1,7 @@
 package com.github.kacperkwiatkowski.calendar;
 
+import com.github.kacperkwiatkowski.user.UserDto;
 import com.github.kacperkwiatkowski.user.UserFacade;
-import com.github.kacperkwiatkowski.dto.UserDto;
 import com.github.kacperkwiatkowski.vacation.VacationDto;
 import com.github.kacperkwiatkowski.vacation.VacationFacade;
 import lombok.extern.slf4j.Slf4j;

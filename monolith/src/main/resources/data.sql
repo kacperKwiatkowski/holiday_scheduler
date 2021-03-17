@@ -1,1 +1,0 @@
-INSERT INTO USER (email, password, firstName, lastName, roleType, daysOffLeft ) VALUES ('aaa@gmail.com', '1111','Kacper', 'Kwiatkowski',2, 22);

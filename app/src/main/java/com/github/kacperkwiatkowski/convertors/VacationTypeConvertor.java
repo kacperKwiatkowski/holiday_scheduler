@@ -1,6 +1,6 @@
 package com.github.kacperkwiatkowski.convertors;
 
-import com.github.kacperkwiatkowski.utils.leaveConfig.VacationType;
+import com.github.kacperkwiatkowski.enums.VacationType;
 
 public class VacationTypeConvertor {
 

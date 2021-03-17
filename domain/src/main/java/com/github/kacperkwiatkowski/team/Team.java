@@ -44,16 +44,5 @@ class Team {
 //        return com.github.kacperkwiatkowski.team;
 //    }
 
-    com.github.kacperkwiatkowski.team.TeamDto mapToDto() {
 
-        return TeamDto.builder()
-                .id(id)
-                .name(name)
-                .userIds(teamSquad)
-                .teamLeaderId(teamLeader.getId())
-                .teamLeaderFirstName(teamLeader.getFirstName())
-                .teamLeaderLastName(teamLeader.getLastName())
-                .teamLeaderEmail(teamLeader.getEmail())
-                .build();
-    }
 }

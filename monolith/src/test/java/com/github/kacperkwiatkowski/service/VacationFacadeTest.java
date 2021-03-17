@@ -5,7 +5,7 @@
 //import com.github.kacperkwiatkowski.user.UserFacade;
 //import com.github.kacperkwiatkowski.dto.UserDto;
 //import com.github.kacperkwiatkowski.user.query.SimpleUserQueryDto;
-//import com.github.kacperkwiatkowski.utils.leaveConfig.VacationType;
+//import com.github.kacperkwiatkowski.leaveConfig.VacationType;
 //import org.junit.Before;
 //import org.junit.jupiter.api.Test;
 //

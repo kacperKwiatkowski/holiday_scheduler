@@ -1,6 +1,6 @@
 package com.github.kacperkwiatkowski.calendar;
 
-import com.github.kacperkwiatkowski.dto.UserDto;
+import com.github.kacperkwiatkowski.user.UserDto;
 import lombok.*;
 
 import java.util.List;

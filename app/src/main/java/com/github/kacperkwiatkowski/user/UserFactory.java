@@ -1,8 +1,6 @@
 package com.github.kacperkwiatkowski.user;
 
 import com.github.kacperkwiatkowski.convertors.RoleTypeConvertor;
-import com.github.kacperkwiatkowski.dto.UserDto;
-import com.github.kacperkwiatkowski.dto.UserSecurityDto;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;

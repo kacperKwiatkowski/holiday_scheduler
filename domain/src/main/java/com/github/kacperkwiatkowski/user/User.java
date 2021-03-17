@@ -1,8 +1,6 @@
 package com.github.kacperkwiatkowski.user;
 
-import com.github.kacperkwiatkowski.convertors.RoleTypeConvertor;
-import com.github.kacperkwiatkowski.security.RoleType;
-import com.github.kacperkwiatkowski.dto.UserDto;
+import com.github.kacperkwiatkowski.enums.RoleType;
 import lombok.*;
 
 import javax.persistence.*;
@@ -52,17 +50,6 @@ class User implements Serializable{
 //    private Team com.github.kacperkwiatkowski.team;
 
     private String imageUrl;
-
-    UserDto mapToDto() {
-        return UserDto.builder()
-                .id(id)
-                .email(email)
-                .firstName(firstName)
-                .lastName(lastName)
-                .daysOffLeft(daysOffLeft)
-                .roleType(RoleTypeConvertor.convertToString(roleType))
-                .build();
-    }
 
     Optional<String> getUserOptionalOfUserImageUrl() {
         return Optional.ofNullable(imageUrl);

@@ -59,7 +59,7 @@ public class TeamFacade {
     public TeamDto readTeam(int teamId){
         Optional<Team> foundTeam = Optional.ofNullable(teamRepository.findById(teamId));
         if(foundTeam.isPresent()){
-            return foundTeam.get().mapToDto();
+            return TeamDto.mapToDto(foundTeam.get());
         } else {
             throw ObjectNotFoundException.createWith("Team with such ID does not exist.");
         }
@@ -68,7 +68,7 @@ public class TeamFacade {
     public List<TeamDto> readEachTeam(){
         List<Team> foundTeams = teamRepository.findAll();
         if(foundTeams.size()!=0){
-            return foundTeams.stream().map(Team::mapToDto).collect(Collectors.toList());
+            return foundTeams.stream().map(TeamDto::mapToDto).collect(Collectors.toList());
         } else {
             throw ObjectNotFoundException.createWith("Team with such ID does not exist.");
         }
@@ -144,7 +144,7 @@ public class TeamFacade {
         }
 
         if(pagedResult.hasContent()) {
-            return pagedResult.stream().map(Team::mapToDto).collect(Collectors.toList());
+            return pagedResult.stream().map(TeamDto::mapToDto).collect(Collectors.toList());
         } else {
             throw new ObjectNotFoundException("Pagination impossible");
         }

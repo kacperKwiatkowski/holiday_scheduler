@@ -2,9 +2,9 @@ package com.github.kacperkwiatkowski.vacation;
 
 import com.github.kacperkwiatkowski.exceptions.ObjectNotFoundException;
 import com.github.kacperkwiatkowski.nationalHoliday.NationalHolidayFacade;
+import com.github.kacperkwiatkowski.user.UserDto;
 import com.github.kacperkwiatkowski.user.UserFacade;
-import com.github.kacperkwiatkowski.dto.UserDto;
-import com.github.kacperkwiatkowski.utils.leaveConfig.VacationType;
+import com.github.kacperkwiatkowski.enums.VacationType;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -64,7 +64,7 @@ public class VacationFacade {
                             id,
                             LocalDate.of(year, month, 1),
                             LocalDate.of(year, month, YearMonth.of(year, month).lengthOfMonth()))
-                                .stream().map(Vacation::mapToDto).collect(Collectors.toList())
+                                .stream().map(VacationDto::mapToDto).collect(Collectors.toList())
                         )
                 .collect(Collectors.toList());
 
@@ -100,7 +100,7 @@ public class VacationFacade {
             }
             vacationRepository.delete(foundVacation.get());
             log.info("DELETION successful.");
-            return (foundVacation.get().mapToDto());
+            return VacationDto.mapToDto(foundVacation.get());
         } else {
             log.info("DELETION unsuccessful.");
             throw new ObjectNotFoundException("DELETION unsuccessful, object not found");
@@ -126,7 +126,7 @@ public class VacationFacade {
         }
 
         if(pagedResult.hasContent()) {
-            return pagedResult.stream().map(Vacation::mapToDto).collect(Collectors.toList());
+            return pagedResult.stream().map(VacationDto::mapToDto).collect(Collectors.toList());
         } else {
             throw new ObjectNotFoundException("Pagination impossible");
         }

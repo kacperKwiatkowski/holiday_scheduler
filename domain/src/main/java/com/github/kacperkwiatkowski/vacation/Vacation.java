@@ -1,14 +1,12 @@
 package com.github.kacperkwiatkowski.vacation;
 
-import com.github.kacperkwiatkowski.convertors.VacationTypeConvertor;
 import com.github.kacperkwiatkowski.user.query.SimpleUserQueryDto;
-import com.github.kacperkwiatkowski.utils.leaveConfig.VacationType;
+import com.github.kacperkwiatkowski.enums.VacationType;
 import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 @Builder
 @Getter
@@ -38,19 +36,4 @@ class Vacation implements Serializable {
     @JoinColumn(name = "users_Id")
     private SimpleUserQueryDto user;
 
-    public VacationDto mapToDto() {
-        VacationDto vacationDto = VacationDto
-                .builder()
-                .id(id)
-                .firstDay(firstDay.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")))
-                .lastDay(lastDay.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")))
-                .userID(user.getId())
-                .email(user.getEmail())
-                .firstName(user.getFirstName())
-                .lastName(user.getLastName())
-                .isAccepted(isAccepted)
-                .leaveType(VacationTypeConvertor.convertToString(vacationType))
-                .build();
-        return vacationDto;
-    }
 }

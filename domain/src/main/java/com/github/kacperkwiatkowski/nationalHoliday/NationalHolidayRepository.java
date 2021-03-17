@@ -1,6 +1,6 @@
 package com.github.kacperkwiatkowski.nationalHoliday;
 
-import com.github.kacperkwiatkowski.utils.nationalHolidayApi.Holidays;
+import com.github.kacperkwiatkowski.nationalHoliday.nationalHolidayApi.Holidays;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

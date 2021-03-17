@@ -1,8 +1,8 @@
 package com.github.kacperkwiatkowski.nationalHoliday;
 
 import com.github.kacperkwiatkowski.exceptions.ObjectNotFoundException;
-import com.github.kacperkwiatkowski.utils.nationalHolidayApi.Holidays;
-import com.github.kacperkwiatkowski.utils.nationalHolidayApi.HolidaysJsonData;
+import com.github.kacperkwiatkowski.nationalHoliday.nationalHolidayApi.Holidays;
+import com.github.kacperkwiatkowski.nationalHoliday.nationalHolidayApi.HolidaysJsonData;
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

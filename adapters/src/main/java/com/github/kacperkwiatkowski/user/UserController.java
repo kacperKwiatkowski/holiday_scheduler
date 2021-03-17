@@ -1,7 +1,6 @@
 package com.github.kacperkwiatkowski.user;
 
 import com.github.kacperkwiatkowski.exceptions.ObjectNotFoundException;
-import com.github.kacperkwiatkowski.dto.UserDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
