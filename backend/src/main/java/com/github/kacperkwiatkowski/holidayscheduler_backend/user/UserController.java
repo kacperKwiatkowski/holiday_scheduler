@@ -1,6 +1,7 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.user;
 
 import com.github.kacperkwiatkowski.holidayscheduler_backend.exceptions.ObjectNotFoundException;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.user.dto.UserDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -16,12 +17,12 @@ import java.util.List;
 @RequestMapping("/api/user")
 class UserController {
 
-    UserController(UserService userService, UserRepository userRepository) {
-        this.userService = userService;
+    UserController(UserFacade userFacade, UserRepository userRepository) {
+        this.userFacade = userFacade;
         this.userRepository = userRepository;
     }
 
-    private final UserService userService;
+    private final UserFacade userFacade;
     private final UserRepository userRepository;
 
     @PostMapping(path = "/create")
@@ -29,21 +30,21 @@ class UserController {
     @ResponseBody
     ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
         log.info("Controller 'createUser' initiated.");
-        return ResponseEntity.ok(userService.createUser(userDto));
+        return ResponseEntity.ok(userFacade.createUser(userDto));
     }
 
     @GetMapping(path = "/read/{id}")
     @PreAuthorize("hasAuthority('employee:read')")
     ResponseEntity<UserDto> getUser(@PathVariable int id) throws ObjectNotFoundException {
         log.info("Controller 'getUser' initiated.");
-        return new ResponseEntity<UserDto>(userService.readUser(id), HttpStatus.OK);
+        return new ResponseEntity<UserDto>(userFacade.readUser(id), HttpStatus.OK);
     }
 
     @GetMapping(path = "/read/logged")
     @PreAuthorize("hasAuthority('self:edit')")
     ResponseEntity<UserDto> getUser(@RequestParam String email) throws ObjectNotFoundException {
         log.info("Controller 'getUser' initiated.");
-        return new ResponseEntity<UserDto>(userService.readUser(email), HttpStatus.OK);
+        return new ResponseEntity<UserDto>(userFacade.readUser(email), HttpStatus.OK);
     }
 
 
@@ -51,7 +52,7 @@ class UserController {
     @PreAuthorize("hasAuthority('employee:read')")
     ResponseEntity<List<UserDto>> getAllUser() throws ObjectNotFoundException {
         log.info("Controller 'getAllUser' initiated.");
-        return new ResponseEntity<List<UserDto>>(userService.getAllUsers(), HttpStatus.OK);
+        return new ResponseEntity<List<UserDto>>(userFacade.getAllUsers(), HttpStatus.OK);
     }
 
     @PatchMapping(path = "/update/{id}")
@@ -60,20 +61,20 @@ class UserController {
     @ResponseBody
     ResponseEntity<UserDto> updateUser(@RequestBody UserDto userToUpdate) throws ObjectNotFoundException {
             log.info("Controller 'updateUser' initiated.");
-            return ResponseEntity.ok(userService.updateUser(userToUpdate));
+            return ResponseEntity.ok(userFacade.updateUser(userToUpdate));
 
     }
 
-    @DeleteMapping(path = "/delete/{id}")
-    @PreAuthorize("hasAuthority('employee:delete')")
-    @ResponseStatus(HttpStatus.OK)
-    ResponseEntity<UserDto> deleteUser(
-            @PathVariable("id") int id,String token
-    ) throws ObjectNotFoundException {
-
-        log.info("Controller 'deleteUser' initiated.");
-        return ResponseEntity.ok(userService.deleteUser(id));
-    }
+//    @DeleteMapping(path = "/delete/{id}")
+//    @PreAuthorize("hasAuthority('employee:delete')")
+//    @ResponseStatus(HttpStatus.OK)
+//    ResponseEntity<UserDto> deleteUser(
+//            @PathVariable("id") int id,String token
+//    ) throws ObjectNotFoundException {
+//
+//        log.info("Controller 'deleteUser' initiated.");
+//        return ResponseEntity.ok(userService.deleteUser(id));
+//    }
 
 
     @GetMapping(path = "/page")
@@ -85,7 +86,7 @@ class UserController {
             @RequestParam(defaultValue = "") String filter)
     {
         log.info("Controller 'getAllUsers' initiated.");
-        return new ResponseEntity<List<UserDto>>(userService.listAll(pageNum, pageSize, sortBy, sortOrder, filter), new HttpHeaders(), HttpStatus.OK);
+        return new ResponseEntity<List<UserDto>>(userFacade.listAll(pageNum, pageSize, sortBy, sortOrder, filter), new HttpHeaders(), HttpStatus.OK);
     }
 
     @GetMapping("/count")

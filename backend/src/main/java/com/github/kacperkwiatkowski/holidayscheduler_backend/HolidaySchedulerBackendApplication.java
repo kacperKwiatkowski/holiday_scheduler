@@ -1,6 +1,9 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend;
 
-import com.github.kacperkwiatkowski.holidayscheduler_backend.team.TeamService;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.security.RoleType;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.team.TeamFacade;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.user.UserFacade;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.user.dto.UserSecurityDto;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,37 +14,45 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @SpringBootApplication
 public class HolidaySchedulerBackendApplication {
 
+    public HolidaySchedulerBackendApplication(UserFacade userFacade) {
+        this.userFacade = userFacade;
+    }
+
     public static void main(String[] args) {
         SpringApplication.run(HolidaySchedulerBackendApplication.class, args);
     }
 
+    private final UserFacade userFacade;
+
     @Bean
     public CommandLineRunner init(
-            TeamService teamService,
+            TeamFacade teamFacade,
             PasswordEncoder passwordEncoder
     ){
         return args -> {
 //
-//            if(userRepository.count()==0){
-//                //CREATE ADMINS
-//                userRepository.save(new User("ola@gmail.com", passwordEncoder.encode("1234"), "Ola", "Olska", RoleType.ADMIN, 26, "profile-image"));
-//                userRepository.save(new User("ida@gmail.com", passwordEncoder.encode("1234"), "Ida", "Idowska", RoleType.ADMIN, 26, "profile-image"));
-//
-//                //CREATE TEAM LEADERS
-//                userRepository.save(new User("maria@gmail.com",  passwordEncoder.encode("1234"), "Maria", "Marecka", RoleType.TEAM_LEADER, 26, "profile-image"));
-//                userRepository.save(new User("wojciech@gmail.com",  passwordEncoder.encode("1234"), "Wojciech", "Wojski", RoleType.TEAM_LEADER, 26, "profile-image"));
-//                userRepository.save(new User("natalia@gmail.com", passwordEncoder.encode("1234"), "Natalia", "Natalska", RoleType.TEAM_LEADER, 26, "profile-image"));
-//                userRepository.save(new User("grzegorz@gmail.com", passwordEncoder.encode("1234"), "Grzegorz", "Gregorowicz", RoleType.TEAM_LEADER, 26, "profile-image"));
-//
-//
-//                //CREATE USERS
-//                userRepository.save(new User("adam@gmail.com",  passwordEncoder.encode("1234"), "Adam", "Adamski", RoleType.EMPLOYEE, 26, "profile-image"));
-//                userRepository.save(new User("magda@gmail.com",  passwordEncoder.encode("1234"), "Magda", "Magdanska", RoleType.EMPLOYEE, 26, "profile-image"));
-//                userRepository.save(new User("maciej@gmail.com",  passwordEncoder.encode("1234"), "Maciej", "Mackowski", RoleType.EMPLOYEE, 26, "profile-image"));
-//                userRepository.save(new User("edyta@gmail.com",  passwordEncoder.encode("1234"), "Edyta", "Edycka", RoleType.EMPLOYEE, 26, "profile-image"));
-//                userRepository.save(new User("ewa@gmail.com",  passwordEncoder.encode("1234"), "Ewa", "Ewska", RoleType.EMPLOYEE, 26, "profile-image"));
-//                userRepository.save(new User("mariusz@gmail.com",  passwordEncoder.encode("1234"), "Mariusz", "Marski", RoleType.EMPLOYEE, 26, "profile-image"));
-//
+            if(userFacade.getAllUsers().size()==0) {
+                //CREATE ADMINS
+                userFacade.save(new UserSecurityDto("ola@gmail.com", passwordEncoder.encode("1234"), "Ola", "Olska", RoleType.ADMIN, 26, "profile-image"));
+                userFacade.save(new UserSecurityDto("ida@gmail.com", passwordEncoder.encode("1234"), "Ida", "Idowska", RoleType.ADMIN, 26, "profile-image"));
+
+                //CREATE TEAM LEADERS
+                userFacade.save(new UserSecurityDto("maria@gmail.com", passwordEncoder.encode("1234"), "Maria", "Marecka", RoleType.TEAM_LEADER, 26, "profile-image"));
+                userFacade.save(new UserSecurityDto("wojciech@gmail.com", passwordEncoder.encode("1234"), "Wojciech", "Wojski", RoleType.TEAM_LEADER, 26, "profile-image"));
+                userFacade.save(new UserSecurityDto("natalia@gmail.com", passwordEncoder.encode("1234"), "Natalia", "Natalska", RoleType.TEAM_LEADER, 26, "profile-image"));
+                userFacade.save(new UserSecurityDto("grzegorz@gmail.com", passwordEncoder.encode("1234"), "Grzegorz", "Gregorowicz", RoleType.TEAM_LEADER, 26, "profile-image"));
+
+
+                //CREATE USERS
+                userFacade.save(new UserSecurityDto("adam@gmail.com", passwordEncoder.encode("1234"), "Adam", "Adamski", RoleType.EMPLOYEE, 26, "profile-image"));
+                userFacade.save(new UserSecurityDto("magda@gmail.com", passwordEncoder.encode("1234"), "Magda", "Magdanska", RoleType.EMPLOYEE, 26, "profile-image"));
+                userFacade.save(new UserSecurityDto("maciej@gmail.com", passwordEncoder.encode("1234"), "Maciej", "Mackowski", RoleType.EMPLOYEE, 26, "profile-image"));
+                userFacade.save(new UserSecurityDto("edyta@gmail.com", passwordEncoder.encode("1234"), "Edyta", "Edycka", RoleType.EMPLOYEE, 26, "profile-image"));
+                userFacade.save(new UserSecurityDto("ewa@gmail.com", passwordEncoder.encode("1234"), "Ewa", "Ewska", RoleType.EMPLOYEE, 26, "profile-image"));
+                userFacade.save(new UserSecurityDto("mariusz@gmail.com", passwordEncoder.encode("1234"), "Mariusz", "Marski", RoleType.EMPLOYEE, 26, "profile-image"));
+            }
+
+                //
 //                //FILL TEAMS
 //                List<Integer> avocado = new ArrayList<>();
 //                List<Integer> guacamole = new ArrayList<>();

@@ -1,8 +1,6 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.user;
 
-import com.github.kacperkwiatkowski.holidayscheduler_backend.user.UserController;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.user.UserDto;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.user.UserService;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.user.dto.UserDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -28,7 +26,7 @@ class UserControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private UserService userService;
+    private UserFacade userFacade;
 
 
 
@@ -59,7 +57,7 @@ class UserControllerTest {
                 .build();
 
         //when
-        when(userService.getAllUsers()).thenReturn(Arrays.asList(user1, user2));
+        when(userFacade.getAllUsers()).thenReturn(Arrays.asList(user1, user2));
 
         //then
 //        this.mockMvc

@@ -14,17 +14,17 @@ import java.util.List;
 @RequestMapping("/api/nationalholiday")
 class NationalHolidaysController {
 
-    private final NationalHolidayService nationalHolidayService;
+    private final NationalHolidayFacade nationalHolidayFacade;
 
-    NationalHolidaysController(NationalHolidayService nationalHolidayService) {
-        this.nationalHolidayService = nationalHolidayService;
+    NationalHolidaysController(NationalHolidayFacade nationalHolidayFacade) {
+        this.nationalHolidayFacade = nationalHolidayFacade;
     }
 
     @GetMapping(value = "/read")
     @PreAuthorize("hasAuthority('nationalHolidays:management')")
     @ResponseStatus(HttpStatus.OK)
     ResponseEntity<List<NationalHolidayDto>> downloadNationalHolidays(){
-        return ResponseEntity.ok(nationalHolidayService.readNationalHolidays());
+        return ResponseEntity.ok(nationalHolidayFacade.readNationalHolidays());
     }
 
     @PostMapping(value = "/download/{year}/{key}")
@@ -34,13 +34,13 @@ class NationalHolidaysController {
             @PathVariable String key
     ){
         log.info("Controller 'uploadNationalHolidaysToDatabase' initiated.");
-        nationalHolidayService.uploadNationalHolidaysToDatabase(year, key);
+        nationalHolidayFacade.uploadNationalHolidaysToDatabase(year, key);
     }
 
     @DeleteMapping(value = "/delete/{id}")
     @PreAuthorize("hasAuthority('nationalHolidays:management')")
     @ResponseStatus(HttpStatus.OK)
     ResponseEntity<NationalHolidayDto> deleteNationalHolidays(@PathVariable("id") int id){
-        return ResponseEntity.ok(nationalHolidayService.deleteNationalHoliday(id));
+        return ResponseEntity.ok(nationalHolidayFacade.deleteNationalHoliday(id));
     }
 }

@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 @Slf4j
@@ -21,11 +20,11 @@ class VacationController {
 
     private static final Logger logger = LoggerFactory.getLogger(VacationController.class);
 
-    private final VacationService vacationService;
+    private final VacationFacade vacationFacade;
     private final VacationRepository vacationRepository;
 
-    VacationController(VacationService vacationService, VacationRepository vacationRepository) {
-        this.vacationService = vacationService;
+    VacationController(VacationFacade vacationFacade, VacationRepository vacationRepository) {
+        this.vacationFacade = vacationFacade;
         this.vacationRepository = vacationRepository;
     }
 
@@ -34,7 +33,7 @@ class VacationController {
     @ResponseStatus(HttpStatus.OK)
     ResponseEntity createVacation(
             @RequestBody VacationDto vacationDto) {
-        vacationService.createVacation(vacationDto);
+        vacationFacade.createVacation(vacationDto);
         log.info("Controller 'createVacation' initiated.");
         return null;
     }
@@ -46,7 +45,7 @@ class VacationController {
     ResponseEntity<VacationDto> updateVacation(@RequestBody VacationDto vacationToUpdate) throws ObjectNotFoundException {
         log.info("Controller 'updateVacation' initiated.");
         //TODO Return entity
-        return ResponseEntity.ok(vacationService.updateVacation(vacationToUpdate));
+        return ResponseEntity.ok(vacationFacade.updateVacation(vacationToUpdate));
 
     }
 
@@ -55,7 +54,7 @@ class VacationController {
     @ResponseStatus(HttpStatus.OK)
     ResponseEntity<VacationDto> deleteVacation(@PathVariable("id") int id){
         logger.info("Controller 'deleteVacation' initiated.");
-        return ResponseEntity.ok(vacationService.deleteVacation(Integer.valueOf(id)));
+        return ResponseEntity.ok(vacationFacade.deleteVacation(Integer.valueOf(id)));
     }
 
     @GetMapping(path = "/page")
@@ -67,7 +66,7 @@ class VacationController {
             @RequestParam(defaultValue = "") String filter)
     {
         log.info("Controller 'getAllVacations' initiated.");
-        return new ResponseEntity<List<VacationDto>>(vacationService.listAll(pageNum, pageSize, sortBy, sortOrder, filter), new HttpHeaders(), HttpStatus.OK);
+        return new ResponseEntity<List<VacationDto>>(vacationFacade.listAll(pageNum, pageSize, sortBy, sortOrder, filter), new HttpHeaders(), HttpStatus.OK);
     }
 
     @GetMapping("/count")

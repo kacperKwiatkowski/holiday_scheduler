@@ -1,6 +1,6 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.user;
 
-import com.github.kacperkwiatkowski.holidayscheduler_backend.team.Team;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.security.RoleType;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 interface UserRepository extends JpaRepository<User, Integer> {
@@ -36,30 +35,38 @@ interface UserRepository extends JpaRepository<User, Integer> {
     @Query("UPDATE User u SET u.daysOffLeft = u.daysOffLeft + :daysToSubtract WHERE u.id = :id")
     void addDaysOffFromUser(int id, int daysToSubtract);
 
-
-    @Transactional
-    @Modifying
-    @Query("UPDATE User u SET u.team = null WHERE u.id = :id")
-    void removeRelationToTeam(int id);
-
-    @Transactional
-    @Modifying
-    @Query("UPDATE User u SET u.team = null WHERE u.team.id = :id")
-    void clearUsersRelationToTeam(int id);
-
-    @Transactional
-    @Modifying
-    @Query("UPDATE User u SET u.team = :team WHERE u.id = :userId")
-    Team updateUserTeamStatus(int userId, Team team);
+//
+//    @Transactional
+//    @Modifying
+//    @Query("UPDATE User u SET u.team = null WHERE u.id = :id")
+//    void removeRelationToTeam(int id);
+//
+//    @Transactional
+//    @Modifying
+//    @Query("UPDATE User u SET u.team = null WHERE u.team.id = :id")
+//    void clearUsersRelationToTeam(int id);
+//
 
     @Query("SELECT u FROM User u WHERE u.firstName LIKE %?1%"
             + " OR u.lastName LIKE %?1%")
     Page<User> findWithFilter(String filter, Pageable paging);
 
-    @Query("SELECT u FROM User u WHERE u.team IS NULL AND u.roleType = 1")
-    List<User> findAllAvailableTeamLeaders();
+//    @Query("SELECT u FROM User u WHERE u.team IS NULL AND u.roleType = 1")
+//    List<User> findAllAvailableTeamLeaders();
+//
+//    @Query("SELECT imageUrl FROM User s WHERE s.id = :id")
+//    Optional<String> fetchImageUrl(int id);
 
-    @Query("SELECT imageUrl FROM User s WHERE s.id = :id")
-    Optional<String> fetchImageUrl(int id);
 
+
+    @Query("SELECT email FROM User u WHERE u.email = :email")
+    String fetchUsersEmail(String email);
+
+
+    @Query("SELECT password FROM User u WHERE u.email = :email")
+    String fetchUsersPassword(String email);
+
+
+    @Query("SELECT roleType FROM User u WHERE u.email = :email")
+    RoleType fetchUsersRole(String email);
 }

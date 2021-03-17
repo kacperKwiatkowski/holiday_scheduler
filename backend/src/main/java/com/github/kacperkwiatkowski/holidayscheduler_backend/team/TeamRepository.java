@@ -18,5 +18,12 @@ interface TeamRepository extends JpaRepository<Team, Integer> {
             + " OR t.teamLeader.lastName LIKE %?1%"
             + " OR t.name LIKE %?1%")
     Page<Team> findWithFilter(String filter, Pageable paging);
+//
+//    @Transactional
+//    @Modifying
+//    @Query("UPDATE User u SET u.team = :team WHERE u.id = :userId")
+//    Team updateUserTeamStatus(int userId, Team team);
+
+
 
 }

@@ -1,17 +1,15 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.calendar;
 
-import com.github.kacperkwiatkowski.holidayscheduler_backend.nationalHoliday.NationalHolidayDto;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.user.UserDto;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.user.dto.UserDto;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.vacation.VacationDto;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.user.UserService;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.vacation.VacationService;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.user.UserFacade;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.vacation.VacationFacade;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Queue;
 
 @Slf4j
 @RestController
@@ -20,13 +18,13 @@ import java.util.Queue;
 class CalendarController {
 
     private final CalendarService calendarService;
-    private final UserService userService;
-    private final VacationService vacationService;
+    private final UserFacade userFacade;
+    private final VacationFacade vacationFacade;
 
-    CalendarController(CalendarService calendarService, UserService userService, VacationService vacationService) {
+    CalendarController(CalendarService calendarService, UserFacade userFacade, VacationFacade vacationFacade) {
         this.calendarService = calendarService;
-        this.userService = userService;
-        this.vacationService = vacationService;
+        this.userFacade = userFacade;
+        this.vacationFacade = vacationFacade;
     }
 
     @PreAuthorize("hasAuthority('employee:read')")
@@ -41,8 +39,8 @@ class CalendarController {
             @RequestParam String year)
     {
         log.info("Controller 'getCalendar' initiated.");
-        List<UserDto> foundUsers = userService.listAll(pageNum, pageSize, sortBy, sortOrder, filter);
-        List<VacationDto> foundVacations = vacationService.readRequiredVacations(foundUsers, Integer.valueOf(month), Integer.valueOf(year));
+        List<UserDto> foundUsers = userFacade.listAll(pageNum, pageSize, sortBy, sortOrder, filter);
+        List<VacationDto> foundVacations = vacationFacade.readRequiredVacations(foundUsers, Integer.valueOf(month), Integer.valueOf(year));
         List<CalendarDto> generatedCalendar = calendarService.createCalendar(foundUsers, foundVacations, Integer.valueOf(month), Integer.valueOf(year));
         return ResponseEntity.ok(generatedCalendar);
     }

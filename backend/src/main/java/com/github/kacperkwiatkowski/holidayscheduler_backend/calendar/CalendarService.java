@@ -1,8 +1,8 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.calendar;
 
 import com.github.kacperkwiatkowski.holidayscheduler_backend.nationalHoliday.NationalHolidayDto;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.nationalHoliday.NationalHolidayService;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.user.UserDto;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.nationalHoliday.NationalHolidayFacade;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.user.dto.UserDto;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.vacation.VacationDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -16,15 +16,15 @@ import static java.lang.Integer.parseInt;
 @Service
 public class CalendarService {
 
-    private final NationalHolidayService nationalHolidayService;
+    private final NationalHolidayFacade nationalHolidayFacade;
 
-    public CalendarService(NationalHolidayService nationalHolidayService) {
-        this.nationalHolidayService = nationalHolidayService;
+    public CalendarService(NationalHolidayFacade nationalHolidayFacade) {
+        this.nationalHolidayFacade = nationalHolidayFacade;
     }
 
 
     public Queue<NationalHolidayDto> nationalHolidaysInThisMonth(int year, int month) {
-        return nationalHolidayService
+        return nationalHolidayFacade
                 .findHolidaysWithinGivenTimeFrame(
                         LocalDate.of(year, month, 1),
                         LocalDate.of(year, month, LocalDate.of(year, month, 1).lengthOfMonth())
@@ -62,7 +62,7 @@ public class CalendarService {
 
     private List<CalendarDto>  insertNationalHolidays(int month, int year, int days, List<CalendarDto> calendar) {
         Queue<NationalHolidayDto> nationalHolidaysInThisMonth =
-                nationalHolidayService.findHolidaysWithinGivenTimeFrame(LocalDate.of(year, month, 1), LocalDate.of(year, month, days));
+                nationalHolidayFacade.findHolidaysWithinGivenTimeFrame(LocalDate.of(year, month, 1), LocalDate.of(year, month, days));
         while(!nationalHolidaysInThisMonth.isEmpty()){
 
             calendar

@@ -1,6 +1,6 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.calendar;
 
-import com.github.kacperkwiatkowski.holidayscheduler_backend.user.UserDto;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.user.dto.UserDto;
 import lombok.*;
 import java.util.List;
 

@@ -1,14 +1,12 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.user;
 
 import com.github.kacperkwiatkowski.holidayscheduler_backend.convertors.RoleTypeConvertor;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.team.Team;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.vacation.Vacation;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.security.RoleType;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.user.dto.UserDto;
 import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 import java.util.Optional;
 
 @Data
@@ -18,7 +16,7 @@ import java.util.Optional;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class User implements Serializable{
+class User implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
@@ -43,27 +41,17 @@ public class User implements Serializable{
     @Column(nullable = false)
     private int daysOffLeft;
 
-    @OneToMany(mappedBy = "user",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-            )
-    private List<Vacation> vacations;
+//    @OneToMany(mappedBy = "user",
+//            cascade = CascadeType.ALL,
+//            orphanRemoval = true
+//            )
+//    private List<Vacation> vacations;
 
-    @ManyToOne(cascade = CascadeType.MERGE,
-            fetch = FetchType.EAGER)
-    private Team team;
+//    @ManyToOne(cascade = CascadeType.MERGE,
+//            fetch = FetchType.EAGER)
+//    private Team team;
 
     private String imageUrl;
-
-    public User(String email, String password, String firstName, String lastName, RoleType roleType, int daysOffLeft, String imageUrl) {
-        this.email = email;
-        this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.roleType = roleType;
-        this.daysOffLeft = daysOffLeft;
-        this.imageUrl = imageUrl;
-    }
 
     UserDto mapToDto() {
         return UserDto.builder()

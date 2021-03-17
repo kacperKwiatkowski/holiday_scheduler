@@ -1,10 +1,9 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.vacation;
 
-import com.github.kacperkwiatkowski.holidayscheduler_backend.nationalHoliday.NationalHolidayService;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.user.UserDto;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.nationalHoliday.NationalHolidayFacade;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.user.dto.UserDto;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.exceptions.ObjectNotFoundException;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.user.User;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.user.UserService;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.user.UserFacade;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.utils.enums.VacationType;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -24,18 +23,18 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @Service
-public class VacationService {
+public class VacationFacade {
 
     private final VacationRepository vacationRepository;
     private final VacationFactory vacationFactory;
-    private final NationalHolidayService nationalHolidayService;
-    private final UserService userService;
+    private final NationalHolidayFacade nationalHolidayFacade;
+    private final UserFacade userFacade;
 
-    VacationService(VacationRepository vacationRepository, VacationFactory vacationFactory, NationalHolidayService nationalHolidayService, UserService userService) {
+    VacationFacade(VacationRepository vacationRepository, VacationFactory vacationFactory, NationalHolidayFacade nationalHolidayFacade, UserFacade userFacade) {
         this.vacationRepository = vacationRepository;
         this.vacationFactory = vacationFactory;
-        this.nationalHolidayService = nationalHolidayService;
-        this.userService = userService;
+        this.nationalHolidayFacade = nationalHolidayFacade;
+        this.userFacade = userFacade;
     }
 
     @Transactional
@@ -44,11 +43,11 @@ public class VacationService {
 
 
         int daysBetween = getDaysBetween(vacation);
-        UserDto user = userService.findById(vacation.getUser().getId());
+        UserDto user = userFacade.findById(vacation.getUser().getId());
         validateHolidayRequest(vacation, user, daysBetween);
         vacationRepository.save(vacation);
 
-        userService.subtractDaysOffFromUser(user.getId(), daysBetween);
+        userFacade.subtractDaysOffFromUser(user.getId(), daysBetween);
 
         return vacationToCreate;
     }
@@ -94,7 +93,7 @@ public class VacationService {
 
             if(foundVacation.get().getVacationType()==VacationType.PAYED){
 
-                userService.addDaysOffFromUser(
+                userFacade.addDaysOffFromUser(
                         foundVacation.get().getUser().getId(),
                         getDaysBetween(foundVacation.get())
                 );
@@ -157,6 +156,7 @@ public class VacationService {
             currentDay = currentDay.plusDays((long) 1);
         }
 
-        return numOfFreeDays - nationalHolidayService.findHolidaysWithinGivenTimeFrame(vacation.getFirstDay(), vacation.getLastDay()).size();
+        return numOfFreeDays - nationalHolidayFacade.findHolidaysWithinGivenTimeFrame(vacation.getFirstDay(), vacation.getLastDay()).size();
     }
+
 }

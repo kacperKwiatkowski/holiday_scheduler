@@ -1,6 +1,5 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.team;
 
-import com.github.kacperkwiatkowski.holidayscheduler_backend.user.UserDto;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,56 +20,56 @@ class TeamController {
 
     private static final Logger logger = LoggerFactory.getLogger(TeamController.class);
 
-    private final TeamService teamService;
+    private final TeamFacade teamFacade;
     private final TeamRepository teamRepository;
 
-    TeamController(TeamService teamService, TeamRepository teamRepository) {
-        this.teamService = teamService;
+    TeamController(TeamFacade teamFacade, TeamRepository teamRepository) {
+        this.teamFacade = teamFacade;
         this.teamRepository = teamRepository;
     }
 
-    @PostMapping (path = "/create")
-    @PreAuthorize("hasAuthority('team:create')")
-    @ResponseStatus(HttpStatus.OK)
-    ResponseEntity<TeamDto> createTeam (@RequestBody TeamDto teamToCreate){
-        log.info("Controller 'createTeam' initiated.");
-        return ResponseEntity.ok(teamService.createTeam(teamToCreate));
-    }
-
-    @PostMapping (path = "/create/member/{id}")
-    @PreAuthorize("hasAuthority('team:create')")
-    @ResponseStatus(HttpStatus.OK)
-    ResponseEntity<TeamDto> addMemberToTeam (
-            @PathVariable int id,
-            @RequestBody TeamDto teamDto){
-        log.info("Controller 'addMemberToTeam' initiated.");
-        return ResponseEntity.ok(teamService.addMemberToTeam(id, teamDto));
-    }
+//    @PostMapping (path = "/create")
+//    @PreAuthorize("hasAuthority('team:create')")
+//    @ResponseStatus(HttpStatus.OK)
+//    ResponseEntity<TeamDto> createTeam (@RequestBody TeamDto teamToCreate){
+//        log.info("Controller 'createTeam' initiated.");
+//        return ResponseEntity.ok(teamService.createTeam(teamToCreate));
+//    }
+//
+//    @PostMapping (path = "/create/member/{id}")
+//    @PreAuthorize("hasAuthority('team:create')")
+//    @ResponseStatus(HttpStatus.OK)
+//    ResponseEntity<TeamDto> addMemberToTeam (
+//            @PathVariable int id,
+//            @RequestBody TeamDto teamDto){
+//        log.info("Controller 'addMemberToTeam' initiated.");
+//        return ResponseEntity.ok(teamService.addMemberToTeam(id, teamDto));
+//    }
 
     @GetMapping (path = "/read/{id}")
     @PreAuthorize("hasAuthority('team:read')")
     @ResponseStatus (HttpStatus.OK)
     ResponseEntity<TeamDto> readTeam (@PathVariable int id) {
         log.info("Controller 'createTeam' initiated.");
-        return ResponseEntity.ok(teamService.readTeam(id));
+        return ResponseEntity.ok(teamFacade.readTeam(id));
     }
 
-    @GetMapping (path = "/read/squad/{id}")
-    @PreAuthorize("hasAuthority('team:read')")
-    @ResponseStatus (HttpStatus.OK)
-    ResponseEntity<List<UserDto>> readTeamSquad (@PathVariable int id) {
-        log.info("Controller 'createTeam' initiated.");
-        return ResponseEntity.ok(teamService.readTeamMembers(id));
-    }
-
-
-    @GetMapping (path = "/read/leaders/available")
-    @PreAuthorize("hasAuthority('team:read')")
-    @ResponseStatus (HttpStatus.OK)
-    ResponseEntity<List<UserDto>> readAvailableTeamLeaders () {
-        log.info("Controller 'readAvailableTeamLeaders' initiated.");
-        return ResponseEntity.ok(teamService.readAvailableTeamLeaders());
-    }
+//    @GetMapping (path = "/read/squad/{id}")
+//    @PreAuthorize("hasAuthority('team:read')")
+//    @ResponseStatus (HttpStatus.OK)
+//    ResponseEntity<List<UserDto>> readTeamSquad (@PathVariable int id) {
+//        log.info("Controller 'createTeam' initiated.");
+//        return ResponseEntity.ok(teamService.readTeamMembers(id));
+//    }
+//
+//
+//    @GetMapping (path = "/read/leaders/available")
+//    @PreAuthorize("hasAuthority('team:read')")
+//    @ResponseStatus (HttpStatus.OK)
+//    ResponseEntity<List<UserDto>> readAvailableTeamLeaders () {
+//        log.info("Controller 'readAvailableTeamLeaders' initiated.");
+//        return ResponseEntity.ok(teamService.readAvailableTeamLeaders());
+//    }
 
 
     @GetMapping (path = "/read")
@@ -78,26 +77,26 @@ class TeamController {
     @ResponseStatus (HttpStatus.OK)
     ResponseEntity<List<TeamDto>> readEachTeam () {
         log.info("Controller 'readEachTeam' initiated.");
-        return ResponseEntity.ok(teamService.readEachTeam());
+        return ResponseEntity.ok(teamFacade.readEachTeam());
     }
 
 
-    @PatchMapping(path = "/update/{id}")
-    @PreAuthorize("hasAuthority('team:update')")
-    @ResponseBody
-
-        //FIXME Doesnt work
-    ResponseEntity<TeamDto> updateTeam (@RequestBody TeamDto teamToUpdate) {
-        log.info("Controller 'updateTeam' initiated.");
-        return ResponseEntity.ok(teamService.updateTeam(teamToUpdate));
-    }
-
-    @DeleteMapping(path = "/delete/{id}")
-    @PreAuthorize("hasAuthority('team:delete')")
-    ResponseEntity<TeamDto> deleteUser(@PathVariable("id") int id){
-        logger.info("Controller 'deleteUser' initiated.");
-        return ResponseEntity.ok(teamService.deleteTeam(id));
-    }
+//    @PatchMapping(path = "/update/{id}")
+//    @PreAuthorize("hasAuthority('team:update')")
+//    @ResponseBody
+//
+//        //FIXME Doesnt work
+//    ResponseEntity<TeamDto> updateTeam (@RequestBody TeamDto teamToUpdate) {
+//        log.info("Controller 'updateTeam' initiated.");
+//        return ResponseEntity.ok(teamService.updateTeam(teamToUpdate));
+//    }
+//
+//    @DeleteMapping(path = "/delete/{id}")
+//    @PreAuthorize("hasAuthority('team:delete')")
+//    ResponseEntity<TeamDto> deleteUser(@PathVariable("id") int id){
+//        logger.info("Controller 'deleteUser' initiated.");
+//        return ResponseEntity.ok(teamService.deleteTeam(id));
+//    }
 
     @GetMapping(path = "/page")
     @PreAuthorize("hasAuthority('team:read')")
@@ -109,17 +108,17 @@ class TeamController {
             @RequestParam(defaultValue = "") String filter)
     {
         logger.info("Pagination successful");
-        return new ResponseEntity<List<TeamDto>>(teamService.listAll(pageNo, pageSize, sortBy, sortOrder, filter), new HttpHeaders(), HttpStatus.OK);
+        return new ResponseEntity<List<TeamDto>>(teamFacade.listAll(pageNo, pageSize, sortBy, sortOrder, filter), new HttpHeaders(), HttpStatus.OK);
     }
 
-    @PostMapping(path = "/member/remove/{id}")
-    @PreAuthorize("hasAuthority('team:update')")
-    ResponseEntity<UserDto> removeFromTeam(
-            @PathVariable Integer id
-    ){
-        //FIXME Doesnt work
-        return ResponseEntity.ok(teamService.removeFromTeam(id));
-    }
+//    @PostMapping(path = "/member/remove/{id}")
+//    @PreAuthorize("hasAuthority('team:update')")
+//    ResponseEntity<UserDto> removeFromTeam(
+//            @PathVariable Integer id
+//    ){
+//        //FIXME Doesnt work
+//        return ResponseEntity.ok(teamService.removeFromTeam(id));
+//    }
 
     @GetMapping("/count")
     @ResponseStatus(HttpStatus.OK)

@@ -1,7 +1,7 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.vacation;
 
 import com.github.kacperkwiatkowski.holidayscheduler_backend.convertors.VacationTypeConvertor;
-import com.github.kacperkwiatkowski.holidayscheduler_backend.user.User;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.user.query.SimpleUserQueryDto;
 import com.github.kacperkwiatkowski.holidayscheduler_backend.utils.enums.VacationType;
 import lombok.*;
 
@@ -16,7 +16,7 @@ import java.time.format.DateTimeFormatter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Vacation implements Serializable {
+class Vacation implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
@@ -36,7 +36,7 @@ public class Vacation implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "users_Id")
-    private User user;
+    private SimpleUserQueryDto user;
 
     public VacationDto mapToDto() {
         VacationDto vacationDto = VacationDto

@@ -1,4 +1,4 @@
-package com.github.kacperkwiatkowski.holidayscheduler_backend.user;
+package com.github.kacperkwiatkowski.holidayscheduler_backend.user.dto;
 
 import lombok.*;
 

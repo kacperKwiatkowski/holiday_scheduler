@@ -18,11 +18,11 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @Service
-public class NationalHolidayService {
+public class NationalHolidayFacade {
 
     private final NationalHolidayRepository nationalHolidayRepository;
 
-    NationalHolidayService(NationalHolidayRepository nationalHolidayRepository) {
+    NationalHolidayFacade(NationalHolidayRepository nationalHolidayRepository) {
         this.nationalHolidayRepository = nationalHolidayRepository;
     }
 

@@ -1,11 +1,10 @@
 package com.github.kacperkwiatkowski.holidayscheduler_backend.team;
 
-import com.github.kacperkwiatkowski.holidayscheduler_backend.user.User;
+import com.github.kacperkwiatkowski.holidayscheduler_backend.user.query.SimpleUserQueryDto;
 import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Optional;
 
 @Builder
 @Getter
@@ -14,7 +13,7 @@ import java.util.Optional;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Team {
+class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
@@ -28,7 +27,7 @@ public class Team {
     private List<Integer> teamSquad;
 
     @OneToOne(fetch = FetchType.EAGER)
-    private User teamLeader;
+    private SimpleUserQueryDto teamLeader;
 
 //    public Team mapToEntity(TeamDto teamDto) {
 //        Team team;
