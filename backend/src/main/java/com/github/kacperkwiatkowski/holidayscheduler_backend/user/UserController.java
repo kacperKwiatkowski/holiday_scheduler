@@ -65,16 +65,16 @@ class UserController {
 
     }
 
-//    @DeleteMapping(path = "/delete/{id}")
-//    @PreAuthorize("hasAuthority('employee:delete')")
-//    @ResponseStatus(HttpStatus.OK)
-//    ResponseEntity<UserDto> deleteUser(
-//            @PathVariable("id") int id,String token
-//    ) throws ObjectNotFoundException {
-//
-//        log.info("Controller 'deleteUser' initiated.");
-//        return ResponseEntity.ok(userService.deleteUser(id));
-//    }
+    @DeleteMapping(path = "/delete/{id}")
+    @PreAuthorize("hasAuthority('employee:delete')")
+    @ResponseStatus(HttpStatus.OK)
+    ResponseEntity<UserDto> deleteUser(
+            @PathVariable("id") int id,String token
+    ) throws ObjectNotFoundException {
+
+        log.info("Controller 'deleteUser' initiated.");
+        return ResponseEntity.ok(userFacade.deleteUser(id));
+    }
 
 
     @GetMapping(path = "/page")

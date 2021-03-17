@@ -78,19 +78,19 @@ public class UserFacade {
         }
     }
 
-//    public UserDto deleteUser(int id) throws ObjectNotFoundException {
-//
-//        Optional<User> userToDelete = Optional.ofNullable(userRepository.findById(id));
-//        if(userToDelete.isPresent()){
-//
-//            checkIfTeamLeaderWithTeam(userToDelete);
-//            userRepository.deleteById(id);
-//            return userToDelete.get().mapToDto();
-//
-//        } else {
-//            throw new ObjectNotFoundException("Deletion unsuccessful. Id does not exist.");
-//        }
-//    }
+    public UserDto deleteUser(int id) throws ObjectNotFoundException {
+
+        Optional<User> userToDelete = Optional.ofNullable(userRepository.findById(id));
+        if(userToDelete.isPresent()){
+
+            //checkIfTeamLeaderWithTeam(userToDelete);
+            userRepository.deleteById(id);
+            return userToDelete.get().mapToDto();
+
+        } else {
+            throw new ObjectNotFoundException("Deletion unsuccessful. Id does not exist.");
+        }
+    }
 
     public List<UserDto> listAll(Integer pageNum, Integer pageSize, String sortBy, String sortOrder, String filter) {
 
