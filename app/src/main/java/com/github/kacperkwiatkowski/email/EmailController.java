@@ -14,33 +14,30 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 @RequestMapping("/api/email")
 class EmailController {
-
-    @Autowired
-    private JavaMailSender javaMailSender;
-
-    @PostMapping(path = "/send/{id}")
-    @PreAuthorize("hasAuthority('self:edit')")
-    @ResponseStatus(HttpStatus.OK)
-    ResponseEntity sendAnEmail(
-            @PathVariable("id") int id,
-            @RequestParam("address") String address,
-            @RequestParam("title") String title,
-            @RequestParam("content") String content) {
-
-        sendEmail(address, title, content);
-        log.info("Controller 'sendAnEmail' initiated.");
-        return (ResponseEntity) ResponseEntity.status(HttpStatus.OK);
-    }
-
-    void sendEmail(String to, String subject, String content) {
-
-        SimpleMailMessage msg = new SimpleMailMessage();
-        msg.setTo(to);
-
-        msg.setSubject(subject);
-        msg.setText(content);
-
-        javaMailSender.send(msg);
-
-    }
+//
+//    @PostMapping(path = "/send/{id}")
+//    @PreAuthorize("hasAuthority('self:edit')")
+//    @ResponseStatus(HttpStatus.OK)
+//    ResponseEntity sendAnEmail(
+//            @PathVariable("id") int id,
+//            @RequestParam("address") String address,
+//            @RequestParam("title") String title,
+//            @RequestParam("content") String content) {
+//
+//        sendEmail(address, title, content);
+//        log.info("Controller 'sendAnEmail' initiated.");
+//        return (ResponseEntity) ResponseEntity.status(HttpStatus.OK);
+//    }
+//
+//    void sendEmail(String to, String subject, String content) {
+//
+//        SimpleMailMessage msg = new SimpleMailMessage();
+//        msg.setTo(to);
+//
+//        msg.setSubject(subject);
+//        msg.setText(content);
+//
+//        javaMailSender.send(msg);
+//
+//    }
 }

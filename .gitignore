@@ -31,3 +31,8 @@ build/
 
 ### VS Code ###
 .vscode/
+
+
+### AWS ###
+adapter/src/main/resources/awsKeys.properties
+app/src/main/resources/awsKeys.properties

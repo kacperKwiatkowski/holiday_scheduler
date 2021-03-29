@@ -1,29 +1,23 @@
 version: '3'
 services:
-#  adapters:
-#    ports:
-#      - "8080:8080"
-#    build:
-#      dockerfile: Dockerfile
-#      context: ./adapters
-#  app:
-#    ports:
-#      - "8080:8080"
-#    build:
-#      dockerfile: Dockerfile
-#      context: ./app
-#  domain:
-#    ports:
-#      - "8080:8080"
-#    build:
-#      dockerfile: Dockerfile
-#      context: ./domain
-#  monolith:
-#    ports:
-#      - "8080:8080"
-#    build:
-#      dockerfile: Dockerfile
-#      context: ./monolith
+  adapters:
+    ports:
+      - "8080:8080"
+    build:
+      dockerfile: Dockerfile
+      context: ./adapter
+  app:
+    ports:
+      - "8081:8081"
+    build:
+      dockerfile: Dockerfile
+      context: ./app
+  domain:
+    ports:
+      - "8082:8082"
+    build:
+      dockerfile: Dockerfile
+      context: ./domain
   mysql:
     image: 'mysql:latest'
     environment:

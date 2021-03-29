@@ -1,8 +1,0 @@
-/home/scypion/Programing/Java_Projects/My_Projects/holiday_scheduler/adapters/src/main/java/com/github/kacperkwiatkowski/auth/JwtTokenVerifier.java
-/home/scypion/Programing/Java_Projects/My_Projects/holiday_scheduler/adapters/src/main/java/com/github/kacperkwiatkowski/auth/JwtSecretKey.java
-/home/scypion/Programing/Java_Projects/My_Projects/holiday_scheduler/adapters/src/main/java/com/github/kacperkwiatkowski/auth/UserAuthService.java
-/home/scypion/Programing/Java_Projects/My_Projects/holiday_scheduler/adapters/src/main/java/com/github/kacperkwiatkowski/auth/JwtConfig.java
-/home/scypion/Programing/Java_Projects/My_Projects/holiday_scheduler/adapters/src/main/java/com/github/kacperkwiatkowski/auth/UsernameAndPasswordAuthenticationRequest.java
-/home/scypion/Programing/Java_Projects/My_Projects/holiday_scheduler/adapters/src/main/java/com/github/kacperkwiatkowski/auth/JwtUsernameAndPasswordAuthenticationFilter.java
-/home/scypion/Programing/Java_Projects/My_Projects/holiday_scheduler/adapters/src/main/java/com/github/kacperkwiatkowski/auth/CredentialsController.java
-/home/scypion/Programing/Java_Projects/My_Projects/holiday_scheduler/adapters/src/main/java/com/github/kacperkwiatkowski/auth/ApplicationUser.java

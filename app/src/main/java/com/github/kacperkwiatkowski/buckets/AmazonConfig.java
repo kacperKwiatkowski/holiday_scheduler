@@ -17,14 +17,6 @@ import java.util.Properties;
 @Configuration
 class AmazonConfig {
 
-    private final UserFacade userFacade;
-    private final PasswordEncoder passwordEncoder;
-
-    AmazonConfig(UserFacade userFacade, PasswordEncoder passwordEncoder) {
-        this.userFacade = userFacade;
-        this.passwordEncoder = passwordEncoder;
-    }
-
     @Bean
     AmazonS3 s3() {
 
@@ -43,7 +35,7 @@ class AmazonConfig {
 
         Properties awsKeys = new Properties();
         try {
-            awsKeys.load(new FileInputStream("/home/scypion/Programing/Java_Projects/My_Projects/holiday_scheduler/adapters/src/main/resources/awsKeys.properties"));
+            awsKeys.load(new FileInputStream("/home/scypion/Desktop/awsKeys.properties"));
         } catch (IOException e) {
             e.printStackTrace();
         }

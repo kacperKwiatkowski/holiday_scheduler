@@ -1,4 +1,4 @@
-//package com.github.kacperkwiatkowski.user;
+package com.github.kacperkwiatkowski.user;//package com.github.kacperkwiatkowski.user;
 //
 //import com.github.kacperkwiatkowski.enums.RoleType;
 //import org.springframework.security.crypto.password.PasswordEncoder;
