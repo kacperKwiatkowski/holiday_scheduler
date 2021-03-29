@@ -1,13 +1,13 @@
 .cards-wrapper{
 
-    display: flex;  
+    display: flex;
     flex-wrap: wrap;
     position: relative;
     left: 50%;
     transform: translate(-50%, 0%);
     justify-content: space-around;
 
-    
+
 }
 
 .card-wrapper{
@@ -26,7 +26,7 @@
     &:hover{
 
         box-shadow: 4px 4px 5px 0px $decorationsBlue;
-    
+
         transition: all 0.3s;
     }
 }
@@ -70,14 +70,14 @@
 
 .card-member-remove-button{
     width: 80px;
-    height: 20px;    
-    
+    height: 20px;
+
     background-color: transparent;
     border: none;
     outline: none;
 
     color: $decorationsBlue;
-    border-bottom: 2px solid transparent; 
+    border-bottom: 2px solid transparent;
 
     &:hover{
 

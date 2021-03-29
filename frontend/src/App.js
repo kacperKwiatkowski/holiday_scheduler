@@ -1,7 +1,7 @@
 import Welcome from "./sites/welcome"
-import React, {useState, useEffect} from "react";
-import {Router, Route, Switch, Redirect} from 'react-router-dom';
-import { Provider } from "react-redux";
+import React from "react";
+import {Redirect, Route, Router, Switch} from 'react-router-dom';
+import {Provider} from "react-redux";
 import store from "./store/store";
 import Headerbar from "./componenets/headerbar"
 import Home from "./sites/home"

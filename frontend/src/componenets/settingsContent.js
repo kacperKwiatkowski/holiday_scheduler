@@ -5,7 +5,6 @@ import AddUser from "../forms/addUser"
 import AddTeam from "../forms/addTeam"
 
 
-
 const SettingsContent = () => {
 
     const [form, setForm] = useState("UPLOAD_NATIONAL_HOLIDAY")

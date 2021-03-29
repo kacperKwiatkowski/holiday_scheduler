@@ -1,7 +1,6 @@
 import React, {useState} from "react";
-import { Form, Field } from 'react-final-form'
-import { useHistory } from "react-router-dom";
-import  { Redirect } from 'react-router-dom'
+import {Field, Form} from 'react-final-form'
+import {Redirect, useHistory} from "react-router-dom";
 import Axios from "axios";
 import "../interceptor/interceptor"
 

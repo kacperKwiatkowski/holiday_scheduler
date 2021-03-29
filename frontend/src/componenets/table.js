@@ -1,4 +1,4 @@
-import { FaPen, FaTimes } from "react-icons/fa";
+import {FaPen, FaTimes} from "react-icons/fa";
 
 const Table = (props) => {
 

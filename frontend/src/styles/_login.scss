@@ -23,7 +23,7 @@ body{
     &:hover{
 
         box-shadow: 0 10px 25px$decorationsBlue;
-    
+
         transition: all 0.4s ease-in-out;
     }
 }
@@ -31,7 +31,7 @@ body{
 .loginFormShiftedWrapper{
 
     transition: all 0.2s;
-    left: 25% !important; 
+    left: 25% !important;
 }
 
 .registrationFormWrapper{
@@ -54,7 +54,7 @@ body{
 
     &:hover{
         box-shadow: 0 10px 25px$decorationsBlue;
-    
+
         transition: all 0.4s ease-in-out;
     }
 }
@@ -105,12 +105,12 @@ body{
 
     &:hover{
 
-        box-shadow: 0px 20px 35px -16px $decorationsBlue;  
+        box-shadow: 0px 20px 35px -16px $decorationsBlue;
         transition: all 0.2s ease-in-out;
     }
 
     &:focus{
-        box-shadow: 0px 20px 35px -16px $decorationsBlue;  
+        box-shadow: 0px 20px 35px -16px $decorationsBlue;
         transition: all 0.2s ease-in-out;
     }
 }
@@ -154,7 +154,7 @@ body{
     &:hover {
         -webkit-box-shadow: 0px 20px 35px -6px $decorationsBlue;
         -moz-box-shadow: 0px 20px 35px -6px $decorationsBlue;
-        box-shadow: 0px 20px 35px -6px $decorationsBlue;  
+        box-shadow: 0px 20px 35px -6px $decorationsBlue;
         transition: all 0.2s ease-in-out;
     }
 }

@@ -1,4 +1,4 @@
-import { Form, Field } from 'react-final-form'
+import {Field, Form} from 'react-final-form'
 
 import uploadNationalHolidays from '../actions/uploadNationalHolidays'
 

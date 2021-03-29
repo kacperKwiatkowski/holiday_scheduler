@@ -1,6 +1,6 @@
-import { Form, Field } from 'react-final-form'
-import { useDispatch} from 'react-redux';
-import { updateObject } from '../actions/updateObject'
+import {Field, Form} from 'react-final-form'
+import {useDispatch} from 'react-redux';
+import {updateObject} from '../actions/updateObject'
 
 
 const UpdateUser = ({entity}) => {

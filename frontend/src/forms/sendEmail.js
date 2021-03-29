@@ -1,6 +1,6 @@
-import { Form, Field } from 'react-final-form'
-import { useDispatch, useSelector } from 'react-redux';
-import { postEmail } from '../actions/postEmail'
+import {Field, Form} from 'react-final-form'
+import {useDispatch, useSelector} from 'react-redux';
+import {postEmail} from '../actions/postEmail'
 
 const SendEmail = () => {
 

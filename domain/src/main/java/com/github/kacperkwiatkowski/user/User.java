@@ -39,20 +39,9 @@ class User implements Serializable{
     @Column(nullable = false)
     private int daysOffLeft;
 
-//    @OneToMany(mappedBy = "com.github.kacperkwiatkowski.user",
-//            cascade = CascadeType.ALL,
-//            orphanRemoval = true
-//            )
-//    private List<Vacation> vacations;
-
-//    @ManyToOne(cascade = CascadeType.MERGE,
-//            fetch = FetchType.EAGER)
-//    private Team com.github.kacperkwiatkowski.team;
-
     private String imageUrl;
 
     Optional<String> getUserOptionalOfUserImageUrl() {
         return Optional.ofNullable(imageUrl);
     }
-
 }

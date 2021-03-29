@@ -5,14 +5,22 @@ class UsernameAndPasswordAuthenticationRequest {
     private String username;
     private String password;
 
-    UsernameAndPasswordAuthenticationRequest() {
+    public UsernameAndPasswordAuthenticationRequest() {
     }
 
-    String getUsername() {
+    public String getUsername() {
         return username;
     }
 
-    String getPassword() {
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
         return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

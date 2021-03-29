@@ -1,8 +1,6 @@
-import React, {useState, useEffect} from "react";
-import { useDispatch} from 'react-redux';
-import { fetchEachTeam } from '../actions/fetchEachTeam'
-
-import Headerbar from "../componenets/headerbar"
+import React, {useEffect, useState} from "react";
+import {useDispatch} from 'react-redux';
+import {fetchEachTeam} from '../actions/fetchEachTeam'
 import Pagination from "../componenets/pagination"
 import TeamSelector from "../selectors/teamSelector";
 import TeamContent from "../componenets/teamContent";

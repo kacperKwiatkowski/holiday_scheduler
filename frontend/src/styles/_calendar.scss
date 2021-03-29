@@ -44,7 +44,7 @@ table.calendarTable {
         width: 300px;
         text-align: center;
         align-items:center;
-    
+
         font-size: smaller;
         color: $textGrey;
         opacity: 0.5;
@@ -86,7 +86,7 @@ table.calendarTable {
     &:hover{
 
         box-shadow: 4px 4px 5px 0px $decorationsBlue;
-    
+
         transition: all 0.3s;
         transform: translateY(-5px);
     }
@@ -100,7 +100,7 @@ table.calendarTable {
     left: 78px;
 
     font-size: xx-small;
-    
+
     text-align: center;
 }
 
@@ -125,17 +125,17 @@ table.calendarTable {
 
 .payedVacationButton{
     border-bottom: 3px solid red;
-    color:red; 
+    color:red;
 }
 
 .unpaidVacationButton{
     border-bottom: 3px solid rgb(255, 166, 0);
-    color:rgb(255, 166, 0); 
+    color:rgb(255, 166, 0);
 }
 
 .payedSickButton{
     border-bottom: 3px solid rgb(14, 68, 0);
-    color:rgb(14, 68, 0); 
+    color:rgb(14, 68, 0);
 }
 
 .payedMaternityButton{
@@ -150,7 +150,7 @@ table.calendarTable {
 }
 
 .payedSabbaticalButton{
-    
+
     border-bottom: 3px solid rgb(15, 0, 49);
     color: rgb(15, 0, 49);
 }

@@ -1,7 +1,7 @@
-import { Form, Field } from 'react-final-form'
-import { useDispatch} from 'react-redux';
-import { useHistory } from "react-router-dom";
-import { deleteObject } from '../actions/deleteObjectAction'
+import {Field, Form} from 'react-final-form'
+import {useDispatch} from 'react-redux';
+import {useHistory} from "react-router-dom";
+import {deleteObject} from '../actions/deleteObjectAction'
 
 const DeleteUser = ({entity}) => {
     

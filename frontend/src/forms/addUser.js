@@ -1,6 +1,6 @@
-import { Form, Field } from 'react-final-form'
-import { useDispatch} from 'react-redux';
-import { postObject } from '../actions/postObject'
+import {Field, Form} from 'react-final-form'
+import {useDispatch} from 'react-redux';
+import {postObject} from '../actions/postObject'
 
 const AddUser = () => {
 

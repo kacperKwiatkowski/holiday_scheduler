@@ -1,7 +1,7 @@
 package com.github.kacperkwiatkowski.vacation;
 
-import com.github.kacperkwiatkowski.user.query.SimpleUserQueryDto;
 import com.github.kacperkwiatkowski.enums.VacationType;
+import com.github.kacperkwiatkowski.user.query.SimpleUserQueryDto;
 import lombok.*;
 
 import javax.persistence.*;

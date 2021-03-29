@@ -4,11 +4,11 @@
     border-spacing: 0;
     width: 100%;
     color: $textGrey;
-    border-collapse: collapse; 
+    border-collapse: collapse;
     letter-spacing: 1px;
     margin-top: 50px;
     margin-bottom: 50px;
-    
+
     th{
         height: 60px;
         margin: auto;
@@ -32,7 +32,7 @@
         height: 50px;
         padding-left: 40px;
         font-size: x-small;
-        
+
     }
 }
 
@@ -53,7 +53,7 @@
     background-color: transparent;
 
     &:hover {
-        box-shadow: 1px 2px 3px 0px rgb(233, 213, 35); 
+        box-shadow: 1px 2px 3px 0px rgb(233, 213, 35);
     }
 }
 
@@ -97,7 +97,7 @@
     outline: none;
 
     &:focus{
-        
+
         transition: all 0.2s ease-in-out;
     }
 

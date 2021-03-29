@@ -1,6 +1,6 @@
-import { Form, Field } from 'react-final-form'
-import { useDispatch} from 'react-redux';
-import { removeObjectAction } from '../actions/removeObjectAction'
+import {Field, Form} from 'react-final-form'
+import {useDispatch} from 'react-redux';
+import {removeObjectAction} from '../actions/removeObjectAction'
 
 const DeleteUser = ({entity}) => {
     

@@ -26,7 +26,7 @@
     float: left;
     padding-right: 10px;
 
-    color: $textGrey;    
+    color: $textGrey;
 }
 
 .formTextInput{
@@ -34,7 +34,7 @@
     width: 300px;
     border: none;
     outline: none;
-    border-bottom: 1px solid $textGrey; 
+    border-bottom: 1px solid $textGrey;
     border-radius: 0px;
     color: $textGrey;
     background-color: transparent;
@@ -92,7 +92,7 @@
 }
 
 .formButtonsWrapper{
-    
+
     display: flex;
     justify-content: center;
     padding-bottom: 25px;
@@ -111,11 +111,11 @@
     text-align: center;
 
     color: $textGrey;
-    border-bottom: 2px solid transparent; 
+    border-bottom: 2px solid transparent;
 
     &:hover{
 
-        border-bottom: 2px solid $textGrey; 
+        border-bottom: 2px solid $textGrey;
     }
 
 }
@@ -123,18 +123,18 @@
 .formUpdateButton{
 
     color: $updateYellow;
-    border-bottom: 2px solid transparent; 
+    border-bottom: 2px solid transparent;
 
     &:hover{
 
-        border-bottom: 2px solid $updateYellow; 
+        border-bottom: 2px solid $updateYellow;
     }
 }
 
 .formDeleteButton{
 
     color: $errorRed;
-    border-bottom: 2px solid transparent; 
+    border-bottom: 2px solid transparent;
 
     &:hover{
 
@@ -145,7 +145,7 @@
 .formServiceButton{
 
     color: $decorationsBlue;
-    border-bottom: 2px solid transparent; 
+    border-bottom: 2px solid transparent;
 
     &:hover{
 

@@ -1,8 +1,8 @@
 import React, {useEffect} from "react";
-import { Form, Field } from 'react-final-form'
-import { useDispatch, useSelector} from 'react-redux';
-import { fetchNationalHolidays } from '../actions/fetchNationalHolidays'
-import { deleteObject } from '../actions/deleteObjectAction'
+import {Field, Form} from 'react-final-form'
+import {useDispatch, useSelector} from 'react-redux';
+import {fetchNationalHolidays} from '../actions/fetchNationalHolidays'
+import {deleteObject} from '../actions/deleteObjectAction'
 
 const NationalHolidayUpload = () => {
 

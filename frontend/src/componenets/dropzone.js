@@ -1,7 +1,7 @@
 import Axios from 'axios'
 import React, {useCallback} from 'react'
 import {useDropzone} from 'react-dropzone'
-import { FaAngleDown, FaAngleDoubleDown } from "react-icons/fa";
+import {FaAngleDoubleDown, FaAngleDown} from "react-icons/fa";
 
 
 const Dropzone = ({id}) => {

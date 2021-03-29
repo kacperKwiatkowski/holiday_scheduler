@@ -1,6 +1,6 @@
-import { Form, Field } from 'react-final-form'
-import { useDispatch,useSelector } from 'react-redux';
-import { updateCredentials } from '../actions/updateCredentials'
+import {Field, Form} from 'react-final-form'
+import {useDispatch, useSelector} from 'react-redux';
+import {updateCredentials} from '../actions/updateCredentials'
 
 const ChangePassword = () => {
 

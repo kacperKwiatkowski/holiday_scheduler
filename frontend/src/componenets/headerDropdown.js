@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from "react";
-import { useDispatch, useSelector} from 'react-redux';
+import React, {useEffect, useState} from "react";
+import {useDispatch, useSelector} from 'react-redux';
 import SendEmail from "../forms/sendEmail";
 import ChangeEmail from "../forms/changeEmail";
 import ChangePassword from "../forms/changePassword";
@@ -7,7 +7,7 @@ import RequestVacation from "../forms/requestVacation";
 import Dropzone from './dropzone';
 import Modal from "../componenets/modal";
 
-import { fetchLoggedUser } from '../actions/fetchLoggedUser'
+import {fetchLoggedUser} from '../actions/fetchLoggedUser'
 
 
 const HeaderDropdown = ({dropDownStatus}) => {

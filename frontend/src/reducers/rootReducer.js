@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux'
+import {combineReducers} from 'redux'
 import objectReducer from './objectsReducer'
 import actionReducer from './actionReducer'
 import recordReducer from './recordReducer'

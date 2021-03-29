@@ -1,8 +1,6 @@
-import React, {useState, useEffect} from "react";
-import { useDispatch, useSelector} from 'react-redux';
-import { fetchObjects } from '../actions/fetchObjectsActions'
-
-import Headerbar from "../componenets/headerbar"
+import React, {useEffect, useState} from "react";
+import {useDispatch, useSelector} from 'react-redux';
+import {fetchObjects} from '../actions/fetchObjectsActions'
 import TableControls from "../componenets/tableControls"
 import Modal from "../componenets/modal";
 import UpdateVacation from "../forms/updateVacation";

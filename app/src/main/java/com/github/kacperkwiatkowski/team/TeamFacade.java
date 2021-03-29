@@ -1,7 +1,7 @@
 package com.github.kacperkwiatkowski.team;
 
-import com.github.kacperkwiatkowski.user.UserFacade;
 import com.github.kacperkwiatkowski.exceptions.ObjectNotFoundException;
+import com.github.kacperkwiatkowski.user.UserFacade;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

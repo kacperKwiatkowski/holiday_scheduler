@@ -1,6 +1,6 @@
-import { Form, Field } from 'react-final-form'
-import { useDispatch, useSelector } from 'react-redux';
-import { postVacationRequest } from '../actions/postVacationRequest'
+import {Field, Form} from 'react-final-form'
+import {useDispatch, useSelector} from 'react-redux';
+import {postVacationRequest} from '../actions/postVacationRequest'
 
 const RequestVacation = () => {
 

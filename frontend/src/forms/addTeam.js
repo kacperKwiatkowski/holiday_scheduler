@@ -1,10 +1,10 @@
 import Axios from "axios";
 import "../interceptor/interceptor"
 
-import React, {useState, useEffect} from "react";
-import { Form, Field } from 'react-final-form'
-import { useDispatch} from 'react-redux';
-import { postObject } from '../actions/postObject'
+import React, {useEffect, useState} from "react";
+import {Field, Form} from 'react-final-form'
+import {useDispatch} from 'react-redux';
+import {postObject} from '../actions/postObject'
 
 const AddTeam = ({entity}) => {
 

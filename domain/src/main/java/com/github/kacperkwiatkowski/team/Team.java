@@ -29,20 +29,5 @@ class Team {
     @OneToOne(fetch = FetchType.EAGER)
     private SimpleUserQueryDto teamLeader;
 
-//    public Team mapToEntity(TeamDto teamDto) {
-//        Team com.github.kacperkwiatkowski.team;
-//        Optional<Team> optionalTeam = Optional.ofNullable(teamRepository.findById(teamDto.getId()));
-//        if(optionalTeam.isPresent()){
-//            com.github.kacperkwiatkowski.team = optionalTeam.get();
-//        } else {
-//            com.github.kacperkwiatkowski.team = new Team();
-//        }
-//        com.github.kacperkwiatkowski.team.setName(teamDto.getName());
-//        com.github.kacperkwiatkowski.team.setTeamSquad(teamDto.getUserIds());
-//        com.github.kacperkwiatkowski.team.setTeamLeader(userRepository.findById(teamDto.getTeamLeaderId()));
-//
-//        return com.github.kacperkwiatkowski.team;
-//    }
-
 
 }

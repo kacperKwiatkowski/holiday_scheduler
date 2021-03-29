@@ -1,7 +1,6 @@
-import React, {useState, useEffect} from "react";
-import { useDispatch, useSelector} from 'react-redux';
-import { fetchCalendar } from '../actions/fetchCalendar'
-import Headerbar from "../componenets/headerbar"
+import React, {useEffect, useState} from "react";
+import {useDispatch, useSelector} from 'react-redux';
+import {fetchCalendar} from '../actions/fetchCalendar'
 import CalendarControls from "../componenets/calendarControls"
 import Calendar from "../componenets/calendar";
 

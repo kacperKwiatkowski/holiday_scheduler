@@ -1,6 +1,6 @@
 @import "./variables";
 
-.controlsWrapper{   
+.controlsWrapper{
     height: 100px;
     background-color: $backgroundWhite;
     color: $textGrey;
@@ -58,7 +58,7 @@
     margin-right: 30px;
     border: none;
     outline: none;
-    border-radius: 0; 
+    border-radius: 0;
 
     color: $textGrey;
     font-size:large;
@@ -123,7 +123,7 @@
 
     &:focus{
         width: 300px;
-        
+
         transition: all 0.2s ease-in-out;
     }
 }
