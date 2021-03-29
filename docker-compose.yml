@@ -1,0 +1,35 @@
+version: '3'
+services:
+#  adapters:
+#    ports:
+#      - "8080:8080"
+#    build:
+#      dockerfile: Dockerfile
+#      context: ./adapters
+#  app:
+#    ports:
+#      - "8080:8080"
+#    build:
+#      dockerfile: Dockerfile
+#      context: ./app
+#  domain:
+#    ports:
+#      - "8080:8080"
+#    build:
+#      dockerfile: Dockerfile
+#      context: ./domain
+#  monolith:
+#    ports:
+#      - "8080:8080"
+#    build:
+#      dockerfile: Dockerfile
+#      context: ./monolith
+  mysql:
+    image: 'mysql:latest'
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: holiday_scheduler_db
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+    ports:
+      - "3307:3306"
