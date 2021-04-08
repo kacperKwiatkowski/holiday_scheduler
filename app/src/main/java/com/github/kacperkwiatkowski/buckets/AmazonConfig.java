@@ -41,11 +41,11 @@ class AmazonConfig {
     }
 
     private Properties getProperties() {
-        userFacade.save(new UserSecurityDto("ola@gmail.com", passwordEncoder.encode("1234"), "Ola", "Olska", RoleType.ADMIN, 26, "profile-image"));
+//        userFacade.save(new UserSecurityDto("ola@gmail.com", passwordEncoder.encode("1234"), "Ola", "Olska", RoleType.ADMIN, 26, "profile-image"));
 
         Properties awsKeys = new Properties();
         try {
-            awsKeys.load(new FileInputStream("/home/scypion/Programing/Java_Projects/My_Projects/holiday_scheduler/adapters/src/main/resources/awsKeys.properties"));
+            awsKeys.load(new FileInputStream("/home/scypion/Desktop/awsKeys.properties"));
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -1,6 +1,6 @@
-var Axios = require("axios");
-
 import store from '../store/store';
+
+var Axios = require("axios");
 
 export const jwtToken = localStorage.getItem("authorization");
 
